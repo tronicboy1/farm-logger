@@ -10,6 +10,9 @@ import {
   addDoc,
   collection,
   updateDoc,
+  query,
+  where,
+  getDocs,
 } from "firebase/firestore";
 import { from, map, mergeMap, Observable } from "rxjs";
 import { Farm } from "./farm.model";
@@ -42,6 +45,24 @@ export class FarmService extends FirebaseFirestore {
         return result.data() as Farm;
       }),
     );
+  }
+
+  public getAdminFarms(uid: string) {
+    const col = collection(this.firestore, "farms");
+    const q = query(col, where("adminMembers", "array-contains", uid));
+    return getDocs(q).then((results) => {
+      if (results.empty) return [];
+      return results.docs.map((doc) => doc.data() as Farm);
+    });
+  }
+
+  public getObservedFarms(uid: string) {
+    const col = collection(this.firestore, "farms");
+    const q = query(col, where("observerMembers", "array-contains", uid));
+    return getDocs(q).then((results) => {
+      if (results.empty) return [];
+      return results.docs.map((doc) => doc.data() as Farm);
+    });
   }
 
   public createFarm(farmData: Omit<Farm, "areas">) {
