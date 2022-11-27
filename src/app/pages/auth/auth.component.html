@@ -1,0 +1,91 @@
+<base-modal
+  [show]="this.showSendEmailModal"
+  (modal-closed)="this.toggleSendEmailModal(false)"
+  id="email-login-modal"
+  modal-title="Send Login Email"
+>
+  <form (submit)="this.handleSendEmailSubmit($event)">
+    <div class="form-group">
+      <label for="email-login-email">Email</label>
+      <input id="email-login-email" name="email" type="email" required autocomplete="email" />
+    </div>
+    <button id="submit-send-email" type="submit">
+      <loading-spinner *ngIf="this.loading; else sendEmailSubmitText" color="white"></loading-spinner>
+      <ng-template #sendEmailSubmitText>Send Login Email</ng-template>
+    </button>
+  </form>
+</base-modal>
+
+<base-modal
+  [show]="this.showResetPasswordModal"
+  (modal-closed)="this.toggleResetPasswordModal(false)"
+  id="reset-password"
+  modal-title="Reset Password"
+>
+  <form (submit)="this.handleResetPasswordSubmit($event)">
+    <div class="form-group">
+      <label for="reset-password-email">Email</label>
+      <input id="reset-password-email" name="email" type="email" required autocomplete="email" />
+    </div>
+    <button id="submit-reset-password" type="submit">
+      <loading-spinner *ngIf="this.loading; else sendPasswordSubmitText" color="white"></loading-spinner>
+      <ng-template #sendPasswordSubmitText>Send Password Reset Email</ng-template>
+    </button>
+  </form>
+</base-modal>
+
+<div class="card">
+  <h1>Yobo</h1>
+  <h3>A free peer to peer chat app.</h3>
+  <nav class="button-group">
+    <button
+      [class.active]="this.mode === 'LOGIN'"
+      [disabled]="this.mode === 'LOGIN'"
+      class="button-left"
+      id="login-button"
+      type="button"
+      (click)="this.handleAuthNavClick('LOGIN')"
+    >
+      Login
+    </button>
+    <button
+      [class.active]="this.mode === 'REGISTER'"
+      class="button-right"
+      id="register-button"
+      type="button"
+      (click)="this.handleAuthNavClick('REGISTER')"
+    >
+      Register
+    </button>
+  </nav>
+  <p *ngIf="this.error" id="errors">{{ this.error }}</p>
+  <form class="login-form" (submit)="this.handleLoginSubmit($event)">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required autocomplete="email" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        minlength="6"
+        maxlength="64"
+        required
+        autocomplete="{{ this.mode === 'REGISTER' ? 'new-password' : 'current-password' }}"
+      />
+      <a data-test-id="forgot-password" *ngIf="this.mode === 'LOGIN'" (click)="this.toggleResetPasswordModal(true)"
+        >Forgot password?</a
+      >
+    </div>
+    <button type="submit">
+      <loading-spinner *ngIf="this.loading; else submitText" color="white"></loading-spinner>
+      <ng-template #submitText>Submit</ng-template>
+    </button>
+  </form>
+  <!-- <div id="third-party">
+    <google-icon (click)="this.handleGoogleLoginClick()"></google-icon>
+  </div> -->
+  <a (click)="this.toggleSendEmailModal(true)">Or Sign in with only your Email Address?</a>
+</div>

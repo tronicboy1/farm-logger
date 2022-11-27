@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  emulatorPorts: {
+    auth: 9099,
+    functions: 5001,
+    firestore: 8080,
+    database: 9000,
+    storage: 9199,
+  },
 };
 
 /*

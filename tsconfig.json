@@ -6,8 +6,7 @@
     "paths": {
       "@custom-firebase/*": ["src/firebase/*"],
       "@lib/*": ["src/lib/*"],
-      "@services/*": ["src/app/services/*"],
-      "@auth/*": ["src/app/auth"],
+      "@user/*": ["src/app/user-module/*"],
       "@web-components/*": ["src/web-components/*"]
     },
     "outDir": "./dist/out-tsc",
@@ -25,10 +24,7 @@
     "importHelpers": true,
     "target": "es2020",
     "module": "es2020",
-    "lib": [
-      "es2020",
-      "dom"
-    ]
+    "lib": ["es2020", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
