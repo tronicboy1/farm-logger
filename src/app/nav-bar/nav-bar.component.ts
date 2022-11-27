@@ -27,7 +27,6 @@ export class NavBarComponent implements OnInit, OnDestroy {
   }
 
   public handleLogoutClick = () => {
-    this.authService.signOutUser();
-    this.router.navigateByUrl("/auth");
+    this.authService.signOutUser().then(() => this.router.navigateByUrl("/auth"));
   };
 }
