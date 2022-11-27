@@ -6,8 +6,8 @@ export class FirebaseAuth {
   protected auth = getAuth(app);
 
   constructor() {
-    if (!environment.production) {
-      connectAuthEmulator(this.auth, `http://localhost:${environment.emulatorPorts.auth}`);
-    }
+    // if (!environment.production) {
+    //   connectAuthEmulator(this.auth, `http://localhost:${environment.emulatorPorts.auth}`);
+    // }
   }
 }

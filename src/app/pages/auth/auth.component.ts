@@ -6,6 +6,7 @@ import { Router } from "@angular/router";
 import { FirebaseError } from "firebase/app";
 import { Utils } from "@lib/utils";
 import { AuthService } from "@user/auth.service";
+import { take } from "rxjs";
 
 type AuthNavModes = "LOGIN" | "REGISTER";
 
@@ -23,7 +24,14 @@ export class AuthComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService
+      .getAuthState()
+      .pipe(take(1))
+      .subscribe((user) => {
+        if (user) this.router.navigateByUrl("/home");
+      });
+  }
 
   public handleLoginSubmit: EventListener = (event) => {
     const { formData } = Utils.getFormData(event);
@@ -34,7 +42,7 @@ export class AuthComponent implements OnInit {
         ? this.authService.signInUser(email, password)
         : this.authService.createUser(email, password);
     this.setLoading(loginPromise).then(() => {
-      this.router.navigateByUrl("/");
+      this.router.navigateByUrl("/home");
     });
   };
 

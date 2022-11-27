@@ -8,7 +8,8 @@
       "@lib/*": ["src/lib/*"],
       "@user/*": ["src/app/user-module/*"],
       "@web-components/*": ["src/web-components/*"],
-      "@pages/*": ["src/app/pages/*"]
+      "@pages/*": ["src/app/pages/*"],
+      "@styles/*": ["src/styles/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
