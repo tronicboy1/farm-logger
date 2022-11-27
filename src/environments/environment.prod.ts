@@ -1,3 +1,5 @@
+import { WEATHER_API_KEY } from "./api-key";
+
 export const environment = {
   production: true,
   emulatorPorts: {
@@ -7,4 +9,5 @@ export const environment = {
     database: 9000,
     storage: 9199,
   },
+  weatherAPIKey: WEATHER_API_KEY,
 };

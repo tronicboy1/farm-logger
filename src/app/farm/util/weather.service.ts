@@ -2,12 +2,13 @@ import { Injectable } from "@angular/core";
 import { from, map, switchMap } from "rxjs";
 import { GeolocationService } from "./geolocation.service";
 import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class WeatherService {
-  static key = "a4d7ce1f7e70a4cebb0c4b9c4880c42d";
+  static key = environment.weatherAPIKey;
 
   constructor(private geolocationService: GeolocationService, private http: HttpClient) {}
 
