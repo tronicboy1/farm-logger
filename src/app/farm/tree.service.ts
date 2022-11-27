@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { app } from "@custom-firebase/firebase";
 import { FirebaseFirestore } from "@custom-firebase/inheritables/firestore";
 import {
   addDoc,
@@ -16,16 +15,16 @@ import {
   limit,
   getDocs,
 } from "firebase/firestore";
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import { map, Observable } from "rxjs";
 import { FarmModule } from "./farm.module";
 import { CoffeeTree, CoffeeTreeReport } from "./tree.model";
+import { PhotoService } from "./util/photo.service";
 
 @Injectable({
   providedIn: FarmModule,
 })
 export class TreeService extends FirebaseFirestore {
-  constructor() {
+  constructor(private photoService: PhotoService) {
     super();
   }
 
@@ -57,12 +56,6 @@ export class TreeService extends FirebaseFirestore {
   public updateTree(farmId: string, areaId: string, treeId: string, areaData: Partial<CoffeeTree>) {
     const ref = doc(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}`);
     return updateDoc(ref, areaData);
-  }
-
-  private uploadPhoto(file: File, farmId: string, treeId: string) {
-    const storage = getStorage(app);
-    const ref = storageRef(storage, `farms/${farmId}/trees/${treeId}`);
-    return uploadBytes(ref, file).then((snapshot) => getDownloadURL(snapshot.ref));
   }
 
   public addReport(farmId: string, areaId: string, treeId: string, reportData: CoffeeTreeReport) {

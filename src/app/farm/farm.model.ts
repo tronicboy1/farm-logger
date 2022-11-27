@@ -8,4 +8,4 @@ export type Farm = {
   observerMembers: string[];
   photoURL?: string;
   areas: Record<string, Area>;
- }
+};
