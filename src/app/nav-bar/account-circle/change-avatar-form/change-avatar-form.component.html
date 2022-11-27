@@ -1,13 +1,13 @@
 <div id="preview-box" class="preview-box"
   [style.display]="(this.previewImage || this.user?.photoURL) ? 'flex' : 'none'">
   <div class="preview-box" style="display: flex;">
-    <p>Original</p>
+    <p>変更前</p>
     <img *ngIf="this.user?.photoURL; else noAvatar" id="original" [src]="this.user?.photoURL" alt="Original Avatar">
   </div>
   <div class="preview-box" [style.display]="this.photoPreview ? 'flex' : 'none'">
-    <p>New</p>
+    <p>変更後</p>
     <img crossorigin="anonymous" [attr.src]="this.photoPreview" alt="New Avatar" #previewImage>
-    <p>After Compression</p>
+    <p>圧縮後</p>
     <canvas height="100" width="100" #photoCanvas></canvas>
   </div>
   <input name="avatar" id="preview-input" type="file" accept="image/png, image/jpeg"
@@ -16,7 +16,7 @@
       "Select Photo"}}</span></label>
 </div>
 <ng-template [ngIf]="!(this.user?.photoURL || this.previewImage)" #noAvatar>
-  <p>No Avatar</p>
+  <p>写真がない</p>
 </ng-template>
 
 
@@ -24,6 +24,6 @@
   <input type="file" name="avatar" required #fileInput>
   <button type="submit">
     <loading-spinner *ngIf="this.loading; else notLoading" color="white"></loading-spinner>
-    <ng-template #notLoading>Upload</ng-template>
+    <ng-template #notLoading>アップロード</ng-template>
   </button>
 </form>

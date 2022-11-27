@@ -1,12 +1,12 @@
 <nav *ngIf="this.isAuth">
   <ul>
     <li>
-      <h2><a routerLink="/home">Yobo</a></h2>
+      <h2><a routerLink="/home">ホーム画面</a></h2>
     </li>
     <li class="clickable" id="account-circle-container">
       <app-account-circle></app-account-circle>
     </li>
-    <li class="clickable" (click)="this.handleLogoutClick()">Logout</li>
+    <li class="clickable" (click)="this.handleLogoutClick()">ログアウト</li>
   </ul>
 </nav>
 <div *ngIf="this.isAuth" id="padding"></div>

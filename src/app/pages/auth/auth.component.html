@@ -46,7 +46,7 @@
       type="button"
       (click)="this.handleAuthNavClick('LOGIN')"
     >
-      Login
+      ログイン
     </button>
     <button
       [class.active]="this.mode === 'REGISTER'"
@@ -55,17 +55,17 @@
       type="button"
       (click)="this.handleAuthNavClick('REGISTER')"
     >
-      Register
+      登録
     </button>
   </nav>
   <p *ngIf="this.error" id="errors">{{ this.error }}</p>
   <form class="login-form" (submit)="this.handleLoginSubmit($event)">
     <div class="form-group">
-      <label for="email">Email</label>
+      <label for="email">メールアドレス</label>
       <input id="email" name="email" type="email" required autocomplete="email" />
     </div>
     <div class="form-group">
-      <label for="password">Password</label>
+      <label for="password">パスワード</label>
       <input
         id="password"
         name="password"
@@ -76,16 +76,16 @@
         autocomplete="{{ this.mode === 'REGISTER' ? 'new-password' : 'current-password' }}"
       />
       <a data-test-id="forgot-password" *ngIf="this.mode === 'LOGIN'" (click)="this.toggleResetPasswordModal(true)"
-        >Forgot password?</a
+        >パスワードをお忘れ？</a
       >
     </div>
     <button type="submit">
       <loading-spinner *ngIf="this.loading; else submitText" color="white"></loading-spinner>
-      <ng-template #submitText>Submit</ng-template>
+      <ng-template #submitText>送信</ng-template>
     </button>
   </form>
   <!-- <div id="third-party">
     <google-icon (click)="this.handleGoogleLoginClick()"></google-icon>
   </div> -->
-  <a (click)="this.toggleSendEmailModal(true)">Or Sign in with only your Email Address?</a>
+  <a (click)="this.toggleSendEmailModal(true)">メールアドレスのみでログインしますか？</a>
 </div>
