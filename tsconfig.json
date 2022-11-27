@@ -7,12 +7,14 @@
       "@custom-firebase/*": ["src/firebase/*"],
       "@lib/*": ["src/lib/*"],
       "@user/*": ["src/app/user-module/*"],
-      "@web-components/*": ["src/web-components/*"]
+      "@web-components/*": ["src/web-components/*"],
+      "@pages/*": ["src/app/pages/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noImplicitOverride": true,
+    /* For lit overrides */
+    "noImplicitOverride": false,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,

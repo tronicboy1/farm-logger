@@ -34,7 +34,7 @@ export class AuthComponent implements OnInit {
         ? this.authService.signInUser(email, password)
         : this.authService.createUser(email, password);
     this.setLoading(loginPromise).then(() => {
-      this.router.navigateByUrl("/contacts");
+      this.router.navigateByUrl("/");
     });
   };
 
