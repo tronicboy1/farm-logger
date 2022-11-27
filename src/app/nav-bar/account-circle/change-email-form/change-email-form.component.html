@@ -1,6 +1,6 @@
 <form (submit)="this.handleSubmit($event)">
   <label for="new-email">新しいメールアドレス</label>
-  <input type="email" name="new-email" id="new-email" required autocomplete="email">
+  <input type="email" name="new-email" id="new-email" required autocomplete="email" />
   <button type="submit">
     <loading-spinner *ngIf="this.loading; else submitText" color="white"></loading-spinner>
     <ng-template #submitText>変更</ng-template>

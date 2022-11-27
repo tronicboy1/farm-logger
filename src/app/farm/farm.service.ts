@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { FirebaseFirestore } from "@custom-firebase/inheritables/firestore";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-export class FarmService {
-
-  constructor() { }
+export class FarmService extends FirebaseFirestore {
+  constructor() {
+    super();
+  }
 }

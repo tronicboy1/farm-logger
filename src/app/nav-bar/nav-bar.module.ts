@@ -7,7 +7,7 @@ import { ChangeEmailFormComponent } from "./account-circle/change-email-form/cha
 import { ChangeAvatarFormComponent } from "./account-circle/change-avatar-form/change-avatar-form.component";
 import { AccountDetailsFormComponent } from "./account-circle/account-details-form/account-details-form.component";
 import { UserModule } from "@user/user.module";
-import { NavBarComponent } from './nav-bar.component';
+import { NavBarComponent } from "./nav-bar.component";
 import { RouterModule } from "@angular/router";
 
 @NgModule({

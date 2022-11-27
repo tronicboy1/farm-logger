@@ -6,7 +6,7 @@ import { PageNotFoundComponent } from "@pages/page-not-found/page-not-found.comp
 import { AuthGuard } from "@user/auth.guard";
 
 const routes: Routes = [
-  { path: "auth", component: AuthComponent, },
+  { path: "auth", component: AuthComponent },
   { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
   { path: "", redirectTo: "auth", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent },

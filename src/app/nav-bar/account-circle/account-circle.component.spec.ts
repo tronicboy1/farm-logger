@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { AccountCircleComponent } from './account-circle.component';
+import { AccountCircleComponent } from "./account-circle.component";
 
-describe('AccountCircleComponent', () => {
+describe("AccountCircleComponent", () => {
   let component: AccountCircleComponent;
   let fixture: ComponentFixture<AccountCircleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccountCircleComponent ]
-    })
-    .compileComponents();
+      declarations: [AccountCircleComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AccountCircleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
