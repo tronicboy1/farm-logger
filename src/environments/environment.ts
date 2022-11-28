@@ -2,7 +2,7 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { WEATHER_API_KEY } from "./api-key";
+import { GOOGLE_MAPS_API_KEY, WEATHER_API_KEY } from "./api-key";
 
 export const environment = {
   production: false,
@@ -14,6 +14,7 @@ export const environment = {
     storage: 9199,
   },
   weatherAPIKey: WEATHER_API_KEY,
+  googleMapsAPIKey: GOOGLE_MAPS_API_KEY,
 };
 
 /*

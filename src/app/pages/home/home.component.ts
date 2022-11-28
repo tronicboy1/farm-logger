@@ -12,6 +12,7 @@ import { FarmService } from "src/app/farm/farm.service";
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public farms: FarmWithId[] = [];
+  public showAddFarmForm = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -46,5 +47,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public handleFarmClick(farmId: string) {
     this.router.navigate(["/farms", farmId]);
+  }
+  public toggleAddFarmForm(force?: boolean) {
+    this.showAddFarmForm = force ?? !this.showAddFarmForm;
   }
 }

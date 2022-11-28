@@ -7,7 +7,7 @@
       <h5 class="members-title">参加メンバー</h5>
       <div class="members-list">
         <ul>
-          <li *ngFor="let member of farm.adminMembers">{{ member }}</li>
+          <li *ngFor="let member of farm.adminMembers; let last;">{{ member }}{{ last ? '' : ',' }}</li>
         </ul>
       </div>
     </li>

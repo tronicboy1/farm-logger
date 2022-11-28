@@ -1,4 +1,4 @@
-import { WEATHER_API_KEY } from "./api-key";
+import { GOOGLE_MAPS_API_KEY, WEATHER_API_KEY } from "./api-key";
 
 export const environment = {
   production: true,
@@ -10,4 +10,5 @@ export const environment = {
     storage: 9199,
   },
   weatherAPIKey: WEATHER_API_KEY,
+  googleMapsAPIKey: GOOGLE_MAPS_API_KEY,
 };

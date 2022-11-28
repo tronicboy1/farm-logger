@@ -14,7 +14,18 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { forkJoin, from, map, mergeMap, Observable, ReplaySubject, shareReplay, switchMap } from "rxjs";
+import {
+  first,
+  forkJoin,
+  from,
+  map,
+  mergeMap,
+  Observable,
+  ReplaySubject,
+  shareReplay,
+  switchMap,
+  throwError,
+} from "rxjs";
 import { Farm, FarmWithId } from "./farm.model";
 import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from "firebase/storage";
 import { app } from "@custom-firebase/firebase";
@@ -40,7 +51,7 @@ export class FarmService extends FirebaseFirestore {
     });
   }
 
-  public watchFarm(id: string) {
+  public watchFarm(id: string): Observable<Farm> {
     return new Observable<DocumentSnapshot<DocumentData>>((observer) => {
       const ref = doc(this.firestore, `farms/${id}`);
       return onSnapshot(ref, (result) => observer.next(result), observer.error, observer.complete);
@@ -48,6 +59,27 @@ export class FarmService extends FirebaseFirestore {
       map((result) => {
         if (!result.exists) throw Error("Farm does not exist");
         return result.data() as Farm;
+      }),
+      switchMap((farm) => this.checkIfUserIsMember(farm)),
+    );
+  }
+
+  private checkIfUserIsMember(farm: Farm): Observable<Farm> {
+    return this.authService.getUid().pipe(
+      first(),
+      map((uid) => {
+        if (!(farm.adminMembers.includes(uid) || farm.observerMembers.includes(uid))) throw Error("Not authorized.");
+        return farm;
+      }),
+    );
+  }
+
+  private checkIfUserIsAdminMember(farm: Farm): Observable<Farm> {
+    return this.authService.getUid().pipe(
+      first(),
+      map((uid) => {
+        if (!farm.adminMembers.includes(uid)) throw Error("Not authorized.");
+        return farm;
       }),
     );
   }
@@ -72,7 +104,7 @@ export class FarmService extends FirebaseFirestore {
     return from(
       getDocs(q).then((results) => {
         if (results.empty) return [];
-        return results.docs.map((doc) => ({...(doc.data() as Farm), id: doc.id}));
+        return results.docs.map((doc) => ({ ...(doc.data() as Farm), id: doc.id }));
       }),
     );
   }
@@ -83,7 +115,7 @@ export class FarmService extends FirebaseFirestore {
     return from(
       getDocs(q).then((results) => {
         if (results.empty) return [];
-        return results.docs.map((doc) => ({...(doc.data() as Farm), id: doc.id}));
+        return results.docs.map((doc) => ({ ...(doc.data() as Farm), id: doc.id }));
       }),
     );
   }
