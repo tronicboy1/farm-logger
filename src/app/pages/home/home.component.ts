@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { UserService } from "@user/user.service";
 import { combineLatest, map, Subscription, switchMap } from "rxjs";
-import { Farm } from "src/app/farm/farm.model";
+import { FarmWithId } from "src/app/farm/farm.model";
 import { FarmService } from "src/app/farm/farm.service";
 
 @Component({
@@ -10,16 +11,16 @@ import { FarmService } from "src/app/farm/farm.service";
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  public farms: Farm[] = [];
+  public farms: FarmWithId[] = [];
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private farmService: FarmService, private userService: UserService) {}
+  constructor(private farmService: FarmService, private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.farmService
-        .loadFarms()
+        .loadMyFarms()
         .pipe(
           switchMap((farms) =>
             combineLatest(
@@ -41,5 +42,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
+  }
+
+  public handleFarmClick(farmId: string) {
+    this.router.navigate(["/farms", farmId]);
   }
 }

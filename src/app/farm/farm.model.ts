@@ -9,3 +9,5 @@ export type Farm = {
   photoURL?: string;
   areas: Record<string, Area>;
 };
+
+export type FarmWithId = Farm & { id: string };

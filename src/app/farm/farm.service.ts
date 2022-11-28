@@ -14,8 +14,8 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { first, forkJoin, from, map, mergeMap, Observable, ReplaySubject, shareReplay, switchMap } from "rxjs";
-import { Farm } from "./farm.model";
+import { forkJoin, from, map, mergeMap, Observable, ReplaySubject, shareReplay, switchMap } from "rxjs";
+import { Farm, FarmWithId } from "./farm.model";
 import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from "firebase/storage";
 import { app } from "@custom-firebase/firebase";
 import { AuthService } from "@user/auth.service";
@@ -25,7 +25,7 @@ import { AuthService } from "@user/auth.service";
 })
 export class FarmService extends FirebaseFirestore {
   private loadSubject = new ReplaySubject<void>();
-  private cachedFarms$?: Observable<Farm[]>;
+  private cachedFarms$?: Observable<FarmWithId[]>;
 
   constructor(private authService: AuthService) {
     super();
@@ -52,8 +52,8 @@ export class FarmService extends FirebaseFirestore {
     );
   }
 
-  /** Loads farms and return observable. */
-  public loadFarms() {
+  /** Loads farms of Current User and return observable. */
+  public loadMyFarms(): Observable<FarmWithId[]> {
     return (this.cachedFarms$ ||= this.loadSubject.pipe(
       switchMap(() => this.authService.getUid()),
       switchMap((uid) => forkJoin([this.getAdminFarms(uid), this.getObservedFarms(uid)])),
@@ -66,24 +66,24 @@ export class FarmService extends FirebaseFirestore {
     this.loadSubject.next();
   }
 
-  private getAdminFarms(uid: string) {
+  private getAdminFarms(uid: string): Observable<FarmWithId[]> {
     const col = collection(this.firestore, "farms");
     const q = query(col, where("adminMembers", "array-contains", uid));
     return from(
       getDocs(q).then((results) => {
         if (results.empty) return [];
-        return results.docs.map((doc) => doc.data() as Farm);
+        return results.docs.map((doc) => ({...(doc.data() as Farm), id: doc.id}));
       }),
     );
   }
 
-  private getObservedFarms(uid: string) {
+  private getObservedFarms(uid: string): Observable<FarmWithId[]> {
     const col = collection(this.firestore, "farms");
     const q = query(col, where("observerMembers", "array-contains", uid));
     return from(
       getDocs(q).then((results) => {
         if (results.empty) return [];
-        return results.docs.map((doc) => doc.data() as Farm);
+        return results.docs.map((doc) => ({...(doc.data() as Farm), id: doc.id}));
       }),
     );
   }

@@ -1,7 +1,7 @@
 <div class="card">
   <h1>My 農園</h1>
   <ul>
-    <li class="farm-li" *ngFor="let farm of this.farms">
+    <li class="farm-li" *ngFor="let farm of this.farms" (click)="this.handleFarmClick(farm.id)">
       <h5 class="farm-title">農園名</h5>
       <h3 class="farm-name">{{ farm.name }}</h3>
       <h5 class="members-title">参加メンバー</h5>
