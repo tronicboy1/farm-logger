@@ -38,23 +38,13 @@ export class FarmComponent implements OnInit, OnDestroy {
         )
         .subscribe((farm) => {
           this.farm = farm;
-          this.setGoogleMapsURL(farm);
+          this.googleMapsURL = this.geolocationService.getGoogleMapsURL(farm);
         }),
     );
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
-  }
-
-  private setGoogleMapsURL(farm: Farm) {
-    if (!farm.location) return (this.googleMapsURL = undefined);
-    const url = new URL("https://www.google.com/maps/embed/v1/place");
-    url.searchParams.set("key", environment.googleMapsAPIKey);
-    url.searchParams.set("center", `${farm.location[0]},${farm.location[1]}`);
-    url.searchParams.set("q", `${farm.location[0]},${farm.location[1]}`);
-    url.searchParams.set("zoom", "19");
-    return (this.googleMapsURL = this.sanitizer.bypassSecurityTrustResourceUrl(url.toString()));
   }
 
   public handleLocationClick() {
