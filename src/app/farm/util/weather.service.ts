@@ -9,6 +9,7 @@ import { environment } from "src/environments/environment";
 })
 export class WeatherService {
   static key = environment.weatherAPIKey;
+  private cache?: {};
 
   constructor(private geolocationService: GeolocationService, private http: HttpClient) {}
 
