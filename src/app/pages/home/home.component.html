@@ -1,16 +1,20 @@
 <div class="card">
   <h1>My 農園</h1>
   <ul>
-    <li *ngFor="let farm of this.farms">
-      <h3>{{ farm.name }}</h3>
+    <li class="farm-li" *ngFor="let farm of this.farms">
+      <h5 class="farm-title">農園名</h5>
+      <h3 class="farm-name">{{ farm.name }}</h3>
+      <h5 class="members-title">参加メンバー</h5>
+      <div class="members-list">
+        <ul>
+          <li *ngFor="let member of farm.adminMembers">{{ member }}</li>
+        </ul>
+      </div>
     </li>
   </ul>
 </div>
 
 <div class="card">
   <h1>新規登録</h1>
-  <form [formGroup]="this.newFarmForm" (ngSubmit)="this.handleFarmSubmit()">
-    <label for="name">農園名</label>
-    <input type="text" name="name" id="name" formControlName="name" autocomplete="off">
-  </form>
+  <app-new-farm-form></app-new-farm-form>
 </div>

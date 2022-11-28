@@ -14,7 +14,7 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { from, map, mergeMap, Observable } from "rxjs";
+import { forkJoin, from, map, mergeMap, Observable, ReplaySubject, switchMap, tap } from "rxjs";
 import { Farm } from "./farm.model";
 import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from "firebase/storage";
 import { app } from "@custom-firebase/firebase";
@@ -23,11 +23,13 @@ import { app } from "@custom-firebase/firebase";
   providedIn: FarmModule,
 })
 export class FarmService extends FirebaseFirestore {
+  private loadSubject = new ReplaySubject<void>();
+
   constructor() {
     super();
   }
 
-  public watchFarm(id: string) {
+  public getFarm(id: string) {
     const ref = doc(this.firestore, `farms/${id}`);
     return getDoc(ref).then((result) => {
       if (!result) throw Error("Tree not found.");
@@ -35,7 +37,7 @@ export class FarmService extends FirebaseFirestore {
     });
   }
 
-  public getFarm(id: string) {
+  public watchFarm(id: string) {
     return new Observable<DocumentSnapshot<DocumentData>>((observer) => {
       const ref = doc(this.firestore, `farms/${id}`);
       return onSnapshot(ref, (result) => observer.next(result), observer.error, observer.complete);
@@ -47,7 +49,20 @@ export class FarmService extends FirebaseFirestore {
     );
   }
 
-  public getAdminFarms(uid: string) {
+  /** Loads farms and return observable. */
+  public loadFarms(uid: string) {
+    this.loadSubject.next();
+    return this.loadSubject.pipe(
+      switchMap(() => forkJoin([this.getAdminFarms(uid), this.getObservedFarms(uid)])),
+      map(([adminFarms, observerFarms]) => [...adminFarms, ...observerFarms]),
+    );
+  }
+  /** Refreshes all subscribed farm loaders. */
+  public refreshFarms(): void {
+    this.loadSubject.next();
+  }
+
+  private getAdminFarms(uid: string) {
     const col = collection(this.firestore, "farms");
     const q = query(col, where("adminMembers", "array-contains", uid));
     return from(
@@ -58,7 +73,7 @@ export class FarmService extends FirebaseFirestore {
     );
   }
 
-  public getObservedFarms(uid: string) {
+  private getObservedFarms(uid: string) {
     const col = collection(this.firestore, "farms");
     const q = query(col, where("observerMembers", "array-contains", uid));
     return from(

@@ -1,0 +1,64 @@
+ul {
+  margin: 1rem 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  width: 100%;
+}
+
+.farm-li {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 50% auto;
+  grid-template-rows: 33% auto 33%;
+  grid-column-gap: 4px;
+  grid-row-gap: 4px;
+  position: relative;
+  align-items: center;
+  border: 1px var(--secondary-color) solid;
+  background: var(--secondary-color);
+  border-radius: 8px;
+  padding: 0.75rem;
+  transition: all 0.2s;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-size: 1.8rem;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+  animation: fadeIn forwards 0.6s;
+}
+
+li h5 {
+  margin: auto;
+  padding: 0;
+  color: var(--primary-color);
+}
+
+.farm-title {
+  grid-column: 1;
+  grid-row: 1;
+}
+.farm-name {
+  grid-column: 1;
+  grid-row: 2 / span 3;
+  margin: auto;
+}
+
+.members-title {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.members-list {
+  max-width: 100%;
+  overflow: hidden;
+  grid-column: 2;
+  grid-row: 2 / span 3;
+}
+
+.members-list li {
+  max-width: 100%;
+  text-overflow: ellipsis;
+}
