@@ -14,7 +14,7 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { forkJoin, from, map, mergeMap, Observable, ReplaySubject, switchMap, tap } from "rxjs";
+import { forkJoin, from, map, mergeMap, Observable, ReplaySubject, shareReplay, switchMap } from "rxjs";
 import { Farm } from "./farm.model";
 import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from "firebase/storage";
 import { app } from "@custom-firebase/firebase";
@@ -24,9 +24,11 @@ import { app } from "@custom-firebase/firebase";
 })
 export class FarmService extends FirebaseFirestore {
   private loadSubject = new ReplaySubject<void>();
+  private cachedFarms$?: Observable<Farm[]>;
 
   constructor() {
     super();
+    this.loadSubject.next();
   }
 
   public getFarm(id: string) {
@@ -51,11 +53,11 @@ export class FarmService extends FirebaseFirestore {
 
   /** Loads farms and return observable. */
   public loadFarms(uid: string) {
-    this.loadSubject.next();
-    return this.loadSubject.pipe(
+    return (this.cachedFarms$ ||= this.loadSubject.pipe(
       switchMap(() => forkJoin([this.getAdminFarms(uid), this.getObservedFarms(uid)])),
       map(([adminFarms, observerFarms]) => [...adminFarms, ...observerFarms]),
-    );
+      shareReplay(1),
+    ));
   }
   /** Refreshes all subscribed farm loaders. */
   public refreshFarms(): void {
