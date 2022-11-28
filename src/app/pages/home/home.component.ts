@@ -1,8 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { AuthService } from "@user/auth.service";
 import { UserService } from "@user/user.service";
-import { combineLatest, finalize, forkJoin, interval, map, mergeMap, Subscription, switchMap, take } from "rxjs";
+import { combineLatest, map, Subscription, switchMap } from "rxjs";
 import { Farm } from "src/app/farm/farm.model";
 import { FarmService } from "src/app/farm/farm.service";
 
@@ -16,15 +14,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private authService: AuthService, private farmService: FarmService, private userService: UserService) {}
+  constructor(private farmService: FarmService, private userService: UserService) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.authService
-        .getUid()
+      this.farmService
+        .loadFarms()
         .pipe(
-          take(1),
-          switchMap((uid) => this.farmService.loadFarms(uid)),
           switchMap((farms) =>
             combineLatest(
               farms.map((farm) =>

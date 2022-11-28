@@ -14,10 +14,11 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { forkJoin, from, map, mergeMap, Observable, ReplaySubject, shareReplay, switchMap } from "rxjs";
+import { first, forkJoin, from, map, mergeMap, Observable, ReplaySubject, shareReplay, switchMap } from "rxjs";
 import { Farm } from "./farm.model";
 import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from "firebase/storage";
 import { app } from "@custom-firebase/firebase";
+import { AuthService } from "@user/auth.service";
 
 @Injectable({
   providedIn: FarmModule,
@@ -26,7 +27,7 @@ export class FarmService extends FirebaseFirestore {
   private loadSubject = new ReplaySubject<void>();
   private cachedFarms$?: Observable<Farm[]>;
 
-  constructor() {
+  constructor(private authService: AuthService) {
     super();
     this.loadSubject.next();
   }
@@ -52,9 +53,10 @@ export class FarmService extends FirebaseFirestore {
   }
 
   /** Loads farms and return observable. */
-  public loadFarms(uid: string) {
+  public loadFarms() {
     return (this.cachedFarms$ ||= this.loadSubject.pipe(
-      switchMap(() => forkJoin([this.getAdminFarms(uid), this.getObservedFarms(uid)])),
+      switchMap(() => this.authService.getUid()),
+      switchMap((uid) => forkJoin([this.getAdminFarms(uid), this.getObservedFarms(uid)])),
       map(([adminFarms, observerFarms]) => [...adminFarms, ...observerFarms]),
       shareReplay(1),
     ));
