@@ -15,6 +15,7 @@ export class FarmComponent implements OnInit, OnDestroy {
   public farm?: Farm;
   public googleMapsURL?: SafeResourceUrl;
   public locationError = false;
+  public showMap = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -45,6 +46,7 @@ export class FarmComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
+  public toggleMap = (force?: boolean) => (this.showMap = force ?? !this.showMap);
   public handleLocationClick() {
     this.locationError = false;
     forkJoin([this.geolocationService.aquireLocation(), this.route.params.pipe(first())])
@@ -56,7 +58,7 @@ export class FarmComponent implements OnInit, OnDestroy {
         map(([location, params]) => {
           const { farmId } = params;
           if (typeof farmId !== "string") throw TypeError("Farm ID was not in params.");
-          return [location, farmId] as [[number, number], string];
+          return [location, farmId] as const;
         }),
         switchMap(([location, farmId]) => this.farmService.updateFarm(farmId, { location })),
       )

@@ -61,12 +61,18 @@ export class UserService extends FirebaseFirestore {
     });
   }
 
-  public getTheirUid(email: string) {
+  public getUserByEmail(email: string): Promise<UserData | undefined> {
     const q = query(this.collection, where("email", "==", email));
     return getDocs(q).then((result) => {
+      if (result.empty) return;
       const first = result.docs[0];
-      if (!first) throw Error("User does not exist.");
-      const data = first.data() as UidRecord;
+      return first.data() as UserData;
+    });
+  }
+
+  public getTheirUid(email: string) {
+    return this.getUserByEmail(email).then((data) => {
+      if (!data) throw Error("User does not exist.");
       return data.uid;
     });
   }

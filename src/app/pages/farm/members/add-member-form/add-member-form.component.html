@@ -1,0 +1,10 @@
+<form [formGroup]="this.formGroup">
+  <label for="email">メールアドレス</label>
+  <p class="warning" *ngIf="this.emailDoesNotExist">入力したメールアドレスは未登録です。先に招待したい方に登録してもらいましょう。</p>
+  <input type="email" required formControlName="email">
+  <label for="role">権限</label>
+  <select name="role" id="role" formControlName="role">
+    <option *ngFor="let role of this.roles" [ngValue]="role.value">{{ role.title }}</option>
+  </select>
+  <button type="submit">招待する</button>
+</form>

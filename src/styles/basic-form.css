@@ -3,7 +3,7 @@ form {
   flex-direction: column;
 }
 
-input {
+input, select {
   height: 40px;
   padding-left: 0.5rem;
   border: 1px solid var(--secondary-color);
@@ -58,4 +58,11 @@ form:invalid button[type="submit"] {
   background-color: var(--secondary-color);
   border-color: var(--secondary-color);
   cursor: not-allowed;
+}
+
+.warning {
+  border: 1px solid rgb(142, 142, 104);
+  background-color: rgb(142, 142, 112);
+  border-radius: var(--radius);
+  padding: 1rem;
 }

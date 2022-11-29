@@ -11,16 +11,17 @@ import { FarmModule } from "../farm.module";
 export class GeolocationService {
   constructor(private sanitizer: DomSanitizer) {}
 
-  public aquireLocation(cache = false): Observable<[number, number]> {
-    return from(
-      new Promise<[number, number]>((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => resolve([position.coords.latitude, position.coords.longitude]),
-          reject,
-          { enableHighAccuracy: true, maximumAge: cache ? Infinity : 0 },
-        );
-      }),
-    );
+  public aquireLocation(cache = false): Observable<[number, number, number | null]> {
+    return new Observable<[number, number, number | null]>((observer) => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          observer.next([position.coords.latitude, position.coords.longitude, position.coords.altitude]);
+          observer.complete()
+        },
+        observer.error,
+        { enableHighAccuracy: true, maximumAge: cache ? Infinity : 0 },
+      );
+    });
   }
 
   public getGoogleMapsURL(farm: Farm) {
@@ -31,7 +32,7 @@ export class GeolocationService {
     url.searchParams.set("q", `${farm.location[0]},${farm.location[1]}`);
     url.searchParams.set("zoom", "19");
     url.searchParams.set("language", "ja");
-    url.searchParams.set("maptype", "satellite")
+    url.searchParams.set("maptype", "satellite");
     return this.sanitizer.bypassSecurityTrustResourceUrl(url.toString());
   }
 }

@@ -16,6 +16,7 @@ export class MembersComponent implements OnInit, OnDestroy, OnChanges {
   adminMembersWithDetails: UserData[] = [];
   observerMembersWithDetails: UserData[] = [];
   uidToDelete?: string;
+  showMembers = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -50,6 +51,7 @@ export class MembersComponent implements OnInit, OnDestroy, OnChanges {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
+  public toggleMembers = (force?: boolean) => (this.showMembers = force ?? !this.showMembers);
   public handleMemberDeleteClick = (uid: string) => (this.uidToDelete = uid);
   public handleModalClose = () => (this.uidToDelete = undefined);
   public confirmDelete() {
@@ -83,7 +85,7 @@ export class MembersComponent implements OnInit, OnDestroy, OnChanges {
           });
         }),
         tap(() => {
-          if (uidToDelete === uidCache) this.router.navigateByUrl("farms");
+          if (uidToDelete === uidCache) this.router.navigateByUrl("/home");
         }),
         finalize(() => (this.uidToDelete = undefined)),
       )
