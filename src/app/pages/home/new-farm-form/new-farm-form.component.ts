@@ -28,7 +28,13 @@ export class NewFarmFormComponent implements OnInit {
       .pipe(
         take(1),
         mergeMap((uid) =>
-          this.farmService.createFarm({ name, adminMembers: [uid], observerMembers: [], createdAt: Date.now() }),
+          this.farmService.createFarm({
+            name,
+            adminMembers: [uid],
+            owner: uid,
+            observerMembers: [],
+            createdAt: Date.now(),
+          }),
         ),
         tap(() => {
           this.newFarmForm.reset();

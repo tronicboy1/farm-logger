@@ -5,6 +5,7 @@ export type Farm = {
   createdAt: number;
   location?: [number, number];
   adminMembers: string[];
+  owner: string;
   observerMembers: string[];
   photoURL?: string;
   areas: Record<string, Area>;
