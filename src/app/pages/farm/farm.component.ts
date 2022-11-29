@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { catchError, first, forkJoin, map, Subscription, switchMap } from "rxjs";
 import { Farm } from "src/app/farm/farm.model";
 import { FarmService } from "src/app/farm/farm.service";
 import { GeolocationService } from "src/app/farm/util/geolocation.service";
-import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-farm",
@@ -22,7 +21,6 @@ export class FarmComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private farmService: FarmService,
-    private sanitizer: DomSanitizer,
     private geolocationService: GeolocationService,
   ) {}
 

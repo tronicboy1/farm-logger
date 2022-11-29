@@ -6,9 +6,10 @@ import { HomeComponent } from "./home/home.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { NewFarmFormComponent } from "./home/new-farm-form/new-farm-form.component";
 import { FarmComponent } from './farm/farm.component';
+import { MembersComponent } from './farm/members/members.component';
 
 @NgModule({
-  declarations: [AuthComponent, PageNotFoundComponent, HomeComponent, NewFarmFormComponent, FarmComponent],
+  declarations: [AuthComponent, PageNotFoundComponent, HomeComponent, NewFarmFormComponent, FarmComponent, MembersComponent],
   imports: [CommonModule, ReactiveFormsModule],
   /** Adding custom Elements Schema allows use of custom tags i.e. Web Components. */
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

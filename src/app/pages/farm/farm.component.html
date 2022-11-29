@@ -1,10 +1,10 @@
 <ng-template [ngIf]="this.farm">
   <div class="card">
-    <h1>{{ this.farm.name }}</h1>
+    <h1>{{ this.farm.name }} 管理一覧</h1>
   </div>
 
   <div class="card map">
-    <h1>場所</h1>
+    <h1>農園の場所</h1>
     <iframe *ngIf="this.googleMapsURL; else setLocation" height="350" style="border:0" loading="lazy" allowfullscreen
       referrerpolicy="no-referrer-when-downgrade" [src]="this.googleMapsURL">
     </iframe>
@@ -14,6 +14,8 @@
     <p *ngIf="this.locationError" class="error">位置情報取得に失敗しました。ブラウザの設定をご確認ください。</p>
     <button (click)="this.handleLocationClick()">{{ this.farm.location ? "場所を再設定する" : "場所を設定する"}}</button>
   </div>
+
+  <app-members [adminMembers]="this.farm.adminMembers" [observerMembers]="this.farm.observerMembers"></app-members>
 </ng-template>
 <ng-template [ngIf]="!this.farm">
   <loading-spinner></loading-spinner>

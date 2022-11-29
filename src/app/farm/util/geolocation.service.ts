@@ -30,6 +30,8 @@ export class GeolocationService {
     url.searchParams.set("center", `${farm.location[0]},${farm.location[1]}`);
     url.searchParams.set("q", `${farm.location[0]},${farm.location[1]}`);
     url.searchParams.set("zoom", "19");
+    url.searchParams.set("language", "ja");
+    url.searchParams.set("maptype", "satellite")
     return this.sanitizer.bypassSecurityTrustResourceUrl(url.toString());
   }
 }

@@ -1,0 +1,8 @@
+.members .card {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.members ul {
+  list-style-type: none;
+}

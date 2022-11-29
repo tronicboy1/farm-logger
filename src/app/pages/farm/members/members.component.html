@@ -1,0 +1,16 @@
+<div class="card members">
+  <h1>メンバー管理</h1>
+  <div class="card">
+    <h3>作業員</h3>
+    <ul>
+      <li *ngFor="let member of this.adminMembersWithDetails;">
+        <span>{{ member.displayName ? member.displayName : member.email }}</span>
+      </li>
+    </ul>
+
+  </div>
+  <div class="card">
+    <h3>観察者</h3>
+    <ul></ul>
+  </div>
+</div>
