@@ -34,7 +34,7 @@ export type EnvironmentRecord = {
 })
 export class EnvironmentRecordService extends FirebaseFirestore {
   static path = "environmentRecords";
-  static limit = 10;
+  static limit = 20;
   private lastDocSubject = new ReplaySubject<DocumentData | undefined>(1);
   private lastDocCache?: DocumentData;
   private farmIdCache?: string;

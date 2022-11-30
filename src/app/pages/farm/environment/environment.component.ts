@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { finalize, first, map, mergeMap, of, scan, Subscription } from "rxjs";
+import { finalize, first, map, mergeMap, Observable, of, ReplaySubject } from "rxjs";
 import { EnvironmentRecord, EnvironmentRecordService } from "src/app/farm/environment-record.service";
 import { FarmService } from "src/app/farm/farm.service";
 import { GeolocationService } from "src/app/farm/util/geolocation.service";
@@ -10,11 +10,13 @@ import { WeatherService } from "src/app/farm/util/weather.service";
   selector: "app-environment",
   templateUrl: "./environment.component.html",
   styleUrls: ["./environment.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EnvironmentComponent implements OnInit, OnDestroy {
-  public environmentRecords: EnvironmentRecord[] = [];
-  public loading = false;
-  private subscriptions = new Subscription();
+export class EnvironmentComponent implements OnInit {
+  public environmentRecords = new Observable<EnvironmentRecord[]>();
+  private loadingSubject = new ReplaySubject<boolean>(1);
+  public loading = this.loadingSubject.asObservable();
+
   constructor(
     private environmentService: EnvironmentRecordService,
     private route: ActivatedRoute,
@@ -24,29 +26,19 @@ export class EnvironmentComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscriptions.add(
-      this.route
-        .parent!.params.pipe(
-          first(),
-          map((params) => {
-            const { farmId } = params;
-            if (typeof farmId !== "string") throw TypeError();
-            return farmId;
-          }),
-          mergeMap((farmId) => this.environmentService.watchEnvironmentRecords(farmId)),
-        )
-        .subscribe((records) => {
-          this.environmentRecords = records;
-        }),
+    this.environmentRecords = this.route.parent!.params.pipe(
+      first(),
+      map((params) => {
+        const { farmId } = params;
+        if (typeof farmId !== "string") throw TypeError();
+        return farmId;
+      }),
+      mergeMap((farmId) => this.environmentService.watchEnvironmentRecords(farmId)),
     );
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
-  }
-
   public addRecord() {
-    this.loading = true;
+    this.loadingSubject.next(true);
     let farmIdCache: string;
     this.route
       .parent!.params.pipe(
@@ -80,7 +72,7 @@ export class EnvironmentComponent implements OnInit, OnDestroy {
         ),
         finalize(() => {
           this.environmentService.clearPaginationCache();
-          this.loading = false;
+          this.loadingSubject.next(false);
         }),
       )
       .subscribe();

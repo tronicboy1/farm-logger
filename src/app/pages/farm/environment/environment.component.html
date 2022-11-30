@@ -1,7 +1,7 @@
 <h1>環境記録</h1>
 <div class="card">
   <button (click)="this.addRecord()" type="button" title="現在の気象情報を取得して登録する">追加</button>
-  <loading-spinner *ngIf="this.loading"></loading-spinner>
+  <loading-spinner *ngIf="(this.loading | async)"></loading-spinner>
 </div>
 <div class="card">
   <table>
@@ -19,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let record of this.environmentRecords">
+      <tr *ngFor="let record of (this.environmentRecords | async)">
         <td>{{ record.createdAt | date : "short" }}</td>
         <td>{{ record.weather }}</td>
         <td>{{ record.clouds }}%</td>
