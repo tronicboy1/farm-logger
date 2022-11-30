@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AbstractControl, AsyncValidator, ValidationErrors } from "@angular/forms";
 import { UserService } from "@user/user.service";
-import { catchError, from, map, Observable, of } from "rxjs";
+import { catchError, filter, from, map, Observable, of, OperatorFunction, sampleTime, switchMap, take, tap } from "rxjs";
 import { UserModule } from "./user.module";
 
 @Injectable({ providedIn: UserModule })
@@ -11,7 +11,11 @@ export class EmailExistsValidator implements AsyncValidator {
   validate(control: AbstractControl): Observable<ValidationErrors | null> {
     const { value } = control;
     if (typeof value !== "string") throw TypeError("V");
-    return from(this.userService.getUserByEmail(control.value)).pipe(
+    return control.valueChanges.pipe(
+      filter((value) => typeof value === "string") as OperatorFunction<any, string>,
+      sampleTime(1000),
+      take(1),
+      switchMap((value) => this.userService.getUserByEmail(value)),
       map((userData) => {
         if (userData) return null;
         return { userDoesNotExist: true };

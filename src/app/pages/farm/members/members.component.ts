@@ -32,7 +32,8 @@ export class MembersComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges(_changes: SimpleChanges): void {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
-    console.log("change");
+    this.adminMembersWithDetails = [];
+    this.observerMembersWithDetails = [];
     this.subscriptions.push(
       forkJoin(this.adminMembers.map((uid) => this.userService.watchUserDoc(uid).pipe(first()))).subscribe(
         (details) => {
@@ -77,7 +78,7 @@ export class MembersComponent implements OnInit, OnDestroy, OnChanges {
           return this.farmService.getFarm(farmId);
         }),
         switchMap((farm) => {
-          if (farm.owner === uidCache) throw Error("Cannot delete owner from farm admin members");
+          if (farm.owner === uidToDelete) throw Error("Cannot delete owner from farm admin members");
           const filterCallback = (uid: string) => uid !== uidToDelete;
           return this.farmService.updateFarm(farmIdCache, {
             adminMembers: farm.adminMembers.filter(filterCallback),

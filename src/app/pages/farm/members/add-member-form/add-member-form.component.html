@@ -1,4 +1,5 @@
-<form [formGroup]="this.formGroup">
+<form [formGroup]="this.formGroup" (ngSubmit)="this.handleSubmit()">
+  <p *ngIf="this.submitError">指定したメールアドレスは自身のメールアドレスか、既に追加されているかです。</p>
   <label for="email">メールアドレス</label>
   <p class="warning" *ngIf="this.emailDoesNotExist">入力したメールアドレスは未登録です。先に招待したい方に登録してもらいましょう。</p>
   <input type="email" required formControlName="email">
@@ -6,5 +7,5 @@
   <select name="role" id="role" formControlName="role">
     <option *ngFor="let role of this.roles" [ngValue]="role.value">{{ role.title }}</option>
   </select>
-  <button type="submit">招待する</button>
+  <button [disabled]="this.formGroup.status !== 'VALID'" type="submit">招待する</button>
 </form>
