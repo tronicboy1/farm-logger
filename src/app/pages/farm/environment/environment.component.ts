@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { finalize, first, map, mergeMap, Observable, of, ReplaySubject } from "rxjs";
 import { EnvironmentRecord, EnvironmentRecordService } from "src/app/farm/environment-record.service";
@@ -35,6 +35,10 @@ export class EnvironmentComponent implements OnInit {
       }),
       mergeMap((farmId) => this.environmentService.watchEnvironmentRecords(farmId)),
     );
+  }
+
+  public loadNextPage() {
+    this.environmentService.triggerNextPage();
   }
 
   public addRecord() {
