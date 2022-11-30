@@ -4,7 +4,10 @@ import { CoffeeTree } from "./tree.model";
 
 export type Area = {
   name: string;
+  createdAt: number;
   trees: Record<string, CoffeeTree>;
   fertilizations: Record<string, Fertilization>;
   cropdusts: Record<string, Cropdust>;
 };
+
+export type AreaWithId = { id: string } & Area;
