@@ -42,7 +42,7 @@ export class AreaService extends FirebaseFirestore {
     );
   }
 
-  public createArea(farmId: string, areaData: Omit<Area, "trees">) {
+  public createArea(farmId: string, areaData: Omit<Area, "trees" | "fertilizations" | "cropdusts">) {
     const ref = collection(this.firestore, `farms/${farmId}/areas`);
     return addDoc(ref, areaData);
   }

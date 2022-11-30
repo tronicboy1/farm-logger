@@ -120,7 +120,7 @@ export class FarmService extends FirebaseFirestore {
     );
   }
 
-  public createFarm(farmData: Omit<Farm, "areas">) {
+  public createFarm(farmData: Omit<Farm, "areas" | "environmentRecords">) {
     const ref = collection(this.firestore, "farms");
     return addDoc(ref, farmData);
   }
