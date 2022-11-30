@@ -15,7 +15,7 @@ enum RoleEnum {
 @Component({
   selector: "app-add-member-form",
   templateUrl: "./add-member-form.component.html",
-  styleUrls: ["./add-member-form.component.css", "../../../../../styles/basic-form.css"],
+  styleUrls: ["./add-member-form.component.css", "../../../../../../styles/basic-form.css"],
 })
 export class AddMemberFormComponent implements OnInit {
   roles: { value: RoleEnum; title: string }[] = [
@@ -61,7 +61,7 @@ export class AddMemberFormComponent implements OnInit {
     const email = this.formGroup.controls.email.value!.trim();
     const role = this.formGroup.controls.role.value!;
     this.submitError = false;
-    this.route.params
+    this.route.parent!.params
       .pipe(
         first(),
         map((params) => {

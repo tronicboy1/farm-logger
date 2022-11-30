@@ -1,22 +1,9 @@
-<ng-template [ngIf]="this.farm">
-  <h1>{{ this.farm.name }} 管理一覧</h1>
-
-  <div class="card map">
-    <h1 (click)="this.toggleMap()" title="当農園の位置情報を確認したり、更新したりする">農園の場所</h1>
-    <ng-template [ngIf]="this.showMap">
-      <iframe *ngIf="this.googleMapsURL; else setLocation" height="350" style="border:0" loading="lazy" allowfullscreen
-        referrerpolicy="no-referrer-when-downgrade" [src]="this.googleMapsURL">
-      </iframe>
-      <ng-template #setLocation>
-        <p>場所は設定されていません。</p>
-      </ng-template>
-      <p *ngIf="this.locationError" class="error">位置情報取得に失敗しました。ブラウザの設定をご確認ください。</p>
-      <button (click)="this.handleLocationClick()">{{ this.farm.location ? "場所を再設定する" : "場所を設定する"}}</button>
-    </ng-template>
-  </div>
-
-  <app-members [adminMembers]="this.farm.adminMembers" [observerMembers]="this.farm.observerMembers"></app-members>
-</ng-template>
-<ng-template [ngIf]="!this.farm">
-  <loading-spinner></loading-spinner>
-</ng-template>
+<h1><small>農園：</small>{{ farm?.name }}</h1>
+<nav>
+  <ul>
+    <li><a routerLink="./manage" routerLinkActive="active">農園管理</a></li>
+    <li><a routerLink="./areas" routerLinkActive="active">区域一覧</a></li>
+    <li><a routerLink="./environment" routerLinkActive="active">環境データ</a></li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>

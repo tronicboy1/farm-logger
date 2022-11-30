@@ -69,7 +69,7 @@ export class MembersComponent implements OnInit, OnDestroy, OnChanges {
         first(),
         switchMap((uid) => {
           uidCache = uid;
-          return this.route.params.pipe(first());
+          return this.route.parent!.params.pipe(first());
         }),
         switchMap((params) => {
           const { farmId } = params;
