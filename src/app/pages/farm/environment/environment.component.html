@@ -1,7 +1,9 @@
 <h1 title="当農園の気象情報を記録する場所">環境記録</h1>
 <p class="message">現在、気象情報を出力する方法は実装していませんが開発する予定はあります。</p>
 <div class="card">
-  <p>現在の気象情報を取得して登録する。農園の位置情報が登録されていれば、それを元に自動的に記録を作ることができます。</p>
+  <p>
+    現在の気象情報を取得して登録する。農園の位置情報が登録されていれば、それを元に自動的に記録を作ることができます。
+  </p>
   <button (click)="this.addRecord()" type="button">追加</button>
   <loading-spinner *ngIf="this.loading | async"></loading-spinner>
 </div>
