@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthComponent } from "@pages/auth/auth.component";
+import { AreaComponent } from "@pages/famr/areas/area/area.component";
 import { AreasComponent } from "@pages/farm/areas/areas.component";
 import { EnvironmentComponent } from "@pages/farm/environment/environment.component";
 import { FarmComponent } from "@pages/farm/farm.component";
@@ -20,6 +21,7 @@ const routes: Routes = [
     children: [
       { path: "manage", component: ManageComponent },
       { path: "areas", component: AreasComponent },
+      { path: "areas/:areaId", component: AreaComponent },
       { path: "environment", component: EnvironmentComponent },
       { path: "", redirectTo: "manage", pathMatch: "full" },
     ],

@@ -14,7 +14,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { from, map, Observable, ReplaySubject, Subject } from "rxjs";
+import { from, map, Observable, ReplaySubject, shareReplay, Subject } from "rxjs";
 import { Area, AreaWithId } from "./area.model";
 import { FarmModule } from "./farm.module";
 
@@ -55,6 +55,7 @@ export class AreaService extends FirebaseFirestore {
         this.lastDocCache = docs[docs.length - 1];
         return docs.map((doc) => ({ ...(doc.data() as Area), id: doc.id }));
       }),
+      shareReplay(1)
     ));
   }
 

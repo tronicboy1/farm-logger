@@ -1,4 +1,4 @@
-h1 {
+h1, h3 {
   text-align: center;
 }
 
@@ -7,17 +7,27 @@ ul {
 }
 
 li {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   background-color: var(--secondary-color);
   border: 1px solid var(--secondary-color);
   border-radius: var(--radius);
-  padding: 0.25rem 0.5rem;
+  padding: 1rem;
+  font-size: 1.75rem;
+  text-align: center;
   margin: 0 0 0.5rem 0;
-  position: relative;
 }
 li:last-child {
   margin-bottom: 0;
+}
+
+.round {
+  display: block;
+  margin: 1rem auto;
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+  padding: 0;
+}
+.round svg {
+  fill: var(--secondary-color);
+  cursor: pointer;
 }

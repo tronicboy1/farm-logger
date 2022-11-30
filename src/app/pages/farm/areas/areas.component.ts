@@ -11,6 +11,7 @@ import { AreaService } from "src/app/farm/area.service";
 })
 export class AreasComponent implements OnInit {
   public areas = new Observable<AreaWithId[]>();
+  public showNewAreaForm = false;
 
   constructor(private route: ActivatedRoute, private areaService: AreaService, private router: Router) {}
 
@@ -26,6 +27,7 @@ export class AreasComponent implements OnInit {
     );
   }
 
+  toggleNewAreaForm = (force?: boolean) => (this.showNewAreaForm = force ?? !this.showNewAreaForm);
   handleAreaClick(areaId: string) {
     this.router.navigate([areaId], { relativeTo: this.route });
   }
