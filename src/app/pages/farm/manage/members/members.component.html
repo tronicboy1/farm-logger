@@ -1,29 +1,42 @@
 <div class="card members">
-  <h1 (click)="this.toggleMembers()" title="この農園の情報を見たり、編集したりすることができるユーザーを管理する">メンバー管理</h1>
+  <h1 (click)="this.toggleMembers()" title="この農園の情報を見たり、編集したりすることができるユーザーを管理する">
+    メンバー管理
+  </h1>
   <ng-template [ngIf]="this.showMembers">
     <div class="card">
       <h3 title="作業員は情報を追加したり、編集したりする権限がある">作業員</h3>
       <ul>
-        <li *ngFor="let member of this.adminMembersWithDetails;">
+        <li *ngFor="let member of this.adminMembersWithDetails">
           <span>{{ member.displayName ? member.displayName : member.email }}</span>
-          <svg (click)="this.handleMemberDeleteClick(member.uid)" xmlns="http://www.w3.org/2000/svg" height="48"
-            width="48" viewBox="0,0,48,48">
+          <svg
+            (click)="this.handleMemberDeleteClick(member.uid)"
+            xmlns="http://www.w3.org/2000/svg"
+            height="48"
+            width="48"
+            viewBox="0,0,48,48"
+          >
             <path
-              d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z" />
+              d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"
+            />
           </svg>
         </li>
       </ul>
-
     </div>
     <div class="card" *ngIf="this.observerMembersWithDetails.length">
       <h3 title="観察者は閲覧する権限のみ付与される">観察者</h3>
       <ul>
-        <li *ngFor="let member of this.observerMembersWithDetails;">
+        <li *ngFor="let member of this.observerMembersWithDetails">
           <span>{{ member.displayName ? member.displayName : member.email }}</span>
-          <svg (click)="this.handleMemberDeleteClick(member.uid)" xmlns="http://www.w3.org/2000/svg" height="48"
-            width="48" viewBox="0,0,48,48">
+          <svg
+            (click)="this.handleMemberDeleteClick(member.uid)"
+            xmlns="http://www.w3.org/2000/svg"
+            height="48"
+            width="48"
+            viewBox="0,0,48,48"
+          >
             <path
-              d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z" />
+              d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"
+            />
           </svg>
         </li>
       </ul>

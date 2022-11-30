@@ -11,7 +11,7 @@ export type Farm = {
   observerMembers: string[];
   photoURL?: string;
   areas: Record<string, Area>;
-  environmentRecords: Record<string, EnvironmentRecord>
+  environmentRecords: Record<string, EnvironmentRecord>;
 };
 
 export type FarmWithId = Farm & { id: string };

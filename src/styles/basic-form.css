@@ -3,7 +3,8 @@ form {
   flex-direction: column;
 }
 
-input, select {
+input,
+select {
   height: 40px;
   padding-left: 0.5rem;
   border: 1px solid var(--secondary-color);
@@ -54,7 +55,8 @@ button:hover {
   border-color: var(--highlight-hover);
 }
 
-form:invalid button[type="submit"], button:disabled {
+form:invalid button[type="submit"],
+button:disabled {
   background-color: var(--secondary-color);
   border-color: var(--secondary-color);
   cursor: not-allowed;

@@ -1,7 +1,19 @@
 import { Injectable } from "@angular/core";
 import { AbstractControl, AsyncValidator, ValidationErrors } from "@angular/forms";
 import { UserService } from "@user/user.service";
-import { catchError, filter, from, map, Observable, of, OperatorFunction, sampleTime, switchMap, take, tap } from "rxjs";
+import {
+  catchError,
+  filter,
+  from,
+  map,
+  Observable,
+  of,
+  OperatorFunction,
+  sampleTime,
+  switchMap,
+  take,
+  tap,
+} from "rxjs";
 import { UserModule } from "./user.module";
 
 @Injectable({ providedIn: UserModule })

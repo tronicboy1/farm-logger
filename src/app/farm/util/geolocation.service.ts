@@ -16,7 +16,7 @@ export class GeolocationService {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           observer.next([position.coords.latitude, position.coords.longitude, position.coords.altitude]);
-          observer.complete()
+          observer.complete();
         },
         observer.error,
         { enableHighAccuracy: true, maximumAge: cache ? Infinity : 0 },

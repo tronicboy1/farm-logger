@@ -1,1 +1,30 @@
-<p>environment works!</p>
+<h1>環境記録</h1>
+<div class="card">
+  <button (click)="this.addRecord()" type="button" title="現在の気象情報を取得して登録する">追加</button>
+</div>
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>日付</th>
+        <th>天気</th>
+        <th>最高気温</th>
+        <th>最低気温</th>
+        <th>日射量</th>
+        <th>風速</th>
+        <th>雨量</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of this.environmentRecords">
+        <td>{{ record.createdAt | date : "short" }}</td>
+        <td>{{ record.weather }}</td>
+        <td>{{ record.high }}</td>
+        <td>{{ record.low }}</td>
+        <td>{{ record.solarRadiation }}</td>
+        <td>{{ record.windSpeed }}</td>
+        <td>{{ record.rainfall }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

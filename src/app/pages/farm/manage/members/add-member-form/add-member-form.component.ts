@@ -61,8 +61,8 @@ export class AddMemberFormComponent implements OnInit {
     const email = this.formGroup.controls.email.value!.trim();
     const role = this.formGroup.controls.role.value!;
     this.submitError = false;
-    this.route.parent!.params
-      .pipe(
+    this.route
+      .parent!.params.pipe(
         first(),
         map((params) => {
           const { farmId } = params;

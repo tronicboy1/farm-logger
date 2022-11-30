@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { MemberGuard } from './member.guard';
+import { MemberGuard } from "./member.guard";
 
-describe('OwnerGuard', () => {
+describe("OwnerGuard", () => {
   let guard: MemberGuard;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('OwnerGuard', () => {
     guard = TestBed.inject(MemberGuard);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(guard).toBeTruthy();
   });
 });

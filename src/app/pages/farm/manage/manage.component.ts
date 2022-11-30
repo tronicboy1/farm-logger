@@ -27,8 +27,8 @@ export class ManageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.route.parent!.params
-        .pipe(
+      this.route
+        .parent!.params.pipe(
           switchMap((params) => {
             const { farmId } = params;
             if (typeof farmId !== "string") throw TypeError("Farm ID was not in params.");

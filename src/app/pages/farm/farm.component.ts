@@ -14,10 +14,7 @@ export class FarmComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(
-    private route: ActivatedRoute,
-    private farmService: FarmService,
-  ) {}
+  constructor(private route: ActivatedRoute, private farmService: FarmService) {}
 
   ngOnInit(): void {
     this.subscriptions.push(

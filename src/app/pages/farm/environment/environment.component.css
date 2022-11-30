@@ -1,0 +1,12 @@
+h1 {
+  text-align: center;
+}
+
+button {
+  border-radius: var(--radius);
+  background-color: var(--highlight-color);
+  border: 1px solid var(--highlight-color);
+  cursor: pointer;
+  height: 50px;
+  font-size: 1.5rem;
+}
