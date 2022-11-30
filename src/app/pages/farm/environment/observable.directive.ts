@@ -8,7 +8,7 @@ export class ObservableDirective {
   @Output() intersection = new EventEmitter();
 
   constructor(public el: ElementRef) {
-    this.observer = new IntersectionObserver(this.callback, { rootMargin: "0px", threshold: 0.5, root: null });
+    this.observer = new IntersectionObserver(this.callback, { rootMargin: "100px", threshold: 0.5, root: null });
     this.observer.observe(this.el.nativeElement);
   }
 

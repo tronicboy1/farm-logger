@@ -12,7 +12,7 @@ import {
   startAfter,
   updateDoc,
 } from "firebase/firestore";
-import { map, mergeMap, mergeWith, Observable, ReplaySubject, scan, shareReplay, Subject } from "rxjs";
+import { map, mergeMap, mergeWith, Observable, ReplaySubject, scan, shareReplay, Subject, switchMap } from "rxjs";
 import { FarmModule } from "./farm.module";
 
 export type EnvironmentRecord = {
@@ -48,7 +48,7 @@ export class EnvironmentRecordService extends FirebaseFirestore {
 
   public getEnvironmentRecords(farmId: string, lastDoc?: DocumentData) {
     const ref = collection(this.firestore, `farms/${farmId}/${EnvironmentRecordService.path}`);
-    const constraints = [limit(EnvironmentRecordService.limit), orderBy("createdAt", "asc")];
+    const constraints = [limit(EnvironmentRecordService.limit), orderBy("createdAt", "desc")];
     if (lastDoc) constraints.push(startAfter(lastDoc));
     const q = query(ref, ...constraints);
     return getDocs(q).then((result) => {
@@ -62,7 +62,7 @@ export class EnvironmentRecordService extends FirebaseFirestore {
     if (farmId !== this.farmIdCache) this.environmentRecordsCache$ = undefined;
     this.farmIdCache = farmId;
     return (this.environmentRecordsCache$ ||= this.lastDocSubject.pipe(
-      mergeMap((lastDoc) => this.getEnvironmentRecords(farmId, lastDoc)),
+      switchMap((lastDoc) => this.getEnvironmentRecords(farmId, lastDoc)),
       map((records) => ({ records, reset: false })),
       mergeWith(this.refreshSubject.pipe(map(() => ({ reset: true, records: [] })))),
       scan((acc, current) => {
