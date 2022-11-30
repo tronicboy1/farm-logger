@@ -12,7 +12,7 @@ import {
   startAfter,
   updateDoc,
 } from "firebase/firestore";
-import { mergeMap, Observable, ReplaySubject, shareReplay, switchMap, tap } from "rxjs";
+import { map, mergeMap, mergeWith, Observable, ReplaySubject, scan, shareReplay, Subject } from "rxjs";
 import { FarmModule } from "./farm.module";
 
 export type EnvironmentRecord = {
@@ -38,13 +38,12 @@ export class EnvironmentRecordService extends FirebaseFirestore {
   private lastDocSubject = new ReplaySubject<DocumentData | undefined>(1);
   private lastDocCache?: DocumentData;
   private farmIdCache?: string;
-  private refreshSubject = new ReplaySubject<void>(1);
+  private refreshSubject = new Subject<void>();
   private environmentRecordsCache$?: Observable<EnvironmentRecord[]>;
 
   constructor() {
     super();
     this.lastDocSubject.next(undefined);
-    this.refreshSubject.next();
   }
 
   public getEnvironmentRecords(farmId: string, lastDoc?: DocumentData) {
@@ -62,18 +61,26 @@ export class EnvironmentRecordService extends FirebaseFirestore {
   public watchEnvironmentRecords(farmId: string) {
     if (farmId !== this.farmIdCache) this.environmentRecordsCache$ = undefined;
     this.farmIdCache = farmId;
-    return (this.environmentRecordsCache$ ||= this.refreshSubject.pipe(
-      switchMap(() => this.lastDocSubject),
+    return (this.environmentRecordsCache$ ||= this.lastDocSubject.pipe(
       mergeMap((lastDoc) => this.getEnvironmentRecords(farmId, lastDoc)),
-      tap(console.log),
+      map((records) => ({ records, reset: false })),
+      mergeWith(this.refreshSubject.pipe(map(() => ({ reset: true, records: [] })))),
+      scan((acc, current) => {
+        if (current.reset) {
+          return (acc = []);
+        }
+        return [...acc, ...current.records];
+      }, [] as EnvironmentRecord[]),
       shareReplay(1),
     ));
   }
   public triggerNextPage() {
     this.lastDocSubject.next(this.lastDocCache);
   }
-  public clearCache() {
+  public clearPaginationCache() {
+    this.lastDocCache = undefined;
     this.lastDocSubject.next(undefined);
+    this.refreshSubject.next();
   }
 
   public createEnvironmentRecord(farmId: string, environmentRecordData: EnvironmentRecord) {

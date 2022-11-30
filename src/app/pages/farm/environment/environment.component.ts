@@ -13,6 +13,7 @@ import { WeatherService } from "src/app/farm/util/weather.service";
 })
 export class EnvironmentComponent implements OnInit, OnDestroy {
   public environmentRecords: EnvironmentRecord[] = [];
+  public loading = false;
   private subscriptions = new Subscription();
   constructor(
     private environmentService: EnvironmentRecordService,
@@ -35,7 +36,7 @@ export class EnvironmentComponent implements OnInit, OnDestroy {
           mergeMap((farmId) => this.environmentService.watchEnvironmentRecords(farmId)),
         )
         .subscribe((records) => {
-          this.environmentRecords = [...this.environmentRecords, ...records];
+          this.environmentRecords = records;
         }),
     );
   }
@@ -45,6 +46,7 @@ export class EnvironmentComponent implements OnInit, OnDestroy {
   }
 
   public addRecord() {
+    this.loading = true;
     let farmIdCache: string;
     this.route
       .parent!.params.pipe(
@@ -66,7 +68,7 @@ export class EnvironmentComponent implements OnInit, OnDestroy {
         mergeMap((weatherReport) =>
           this.environmentService.createEnvironmentRecord(farmIdCache, {
             createdAt: Date.now(),
-            weather: weatherReport.weather[0].main,
+            weather: weatherReport.weather[0].description,
             high: weatherReport.main.temp_max,
             low: weatherReport.main.temp_min,
             windSpeed: weatherReport.wind.speed,
@@ -77,8 +79,8 @@ export class EnvironmentComponent implements OnInit, OnDestroy {
           }),
         ),
         finalize(() => {
-          this.environmentRecords = [];
-          this.environmentService.clearCache();
+          this.environmentService.clearPaginationCache();
+          this.loading = false;
         }),
       )
       .subscribe();
