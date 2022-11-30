@@ -12,7 +12,7 @@ import { MembersComponent } from "./farm/manage/members/members.component";
 import { RouterModule } from "@angular/router";
 import { AreasComponent } from "./farm/areas/areas.component";
 import { EnvironmentComponent } from "./farm/environment/environment.component";
-import { ObservableDirective } from './farm/environment/observable.directive';
+import { ObservableDirective } from "./farm/environment/observable.directive";
 
 @NgModule({
   declarations: [
