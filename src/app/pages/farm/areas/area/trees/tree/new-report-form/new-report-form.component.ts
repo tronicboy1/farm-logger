@@ -47,7 +47,7 @@ export class NewReportFormComponent implements OnInit {
         ),
         finalize(() => {
           this.loadingSubject.next(false);
-          this.newReportForm.reset();
+          this.newReportForm.reset({ notes: "", height: 100, budding: "" });
         }),
       )
       .subscribe();

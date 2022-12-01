@@ -18,7 +18,7 @@ export class NewTreeFormComponent implements OnInit {
       asyncValidators: [this.treeNameIsUnique.validate.bind(this.treeNameIsUnique)],
     }),
     species: new FormControl("", [Validators.required]),
-    startHeight: new FormControl(1, [Validators.required])
+    startHeight: new FormControl(1, [Validators.required]),
   });
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
@@ -47,7 +47,9 @@ export class NewTreeFormComponent implements OnInit {
     const startHeight = this.newTreeFromGroup.controls.startHeight.value!;
     this.getFarmIdAndAreaId()
       .pipe(
-        mergeMap(([farmId, areaId]) => this.treeService.createTree(farmId, areaId, { regularId, species, startHeight })),
+        mergeMap(([farmId, areaId]) =>
+          this.treeService.createTree(farmId, areaId, { regularId, species, startHeight }),
+        ),
         finalize(() => {
           this.loadingSubject.next(false);
           this.newTreeFromGroup.controls.regularId.setValue(this.newTreeFromGroup.controls.regularId.value! + 1);

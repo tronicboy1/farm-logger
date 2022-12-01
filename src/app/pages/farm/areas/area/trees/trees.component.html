@@ -1,4 +1,8 @@
-<base-modal [show]="this.showAddModal | async" modal-title="コーヒーの木新規登録" (modal-closed)="this.toggleAddModal(false)">
+<base-modal
+  [show]="this.showAddModal | async"
+  modal-title="コーヒーの木新規登録"
+  (modal-closed)="this.toggleAddModal(false)"
+>
   <app-new-tree-form></app-new-tree-form>
 </base-modal>
 <div class="card round" (click)="this.toggleAddModal(true)">

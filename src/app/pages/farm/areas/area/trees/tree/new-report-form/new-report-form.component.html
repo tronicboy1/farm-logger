@@ -2,10 +2,11 @@
   <label for="regular-id">整理番号</label>
   <input id="regular-id" readonly type="number" [value]="this.regularId | async" />
   <label for="height">高さ (cm)</label>
-  <input type="number" name="height" id="height" required formControlName="height">
+  <input type="number" name="height" id="height" required formControlName="height" />
   <label for="budding">摘芯後の着花</label>
-  <input type="text" name="budding" id="budding" formControlName="budding">
+  <input type="text" name="budding" id="budding" formControlName="budding" />
   <label for="notes">メモ</label>
   <textarea name="notes" id="notes" formControlName="notes"></textarea>
   <button type="submit">送信</button>
+  <loading-spinner *ngIf="this.loading | async"></loading-spinner>
 </form>

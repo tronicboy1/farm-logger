@@ -22,7 +22,7 @@ import { CropdustComponent } from "./farm/areas/area/cropdust/cropdust.component
 import { AreaIndexComponent } from "./farm/areas/area/index/index.component";
 import { NewTreeFormComponent } from "./farm/areas/area/trees/new-tree-form/new-tree-form.component";
 import { TreeComponent } from "./farm/areas/area/trees/tree/tree.component";
-import { NewReportFormComponent } from './farm/areas/area/trees/tree/new-report-form/new-report-form.component';
+import { NewReportFormComponent } from "./farm/areas/area/trees/tree/new-report-form/new-report-form.component";
 
 @NgModule({
   declarations: [

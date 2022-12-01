@@ -17,7 +17,19 @@ import {
   QuerySnapshot,
   where,
 } from "firebase/firestore";
-import { from, map, mergeMap, mergeWith, Observable, ReplaySubject, scan, shareReplay, Subject, switchMap, tap } from "rxjs";
+import {
+  from,
+  map,
+  mergeMap,
+  mergeWith,
+  Observable,
+  ReplaySubject,
+  scan,
+  shareReplay,
+  Subject,
+  switchMap,
+  tap,
+} from "rxjs";
 import { FarmModule } from "./farm.module";
 import { CoffeeTree, CoffeeTreeReport, CoffeeTreeWithId } from "./tree.model";
 import { PhotoService } from "./util/photo.service";
