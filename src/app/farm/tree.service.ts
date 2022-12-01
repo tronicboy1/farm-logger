@@ -117,14 +117,14 @@ export class TreeService extends FirebaseFirestore {
   }
 
   public addReport(farmId: string, areaId: string, treeId: string, reportData: CoffeeTreeReport) {
-    const ref = collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}`);
+    const ref = collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`);
     return addDoc(ref, reportData);
   }
 
   public getReports(farmId: string, areaId: string, treeId: string, lastDoc?: DocumentData, limitNumber = 10) {
     const constraints = [orderBy("createdAt"), limit(limitNumber)];
     if (lastDoc) constraints.push(startAfter(lastDoc));
-    const q = query(collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}`), ...constraints);
+    const q = query(collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`), ...constraints);
     return getDocs(q).then((results) => {
       if (results.empty) return [];
       return results.docs.map((doc) => doc.data() as CoffeeTreeReport);

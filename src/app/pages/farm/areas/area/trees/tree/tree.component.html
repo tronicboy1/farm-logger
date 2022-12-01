@@ -1,4 +1,12 @@
 <div class="card">
   <h3>育成状況レポート新規登録</h3>
-  <form></form>
+  <form [formGroup]="this.newReportForm" (ngSubmit)="this.handleReportSubmit()">
+    <label for="height">高さ (cm)</label>
+    <input type="number" name="height" id="height" required formControlName="height">
+    <label for="budding">摘芯後の着花</label>
+    <input type="text" name="budding" id="budding" formControlName="budding">
+    <label for="notes">メモ</label>
+    <textarea name="notes" id="notes" formControlName="notes"></textarea>
+    <button type="submit">送信</button>
+  </form>
 </div>
