@@ -14,18 +14,30 @@ import {
   updateDoc,
   limit,
   getDocs,
+  QuerySnapshot,
+  where,
 } from "firebase/firestore";
-import { map, Observable } from "rxjs";
+import { map, mergeMap, Observable, ReplaySubject, Subject, switchMap } from "rxjs";
 import { FarmModule } from "./farm.module";
-import { CoffeeTree, CoffeeTreeReport } from "./tree.model";
+import { CoffeeTree, CoffeeTreeReport, CoffeeTreeWithId } from "./tree.model";
 import { PhotoService } from "./util/photo.service";
 
 @Injectable({
   providedIn: FarmModule,
 })
 export class TreeService extends FirebaseFirestore {
+  static limit = 20;
+
+  private lastDocSubject = new ReplaySubject<DocumentData | undefined>(1);
+  private lastDocCache?: DocumentData;
+  private farmIdCache?: string;
+  private areaIdCache?: string;
+  private treesObservableCache$?: Observable<CoffeeTreeWithId[]>;
+  private refreshSubject = new Subject<void>();
+
   constructor(private photoService: PhotoService) {
     super();
+    this.lastDocSubject.next(undefined);
   }
 
   public getTree(farmId: string, areaId: string, treeId: string) {
@@ -46,6 +58,32 @@ export class TreeService extends FirebaseFirestore {
         return result.data() as CoffeeTree;
       }),
     );
+  }
+
+  private getTrees(farmId: string, areaId: string, lastDoc?: DocumentData) {
+    const ref = collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees`);
+    const constraints = [orderBy("regularId", "asc"), limit(TreeService.limit)];
+    if (lastDoc) constraints.push(startAfter(lastDoc));
+    const q = query(ref, ...constraints);
+    return getDocs(q);
+  }
+
+  public watchTrees(farmId: string, areaId: string) {
+    if (this.farmIdCache !== farmId || this.areaIdCache !== areaId) this.treesObservableCache$ = undefined;
+    this.farmIdCache = farmId;
+    this.areaIdCache = areaId;
+    return (this.treesObservableCache$ ||= this.lastDocSubject.pipe(
+      switchMap((lastDoc) => this.getTrees(farmId, areaId, lastDoc)),
+      map((result) => {
+        if (result.empty) return [];
+        const { docs } = result;
+        this.lastDocCache = docs[docs.length - 1];
+        return docs.map((doc) => ({ ...doc.data(), id: doc.id })) as CoffeeTreeWithId[];
+      }),
+    ));
+  }
+  public triggerNextPage() {
+    this.lastDocSubject.next(this.lastDocCache);
   }
 
   public createTree(farmId: string, areaId: string, treeData: Omit<CoffeeTree, "reports">) {

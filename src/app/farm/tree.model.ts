@@ -15,3 +15,5 @@ export type CoffeeTreeReport = {
     humidity: number;
   };
 };
+
+export type CoffeeTreeWithId = { id: string } & CoffeeTree;
