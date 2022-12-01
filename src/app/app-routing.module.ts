@@ -5,6 +5,7 @@ import { AreaComponent } from "@pages/farm/areas/area/area.component";
 import { CropdustComponent } from "@pages/farm/areas/area/cropdust/cropdust.component";
 import { FertilizerComponent } from "@pages/farm/areas/area/fertilizer/fertilizer.component";
 import { AreaIndexComponent } from "@pages/farm/areas/area/index/index.component";
+import { TreeComponent } from "@pages/farm/areas/area/trees/tree/tree.component";
 import { TreesComponent } from "@pages/farm/areas/area/trees/trees.component";
 import { AreasComponent } from "@pages/farm/areas/areas.component";
 import { EnvironmentComponent } from "@pages/farm/environment/environment.component";
@@ -30,6 +31,7 @@ const routes: Routes = [
         component: AreaComponent,
         children: [
           { path: "trees", component: TreesComponent },
+          { path: "trees/:treeId", component: TreeComponent },
           { path: "fertilizer", component: FertilizerComponent },
           { path: "cropdust", component: CropdustComponent },
           { path: "", component: AreaIndexComponent, pathMatch: "full" },

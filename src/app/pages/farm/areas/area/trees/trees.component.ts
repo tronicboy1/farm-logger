@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { first, forkJoin, map, Observable, switchMap } from "rxjs";
 import { CoffeeTreeWithId } from "src/app/farm/tree.model";
 import { TreeService } from "src/app/farm/tree.service";
@@ -11,11 +11,21 @@ import { TreeService } from "src/app/farm/tree.service";
 })
 export class TreesComponent implements OnInit {
   public trees = new Observable<CoffeeTreeWithId[]>();
-  constructor(private route: ActivatedRoute, private treeService: TreeService) {}
+  constructor(private route: ActivatedRoute, private treeService: TreeService, private router: Router) {}
 
   ngOnInit(): void {
     this.trees = this.getFarmIdAndAreaId().pipe(
       switchMap(([farmId, areaId]) => this.treeService.watchTrees(farmId, areaId)),
+    );
+  }
+
+  public handleTreeClick(treeId: string) {
+    this.router.navigate([treeId], { relativeTo: this.route });
+  }
+
+  public getLastReport(treeId: string) {
+    return this.getFarmIdAndAreaId().pipe(
+      switchMap(([farmId, areaId]) => this.treeService.getLatestReport(farmId, areaId, treeId)),
     );
   }
 

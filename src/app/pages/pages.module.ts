@@ -21,6 +21,7 @@ import { FertilizerComponent } from "./farm/areas/area/fertilizer/fertilizer.com
 import { CropdustComponent } from "./farm/areas/area/cropdust/cropdust.component";
 import { AreaIndexComponent } from "./farm/areas/area/index/index.component";
 import { NewTreeFormComponent } from "./farm/areas/area/trees/new-tree-form/new-tree-form.component";
+import { TreeComponent } from './farm/areas/area/trees/tree/tree.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { NewTreeFormComponent } from "./farm/areas/area/trees/new-tree-form/new-
     CropdustComponent,
     AreaIndexComponent,
     NewTreeFormComponent,
+    TreeComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule, ComponentsModule],
   /** Adding custom Elements Schema allows use of custom tags i.e. Web Components. */
