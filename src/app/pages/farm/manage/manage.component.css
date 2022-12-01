@@ -1,24 +1,3 @@
 h1 {
   text-align: center;
 }
-
-.map iframe {
-  border: 1px solid var(--secondary-color);
-  border-radius: var(--radius);
-}
-.map p {
-  text-align: center;
-}
-.map button {
-  max-width: 60%;
-  margin: 1rem auto;
-  padding: 0.5rem;
-  font-size: 1.25rem;
-  cursor: pointer;
-}
-
-.map h1 {
-  cursor: pointer;
-  margin: 0;
-  padding: 1rem 0;
-}

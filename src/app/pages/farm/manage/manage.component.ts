@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
-import { catchError, first, forkJoin, map, Subscription, switchMap } from "rxjs";
+import { first, map, Subscription, switchMap } from "rxjs";
+import { Location } from "src/app/components/location/location.component";
 import { Farm } from "src/app/farm/farm.model";
 import { FarmService } from "src/app/farm/farm.service";
 import { GeolocationService } from "src/app/farm/util/geolocation.service";
@@ -47,20 +48,16 @@ export class ManageComponent implements OnInit, OnDestroy {
   }
 
   public toggleMap = (force?: boolean) => (this.showMap = force ?? !this.showMap);
-  public handleLocationClick() {
+  public handleLocationClick(location: Location) {
     this.locationError = false;
-    forkJoin([this.geolocationService.aquireLocation(), this.route.params.pipe(first())])
-      .pipe(
-        catchError((err) => {
-          this.locationError = true;
-          throw err;
-        }),
-        map(([location, params]) => {
-          const { farmId } = params;
+    this.route
+      .parent!.params.pipe(
+        first(),
+        map(({ farmId }) => {
           if (typeof farmId !== "string") throw TypeError("Farm ID was not in params.");
-          return [location, farmId] as const;
+          return farmId;
         }),
-        switchMap(([location, farmId]) => this.farmService.updateFarm(farmId, { location })),
+        switchMap((farmId) => this.farmService.updateFarm(farmId, { location })),
       )
       .subscribe();
   }

@@ -14,7 +14,9 @@ import { AreasComponent } from "./farm/areas/areas.component";
 import { EnvironmentComponent } from "./farm/environment/environment.component";
 import { ObservableDirective } from "./farm/environment/observable.directive";
 import { NewAreaFormComponent } from "./farm/areas/new-area-form/new-area-form.component";
-import { AreaComponent } from "./famr/areas/area/area.component";
+import { AreaComponent } from "./farm/areas/area/area.component";
+import { TreesComponent } from "./farm/areas/area/trees/trees.component";
+import { ComponentsModule } from "../components/components.module";
 
 @NgModule({
   declarations: [
@@ -31,8 +33,9 @@ import { AreaComponent } from "./famr/areas/area/area.component";
     ObservableDirective,
     NewAreaFormComponent,
     AreaComponent,
+    TreesComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, ComponentsModule],
   /** Adding custom Elements Schema allows use of custom tags i.e. Web Components. */
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -1,0 +1,20 @@
+<div class="card map">
+  <h1 (click)="this.toggleMap()" title="位置情報を確認したり、更新したりする">場所</h1>
+  <ng-template [ngIf]="this.showMap | async">
+    <iframe
+      *ngIf="this.googleMapsURL; else setLocation"
+      height="350"
+      style="border: 0"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      [src]="this.googleMapsURL"
+    >
+    </iframe>
+    <ng-template #setLocation>
+      <p>場所は設定されていません。</p>
+    </ng-template>
+    <p *ngIf="this.locationError | async" class="error">位置情報取得に失敗しました。ブラウザの設定をご確認ください。</p>
+    <button (click)="this.handleLocationClick()">場所を設定する</button>
+  </ng-template>
+</div>
