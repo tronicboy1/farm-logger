@@ -1,46 +1,25 @@
-import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, finalize, first, forkJoin, map, switchMap } from "rxjs";
-import { CoffeeTreeReport } from "src/app/farm/tree.model";
+import { BehaviorSubject, first, forkJoin, map } from "rxjs";
 import { TreeService } from "src/app/farm/tree.service";
 
 @Component({
   selector: "app-tree",
   templateUrl: "./tree.component.html",
-  styleUrls: ["./tree.component.css", "../../../../../../../styles/basic-form.css"],
+  styleUrls: ["./tree.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreeComponent implements OnInit {
-  public newReportForm = new FormGroup({
-    notes: new FormControl(""),
-    height: new FormControl(100, [Validators.required]),
-    budding: new FormControl(""),
-  });
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
+  private showAddModalSubject = new BehaviorSubject(false);
+  public showAddModal = this.showAddModalSubject.asObservable();
 
   constructor(private route: ActivatedRoute, private treeService: TreeService) {}
 
   ngOnInit(): void {}
 
-  public handleReportSubmit() {
-    if (this.loadingSubject.value) return;
-    this.loadingSubject.next(true);
-    const notes = this.newReportForm.controls.notes.value!.trim();
-    const height = this.newReportForm.controls.height.value!;
-    const budding = this.newReportForm.controls.budding.value!.trim();
-    this.getFarmIdAndAreaId()
-      .pipe(
-        switchMap(([farmId, areaId, treeId]) =>
-          this.treeService.addReport(farmId, areaId, treeId, { notes, height, budding, createdAt: Date.now() }),
-        ),
-        finalize(() => {
-          this.loadingSubject.next(false);
-          this.newReportForm.reset();
-        }),
-      )
-      .subscribe();
-  }
+  public toggleAddModal = (force?: boolean) => this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);
 
   private getFarmIdAndAreaId() {
     const params$ = [

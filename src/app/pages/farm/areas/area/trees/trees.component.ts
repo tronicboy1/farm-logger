@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BehaviorSubject, first, forkJoin, map, Observable, switchMap } from "rxjs";
+import { TreeReportService } from "src/app/farm/tree-report.service";
 import { CoffeeTreeWithId } from "src/app/farm/tree.model";
 import { TreeService } from "src/app/farm/tree.service";
 
@@ -15,7 +16,12 @@ export class TreesComponent implements OnInit {
   private showAddModalSubject = new BehaviorSubject(false);
   public showAddModal = this.showAddModalSubject.asObservable();
 
-  constructor(private route: ActivatedRoute, private treeService: TreeService, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private treeService: TreeService,
+    private treeReportService: TreeReportService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.trees = this.getFarmIdAndAreaId().pipe(
@@ -30,7 +36,7 @@ export class TreesComponent implements OnInit {
 
   public getLastReport(treeId: string) {
     return this.getFarmIdAndAreaId().pipe(
-      switchMap(([farmId, areaId]) => this.treeService.getLatestReport(farmId, areaId, treeId)),
+      switchMap(([farmId, areaId]) => this.treeReportService.getLatestReport(farmId, areaId, treeId)),
       first(),
     );
   }
