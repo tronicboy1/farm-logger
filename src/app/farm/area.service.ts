@@ -29,6 +29,8 @@ export class AreaService extends FirebaseFirestore {
   private farmIdCache?: string;
   private refreshSubject = new Subject<void>();
   private areasObservableCache$?: Observable<AreaWithId[]>;
+  private areaIdCache?: string;
+  private areaObservableCache$?: Observable<Area>;
 
   constructor() {
     super();
@@ -43,7 +45,10 @@ export class AreaService extends FirebaseFirestore {
   }
 
   public watchArea(farmId: string, areaId: string) {
-    return new Observable<DocumentSnapshot<DocumentData>>((observer) => {
+    if (this.farmIdCache !== farmId || this.areaIdCache !== areaId) this.areaObservableCache$ = undefined;
+    this.farmIdCache = farmId;
+    this.areaIdCache = areaId;
+    return (this.areaObservableCache$ ||= new Observable<DocumentSnapshot<DocumentData>>((observer) => {
       const ref = doc(this.firestore, `farms/${farmId}/areas/${areaId}`);
       return onSnapshot(ref, (result) => observer.next(result), observer.error, observer.complete);
     }).pipe(
@@ -51,7 +56,7 @@ export class AreaService extends FirebaseFirestore {
         if (!result) throw Error("Area not found.");
         return result.data() as Area;
       }),
-    );
+    ));
   }
 
   public watchAreas(farmId: string): Observable<AreaWithId[]> {

@@ -1,0 +1,5 @@
+<app-location [googleMapsURL]="(this.googleMapsURL | async) ?? undefined" (location)="this.setLocation($event)">
+</app-location>
+<a class="card" routerLink="./trees"><h1>コーヒーの木一覧</h1></a>
+<a class="card" routerLink="./fertilizer"><h1>施肥記録</h1></a>
+<a class="card" routerLink="./cropdust"><h1>農薬散布記録</h1></a>

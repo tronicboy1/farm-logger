@@ -2,6 +2,10 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthComponent } from "@pages/auth/auth.component";
 import { AreaComponent } from "@pages/farm/areas/area/area.component";
+import { CropdustComponent } from "@pages/farm/areas/area/cropdust/cropdust.component";
+import { FertilizerComponent } from "@pages/farm/areas/area/fertilizer/fertilizer.component";
+import { AreaIndexComponent } from "@pages/farm/areas/area/index/index.component";
+import { TreesComponent } from "@pages/farm/areas/area/trees/trees.component";
 import { AreasComponent } from "@pages/farm/areas/areas.component";
 import { EnvironmentComponent } from "@pages/farm/environment/environment.component";
 import { FarmComponent } from "@pages/farm/farm.component";
@@ -21,7 +25,16 @@ const routes: Routes = [
     children: [
       { path: "manage", component: ManageComponent },
       { path: "areas", component: AreasComponent },
-      { path: "areas/:areaId", component: AreaComponent },
+      {
+        path: "areas/:areaId",
+        component: AreaComponent,
+        children: [
+          { path: "trees", component: TreesComponent },
+          { path: "fertilizer", component: FertilizerComponent },
+          { path: "cropdust", component: CropdustComponent },
+          { path: "", component: AreaIndexComponent, pathMatch: "full" },
+        ],
+      },
       { path: "environment", component: EnvironmentComponent },
       { path: "", redirectTo: "manage", pathMatch: "full" },
     ],
