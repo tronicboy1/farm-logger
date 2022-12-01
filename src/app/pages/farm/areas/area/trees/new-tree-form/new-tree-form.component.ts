@@ -17,6 +17,8 @@ export class NewTreeFormComponent implements OnInit {
       validators: [Validators.required, Validators.min(1)],
       asyncValidators: [this.treeNameIsUnique.validate.bind(this.treeNameIsUnique)],
     }),
+    species: new FormControl("", [Validators.required]),
+    startHeight: new FormControl(1, [Validators.required])
   });
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
@@ -41,12 +43,15 @@ export class NewTreeFormComponent implements OnInit {
     if (this.loadingSubject.value) return;
     this.loadingSubject.next(true);
     const regularId = this.newTreeFromGroup.controls.regularId.value!;
+    const species = this.newTreeFromGroup.controls.species.value!.trim();
+    const startHeight = this.newTreeFromGroup.controls.startHeight.value!;
     this.getFarmIdAndAreaId()
       .pipe(
-        mergeMap(([farmId, areaId]) => this.treeService.createTree(farmId, areaId, { regularId })),
+        mergeMap(([farmId, areaId]) => this.treeService.createTree(farmId, areaId, { regularId, species, startHeight })),
         finalize(() => {
           this.loadingSubject.next(false);
-          this.newTreeFromGroup.reset();
+          this.newTreeFromGroup.controls.regularId.setValue(this.newTreeFromGroup.controls.regularId.value! + 1);
+          this.treeService.clearPaginationCache();
         }),
       )
       .subscribe();

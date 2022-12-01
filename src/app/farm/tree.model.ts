@@ -1,19 +1,17 @@
 export type CoffeeTree = {
   regularId: number;
+  species: string;
+  startHeight: number;
   location?: [number, number];
   reports: Record<string, CoffeeTreeReport>;
 };
 
 export type CoffeeTreeReport = {
-  photoURL: string;
+  photoURL?: string;
   createdAt: number;
   notes: string;
-  weather?: {
-    description: string;
-    tempHigh: number;
-    tempLow: number;
-    humidity: number;
-  };
+  height: number;
+  budding: string;
 };
 
 export type CoffeeTreeWithId = { id: string } & CoffeeTree;

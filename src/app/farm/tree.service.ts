@@ -17,7 +17,7 @@ import {
   QuerySnapshot,
   where,
 } from "firebase/firestore";
-import { from, map, mergeMap, Observable, ReplaySubject, shareReplay, Subject, switchMap, tap } from "rxjs";
+import { from, map, mergeMap, mergeWith, Observable, ReplaySubject, scan, shareReplay, Subject, switchMap, tap } from "rxjs";
 import { FarmModule } from "./farm.module";
 import { CoffeeTree, CoffeeTreeReport, CoffeeTreeWithId } from "./tree.model";
 import { PhotoService } from "./util/photo.service";
@@ -80,11 +80,24 @@ export class TreeService extends FirebaseFirestore {
         this.lastDocCache = docs[docs.length - 1];
         return docs.map((doc) => ({ ...doc.data(), id: doc.id })) as CoffeeTreeWithId[];
       }),
+      map((records) => ({ records, reset: false })),
+      mergeWith(this.refreshSubject.pipe(map(() => ({ reset: true, records: [] })))),
+      scan((acc, current) => {
+        if (current.reset) {
+          return (acc = []);
+        }
+        return [...acc, ...current.records];
+      }, [] as CoffeeTreeWithId[]),
       shareReplay(1),
     ));
   }
   public triggerNextPage() {
     this.lastDocSubject.next(this.lastDocCache);
+  }
+  public clearPaginationCache() {
+    this.lastDocCache = undefined;
+    this.lastDocSubject.next(undefined);
+    this.refreshSubject.next();
   }
 
   public createTree(farmId: string, areaId: string, treeData: Omit<CoffeeTree, "reports">) {
@@ -120,7 +133,7 @@ export class TreeService extends FirebaseFirestore {
 
   public getLatestReport(farmId: string, areaId: string, treeId: string) {
     const q = query(
-      collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}`),
+      collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`),
       orderBy("createdAt", "desc"),
       limit(1),
     );

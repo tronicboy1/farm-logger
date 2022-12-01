@@ -9,6 +9,7 @@
       <tr>
         <th>整理番号</th>
         <th>位置情報</th>
+        <th>根付いた頃の高さ</th>
         <th>最後の育成記録</th>
       </tr>
     </thead>
@@ -16,7 +17,8 @@
       <tr *ngFor="let tree of this.trees | async" (click)="this.handleTreeClick(tree.id)">
         <td>{{ tree.regularId }}</td>
         <td>{{ tree.location ?? "未登録" }}</td>
-        <td>{{ (this.getLastReport(tree.id) | async) ?? "未登録" }}</td>
+        <td>{{ tree.startHeight }}cm</td>
+        <td>{{ (this.getLastReport(tree.id) | async | json) ?? "未登録" }}</td>
       </tr>
     </tbody>
   </table>
