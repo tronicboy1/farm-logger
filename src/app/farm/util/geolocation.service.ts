@@ -24,7 +24,7 @@ export class GeolocationService {
     });
   }
 
-  public getGoogleMapsURL(farm: Farm) {
+  public getGoogleMapsURL<T extends { location?: [number, number, number | null] }>(farm: T) {
     if (!farm.location) return undefined;
     const url = new URL("https://www.google.com/maps/embed/v1/place");
     url.searchParams.set("key", environment.googleMapsAPIKey);

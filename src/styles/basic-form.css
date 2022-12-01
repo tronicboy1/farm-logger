@@ -61,10 +61,3 @@ button:disabled {
   border-color: var(--secondary-color);
   cursor: not-allowed;
 }
-
-.warning {
-  border: 1px solid rgb(142, 142, 104);
-  background-color: rgb(142, 142, 112);
-  border-radius: var(--radius);
-  padding: 1rem;
-}

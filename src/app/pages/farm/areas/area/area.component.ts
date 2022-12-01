@@ -1,9 +1,12 @@
 import { Component, OnInit } from "@angular/core";
+import { SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { first, forkJoin, map, mergeMap, Observable } from "rxjs";
+import { Location } from "src/app/components/location/location.component";
 import { Area } from "src/app/farm/area.model";
 import { AreaService } from "src/app/farm/area.service";
 import { CoffeeTree } from "src/app/farm/tree.model";
+import { GeolocationService } from "src/app/farm/util/geolocation.service";
 
 @Component({
   selector: "app-area",
@@ -12,9 +15,21 @@ import { CoffeeTree } from "src/app/farm/tree.model";
 })
 export class AreaComponent implements OnInit {
   public area = new Observable<Area>();
-  constructor(private route: ActivatedRoute, private areaService: AreaService) {}
+  public googleMapsURL = new Observable<SafeResourceUrl | undefined>();
+  constructor(
+    private route: ActivatedRoute,
+    private areaService: AreaService,
+    private geolocationService: GeolocationService,
+  ) {}
 
   ngOnInit(): void {
+    this.area = this.getFarmIdAndAreaId().pipe(
+      mergeMap(([farmId, areaId]) => this.areaService.watchArea(farmId, areaId)),
+    );
+    this.googleMapsURL = this.area.pipe(map((area) => this.geolocationService.getGoogleMapsURL(area)));
+  }
+
+  private getFarmIdAndAreaId() {
     const params$ = [
       this.route.parent!.params.pipe(
         map(({ farmId }) => {
@@ -29,6 +44,12 @@ export class AreaComponent implements OnInit {
         }),
       ),
     ].map((param$) => param$.pipe(first()));
-    this.area = forkJoin(params$).pipe(mergeMap(([farmId, areaId]) => this.areaService.watchArea(farmId, areaId)));
+    return forkJoin(params$);
+  }
+
+  setLocation(location: Location) {
+    this.getFarmIdAndAreaId()
+      .pipe(mergeMap(([farmId, areaId]) => this.areaService.updateArea(farmId, areaId, { location })))
+      .subscribe();
   }
 }

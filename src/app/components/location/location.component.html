@@ -1,5 +1,8 @@
 <div class="card map">
-  <h1 (click)="this.toggleMap()" title="位置情報を確認したり、更新したりする">場所</h1>
+  <div (click)="this.toggleMap()" title="位置情報を確認したり、更新したりする">
+    <h1>位置情報</h1>
+    <p *ngIf="!this.googleMapsURL" class="warning">未設定!</p>
+  </div>
   <ng-template [ngIf]="this.showMap | async">
     <iframe
       *ngIf="this.googleMapsURL; else setLocation"

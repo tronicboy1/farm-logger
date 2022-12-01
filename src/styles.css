@@ -115,6 +115,13 @@ input {
   }
 }
 
+.message,
+.warning {
+  width: 60%;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  user-select: none;
+}
 .message {
   background-color: var(--secondary-color);
   border: 1px solid var(--secondary-color);
@@ -122,4 +129,10 @@ input {
   width: 60%;
   margin: 1rem auto;
   padding: 0.5rem;
+}
+
+.warning {
+  border: 1px solid rgb(142, 142, 104);
+  background-color: rgb(142, 142, 112);
+  border-radius: var(--radius);
 }

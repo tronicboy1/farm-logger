@@ -1,4 +1,6 @@
 <h1>{{ (this.area | async)?.name }}</h1>
+<app-location [googleMapsURL]="(this.googleMapsURL | async) ?? undefined" (location)="this.setLocation($event)">
+</app-location>
 <div class="card">
   <h3>コーヒー木一覧</h3>
   <table>
