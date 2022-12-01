@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BehaviorSubject, first, forkJoin, map, Observable, switchMap } from "rxjs";
 import { TreeReportService } from "src/app/farm/tree-report.service";
-import { CoffeeTreeWithId } from "src/app/farm/tree.model";
+import { CoffeeTreeReport, CoffeeTreeWithId } from "src/app/farm/tree.model";
 import { TreeService } from "src/app/farm/tree.service";
 
 @Component({
@@ -12,7 +12,7 @@ import { TreeService } from "src/app/farm/tree.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreesComponent implements OnInit {
-  public trees = new Observable<CoffeeTreeWithId[]>();
+  public trees = new Observable<(CoffeeTreeWithId & { report: CoffeeTreeReport | null })[]>();
   private showAddModalSubject = new BehaviorSubject(false);
   public showAddModal = this.showAddModalSubject.asObservable();
 
@@ -25,7 +25,21 @@ export class TreesComponent implements OnInit {
 
   ngOnInit(): void {
     this.trees = this.getFarmIdAndAreaId().pipe(
-      switchMap(([farmId, areaId]) => this.treeService.watchTrees(farmId, areaId)),
+      switchMap(([farmId, areaId]) =>
+        this.treeService
+          .watchTrees(farmId, areaId)
+          .pipe(
+            switchMap((trees) =>
+              forkJoin(
+                trees.map((tree) =>
+                  this.treeReportService
+                    .getLatestReport(farmId, areaId, tree.id)
+                    .pipe(map((report) => ({ report, ...tree }))),
+                ),
+              ),
+            ),
+          ),
+      ),
     );
   }
 

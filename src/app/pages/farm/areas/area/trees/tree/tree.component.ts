@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { BehaviorSubject, first, forkJoin, map, mergeMap, Observable, switchMap, tap } from "rxjs";
+import { Location } from "src/app/components/location/location.component";
 import { TreeReportService } from "src/app/farm/tree-report.service";
 import { CoffeeTree, CoffeeTreeReport, CoffeeTreeReportWithId } from "src/app/farm/tree.model";
 import { TreeService } from "src/app/farm/tree.service";
+import { GeolocationService } from "src/app/farm/util/geolocation.service";
 
 @Component({
   selector: "app-tree",
@@ -18,30 +21,38 @@ export class TreeComponent implements OnInit {
   public reports = new Observable<CoffeeTreeReportWithId[]>();
   private showAddModalSubject = new BehaviorSubject(false);
   public showAddModal = this.showAddModalSubject.asObservable();
+  public googleMapsURL = new Observable<SafeResourceUrl | undefined>();
 
   constructor(
     private route: ActivatedRoute,
     private treeService: TreeService,
     private treeReportService: TreeReportService,
+    private geolocationService: GeolocationService,
   ) {}
 
   ngOnInit(): void {
-    this.tree = this.getFarmIdAndAreaId().pipe(
+    this.tree = this.getFarmIdAreaIdAndTreeId().pipe(
       switchMap(([farmId, areaId, treeId]) => this.treeService.watchTree(farmId, areaId, treeId)),
     );
-    this.reports = this.getFarmIdAndAreaId().pipe(
+    this.googleMapsURL = this.tree.pipe(map((tree) => this.geolocationService.getGoogleMapsURL(tree)));
+    this.reports = this.getFarmIdAreaIdAndTreeId().pipe(
       switchMap(([farmId, areaId, treeId]) => this.treeReportService.watchReports(farmId, areaId, treeId)),
     );
   }
 
   public toggleAddModal = (force?: boolean) => this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);
   public removeDoc(id: string) {
-    this.getFarmIdAndAreaId().pipe(
-      mergeMap(([farmId, areaId, treeId]) => this.treeReportService.removeReport(farmId, areaId, treeId, id)),
-    ).subscribe();
+    this.getFarmIdAreaIdAndTreeId()
+      .pipe(mergeMap(([farmId, areaId, treeId]) => this.treeReportService.removeReport(farmId, areaId, treeId, id)))
+      .subscribe();
+  }
+  public setLocation(location: Location) {
+    this.getFarmIdAreaIdAndTreeId()
+      .pipe(mergeMap(([farmId, areaId, treeId]) => this.treeService.updateTree(farmId, areaId, treeId, { location })))
+      .subscribe();
   }
 
-  private getFarmIdAndAreaId() {
+  private getFarmIdAreaIdAndTreeId() {
     const params$ = [
       this.route.parent!.parent!.params.pipe(
         first(),

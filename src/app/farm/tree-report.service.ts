@@ -1,7 +1,20 @@
 import { Injectable } from "@angular/core";
 import { FirebaseFirestore } from "@custom-firebase/inheritables/firestore";
-import { addDoc, collection, deleteDoc, doc, DocumentData, getDocs, limit, onSnapshot, orderBy, query, QuerySnapshot, startAfter } from "firebase/firestore";
-import { map, Observable } from "rxjs";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  DocumentData,
+  getDocs,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+  QuerySnapshot,
+  startAfter,
+} from "firebase/firestore";
+import { from, map, Observable } from "rxjs";
 import { FarmModule } from "./farm.module";
 import { CoffeeTreeReport, CoffeeTreeReportWithId } from "./tree.model";
 
@@ -18,15 +31,17 @@ export class TreeReportService extends FirebaseFirestore {
     return addDoc(ref, reportData);
   }
 
-  public watchReports(farmId: string, areaId: string, treeId: string,): Observable<CoffeeTreeReportWithId[]> {
+  public watchReports(farmId: string, areaId: string, treeId: string): Observable<CoffeeTreeReportWithId[]> {
     return new Observable<QuerySnapshot<DocumentData>>((observer) => {
       const ref = collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`);
-      const q = query(ref, orderBy("createdAt", "desc"))
-      return onSnapshot(q, (result) => observer.next(result), observer.error, observer.complete)
-    }).pipe(map((result) => {
-      if (result.empty) return []
-      return result.docs.map((doc) => ({ ...(doc.data() as CoffeeTreeReport), id: doc.id }))
-    }))
+      const q = query(ref, orderBy("createdAt", "desc"));
+      return onSnapshot(q, (result) => observer.next(result), observer.error, observer.complete);
+    }).pipe(
+      map((result) => {
+        if (result.empty) return [];
+        return result.docs.map((doc) => ({ ...(doc.data() as CoffeeTreeReport), id: doc.id }));
+      }),
+    );
   }
 
   public getReports(farmId: string, areaId: string, treeId: string, lastDoc?: DocumentData, limitNumber = 10) {
@@ -48,14 +63,16 @@ export class TreeReportService extends FirebaseFirestore {
       orderBy("createdAt", "desc"),
       limit(1),
     );
-    return getDocs(q).then((results) => {
-      if (results.empty) return null;
-      return results.docs[0].data() as CoffeeTreeReport;
-    });
+    return from(
+      getDocs(q).then((results) => {
+        if (results.empty) return null;
+        return results.docs[0].data() as CoffeeTreeReport;
+      }),
+    );
   }
 
   public removeReport(farmId: string, areaId: string, treeId: string, reportId: string) {
     const ref = doc(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports/${reportId}`);
-    return deleteDoc(ref)
+    return deleteDoc(ref);
   }
 }

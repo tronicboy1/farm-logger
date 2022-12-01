@@ -95,7 +95,7 @@ tbody tr {
 td {
   height: 50px;
 }
-tbody .remove {
+tbody .remove, tbody .done {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,6 +104,10 @@ tbody .remove svg {
   fill: var(--danger-color);
   height: 30px;
   cursor: pointer;
+}
+tbody .done svg {
+  fill: var(--highlight-color);
+  height: 30px;
 }
 
 .card {

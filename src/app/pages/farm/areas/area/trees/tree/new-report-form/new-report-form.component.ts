@@ -23,7 +23,7 @@ export class NewReportFormComponent implements OnInit {
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
   public regularId = new Observable<number>();
-  @Output() submitted = new EventEmitter<void>()
+  @Output() submitted = new EventEmitter<void>();
 
   constructor(
     private route: ActivatedRoute,
@@ -48,12 +48,18 @@ export class NewReportFormComponent implements OnInit {
     this.getFarmIdAndAreaId()
       .pipe(
         switchMap(([farmId, areaId, treeId]) =>
-          this.treeReportService.addReport(farmId, areaId, treeId, { notes, height, budding, createdAt: Date.now(), beanYield }),
+          this.treeReportService.addReport(farmId, areaId, treeId, {
+            notes,
+            height,
+            budding,
+            createdAt: Date.now(),
+            beanYield,
+          }),
         ),
         finalize(() => {
           this.loadingSubject.next(false);
           this.newReportForm.reset({ notes: "", height: 100, budding: "未着火", beanYield: "未" });
-          this.submitted.emit()
+          this.submitted.emit();
         }),
       )
       .subscribe();
