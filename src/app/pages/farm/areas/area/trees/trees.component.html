@@ -15,8 +15,8 @@
     <tbody>
       <tr *ngFor="let tree of this.trees | async" (click)="this.handleTreeClick(tree.id)">
         <td>{{ tree.regularId }}</td>
-        <td>{{ tree.location ?? '未登録' }}</td>
-        <td>{{ (this.getLastReport(tree.id) | async) ?? '未登録' }}</td>
+        <td>{{ tree.location ?? "未登録" }}</td>
+        <td>{{ (this.getLastReport(tree.id) | async) ?? "未登録" }}</td>
       </tr>
     </tbody>
   </table>

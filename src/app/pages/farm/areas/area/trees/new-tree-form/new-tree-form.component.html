@@ -1,6 +1,6 @@
 <form [formGroup]="this.newTreeFromGroup" (ngSubmit)="this.handleSubmit()">
   <label for="regular-id">整理番号</label>
-  <p *ngIf="(this.treeIdError| async)" class="warning">整理番号は既に登録されています。</p>
-  <input id="regular-id" required type="number" min="1" formControlName="regularId">
+  <p *ngIf="this.treeIdError | async" class="warning">整理番号は既に登録されています。</p>
+  <input id="regular-id" required type="number" min="1" formControlName="regularId" />
   <button [disabled]="(this.newTreeFromGroup.statusChanges | async) !== 'VALID'" type="submit">追加</button>
 </form>

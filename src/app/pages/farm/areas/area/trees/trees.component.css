@@ -32,6 +32,5 @@ tbody tr:first-child {
   border-top-right-radius: var(--radius);
 }
 td {
-
   height: 50px;
 }
