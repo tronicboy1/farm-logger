@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, finalize, first, forkJoin, map, switchMap } from "rxjs";
+import { BehaviorSubject, finalize, first, forkJoin, map, Observable, switchMap, tap } from "rxjs";
 import { TreeReportService } from "src/app/farm/tree-report.service";
 import { TreeService } from "src/app/farm/tree.service";
 
@@ -9,6 +9,7 @@ import { TreeService } from "src/app/farm/tree.service";
   selector: "app-new-report-form",
   templateUrl: "./new-report-form.component.html",
   styleUrls: ["./new-report-form.component.css", "../../../../../../../../styles/basic-form.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewReportFormComponent implements OnInit {
   public newReportForm = new FormGroup({
@@ -18,10 +19,20 @@ export class NewReportFormComponent implements OnInit {
   });
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
+  public regularId = new Observable<number>();
 
-  constructor(private route: ActivatedRoute, private treeReportService: TreeReportService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private treeService: TreeService,
+    private treeReportService: TreeReportService,
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.regularId = this.getFarmIdAndAreaId().pipe(
+      switchMap(([farmId, areaId, treeId]) => this.treeService.getTree(farmId, areaId, treeId)),
+      map((tree) => tree.regularId),
+    );
+  }
 
   public handleReportSubmit() {
     if (this.loadingSubject.value) return;

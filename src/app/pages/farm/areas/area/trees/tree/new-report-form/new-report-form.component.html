@@ -1,4 +1,6 @@
 <form [formGroup]="this.newReportForm" (ngSubmit)="this.handleReportSubmit()">
+  <label for="regular-id">整理番号</label>
+  <input id="regular-id" readonly type="number" [value]="this.regularId | async" />
   <label for="height">高さ (cm)</label>
   <input type="number" name="height" id="height" required formControlName="height">
   <label for="budding">摘芯後の着花</label>
