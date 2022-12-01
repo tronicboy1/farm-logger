@@ -22,15 +22,3 @@ li:last-child {
   margin-bottom: 0;
 }
 
-.round {
-  display: block;
-  margin: 1rem auto;
-  border-radius: 50%;
-  height: 48px;
-  width: 48px;
-  padding: 0;
-}
-.round svg {
-  fill: var(--secondary-color);
-  cursor: pointer;
-}

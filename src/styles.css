@@ -142,3 +142,17 @@ input {
   background-color: rgb(142, 142, 112);
   border-radius: var(--radius);
 }
+
+
+.round {
+  display: block;
+  margin: 1.5rem auto;
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+  padding: 0;
+}
+.round svg {
+  fill: var(--secondary-color);
+  cursor: pointer;
+}
