@@ -14,4 +14,6 @@ export type CoffeeTreeReport = {
   budding: string;
 };
 
+export type CoffeeTreeReportWithId = CoffeeTreeReport & { id: string };
+
 export type CoffeeTreeWithId = { id: string } & CoffeeTree;

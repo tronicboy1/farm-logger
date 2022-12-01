@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { FirebaseFirestore } from "@custom-firebase/inheritables/firestore";
-import { addDoc, collection, DocumentData, getDocs, limit, orderBy, query, startAfter } from "firebase/firestore";
+import { addDoc, collection, DocumentData, getDocs, limit, onSnapshot, orderBy, query, QuerySnapshot, startAfter } from "firebase/firestore";
+import { map, Observable } from "rxjs";
 import { FarmModule } from "./farm.module";
-import { CoffeeTreeReport } from "./tree.model";
+import { CoffeeTreeReport, CoffeeTreeReportWithId } from "./tree.model";
 
 @Injectable({
   providedIn: FarmModule,
@@ -15,6 +16,17 @@ export class TreeReportService extends FirebaseFirestore {
   public addReport(farmId: string, areaId: string, treeId: string, reportData: CoffeeTreeReport) {
     const ref = collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`);
     return addDoc(ref, reportData);
+  }
+
+  public watchReports(farmId: string, areaId: string, treeId: string,): Observable<CoffeeTreeReportWithId[]> {
+    return new Observable<QuerySnapshot<DocumentData>>((observer) => {
+      const ref = collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`);
+      const q = query(ref, orderBy("createdAt", "desc"))
+      return onSnapshot(q, (result) => observer.next(result), observer.error, observer.complete)
+    }).pipe(map((result) => {
+      if (result.empty) return []
+      return result.docs.map((doc) => ({ ...(doc.data() as CoffeeTreeReport), id: doc.id }))
+    }))
   }
 
   public getReports(farmId: string, areaId: string, treeId: string, lastDoc?: DocumentData, limitNumber = 10) {
