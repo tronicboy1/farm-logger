@@ -7,7 +7,7 @@ import { InheritableAccountDetailsComponent } from "../inheritable-account-detai
 @Component({
   selector: "app-change-avatar-form",
   templateUrl: "./change-avatar-form.component.html",
-  styleUrls: ["../../../../styles/basic-form.css", "./change-avatar-form.component.css"],
+  styleUrls: ["../../../../../styles/basic-form.css", "./change-avatar-form.component.css"],
 })
 export class ChangeAvatarFormComponent extends InheritableAccountDetailsComponent implements AfterViewInit {
   public user?: User;

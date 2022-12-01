@@ -6,7 +6,7 @@ import { InheritableAccountDetailsComponent } from "../inheritable-account-detai
 @Component({
   selector: "app-account-details-form",
   templateUrl: "./account-details-form.component.html",
-  styleUrls: ["./account-details-form.component.css", "../../../../styles/basic-form.css"],
+  styleUrls: ["./account-details-form.component.css", "../../../../../styles/basic-form.css"],
 })
 export class AccountDetailsFormComponent extends InheritableAccountDetailsComponent implements OnInit, OnDestroy {
   private photoPreview?: string;
