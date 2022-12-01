@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { BehaviorSubject, finalize, first, forkJoin, map, Observable, switchMap, tap } from "rxjs";
@@ -12,14 +12,18 @@ import { TreeService } from "src/app/farm/tree.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewReportFormComponent implements OnInit {
+  buddingOptions = ["未着花", "良好", "不良"];
+  yieldOptions = ["未", "良好", "不良"];
   public newReportForm = new FormGroup({
     notes: new FormControl(""),
     height: new FormControl(100, [Validators.required]),
-    budding: new FormControl(""),
+    budding: new FormControl("未着花"),
+    beanYield: new FormControl("未"),
   });
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
   public regularId = new Observable<number>();
+  @Output() submitted = new EventEmitter<void>()
 
   constructor(
     private route: ActivatedRoute,
@@ -40,14 +44,16 @@ export class NewReportFormComponent implements OnInit {
     const notes = this.newReportForm.controls.notes.value!.trim();
     const height = this.newReportForm.controls.height.value!;
     const budding = this.newReportForm.controls.budding.value!.trim();
+    const beanYield = this.newReportForm.controls.beanYield.value!;
     this.getFarmIdAndAreaId()
       .pipe(
         switchMap(([farmId, areaId, treeId]) =>
-          this.treeReportService.addReport(farmId, areaId, treeId, { notes, height, budding, createdAt: Date.now() }),
+          this.treeReportService.addReport(farmId, areaId, treeId, { notes, height, budding, createdAt: Date.now(), beanYield }),
         ),
         finalize(() => {
           this.loadingSubject.next(false);
-          this.newReportForm.reset({ notes: "", height: 100, budding: "" });
+          this.newReportForm.reset({ notes: "", height: 100, budding: "未着火", beanYield: "未" });
+          this.submitted.emit()
         }),
       )
       .subscribe();

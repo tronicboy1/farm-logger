@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { FirebaseFirestore } from "@custom-firebase/inheritables/firestore";
-import { addDoc, collection, DocumentData, getDocs, limit, onSnapshot, orderBy, query, QuerySnapshot, startAfter } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, DocumentData, getDocs, limit, onSnapshot, orderBy, query, QuerySnapshot, startAfter } from "firebase/firestore";
 import { map, Observable } from "rxjs";
 import { FarmModule } from "./farm.module";
 import { CoffeeTreeReport, CoffeeTreeReportWithId } from "./tree.model";
@@ -52,5 +52,10 @@ export class TreeReportService extends FirebaseFirestore {
       if (results.empty) return null;
       return results.docs[0].data() as CoffeeTreeReport;
     });
+  }
+
+  public removeReport(farmId: string, areaId: string, treeId: string, reportId: string) {
+    const ref = doc(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports/${reportId}`);
+    return deleteDoc(ref)
   }
 }

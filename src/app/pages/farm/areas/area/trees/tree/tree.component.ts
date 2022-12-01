@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, first, forkJoin, map, Observable, switchMap, tap } from "rxjs";
+import { BehaviorSubject, first, forkJoin, map, mergeMap, Observable, switchMap, tap } from "rxjs";
 import { TreeReportService } from "src/app/farm/tree-report.service";
 import { CoffeeTree, CoffeeTreeReport, CoffeeTreeReportWithId } from "src/app/farm/tree.model";
 import { TreeService } from "src/app/farm/tree.service";
@@ -35,6 +35,11 @@ export class TreeComponent implements OnInit {
   }
 
   public toggleAddModal = (force?: boolean) => this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);
+  public removeDoc(id: string) {
+    this.getFarmIdAndAreaId().pipe(
+      mergeMap(([farmId, areaId, treeId]) => this.treeReportService.removeReport(farmId, areaId, treeId, id)),
+    ).subscribe();
+  }
 
   private getFarmIdAndAreaId() {
     const params$ = [

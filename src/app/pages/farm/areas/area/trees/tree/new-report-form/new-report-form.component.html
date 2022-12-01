@@ -4,7 +4,13 @@
   <label for="height">高さ (cm)</label>
   <input type="number" name="height" id="height" required formControlName="height" />
   <label for="budding">摘芯後の着花</label>
-  <input type="text" name="budding" id="budding" formControlName="budding" />
+  <select name="budding" id="budding" formControlName="budding">
+    <option *ngFor="let option of this.buddingOptions" [value]="option">{{ option }}</option>
+  </select>
+  <label for="bean-yield">実付き</label>
+  <select name="bean-yield" id="bean-yield" formControlName="beanYield">
+    <option *ngFor="let option of this.yieldOptions" [value]="option">{{ option }}</option>
+  </select>
   <label for="notes">メモ</label>
   <textarea name="notes" id="notes" formControlName="notes"></textarea>
   <button type="submit">送信</button>

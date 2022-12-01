@@ -78,6 +78,34 @@ input {
   }
 }
 
+h1,
+h3 {
+  text-align: center;
+}
+
+table {
+  text-align: center;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+tbody tr {
+  border: 2px solid var(--secondary-color);
+}
+td {
+  height: 50px;
+}
+tbody .remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+tbody .remove svg {
+  fill: var(--danger-color);
+  height: 30px;
+  cursor: pointer;
+}
+
 .card {
   width: 95%;
   max-width: 700px;

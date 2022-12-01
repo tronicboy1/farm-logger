@@ -12,6 +12,7 @@ export type CoffeeTreeReport = {
   notes: string;
   height: number;
   budding: string;
+  beanYield: string;
 };
 
 export type CoffeeTreeReportWithId = CoffeeTreeReport & { id: string };
