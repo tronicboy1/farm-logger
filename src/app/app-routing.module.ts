@@ -36,7 +36,7 @@ const routes: Routes = [
         ],
       },
       { path: "environment", component: EnvironmentComponent },
-      { path: "", redirectTo: "manage", pathMatch: "full" },
+      { path: "", redirectTo: "areas", pathMatch: "full" },
     ],
   },
   { path: "", redirectTo: "auth", pathMatch: "full" },

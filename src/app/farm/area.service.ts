@@ -56,6 +56,7 @@ export class AreaService extends FirebaseFirestore {
         if (!result) throw Error("Area not found.");
         return result.data() as Area;
       }),
+      shareReplay(1)
     ));
   }
 

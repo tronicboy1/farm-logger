@@ -7,6 +7,7 @@ import { ChangeAvatarFormComponent } from "./nav-bar/account-circle/change-avata
 import { AccountDetailsFormComponent } from "./nav-bar/account-circle/account-details-form/account-details-form.component";
 import { ChangeEmailFormComponent } from "./nav-bar/account-circle/change-email-form/change-email-form.component";
 import "@web-components/base-modal";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import "@web-components/base-modal";
     ChangeEmailFormComponent,
     NavBarComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   exports: [LocationComponent, NavBarComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

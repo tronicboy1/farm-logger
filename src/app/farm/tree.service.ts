@@ -17,7 +17,7 @@ import {
   QuerySnapshot,
   where,
 } from "firebase/firestore";
-import { map, mergeMap, Observable, ReplaySubject, Subject, switchMap } from "rxjs";
+import { from, map, mergeMap, Observable, ReplaySubject, shareReplay, Subject, switchMap, tap } from "rxjs";
 import { FarmModule } from "./farm.module";
 import { CoffeeTree, CoffeeTreeReport, CoffeeTreeWithId } from "./tree.model";
 import { PhotoService } from "./util/photo.service";
@@ -80,6 +80,7 @@ export class TreeService extends FirebaseFirestore {
         this.lastDocCache = docs[docs.length - 1];
         return docs.map((doc) => ({ ...doc.data(), id: doc.id })) as CoffeeTreeWithId[];
       }),
+      shareReplay(1),
     ));
   }
   public triggerNextPage() {
@@ -89,6 +90,12 @@ export class TreeService extends FirebaseFirestore {
   public createTree(farmId: string, areaId: string, treeData: Omit<CoffeeTree, "reports">) {
     const ref = collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees`);
     return addDoc(ref, treeData);
+  }
+
+  public treeRegularIdIsUnique(farmId: string, areaId: string, regularId: number) {
+    const ref = collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees`);
+    const q = query(ref, where("regularId", "==", regularId));
+    return from(getDocs(q)).pipe(map((result) => result.empty));
   }
 
   public updateTree(farmId: string, areaId: string, treeId: string, areaData: Partial<CoffeeTree>) {

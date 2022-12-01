@@ -1,7 +1,9 @@
 <nav *ngIf="this.isAuth">
   <ul>
     <li>
-      <h2><a routerLink="/home">ホーム画面</a></h2>
+      <a routerLink="home">
+        <h2>ホーム画面</h2>
+      </a>
     </li>
     <li class="clickable" id="account-circle-container">
       <app-account-circle></app-account-circle>

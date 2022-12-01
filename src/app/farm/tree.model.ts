@@ -1,5 +1,5 @@
 export type CoffeeTree = {
-  regularId: string;
+  regularId: number;
   location?: [number, number];
   reports: Record<string, CoffeeTreeReport>;
 };
