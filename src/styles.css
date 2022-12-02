@@ -32,12 +32,13 @@ code {
   --danger-color-hover: rgb(255, 105, 105);
   --warning-color: rgb(255, 250, 211);
   --radius: 4px;
+  --text-color: black;
 }
 
 svg {
   width: auto;
   height: 100%;
-  fill: var(--primary-color);
+  fill: var(--text-color);
 }
 
 input {
@@ -71,6 +72,7 @@ input {
     --highlight-color: rgb(62, 168, 255);
     --highlight-hover: rgb(74, 174, 255);
     --warning-color: rgb(105, 95, 23);
+    --text-color: white;
     color: white;
   }
   a {
@@ -81,6 +83,24 @@ input {
 h1,
 h3 {
   text-align: center;
+}
+h1:has(svg),
+a:has(svg) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+nav li a {
+  padding: 0.5rem 1rem;
+  display: inline-flex;
+  height: 40px;
+  align-items: center;
+  user-select: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  border: 1px solid transparent;
 }
 
 table {
