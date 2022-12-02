@@ -40,3 +40,8 @@
     気象情報は<a href="https://openweathermap.org/">OpenWeather</a>から取得しています。
   </p>
 </div>
+
+<base-modal [show]="this.error | async" modal-title="天気登録">
+  <p>自動登録が失敗しましたので、手動で天気情報をご入力ください。</p>
+  <app-weather-form (submitted)="this.handleFormSubmit()"></app-weather-form>
+</base-modal>

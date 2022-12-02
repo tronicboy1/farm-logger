@@ -24,9 +24,9 @@ export type EnvironmentRecord = {
   windSpeed: number;
   rainfall?: number;
   humidity?: number;
-  sunrise: number;
-  sunset: number;
-  clouds: number;
+  sunrise?: number;
+  sunset?: number;
+  clouds?: number;
 };
 
 @Injectable({

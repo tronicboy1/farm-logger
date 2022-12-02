@@ -1,1 +1,14 @@
-<form></form>
+<form [formGroup]="this.weatherFormGroup" (ngSubmit)="this.handleSubmit()">
+  <label for="weather">天気</label>
+  <input type="text" name="weather" id="weather" maxlength="100" formControlName="weather" required />
+  <label for="high">最高気温</label>
+  <input type="number" name="high" id="high" formControlName="high" />
+  <label for="low">最低気温</label>
+  <input type="number" name="low" id="low" formControlName="low" />
+  <label for="wind-speed">最低気温</label>
+  <input type="number" name="wind-speed" id="wind-speed" formControlName="windSpeed" />
+  <label for="humidity">最低気温</label>
+  <input type="number" name="humidity" id="humidity" formControlName="humidity" />
+  <loading-spinner *ngIf="this.loading | async"></loading-spinner>
+  <button type="submit">登録</button>
+</form>

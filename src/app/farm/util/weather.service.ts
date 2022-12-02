@@ -29,7 +29,7 @@ export class WeatherService {
   constructor(private http: HttpClient) {}
 
   public getWeatherReport(lat: number, lon: number) {
-    const url = new URL("https://api.openweathermap.org/data/2.5/weather");
+    const url = new URL("https://api.openweathermap.org/data/2./weather");
     url.searchParams.set("lat", String(lat));
     url.searchParams.set("lon", String(lon));
     url.searchParams.set("appid", WeatherService.key);

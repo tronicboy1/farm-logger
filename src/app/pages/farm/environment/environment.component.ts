@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { finalize, first, map, mergeMap, Observable, of, ReplaySubject } from "rxjs";
+import { BehaviorSubject, catchError, finalize, first, map, mergeMap, Observable, of, ReplaySubject } from "rxjs";
 import { EnvironmentRecord, EnvironmentRecordService } from "src/app/farm/environment-record.service";
 import { FarmService } from "src/app/farm/farm.service";
 import { GeolocationService } from "src/app/farm/util/geolocation.service";
@@ -16,6 +16,7 @@ export class EnvironmentComponent implements OnInit {
   public environmentRecords = new Observable<EnvironmentRecord[]>();
   private loadingSubject = new ReplaySubject<boolean>(1);
   public loading = this.loadingSubject.asObservable();
+  public error = new BehaviorSubject(false);
 
   constructor(
     private environmentService: EnvironmentRecordService,
@@ -39,6 +40,9 @@ export class EnvironmentComponent implements OnInit {
 
   public loadNextPage() {
     this.environmentService.triggerNextPage();
+  }
+  public handleFormSubmit() {
+    this.error.next(false);
   }
 
   public addRecord() {
@@ -79,6 +83,8 @@ export class EnvironmentComponent implements OnInit {
           this.loadingSubject.next(false);
         }),
       )
-      .subscribe();
+      .subscribe({
+        error: () => this.error.next(true),
+      });
   }
 }
