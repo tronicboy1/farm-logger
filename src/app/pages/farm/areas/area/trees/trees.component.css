@@ -20,6 +20,7 @@ td {
 .search {
   display: flex;
   width: 40%;
+  min-width: 250px;
   flex-direction: row;
   margin-bottom: 0.5rem;
 }
