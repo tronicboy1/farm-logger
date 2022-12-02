@@ -14,7 +14,7 @@ export class NewFarmFormComponent implements OnInit {
     name: new FormControl("", [Validators.required, Validators.maxLength(64), Validators.minLength(1)]),
   });
   public loading = false;
-  @Output() submitted = new EventEmitter<void>()
+  @Output() submitted = new EventEmitter<void>();
 
   constructor(private authService: AuthService, private farmService: FarmService) {}
 
