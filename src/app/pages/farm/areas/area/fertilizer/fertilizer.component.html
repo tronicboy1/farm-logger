@@ -1,4 +1,8 @@
-<base-modal [show]="this.showAddModal | async" modal-title="コーヒーの木新規登録" (modal-closed)="this.toggleAddModal(false)">
+<base-modal
+  [show]="this.showAddModal | async"
+  modal-title="コーヒーの木新規登録"
+  (modal-closed)="this.toggleAddModal(false)"
+>
   <app-new-fertilization-form (submitted)="this.toggleAddModal(false)"></app-new-fertilization-form>
 </base-modal>
 <div class="card round" (click)="this.toggleAddModal(true)">
@@ -12,7 +16,7 @@
       <tr>
         <th>日付</th>
         <th>肥料種類</th>
-        <th style="width: 40%;">メモ</th>
+        <th style="width: 40%">メモ</th>
         <th>削除</th>
       </tr>
     </thead>

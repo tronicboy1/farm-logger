@@ -25,9 +25,9 @@ export class FertilizerComponent implements OnInit {
   public toggleAddModal = (force?: boolean) => this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);
 
   public removeFertilization(id: string) {
-    this.getFarmIdAndAreaId().pipe(
-      mergeMap(([farmId, areaId]) => this.fertilizationService.removeFertilization(farmId, areaId, id)),
-    ).subscribe();
+    this.getFarmIdAndAreaId()
+      .pipe(mergeMap(([farmId, areaId]) => this.fertilizationService.removeFertilization(farmId, areaId, id)))
+      .subscribe();
   }
 
   private getFarmIdAndAreaId() {
