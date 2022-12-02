@@ -10,6 +10,7 @@ import {
   map,
   Observable,
   of,
+  sampleTime,
   Subscription,
   switchMap,
   tap,
@@ -57,7 +58,7 @@ export class TreesComponent implements OnInit, OnDestroy {
       ),
     );
     this.subscriptions.add(
-      this.searchControl.valueChanges.subscribe((search) => {
+      this.searchControl.valueChanges.pipe(sampleTime(200)).subscribe((search) => {
         this.treeService.setSearch(search ?? "");
       }),
     );

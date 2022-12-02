@@ -14,7 +14,7 @@
   <h3>コーヒー木一覧</h3>
   <div class="search">
     <label for="tree-search">整理番号検索</label>
-    <input id="tree-search" type="search" [formControl]="this.searchControl" />
+    <input id="tree-search" type="number" [formControl]="this.searchControl" />
   </div>
   <table>
     <thead>
@@ -27,7 +27,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tree of (this.trees | async)" (click)="this.handleTreeClick(tree.id)">
+      <tr *ngFor="let tree of this.trees | async" (click)="this.handleTreeClick(tree.id)">
         <td>{{ tree.regularId }}</td>
         <td>{{ tree.species }}</td>
         <td [class.done]="tree.location" [class.remove]="!tree.location">

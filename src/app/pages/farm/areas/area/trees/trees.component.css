@@ -36,6 +36,7 @@ td {
 
 .search input {
   flex: 1 1;
+  margin: 0;
   border: 1px solid var(--secondary-color);
   border-radius: var(--radius);
   border-top-left-radius: 0;

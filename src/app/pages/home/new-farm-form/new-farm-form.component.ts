@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "@user/auth.service";
 import { finalize, mergeMap, take, tap } from "rxjs";
@@ -14,6 +14,7 @@ export class NewFarmFormComponent implements OnInit {
     name: new FormControl("", [Validators.required, Validators.maxLength(64), Validators.minLength(1)]),
   });
   public loading = false;
+  @Output() submitted = new EventEmitter<void>()
 
   constructor(private authService: AuthService, private farmService: FarmService) {}
 
@@ -39,6 +40,7 @@ export class NewFarmFormComponent implements OnInit {
         tap(() => {
           this.newFarmForm.reset();
           this.farmService.refreshFarms();
+          this.submitted.emit();
         }),
         finalize(() => {
           this.loading = false;

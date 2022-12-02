@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { UserService } from "@user/user.service";
-import { combineLatest, map, Subscription, switchMap } from "rxjs";
+import { BehaviorSubject, combineLatest, map, Observable, Subscription, switchMap } from "rxjs";
 import { FarmWithId } from "src/app/farm/farm.model";
 import { FarmService } from "src/app/farm/farm.service";
 
@@ -11,34 +11,30 @@ import { FarmService } from "src/app/farm/farm.service";
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  public farms: FarmWithId[] = [];
-  public showAddFarmForm = false;
+  public farms = new Observable<FarmWithId[]>();
+  private showAddModalSubject = new BehaviorSubject(false);
+  public showAddModal = this.showAddModalSubject.asObservable();
 
   private subscriptions: Subscription[] = [];
 
   constructor(private farmService: FarmService, private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
-    this.subscriptions.push(
-      this.farmService
-        .loadMyFarms()
-        .pipe(
-          switchMap((farms) =>
-            combineLatest(
-              farms.map((farm) =>
-                combineLatest(
-                  farm.adminMembers.map((uid) =>
-                    this.userService.watchUserDoc(uid).pipe(map((userData) => userData.displayName ?? userData.email)),
-                  ),
-                ).pipe(map((usernames) => ({ ...farm, adminMembers: usernames }))),
-              ),
+    this.farms = this.farmService
+      .loadMyFarms()
+      .pipe(
+        switchMap((farms) =>
+          combineLatest(
+            farms.map((farm) =>
+              combineLatest(
+                farm.adminMembers.map((uid) =>
+                  this.userService.watchUserDoc(uid).pipe(map((userData) => userData.displayName ?? userData.email)),
+                ),
+              ).pipe(map((usernames) => ({ ...farm, adminMembers: usernames }))),
             ),
           ),
-        )
-        .subscribe((farms) => {
-          this.farms = farms;
-        }),
-    );
+        ),
+      );
   }
 
   ngOnDestroy(): void {
@@ -48,7 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public handleFarmClick(farmId: string) {
     this.router.navigate(["/farms", farmId]);
   }
-  public toggleAddFarmForm(force?: boolean) {
-    this.showAddFarmForm = force ?? !this.showAddFarmForm;
+  public toggleAddModal(force?: boolean) {
+    this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);
   }
 }
