@@ -34,3 +34,27 @@ tbody tr:first-child {
 td {
   height: 50px;
 }
+
+.search {
+  display: flex;
+  width: 40%;
+  flex-direction: row;
+}
+
+.search label {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  padding: 4px 8px;
+  word-break: keep-all;
+  border-bottom-left-radius: var(--radius);
+  border-top-left-radius: var(--radius);
+}
+
+.search input {
+  flex: 1 1;
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--radius);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding-left: 0.5rem;
+}
