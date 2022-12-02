@@ -32,13 +32,13 @@ export class LocationComponent implements OnInit {
       .pipe(
         catchError((err) => {
           this.locationError.next(true);
-          return of()
+          return of();
         }),
         finalize(() => {
           this.loading.next(false);
         }),
       )
-      .subscribe({ next: (location) => this.location.emit(location)});
+      .subscribe({ next: (location) => this.location.emit(location) });
   }
 
   public handleLocationFormSubmit(location: Location) {

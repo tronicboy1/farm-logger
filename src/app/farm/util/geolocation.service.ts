@@ -19,7 +19,7 @@ export class GeolocationService {
           observer.complete();
         },
         (error) => {
-          console.error("Geolocation Error: ", error)
+          console.error("Geolocation Error: ", error);
           observer.error(error);
         },
         { enableHighAccuracy: true, maximumAge: cache ? Infinity : 0 },

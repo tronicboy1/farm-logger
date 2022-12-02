@@ -8,7 +8,7 @@ import { AccountDetailsFormComponent } from "./nav-bar/account-circle/account-de
 import { ChangeEmailFormComponent } from "./nav-bar/account-circle/change-email-form/change-email-form.component";
 import "@web-components/base-modal";
 import { RouterModule } from "@angular/router";
-import { LocationFormComponent } from './location/location-form/location-form.component';
+import { LocationFormComponent } from "./location/location-form/location-form.component";
 import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({

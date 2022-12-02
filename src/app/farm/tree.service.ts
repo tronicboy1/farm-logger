@@ -118,7 +118,7 @@ export class TreeService extends FirebaseFirestore {
     this.refreshSubject.next();
   }
   public setSearch(searchId: string) {
-    const searchNumber = Number(searchId)
+    const searchNumber = Number(searchId);
     this.searchId$.next(isNaN(searchNumber) ? undefined : searchNumber);
     this.clearPaginationCache();
   }
