@@ -27,7 +27,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tree of this.trees | async" (click)="this.handleTreeClick(tree.id)">
+      <tr *ngFor="let tree of (this.trees | async)" (click)="this.handleTreeClick(tree.id)">
         <td>{{ tree.regularId }}</td>
         <td>{{ tree.species }}</td>
         <td [class.done]="tree.location" [class.remove]="!tree.location">
@@ -46,7 +46,7 @@
       </tr>
     </tbody>
   </table>
-  <div appObservable (intersection)="this.loadNextPage()"></div>
+  <div *ngIf="(this.trees | async)?.length" appObservable (intersection)="this.loadNextPage()"></div>
 </div>
 
 <ng-template #notSet
