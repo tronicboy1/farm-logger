@@ -41,7 +41,7 @@
   </p>
 </div>
 
-<base-modal [show]="this.error | async" modal-title="天気登録">
+<base-modal [show]="this.error | async" modal-title="天気登録" (modal-closed)="this.error.next(false)">
   <p>自動登録が失敗しましたので、手動で天気情報をご入力ください。</p>
   <app-weather-form (submitted)="this.handleFormSubmit()"></app-weather-form>
 </base-modal>

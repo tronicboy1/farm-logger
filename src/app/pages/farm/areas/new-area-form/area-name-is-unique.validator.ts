@@ -34,7 +34,7 @@ export class AreaNameIsUniqueValidator implements AsyncValidator {
     );
     const value$ = control.valueChanges.pipe(
       filter((value) => typeof value === "string") as OperatorFunction<any, string>,
-      sampleTime(1000),
+      sampleTime(100),
       take(1),
     );
     const observables = [farmId$, value$] as const;

@@ -13,7 +13,7 @@ export class EmailExistsValidator implements AsyncValidator {
     if (typeof value !== "string") throw TypeError("V");
     return control.valueChanges.pipe(
       filter((value) => typeof value === "string") as OperatorFunction<any, string>,
-      sampleTime(1000),
+      sampleTime(100),
       take(1),
       switchMap((value) => this.userService.getUserByEmail(value)),
       map((userData) => {
