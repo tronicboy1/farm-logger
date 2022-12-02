@@ -1,11 +1,13 @@
-<h1>区域管理</h1>
-<p class="message">
-  ここで農園の格区域に関する情報を管理することができます。
-  <br />
-  一覧から区域をクリックすると、その区域に所属するコーヒーの木を一覧で見ることができます。
-  <br />
-  また、そこでコーヒーの木の育成記録を登録することもできます。
-</p>
+<div class="title">
+  <base-tooltip>ここで農園の格区域に関する情報を管理することができます。
+    <br />
+    一覧から区域をクリックすると、その区域に所属するコーヒーの木を一覧で見ることができます。
+    <br />
+    また、そこでコーヒーの木の育成記録を登録することもできます。
+  </base-tooltip>
+  <h1>区域管理</h1>
+</div>
+
 <ul class="card">
   <li *ngFor="let area of this.areas | async; let last" (click)="this.handleAreaClick(area.id)">
     {{ area.name }}

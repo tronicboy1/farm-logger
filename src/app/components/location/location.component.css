@@ -29,3 +29,13 @@ h1 {
 .card {
   max-width: 60%;
 }
+
+.warning {
+  height: 60px;
+  width: 60px;
+}
+
+.warning svg {
+  max-width: 100%;
+  height: auto;
+}

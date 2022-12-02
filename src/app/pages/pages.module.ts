@@ -26,6 +26,7 @@ import { NewFertilizationFormComponent } from "./farm/areas/area/fertilizer/new-
 import { NewCropdustFormComponent } from "./farm/areas/area/cropdust/new-cropdust-form/new-cropdust-form.component";
 import { CustomDirectivesModule } from "../custom-directives/custom-directives.module";
 import { WeatherFormComponent } from "./farm/environment/weather-form/weather-form.component";
+import "@web-components/base-tooltip";
 
 @NgModule({
   declarations: [

@@ -193,8 +193,8 @@ tbody .done svg {
 }
 
 .warning {
-  border: 1px solid rgb(142, 142, 104);
-  background-color: rgb(142, 142, 112);
+  border: 1px solid var(--warning-color);
+  background-color: var(--warning-color);
   border-radius: var(--radius);
 }
 
@@ -209,4 +209,15 @@ tbody .done svg {
 .round svg {
   fill: var(--secondary-color);
   cursor: pointer;
+}
+
+.title {
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.title h1 {
+  margin: 0;
 }
