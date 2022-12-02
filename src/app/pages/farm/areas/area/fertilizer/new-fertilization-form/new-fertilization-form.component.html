@@ -1,0 +1,10 @@
+<form [formGroup]="this.newFertilizationForm" (ngSubmit)="this.handleSubmit()">
+  <label for="type">肥料の種類</label>
+  <select name="type" id="type" formControlName="type">
+    <option *ngFor="let option of this.typeOptions" [value]="option">{{ option }}</option>
+  </select>
+  <label for="note">メモ</label>
+  <textarea name="note" id="note" formControlName="note"></textarea>
+  <button type="submit">登録</button>
+  <loading-spinner *ngIf="this.loading | async"></loading-spinner>
+</form>

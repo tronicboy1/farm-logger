@@ -95,7 +95,8 @@ tbody tr {
 td {
   height: 50px;
 }
-tbody .remove, tbody .done {
+tbody .remove,
+tbody .done {
   display: flex;
   justify-content: center;
   align-items: center;
