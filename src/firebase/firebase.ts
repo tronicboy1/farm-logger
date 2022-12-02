@@ -27,9 +27,12 @@ export const analytics = getAnalytics(app);
 //   connectStorageEmulator(storage, "localhost", environment.emulatorPorts.storage);
 // }
 
-if (self instanceof Window && environment.production) {
-  initializeAppCheck(app, {
-    provider: new ReCaptchaV3Provider("6Lcg2rciAAAAAOB7QZshJI7Dko_77izUQGdu6XJF"),
-    isTokenAutoRefreshEnabled: true,
-  });
+if (!environment.production) {
+  //@ts-ignore
+  self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
 }
+
+initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider("6Lffd0wjAAAAAN7ghKd7xyOOyqcmthVEOecCx_g5"),
+  isTokenAutoRefreshEnabled: true,
+});
