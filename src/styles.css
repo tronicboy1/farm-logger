@@ -86,7 +86,6 @@ h3 {
 table {
   text-align: center;
   border-collapse: collapse;
-  width: 100%;
 }
 
 tbody tr {
@@ -124,6 +123,9 @@ tbody .done svg {
   opacity: 1;
   flex-direction: column;
   transition: all 0.3s;
+}
+.card:has(table) {
+  overflow-x: auto;
 }
 
 .card[hide] {

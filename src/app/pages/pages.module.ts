@@ -12,7 +12,6 @@ import { MembersComponent } from "./farm/manage/members/members.component";
 import { RouterModule } from "@angular/router";
 import { AreasComponent } from "./farm/areas/areas.component";
 import { EnvironmentComponent } from "./farm/environment/environment.component";
-import { ObservableDirective } from "./farm/environment/observable.directive";
 import { NewAreaFormComponent } from "./farm/areas/new-area-form/new-area-form.component";
 import { AreaComponent } from "./farm/areas/area/area.component";
 import { TreesComponent } from "./farm/areas/area/trees/trees.component";
@@ -25,6 +24,7 @@ import { TreeComponent } from "./farm/areas/area/trees/tree/tree.component";
 import { NewReportFormComponent } from "./farm/areas/area/trees/tree/new-report-form/new-report-form.component";
 import { NewFertilizationFormComponent } from "./farm/areas/area/fertilizer/new-fertilization-form/new-fertilization-form.component";
 import { NewCropdustFormComponent } from './farm/areas/area/cropdust/new-cropdust-form/new-cropdust-form.component';
+import { CustomDirectivesModule } from "../custom-directives/custom-directives.module";
 
 @NgModule({
   declarations: [
@@ -38,7 +38,6 @@ import { NewCropdustFormComponent } from './farm/areas/area/cropdust/new-cropdus
     ManageComponent,
     AreasComponent,
     EnvironmentComponent,
-    ObservableDirective,
     NewAreaFormComponent,
     AreaComponent,
     TreesComponent,
@@ -51,7 +50,7 @@ import { NewCropdustFormComponent } from './farm/areas/area/cropdust/new-cropdus
     NewFertilizationFormComponent,
     NewCropdustFormComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, ComponentsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, ComponentsModule, CustomDirectivesModule],
   /** Adding custom Elements Schema allows use of custom tags i.e. Web Components. */
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
