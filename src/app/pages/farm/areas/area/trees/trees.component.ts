@@ -1,7 +1,19 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { BehaviorSubject, combineLatest, filter, first, forkJoin, map, Observable, of, switchMap, tap } from "rxjs";
+import {
+  BehaviorSubject,
+  combineLatest,
+  filter,
+  first,
+  forkJoin,
+  map,
+  Observable,
+  of,
+  Subscription,
+  switchMap,
+  tap,
+} from "rxjs";
 import { TreeReportService } from "src/app/farm/tree-report.service";
 import { CoffeeTreeReport, CoffeeTreeWithId } from "src/app/farm/tree.model";
 import { TreeService } from "src/app/farm/tree.service";
@@ -12,11 +24,12 @@ import { TreeService } from "src/app/farm/tree.service";
   styleUrls: ["./trees.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TreesComponent implements OnInit {
+export class TreesComponent implements OnInit, OnDestroy {
   public trees = new Observable<(CoffeeTreeWithId & { report: CoffeeTreeReport | null })[]>();
   private showAddModalSubject = new BehaviorSubject(false);
   public showAddModal = this.showAddModalSubject.asObservable();
   public searchControl = new FormControl("");
+  private subscriptions = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -43,15 +56,24 @@ export class TreesComponent implements OnInit {
           ),
       ),
     );
-    this.searchControl.valueChanges.subscribe((search) => {
-      console.log(search);
-      this.treeService.setSearch(search ?? "");
-    })
+    this.subscriptions.add(
+      this.searchControl.valueChanges.subscribe((search) => {
+        this.treeService.setSearch(search ?? "");
+      }),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+    this.treeService.setSearch("");
   }
 
   public toggleAddModal = (force?: boolean) => this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);
   public handleTreeClick(treeId: string) {
     this.router.navigate([treeId], { relativeTo: this.route });
+  }
+  public loadNextPage() {
+    this.treeService.triggerNextPage();
   }
 
   public getLastReport(treeId: string) {
