@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { BehaviorSubject, first, forkJoin, map, Observable, switchMap } from "rxjs";
+import { BehaviorSubject, combineLatest, filter, first, forkJoin, map, Observable, of, switchMap, tap } from "rxjs";
 import { TreeReportService } from "src/app/farm/tree-report.service";
 import { CoffeeTreeReport, CoffeeTreeWithId } from "src/app/farm/tree.model";
 import { TreeService } from "src/app/farm/tree.service";
@@ -15,6 +16,7 @@ export class TreesComponent implements OnInit {
   public trees = new Observable<(CoffeeTreeWithId & { report: CoffeeTreeReport | null })[]>();
   private showAddModalSubject = new BehaviorSubject(false);
   public showAddModal = this.showAddModalSubject.asObservable();
+  public searchControl = new FormControl("");
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +43,10 @@ export class TreesComponent implements OnInit {
           ),
       ),
     );
+    this.searchControl.valueChanges.subscribe((search) => {
+      console.log(search);
+      this.treeService.setSearch(search ?? "");
+    })
   }
 
   public toggleAddModal = (force?: boolean) => this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);

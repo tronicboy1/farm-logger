@@ -12,6 +12,10 @@
 </div>
 <div class="card">
   <h3>コーヒー木一覧</h3>
+  <div>
+    <label for="tree-search">整理番号検索</label>
+    <input id="tree-search" type="search" [formControl]="this.searchControl">
+  </div>
   <table>
     <thead>
       <tr>

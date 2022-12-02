@@ -18,9 +18,9 @@ import {
   where,
 } from "firebase/firestore";
 import {
+  BehaviorSubject,
   from,
   map,
-  mergeMap,
   mergeWith,
   Observable,
   ReplaySubject,
@@ -29,9 +29,10 @@ import {
   Subject,
   switchMap,
   tap,
+  withLatestFrom,
 } from "rxjs";
 import { FarmModule } from "./farm.module";
-import { CoffeeTree, CoffeeTreeReport, CoffeeTreeWithId } from "./tree.model";
+import { CoffeeTree, CoffeeTreeWithId } from "./tree.model";
 import { PhotoService } from "./util/photo.service";
 
 @Injectable({
@@ -44,6 +45,7 @@ export class TreeService extends FirebaseFirestore {
   private lastDocCache?: DocumentData;
   private farmIdCache?: string;
   private areaIdCache?: string;
+  private searchId$ = new BehaviorSubject<number | undefined>(undefined);
   private treesObservableCache$?: Observable<CoffeeTreeWithId[]>;
   private refreshSubject = new Subject<void>();
 
@@ -72,9 +74,12 @@ export class TreeService extends FirebaseFirestore {
     );
   }
 
-  private getTrees(farmId: string, areaId: string, lastDoc?: DocumentData) {
+  private getTrees(farmId: string, areaId: string, lastDoc?: DocumentData, searchId?: number) {
     const ref = collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees`);
-    const constraints = [orderBy("regularId", "asc"), limit(TreeService.limit)];
+    let constraints = [orderBy("regularId", "asc"), limit(TreeService.limit)];
+    if (searchId) {
+      constraints = [where("regularId", "==", searchId)];
+    }
     if (lastDoc) constraints.push(startAfter(lastDoc));
     const q = query(ref, ...constraints);
     return getDocs(q);
@@ -85,7 +90,8 @@ export class TreeService extends FirebaseFirestore {
     this.farmIdCache = farmId;
     this.areaIdCache = areaId;
     return (this.treesObservableCache$ ||= this.lastDocSubject.pipe(
-      switchMap((lastDoc) => this.getTrees(farmId, areaId, lastDoc)),
+      withLatestFrom(this.searchId$),
+      switchMap(([lastDoc, searchId]) => this.getTrees(farmId, areaId, lastDoc, searchId)),
       map((result) => {
         if (result.empty) return [];
         const { docs } = result;
@@ -110,6 +116,11 @@ export class TreeService extends FirebaseFirestore {
     this.lastDocCache = undefined;
     this.lastDocSubject.next(undefined);
     this.refreshSubject.next();
+  }
+  public setSearch(searchId: string) {
+    const searchNumber = Number(searchId)
+    this.searchId$.next(isNaN(searchNumber) ? undefined : searchNumber);
+    this.clearPaginationCache();
   }
 
   public createTree(farmId: string, areaId: string, treeData: Omit<CoffeeTree, "reports">) {
