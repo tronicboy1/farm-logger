@@ -14,25 +14,22 @@ import { firebaseConfig } from "./config";
 export const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 
-// if (!environment.production) {
-//   const firestore = getFirestore(app);
-//   connectFirestoreEmulator(firestore, "localhost", environment.emulatorPorts.firestore);
-//   const db = getDatabase(app);
-//   connectDatabaseEmulator(
-//     db,
-//     "localhost",
-//     environment.emulatorPorts.database, // ここはfirebase.jsonに入っている設定に合わせましょう！
-//   );
-//   const storage = getStorage(app);
-//   connectStorageEmulator(storage, "localhost", environment.emulatorPorts.storage);
-// }
-
 if (!environment.production) {
-  //@ts-ignore
-  self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+  const firestore = getFirestore(app);
+  connectFirestoreEmulator(firestore, "localhost", environment.emulatorPorts.firestore);
+  const db = getDatabase(app);
+  connectDatabaseEmulator(
+    db,
+    "localhost",
+    environment.emulatorPorts.database, // ここはfirebase.jsonに入っている設定に合わせましょう！
+  );
+  const storage = getStorage(app);
+  connectStorageEmulator(storage, "localhost", environment.emulatorPorts.storage);
 }
 
-initializeAppCheck(app, {
-  provider: new ReCaptchaV3Provider("6Lffd0wjAAAAAN7ghKd7xyOOyqcmthVEOecCx_g5"),
-  isTokenAutoRefreshEnabled: true,
-});
+if (environment.production) {
+  initializeAppCheck(app, {
+    provider: new ReCaptchaV3Provider("6Lffd0wjAAAAAN7ghKd7xyOOyqcmthVEOecCx_g5"),
+    isTokenAutoRefreshEnabled: true,
+  });
+}
