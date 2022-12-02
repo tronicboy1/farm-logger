@@ -4,6 +4,7 @@
 }
 .map p {
   text-align: center;
+  margin: 0.25rem auto;
 }
 .map button {
   max-width: 60%;
@@ -13,9 +14,18 @@
   cursor: pointer;
 }
 
-.map h1 {
+h1 {
   cursor: pointer;
   margin: 0;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   text-align: center;
+}
+
+.map {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  max-width: 60%;
 }

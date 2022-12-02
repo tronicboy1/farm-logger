@@ -18,7 +18,10 @@ export class GeolocationService {
           observer.next([position.coords.latitude, position.coords.longitude, position.coords.altitude]);
           observer.complete();
         },
-        observer.error,
+        (error) => {
+          console.error("Geolocation Error: ", error)
+          observer.error(error);
+        },
         { enableHighAccuracy: true, maximumAge: cache ? Infinity : 0 },
       );
     });
