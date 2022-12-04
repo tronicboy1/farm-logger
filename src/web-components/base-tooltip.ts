@@ -1,5 +1,6 @@
 import { css, html, LitElement } from "lit";
-import { customElement } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
+import { bufferTime, filter, fromEvent, map, Subscription, tap } from "rxjs";
 import { globalStyles } from "./shared";
 
 export const tagName = "base-tooltip";
@@ -19,6 +20,12 @@ export class BaseTooltip extends LitElement {
       svg {
         height: 100%;
         width: auto;
+        fill: black;
+      }
+      @media (prefers-color-scheme: dark) {
+        svg {
+          fill: white;
+        }
       }
       #content {
         visibility: hidden;
@@ -32,11 +39,36 @@ export class BaseTooltip extends LitElement {
         left: -100px;
         z-index: 999;
       }
-      :host(:hover) #content {
+      :host([show]) #content {
         visibility: visible;
       }
     `,
   ];
+
+  @property({ reflect: true, type: Boolean })
+  show = false;
+
+  private subscription = new Subscription();
+
+  connectedCallback() {
+    super.connectedCallback();
+    const clicks$ = fromEvent(this, "click");
+
+    this.subscription.add(
+      clicks$
+        .pipe(
+          bufferTime(600),
+          filter((events) => events.length > 0),
+          map((events) => events.length > 1),
+        )
+        .subscribe((isDoubleClick) => (this.show = isDoubleClick)),
+    );
+  }
+
+  disconnectedCallback(): void {
+    this.disconnectedCallback();
+    this.subscription.unsubscribe();
+  }
 
   render() {
     return html`

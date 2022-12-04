@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { Analytics, getAnalytics } from "firebase/analytics";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 import { connectDatabaseEmulator, getDatabase } from "firebase/database";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
@@ -12,7 +12,7 @@ import { firebaseConfig } from "./config";
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(app);
+export let analytics: Analytics;
 
 if (!environment.production) {
   const firestore = getFirestore(app);
@@ -32,4 +32,5 @@ if (environment.production) {
     provider: new ReCaptchaV3Provider("6Lffd0wjAAAAAN7ghKd7xyOOyqcmthVEOecCx_g5"),
     isTokenAutoRefreshEnabled: true,
   });
+  analytics = getAnalytics(app);
 }
