@@ -4,6 +4,10 @@ import { getDatabase } from "firebase/database";
 
 export class FirebaseDatabase {
   /** Must reinit app for service worker. */
-  protected app = initializeApp(firebaseConfig);
-  protected db = getDatabase(this.app);
+  protected get app() {
+    return initializeApp(firebaseConfig);
+  }
+  protected get db() {
+    return getDatabase(this.app);
+  }
 }
