@@ -21,6 +21,8 @@ export class TreeComponent implements OnInit {
   public reports = new Observable<CoffeeTreeReportWithId[]>();
   private showAddModalSubject = new BehaviorSubject(false);
   public showAddModal = this.showAddModalSubject.asObservable();
+  private showPictureModalSubject = new BehaviorSubject<string | undefined>(undefined);
+  readonly showPictureModal$ = this.showPictureModalSubject.asObservable();
   public googleMapsURL = new Observable<SafeResourceUrl | undefined>();
 
   constructor(
@@ -41,6 +43,7 @@ export class TreeComponent implements OnInit {
   }
 
   public toggleAddModal = (force?: boolean) => this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);
+  public togglePictureModal = (photoURL: string | undefined) => this.showPictureModalSubject.next(photoURL);
   public removeDoc(id: string) {
     this.getFarmIdAreaIdAndTreeId()
       .pipe(mergeMap(([farmId, areaId, treeId]) => this.treeReportService.removeReport(farmId, areaId, treeId, id)))
