@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, finalize, first, forkJoin, map, Observable, switchMap, tap } from "rxjs";
+import { BehaviorSubject, finalize, first, forkJoin, map, Observable, of, switchMap, tap, withLatestFrom } from "rxjs";
 import { TreeReportService } from "src/app/farm/tree-report.service";
 import { TreeService } from "src/app/farm/tree.service";
+import { PhotoService } from "src/app/farm/util/photo.service";
 
 @Component({
   selector: "app-new-report-form",
@@ -19,6 +20,7 @@ export class NewReportFormComponent implements OnInit {
     height: new FormControl(100, [Validators.required]),
     budding: new FormControl("未着花"),
     beanYield: new FormControl("未"),
+    picture: new FormControl<File | null>(null),
   });
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
@@ -29,6 +31,7 @@ export class NewReportFormComponent implements OnInit {
     private route: ActivatedRoute,
     private treeService: TreeService,
     private treeReportService: TreeReportService,
+    private photoService: PhotoService,
   ) {}
 
   ngOnInit(): void {
@@ -38,22 +41,39 @@ export class NewReportFormComponent implements OnInit {
     );
   }
 
-  public handleReportSubmit() {
+  public handleReportSubmit(event: Event) {
     if (this.loadingSubject.value) return;
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement)) throw Error();
+    const formData = new FormData(form);
     this.loadingSubject.next(true);
     const notes = this.newReportForm.controls.notes.value!.trim();
     const height = this.newReportForm.controls.height.value!;
     const budding = this.newReportForm.controls.budding.value!.trim();
     const beanYield = this.newReportForm.controls.beanYield.value!;
+    const picture = formData.get("picture")!;
+    if (!(picture instanceof File)) throw TypeError();
     this.getFarmIdAndAreaId()
       .pipe(
         switchMap(([farmId, areaId, treeId]) =>
+          forkJoin([
+            of([farmId, areaId, treeId]),
+            picture.size
+              ? this.photoService.uploadPhoto(
+                  picture,
+                  `pictures/${farmId}/${areaId}/${treeId}/${Date.now() + picture.name}`,
+                )
+              : "",
+          ]),
+        ),
+        switchMap(([[farmId, areaId, treeId], photoURL]) =>
           this.treeReportService.addReport(farmId, areaId, treeId, {
             notes,
             height,
             budding,
             createdAt: Date.now(),
             beanYield,
+            photoURL,
           }),
         ),
         finalize(() => {
