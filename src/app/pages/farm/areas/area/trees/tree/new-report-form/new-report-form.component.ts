@@ -63,7 +63,7 @@ export class NewReportFormComponent implements OnInit {
                   picture,
                   `pictures/${farmId}/${areaId}/${treeId}/${Date.now() + picture.name}`,
                 )
-              : "",
+              : of(""),
           ]),
         ),
         switchMap(([[farmId, areaId, treeId], photoURL]) =>
