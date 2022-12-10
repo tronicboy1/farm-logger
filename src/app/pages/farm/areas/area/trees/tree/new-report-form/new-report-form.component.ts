@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, finalize, first, forkJoin, map, Observable, of, switchMap, tap, withLatestFrom } from "rxjs";
+import { BehaviorSubject, finalize, first, forkJoin, from, map, mergeMap, Observable, of, switchMap } from "rxjs";
 import { TreeReportService } from "src/app/farm/tree-report.service";
 import { TreeService } from "src/app/farm/tree.service";
 import { PhotoService } from "src/app/farm/util/photo.service";
@@ -59,9 +59,13 @@ export class NewReportFormComponent implements OnInit {
           forkJoin([
             of([farmId, areaId, treeId]),
             picture.size
-              ? this.photoService.uploadPhoto(
-                  picture,
-                  `pictures/${farmId}/${areaId}/${treeId}/${Date.now() + picture.name}`,
+              ? from(PhotoService.compressPhoto(picture)).pipe(
+                  mergeMap((picture) =>
+                    this.photoService.uploadPhoto(
+                      picture,
+                      `pictures/${farmId}/${areaId}/${treeId}/${Date.now() + picture.name}`,
+                    ),
+                  ),
                 )
               : of(""),
           ]),
