@@ -37,6 +37,8 @@ import { AuthService } from "@user/auth.service";
 export class FarmService extends FirebaseFirestore {
   private loadSubject = new ReplaySubject<void>();
   private cachedFarms$?: Observable<FarmWithId[]>;
+  private cachedFarmId?: string;
+  private cachedFarm$?: Observable<Farm>;
 
   constructor(private authService: AuthService) {
     super();
@@ -44,11 +46,14 @@ export class FarmService extends FirebaseFirestore {
   }
 
   public getFarm(id: string) {
+    if (this.cachedFarmId !== id) this.cachedFarm$ = undefined;
     const ref = doc(this.firestore, `farms/${id}`);
-    return getDoc(ref).then((result) => {
-      if (!result) throw Error("Tree not found.");
-      return result.data() as Farm;
-    });
+    return (this.cachedFarm$ ||= from(
+      getDoc(ref).then((result) => {
+        if (!result) throw Error("Tree not found.");
+        return result.data() as Farm;
+      }),
+    ).pipe(shareReplay(1)));
   }
 
   public watchFarm(id: string): Observable<Farm> {

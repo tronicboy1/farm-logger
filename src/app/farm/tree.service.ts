@@ -14,7 +14,6 @@ import {
   updateDoc,
   limit,
   getDocs,
-  QuerySnapshot,
   where,
 } from "firebase/firestore";
 import {
@@ -33,7 +32,6 @@ import {
 } from "rxjs";
 import { FarmModule } from "./farm.module";
 import { CoffeeTree, CoffeeTreeWithId } from "./tree.model";
-import { PhotoService } from "./util/photo.service";
 
 @Injectable({
   providedIn: FarmModule,
@@ -49,17 +47,19 @@ export class TreeService extends FirebaseFirestore {
   private treesObservableCache$?: Observable<CoffeeTreeWithId[]>;
   private refreshSubject = new Subject<void>();
 
-  constructor(private photoService: PhotoService) {
+  constructor() {
     super();
     this.lastDocSubject.next(undefined);
   }
 
   public getTree(farmId: string, areaId: string, treeId: string) {
     const ref = doc(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}`);
-    return getDoc(ref).then((result) => {
-      if (!result) throw Error("Tree not found.");
-      return result.data() as CoffeeTree;
-    });
+    return from(
+      getDoc(ref).then((result) => {
+        if (!result) throw Error("Tree not found.");
+        return result.data() as CoffeeTree;
+      }),
+    );
   }
 
   public watchTree(farmId: string, areaId: string, treeId: string) {

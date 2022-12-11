@@ -10,6 +10,7 @@ import "@web-components/base-modal";
 import { RouterModule } from "@angular/router";
 import { LocationFormComponent } from "./location/location-form/location-form.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { NavLocationComponent } from './nav-bar/nav-location/nav-location.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ReactiveFormsModule } from "@angular/forms";
     ChangeEmailFormComponent,
     NavBarComponent,
     LocationFormComponent,
+    NavLocationComponent,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
   exports: [LocationComponent, NavBarComponent],

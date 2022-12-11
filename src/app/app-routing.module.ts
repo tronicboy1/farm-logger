@@ -24,8 +24,8 @@ const routes: Routes = [
     component: FarmComponent,
     canActivate: [AuthGuard, MemberGuard],
     children: [
-      { path: "manage", component: ManageComponent },
-      { path: "areas", component: AreasComponent },
+      { path: "manage", component: ManageComponent, data: { title: "農園管理" } },
+      { path: "areas", component: AreasComponent, data: { title: "区域一覧" } },
       {
         path: "areas/:areaId",
         component: AreaComponent,

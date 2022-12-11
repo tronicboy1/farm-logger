@@ -1,0 +1,7 @@
+<ul *ngIf="this.farmName$ | async as farmName">
+  <li>農園 : {{ farmName }}</li>
+  <li *ngIf="this.areaName$ | async">></li>
+  <li *ngIf="this.areaName$ | async as areaName">区域 : {{ areaName }}</li>
+  <li *ngIf="this.treeRegularId$ | async">></li>
+  <li *ngIf="this.treeRegularId$ | async as regularId">木整理番号 : {{ regularId }}</li>
+</ul>
