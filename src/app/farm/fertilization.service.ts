@@ -11,6 +11,7 @@ import {
   onSnapshot,
   orderBy,
   query,
+  QueryConstraint,
   QuerySnapshot,
   startAfter,
 } from "firebase/firestore";
@@ -53,7 +54,7 @@ export class FertilizationService extends FirebaseFirestore {
   }
 
   public getFertilizations(farmId: string, areaId: string, lastDoc?: DocumentData, limitNumber = 10) {
-    const constraints = [orderBy("createdAt"), limit(limitNumber)];
+    const constraints: QueryConstraint[] = [orderBy("createdAt"), limit(limitNumber)];
     if (lastDoc) constraints.push(startAfter(lastDoc));
     const q = query(
       collection(this.firestore, `farms/${farmId}/areas/${areaId}/${FertilizationService.path}`),

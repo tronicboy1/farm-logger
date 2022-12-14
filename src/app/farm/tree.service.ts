@@ -15,6 +15,7 @@ import {
   limit,
   getDocs,
   where,
+  QueryConstraint,
 } from "firebase/firestore";
 import {
   BehaviorSubject,
@@ -76,7 +77,7 @@ export class TreeService extends FirebaseFirestore {
 
   private getTrees(farmId: string, areaId: string, lastDoc?: DocumentData, searchId?: number) {
     const ref = collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees`);
-    let constraints = [orderBy("regularId", "asc"), limit(TreeService.limit)];
+    let constraints: QueryConstraint[] = [orderBy("regularId", "asc"), limit(TreeService.limit)];
     if (searchId) {
       constraints = [where("regularId", "==", searchId)];
     }

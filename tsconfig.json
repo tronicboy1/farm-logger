@@ -4,18 +4,31 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@custom-firebase/*": ["src/firebase/*"],
-      "@lib/*": ["src/lib/*"],
-      "@user/*": ["src/app/user-module/*"],
-      "@web-components/*": ["src/web-components/*"],
-      "@pages/*": ["src/app/pages/*"],
-      "@styles/*": ["src/styles/*"],
-      "@components/*": ["src/components/*"]
+      "@custom-firebase/*": [
+        "src/firebase/*"
+      ],
+      "@lib/*": [
+        "src/lib/*"
+      ],
+      "@user/*": [
+        "src/app/user-module/*"
+      ],
+      "@web-components/*": [
+        "src/web-components/*"
+      ],
+      "@pages/*": [
+        "src/app/pages/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    /* For lit overrides */
     "noImplicitOverride": false,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -26,9 +39,13 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2020",
+    "target": "ES2022",
     "module": "es2020",
-    "lib": ["es2020", "dom"]
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

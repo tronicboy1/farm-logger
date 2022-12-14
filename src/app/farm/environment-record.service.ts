@@ -9,6 +9,7 @@ import {
   limit,
   orderBy,
   query,
+  QueryConstraint,
   startAfter,
   updateDoc,
 } from "firebase/firestore";
@@ -48,7 +49,7 @@ export class EnvironmentRecordService extends FirebaseFirestore {
 
   public getEnvironmentRecords(farmId: string, lastDoc?: DocumentData) {
     const ref = collection(this.firestore, `farms/${farmId}/${EnvironmentRecordService.path}`);
-    const constraints = [limit(EnvironmentRecordService.limit), orderBy("createdAt", "desc")];
+    const constraints: QueryConstraint[] = [limit(EnvironmentRecordService.limit), orderBy("createdAt", "desc")];
     if (lastDoc) constraints.push(startAfter(lastDoc));
     const q = query(ref, ...constraints);
     return getDocs(q).then((result) => {
