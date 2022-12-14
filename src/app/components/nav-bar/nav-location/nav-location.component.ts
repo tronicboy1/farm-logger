@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Params, Router } from "@angular/router";
-import { combineLatest, filter, from, map, Observable, of, OperatorFunction, switchMap, tap } from "rxjs";
+import { combineLatest, filter, map, Observable, of, OperatorFunction, switchMap } from "rxjs";
 import { AreaService } from "src/app/farm/area.service";
 import { FarmService } from "src/app/farm/farm.service";
 import { TreeService } from "src/app/farm/tree.service";
@@ -49,9 +49,7 @@ export class NavLocationComponent implements OnInit {
     private treeService: TreeService,
   ) {}
 
-  ngOnInit(): void {
-    this.farmName$.subscribe(console.log);
-  }
+  ngOnInit(): void {}
 
   static getChildParamsObservables(
     route: ActivatedRoute | null,

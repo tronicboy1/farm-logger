@@ -1,4 +1,4 @@
-<form [formGroup]="this.newAreaFormGroup" (ngSubmit)="this.handleSubmit()">
+<form [formGroup]="this.newAreaFormGroup" (ngSubmit)="this.handleSubmit()" appSubmitOnModifierEnter>
   <label for="name">区域名</label>
   <input type="text" formControlName="name" required />
   <button [disabled]="(this.newAreaFormGroup.statusChanges | async) !== 'VALID'" type="submit">追加</button>

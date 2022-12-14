@@ -4,7 +4,7 @@
   id="email-login-modal"
   modal-title="Send Login Email"
 >
-  <form (submit)="this.handleSendEmailSubmit($event)">
+  <form (submit)="this.handleSendEmailSubmit($event)" appSubmitOnModifierEnter>
     <div class="form-group">
       <label for="email-login-email">Email</label>
       <input id="email-login-email" name="email" type="email" required autocomplete="email" />
@@ -22,7 +22,7 @@
   id="reset-password"
   modal-title="Reset Password"
 >
-  <form (submit)="this.handleResetPasswordSubmit($event)">
+  <form (submit)="this.handleResetPasswordSubmit($event)" appSubmitOnModifierEnter>
     <div class="form-group">
       <label for="reset-password-email">Email</label>
       <input id="reset-password-email" name="email" type="email" required autocomplete="email" />
@@ -59,7 +59,7 @@
     </button>
   </nav>
   <p *ngIf="this.error" id="errors">{{ this.error }}</p>
-  <form class="login-form" (submit)="this.handleLoginSubmit($event)">
+  <form class="login-form" (submit)="this.handleLoginSubmit($event)" appSubmitOnModifierEnter>
     <div class="form-group">
       <label for="email">メールアドレス</label>
       <input id="email" name="email" type="email" required autocomplete="email" />
