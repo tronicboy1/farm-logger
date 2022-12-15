@@ -27,9 +27,11 @@ export class PhotoService {
           new Promise<File>((resolve) => {
             const { naturalHeight, naturalWidth } = image;
             const canvas = document.createElement("canvas");
-            const compress = Math.max(naturalHeight, naturalWidth) > 500;
-            canvas.width = compress ? Math.floor(naturalWidth / 3) : naturalWidth;
-            canvas.height = compress ? Math.floor(naturalHeight / 3) : naturalHeight;
+            const compress = Math.max(naturalHeight, naturalWidth) > 400;
+            const widthCompressionRatio = 400 / naturalHeight
+            const compressedWidth = Math.floor(widthCompressionRatio * naturalWidth);
+            canvas.width = compress ? compressedWidth : naturalWidth;
+            canvas.height = compress ? 400 : naturalHeight;
             const context = canvas.getContext("2d");
             if (!context) throw Error("Unable to load context.");
             const { width, height } = canvas;
