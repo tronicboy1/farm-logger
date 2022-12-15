@@ -31,8 +31,7 @@ export type FertilizationWithId = Fertilization & { id: string };
 export class FertilizationService {
   static path = "fertilizations";
 
-  constructor() {
-  }
+  constructor() {}
 
   public addFertilization(farmId: string, areaId: string, fertilizationData: Fertilization) {
     const ref = collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/${FertilizationService.path}`);
@@ -80,7 +79,10 @@ export class FertilizationService {
   }
 
   public removeFertilization(farmId: string, areaId: string, fertilizationId: string) {
-    const ref = doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}/${FertilizationService.path}/${fertilizationId}`);
+    const ref = doc(
+      Firebase.firestore,
+      `farms/${farmId}/areas/${areaId}/${FertilizationService.path}/${fertilizationId}`,
+    );
     return deleteDoc(ref);
   }
 }

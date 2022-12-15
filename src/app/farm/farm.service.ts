@@ -13,17 +13,7 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import {
-  first,
-  forkJoin,
-  from,
-  map,
-  mergeMap,
-  Observable,
-  ReplaySubject,
-  shareReplay,
-  switchMap,
-} from "rxjs";
+import { first, forkJoin, from, map, mergeMap, Observable, ReplaySubject, shareReplay, switchMap } from "rxjs";
 import { Farm, FarmWithId } from "./farm.model";
 import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from "firebase/storage";
 import { app } from "@custom-firebase/firebase";

@@ -4,7 +4,14 @@
   <label for="height">高さ (cm)</label>
   <input type="number" name="height" id="height" required formControlName="height" />
   <label for="picture">画像</label>
-  <input type="file" name="picture" id="picture" accept="image/png, image/jpeg" size="500000" formControlName="picture">
+  <input
+    type="file"
+    name="picture"
+    id="picture"
+    accept="image/png, image/jpeg"
+    size="500000"
+    formControlName="picture"
+  />
   <label for="budding">摘芯後の着花</label>
   <select name="budding" id="budding" formControlName="budding">
     <option *ngFor="let option of this.buddingOptions" [value]="option">{{ option }}</option>

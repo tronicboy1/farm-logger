@@ -1,7 +1,13 @@
 <ul *ngIf="this.farmName$ | async as farmName">
-  <li><strong>{{ farmName }}</strong></li>
+  <li>
+    <strong>{{ farmName }}</strong>
+  </li>
   <li *ngIf="this.areaName$ | async">></li>
-  <li *ngIf="this.areaName$ | async as areaName"><strong>{{ areaName }}</strong></li>
+  <li *ngIf="this.areaName$ | async as areaName">
+    <strong>{{ areaName }}</strong>
+  </li>
   <li *ngIf="this.treeRegularId$ | async">></li>
-  <li *ngIf="this.treeRegularId$ | async as regularId"><strong>{{ regularId }}</strong></li>
+  <li *ngIf="this.treeRegularId$ | async as regularId">
+    <strong>{{ regularId }}</strong>
+  </li>
 </ul>

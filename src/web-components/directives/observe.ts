@@ -24,7 +24,9 @@ class ObserveDirective extends AsyncDirective {
       next: (v: unknown) => {
         this.setValue(v);
       },
-      complete() {console.log("completed")}
+      complete() {
+        console.log("completed");
+      },
     });
   }
   // When the directive is disconnected from the DOM, unsubscribe to ensure
