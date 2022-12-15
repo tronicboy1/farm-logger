@@ -26,7 +26,7 @@ import { TreeService } from "src/app/farm/tree.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreesComponent implements OnInit, OnDestroy {
-  public trees = new Observable<(CoffeeTreeWithId & { report: CoffeeTreeReport | null })[]>();
+  public trees$ = new Observable<(CoffeeTreeWithId & { report: CoffeeTreeReport | null })[]>();
   private showAddModalSubject = new BehaviorSubject(false);
   public showAddModal = this.showAddModalSubject.asObservable();
   public searchControl = new FormControl("");
@@ -40,7 +40,7 @@ export class TreesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.trees = this.getFarmIdAndAreaId().pipe(
+    this.trees$ = this.getFarmIdAndAreaId().pipe(
       switchMap(([farmId, areaId]) =>
         this.treeService
           .watchTrees(farmId, areaId)

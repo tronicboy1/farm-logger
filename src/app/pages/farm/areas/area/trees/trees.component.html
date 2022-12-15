@@ -21,32 +21,22 @@
       <tr>
         <th>整理番号</th>
         <th>品種</th>
-        <th>位置情報</th>
         <th>根付いた頃の高さ</th>
+        <th>現在の高さ</th>
         <th>最後の育成記録</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tree of this.trees | async" (click)="this.handleTreeClick(tree.id)">
+      <tr *ngFor="let tree of this.trees$ | async" (click)="this.handleTreeClick(tree.id)">
         <td>{{ tree.regularId }}</td>
         <td>{{ tree.species }}</td>
-        <td [class.done]="tree.location" [class.remove]="!tree.location">
-          <svg
-            *ngIf="tree.location; else notSet"
-            xmlns="http://www.w3.org/2000/svg"
-            height="48"
-            width="48"
-            viewBox="0,0,48,48"
-          >
-            <path d="M18.9 35.7 7.7 24.5l2.15-2.15 9.05 9.05 19.2-19.2 2.15 2.15Z" />
-          </svg>
-        </td>
         <td>{{ tree.startHeight }}cm</td>
+        <td>{{ tree.report?.height }}</td>
         <td>{{ tree.report?.createdAt | date : "shortDate" }}</td>
       </tr>
     </tbody>
   </table>
-  <div *ngIf="(this.trees | async)?.length" appObservable (intersection)="this.loadNextPage()"></div>
+  <div *ngIf="(this.trees$ | async)?.length" appObservable (intersection)="this.loadNextPage()"></div>
 </div>
 
 <ng-template #notSet
