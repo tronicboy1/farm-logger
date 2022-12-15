@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { FirebaseFirestore } from "@custom-firebase/inheritables/firestore";
+import { Firebase } from "@custom-firebase/index";
 import {
   addDoc,
   collection,
@@ -13,7 +13,7 @@ import {
   startAfter,
   updateDoc,
 } from "firebase/firestore";
-import { map, mergeMap, mergeWith, Observable, ReplaySubject, scan, shareReplay, Subject, switchMap } from "rxjs";
+import { map, mergeWith, Observable, ReplaySubject, scan, shareReplay, Subject, switchMap } from "rxjs";
 import { FarmModule } from "./farm.module";
 
 export type EnvironmentRecord = {
@@ -33,7 +33,7 @@ export type EnvironmentRecord = {
 @Injectable({
   providedIn: FarmModule,
 })
-export class EnvironmentRecordService extends FirebaseFirestore {
+export class EnvironmentRecordService {
   static path = "environmentRecords";
   static limit = 20;
   private lastDocSubject = new ReplaySubject<DocumentData | undefined>(1);
@@ -43,12 +43,11 @@ export class EnvironmentRecordService extends FirebaseFirestore {
   private environmentRecordsCache$?: Observable<EnvironmentRecord[]>;
 
   constructor() {
-    super();
     this.lastDocSubject.next(undefined);
   }
 
   public getEnvironmentRecords(farmId: string, lastDoc?: DocumentData) {
-    const ref = collection(this.firestore, `farms/${farmId}/${EnvironmentRecordService.path}`);
+    const ref = collection(Firebase.firestore, `farms/${farmId}/${EnvironmentRecordService.path}`);
     const constraints: QueryConstraint[] = [limit(EnvironmentRecordService.limit), orderBy("createdAt", "desc")];
     if (lastDoc) constraints.push(startAfter(lastDoc));
     const q = query(ref, ...constraints);
@@ -85,12 +84,12 @@ export class EnvironmentRecordService extends FirebaseFirestore {
   }
 
   public createEnvironmentRecord(farmId: string, environmentRecordData: EnvironmentRecord) {
-    const ref = collection(this.firestore, `farms/${farmId}/${EnvironmentRecordService.path}`);
+    const ref = collection(Firebase.firestore, `farms/${farmId}/${EnvironmentRecordService.path}`);
     return addDoc(ref, environmentRecordData);
   }
 
   public updateTree(farmId: string, environmentRecordId: string, environmentRecordData: Partial<EnvironmentRecord>) {
-    const ref = doc(this.firestore, `farms/${farmId}/${EnvironmentRecordService.path}/${environmentRecordId}`);
+    const ref = doc(Firebase.firestore, `farms/${farmId}/${EnvironmentRecordService.path}/${environmentRecordId}`);
     return updateDoc(ref, environmentRecordData);
   }
 }

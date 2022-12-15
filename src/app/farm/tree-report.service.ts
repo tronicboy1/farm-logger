@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { FirebaseFirestore } from "@custom-firebase/inheritables/firestore";
+import { Firebase } from "@custom-firebase/index";
 import {
   addDoc,
   collection,
@@ -22,19 +22,17 @@ import { CoffeeTreeReport, CoffeeTreeReportWithId } from "./tree.model";
 @Injectable({
   providedIn: FarmModule,
 })
-export class TreeReportService extends FirebaseFirestore {
-  constructor() {
-    super();
-  }
+export class TreeReportService {
+  constructor() {}
 
   public addReport(farmId: string, areaId: string, treeId: string, reportData: CoffeeTreeReport) {
-    const ref = collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`);
+    const ref = collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`);
     return addDoc(ref, reportData);
   }
 
   public watchReports(farmId: string, areaId: string, treeId: string): Observable<CoffeeTreeReportWithId[]> {
     return new Observable<QuerySnapshot<DocumentData>>((observer) => {
-      const ref = collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`);
+      const ref = collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`);
       const q = query(ref, orderBy("createdAt", "desc"));
       return onSnapshot(q, (result) => observer.next(result), observer.error, observer.complete);
     }).pipe(
@@ -49,7 +47,7 @@ export class TreeReportService extends FirebaseFirestore {
     const constraints: QueryConstraint[] = [orderBy("createdAt"), limit(limitNumber)];
     if (lastDoc) constraints.push(startAfter(lastDoc));
     const q = query(
-      collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`),
+      collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`),
       ...constraints,
     );
     return getDocs(q).then((results) => {
@@ -60,7 +58,7 @@ export class TreeReportService extends FirebaseFirestore {
 
   public getLatestReport(farmId: string, areaId: string, treeId: string) {
     const q = query(
-      collection(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`),
+      collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`),
       orderBy("createdAt", "desc"),
       limit(1),
     );
@@ -73,7 +71,7 @@ export class TreeReportService extends FirebaseFirestore {
   }
 
   public removeReport(farmId: string, areaId: string, treeId: string, reportId: string) {
-    const ref = doc(this.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports/${reportId}`);
+    const ref = doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports/${reportId}`);
     return deleteDoc(ref);
   }
 }

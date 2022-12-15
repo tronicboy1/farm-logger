@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { FirebaseFirestore } from "@custom-firebase/inheritables/firestore";
 import { map, Observable } from "rxjs";
 import { onSnapshot, doc, updateDoc, setDoc, collection, query, where, getDocs, getDoc } from "firebase/firestore";
 import type { updateProfile } from "firebase/auth";
 import { UserModule } from "./user.module";
+import { Firebase } from "@custom-firebase/index";
 
 type AccountDetails = Parameters<typeof updateProfile>[1];
 export type UserStatus = "online" | "away" | "offline" | "unknown" | "new-message" | undefined;
@@ -18,21 +18,19 @@ export type UserData = {
 @Injectable({
   providedIn: UserModule,
 })
-export class UserService extends FirebaseFirestore {
+export class UserService {
   static usersPath = "users";
-  private collection = collection(this.db, UserService.usersPath);
+  private collection = collection(Firebase.firestore, UserService.usersPath);
 
-  constructor() {
-    super();
-  }
+  constructor() {}
 
   protected getUserData(uid: string) {
-    const ref = doc(this.db, UserService.usersPath, uid);
+    const ref = doc(Firebase.firestore, UserService.usersPath, uid);
     return getDoc(ref).then((doc) => doc.data() as UserData | undefined);
   }
 
   public watchUserDoc(uid: string) {
-    const ref = doc(this.db, UserService.usersPath, uid);
+    const ref = doc(Firebase.firestore, UserService.usersPath, uid);
     return new Observable<UserData>((observer) => {
       let unsubscribe = onSnapshot(ref, (snapshot) => {
         const data = snapshot.data() as UserData | undefined;
@@ -48,7 +46,7 @@ export class UserService extends FirebaseFirestore {
   }
 
   public setOnlineStatus(myUid: string, status: UserStatus) {
-    const ref = doc(this.db, `${UserService.usersPath}/${myUid}`);
+    const ref = doc(Firebase.firestore, `${UserService.usersPath}/${myUid}`);
     return updateDoc(ref, { status });
   }
 
@@ -78,7 +76,7 @@ export class UserService extends FirebaseFirestore {
   }
 
   public updateUserRecord(myUid: string, data: AccountDetails) {
-    const ref = doc(this.db, `${UserService.usersPath}/${myUid}`);
+    const ref = doc(Firebase.firestore, `${UserService.usersPath}/${myUid}`);
     return updateDoc(ref, data);
   }
 }

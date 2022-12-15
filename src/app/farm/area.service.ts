@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { FirebaseFirestore } from "@custom-firebase/inheritables/firestore";
+import { Firebase } from "@custom-firebase/index";
 import {
   addDoc,
   collection,
@@ -21,7 +21,7 @@ import { FarmModule } from "./farm.module";
 @Injectable({
   providedIn: FarmModule,
 })
-export class AreaService extends FirebaseFirestore {
+export class AreaService {
   static path = "environmentRecords";
   static limit = 10;
   private lastDocSubject = new ReplaySubject<DocumentData | undefined>(1);
@@ -32,12 +32,10 @@ export class AreaService extends FirebaseFirestore {
   private areaIdCache?: string;
   private areaObservableCache$?: Observable<Area>;
 
-  constructor() {
-    super();
-  }
+  constructor() {}
 
   public getArea(farmId: string, areaId: string) {
-    const ref = doc(this.firestore, `farms/${farmId}/areas/${areaId}`);
+    const ref = doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}`);
     return getDoc(ref).then((result) => {
       if (!result) throw Error("Area not found.");
       return result.data() as Area;
@@ -49,7 +47,7 @@ export class AreaService extends FirebaseFirestore {
     this.farmIdCache = farmId;
     this.areaIdCache = areaId;
     return (this.areaObservableCache$ ||= new Observable<DocumentSnapshot<DocumentData>>((observer) => {
-      const ref = doc(this.firestore, `farms/${farmId}/areas/${areaId}`);
+      const ref = doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}`);
       return onSnapshot(ref, (result) => observer.next(result), observer.error, observer.complete);
     }).pipe(
       map((result) => {
@@ -64,7 +62,7 @@ export class AreaService extends FirebaseFirestore {
     if (this.farmIdCache !== farmId) this.areasObservableCache$ = undefined;
     this.farmIdCache = farmId;
     return (this.areasObservableCache$ ||= new Observable<QuerySnapshot<DocumentData>>((observer) => {
-      const ref = collection(this.firestore, `farms/${farmId}/areas`);
+      const ref = collection(Firebase.firestore, `farms/${farmId}/areas`);
       return onSnapshot(ref, (result) => observer.next(result), observer.error, observer.complete);
     }).pipe(
       map((result) => {
@@ -78,18 +76,18 @@ export class AreaService extends FirebaseFirestore {
   }
 
   public farmNameIsUnique(farmId: string, areaName: string) {
-    const ref = collection(this.firestore, `farms/${farmId}/areas`);
+    const ref = collection(Firebase.firestore, `farms/${farmId}/areas`);
     const q = query(ref, where("name", "==", areaName));
     return from(getDocs(q)).pipe(map((result) => result.empty));
   }
 
   public createArea(farmId: string, areaData: Omit<Area, "trees" | "fertilizations" | "cropdusts">) {
-    const ref = collection(this.firestore, `farms/${farmId}/areas`);
+    const ref = collection(Firebase.firestore, `farms/${farmId}/areas`);
     return addDoc(ref, areaData);
   }
 
   public updateArea(farmId: string, areaId: string, areaData: Partial<Area>) {
-    const ref = doc(this.firestore, `farms/${farmId}/areas/${areaId}`);
+    const ref = doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}`);
     return updateDoc(ref, areaData);
   }
 }
