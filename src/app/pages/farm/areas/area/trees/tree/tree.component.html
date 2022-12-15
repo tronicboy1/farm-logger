@@ -9,9 +9,9 @@
       <tr>
         <th>日付</th>
         <th>高さ</th>
-        <th>摘芯後の着花</th>
+        <th>着花</th>
         <th>実付き</th>
-        <th style="width: 30%">メモ</th>
+        <th>メモ</th>
         <th>写真</th>
         <th>削除</th>
       </tr>
@@ -52,7 +52,7 @@
   <app-new-report-form (submitted)="this.toggleAddModal(false)"></app-new-report-form>
 </base-modal>
 
-<base-modal [show]="this.showPictureModal$ | async" (modal-closed)="this.togglePictureModal(undefined)">
+<base-modal [show]="this.showPictureModal$ | async" (modal-closed)="this.togglePictureModal(undefined)" modal-title="写真詳細">
   <div class="photo-box">
     <img *ngIf="this.showPictureModal$ | async as picture" [src]="picture" alt="photo" />
   </div>
