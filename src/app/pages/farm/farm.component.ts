@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { combineLatest, first, map, Observable, switchMap } from 'rxjs';
 import { Farm } from 'src/app/farm/farm.model';
 import { FarmService } from 'src/app/farm/farm.service';
+import { LogActions } from 'src/app/log/log.model';
+import { LogService } from 'src/app/log/log.service';
 
 @Component({
   selector: 'app-farm',
@@ -12,15 +14,24 @@ import { FarmService } from 'src/app/farm/farm.service';
 export class FarmComponent implements OnInit {
   public farm = new Observable<Farm>();
 
-  constructor(private route: ActivatedRoute, private farmService: FarmService) {}
+  constructor(private route: ActivatedRoute, private farmService: FarmService, private logService: LogService) {}
 
   ngOnInit(): void {
-    this.farm = this.route.params.pipe(
-      switchMap((params) => {
+    const farmId$ = this.route.params.pipe(
+      map((params) => {
         const { farmId } = params;
         if (typeof farmId !== 'string') throw TypeError('Farm ID was not in params.');
+        return farmId;
+      }),
+    );
+    this.farm = farmId$.pipe(
+      switchMap((farmId) => {
         return this.farmService.watchFarm(farmId);
       }),
     );
+    farmId$.pipe(
+      first(),
+      switchMap((farmId) => this.logService.addLog(farmId, LogActions.ViewFarm)),
+    ).subscribe();
   }
 }

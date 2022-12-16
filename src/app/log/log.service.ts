@@ -36,7 +36,7 @@ export class LogService {
     if (isOutdated || isDifferentFarm) this.logsCache$ = undefined;
     return (this.logsCache$ ||= from(
       (() => {
-        const ref = collection(Firebase.firestore, farmId, LogService.path);
+        const ref = this.getLogsCollection(farmId);
         const q = query(ref, limit(limitNumber), orderBy('createdAt', 'desc'));
         return getDocs(q);
       })(),
@@ -82,10 +82,14 @@ export class LogService {
           first(),
           switchMap((uid) => {
             const logData: LogEntry = { uid, createdAt: Date.now(), action: actionCode, value };
-            const ref = collection(Firebase.firestore, farmId, LogService.path);
+            const ref = this.getLogsCollection(farmId);
             return addDoc(ref, logData);
           }),
         )
       : of();
+  }
+
+  private getLogsCollection(farmId: string) {
+    return collection(Firebase.firestore, 'farms', farmId, LogService.path);
   }
 }
