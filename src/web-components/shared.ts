@@ -1,6 +1,6 @@
-import { css } from "lit";
+import { css } from 'lit';
 
-export const regexPatternString = "[a-zA-Z0-9]{4,10}";
+export const regexPatternString = '[a-zA-Z0-9]{4,10}';
 
 export function preventDefault() {
   return function (
@@ -213,14 +213,14 @@ export const formCss = css`
     margin: 0 0 0 1rem;
   }
 
-  form input[type="checkbox"] {
+  form input[type='checkbox'] {
     height: 45px;
     width: 45px;
     border: 1px solid var(--secondary-color);
     border-radius: 4px;
   }
 
-  form input[type="file"] {
+  form input[type='file'] {
     opacity: 0;
     height: 0;
     width: 0;

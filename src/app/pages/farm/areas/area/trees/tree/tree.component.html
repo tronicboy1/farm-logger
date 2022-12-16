@@ -18,7 +18,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let report of this.reports | async">
-        <td>{{ report.createdAt | date : "short" }}</td>
+        <td>{{ report.createdAt | date : 'short' }}</td>
         <td>{{ report.height }}</td>
         <td>{{ report.budding }}</td>
         <td>{{ report.beanYield }}</td>

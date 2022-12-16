@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { AbstractControl, AsyncValidator, ValidationErrors } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import { Injectable } from '@angular/core';
+import { AbstractControl, AsyncValidator, ValidationErrors } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import {
   catchError,
   filter,
@@ -14,8 +14,8 @@ import {
   switchMap,
   take,
   tap,
-} from "rxjs";
-import { AreaService } from "src/app/farm/area.service";
+} from 'rxjs';
+import { AreaService } from 'src/app/farm/area.service';
 
 @Injectable()
 export class AreaNameIsUniqueValidator implements AsyncValidator {
@@ -23,17 +23,17 @@ export class AreaNameIsUniqueValidator implements AsyncValidator {
 
   validate(control: AbstractControl): Observable<ValidationErrors | null> {
     const { value } = control;
-    if (typeof value !== "string") throw TypeError("V");
+    if (typeof value !== 'string') throw TypeError('V');
     const farmId$ = this.route.parent!.params.pipe(
       first(),
       map((params) => {
         const { farmId } = params;
-        if (typeof farmId !== "string") throw TypeError();
+        if (typeof farmId !== 'string') throw TypeError();
         return farmId;
       }),
     );
     const value$ = control.valueChanges.pipe(
-      filter((value) => typeof value === "string") as OperatorFunction<any, string>,
+      filter((value) => typeof value === 'string') as OperatorFunction<any, string>,
       sampleTime(100),
       take(1),
     );

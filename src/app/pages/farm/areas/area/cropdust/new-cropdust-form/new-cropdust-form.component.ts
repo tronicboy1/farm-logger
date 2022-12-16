@@ -1,18 +1,18 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, finalize, first, forkJoin, map, mergeMap } from "rxjs";
-import { CropdustService } from "src/app/farm/cropdust.service";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, finalize, first, forkJoin, map, mergeMap } from 'rxjs';
+import { CropdustService } from 'src/app/farm/cropdust.service';
 
 @Component({
-  selector: "app-new-cropdust-form",
-  templateUrl: "./new-cropdust-form.component.html",
-  styleUrls: ["./new-cropdust-form.component.css", "../../../../../../../styles/basic-form.css"],
+  selector: 'app-new-cropdust-form',
+  templateUrl: './new-cropdust-form.component.html',
+  styleUrls: ['./new-cropdust-form.component.css', '../../../../../../../styles/basic-form.css'],
 })
 export class NewCropdustFormComponent implements OnInit {
   public newFertilizationForm = new FormGroup({
-    type: new FormControl("", [Validators.required]),
-    note: new FormControl(""),
+    type: new FormControl('', [Validators.required]),
+    note: new FormControl(''),
   });
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
@@ -34,7 +34,7 @@ export class NewCropdustFormComponent implements OnInit {
         finalize(() => {
           this.loadingSubject.next(false);
           this.submitted.emit();
-          this.newFertilizationForm.reset({ type: "", note: "" });
+          this.newFertilizationForm.reset({ type: '', note: '' });
         }),
       )
       .subscribe();
@@ -45,14 +45,14 @@ export class NewCropdustFormComponent implements OnInit {
       this.route.parent!.parent!.params.pipe(
         first(),
         map(({ farmId }) => {
-          if (typeof farmId !== "string") throw TypeError("no farmId");
+          if (typeof farmId !== 'string') throw TypeError('no farmId');
           return farmId;
         }),
       ),
       this.route.parent!.params.pipe(
         first(),
         map(({ areaId }) => {
-          if (typeof areaId !== "string") throw TypeError("no areaId");
+          if (typeof areaId !== 'string') throw TypeError('no areaId');
           return areaId;
         }),
       ),

@@ -1,17 +1,17 @@
-import { Component, OnInit } from "@angular/core";
-import { SafeResourceUrl } from "@angular/platform-browser";
-import { ActivatedRoute } from "@angular/router";
-import { first, forkJoin, map, mergeMap, Observable } from "rxjs";
-import { Location } from "src/app/components/location/location.component";
-import { Area } from "src/app/farm/area.model";
-import { AreaService } from "src/app/farm/area.service";
-import { CoffeeTree } from "src/app/farm/tree.model";
-import { GeolocationService } from "src/app/farm/util/geolocation.service";
+import { Component, OnInit } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { first, forkJoin, map, mergeMap, Observable } from 'rxjs';
+import { Location } from 'src/app/components/location/location.component';
+import { Area } from 'src/app/farm/area.model';
+import { AreaService } from 'src/app/farm/area.service';
+import { CoffeeTree } from 'src/app/farm/tree.model';
+import { GeolocationService } from 'src/app/farm/util/geolocation.service';
 
 @Component({
-  selector: "app-area",
-  templateUrl: "./area.component.html",
-  styleUrls: ["./area.component.css"],
+  selector: 'app-area',
+  templateUrl: './area.component.html',
+  styleUrls: ['./area.component.css'],
 })
 export class AreaComponent implements OnInit {
   public area = new Observable<Area>();
@@ -33,13 +33,13 @@ export class AreaComponent implements OnInit {
     const params$ = [
       this.route.parent!.params.pipe(
         map(({ farmId }) => {
-          if (typeof farmId !== "string") throw TypeError("no farmId");
+          if (typeof farmId !== 'string') throw TypeError('no farmId');
           return farmId;
         }),
       ),
       this.route.params.pipe(
         map(({ areaId }) => {
-          if (typeof areaId !== "string") throw TypeError("no areaId");
+          if (typeof areaId !== 'string') throw TypeError('no areaId');
           return areaId;
         }),
       ),

@@ -23,7 +23,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let record of this.environmentRecords | async">
-        <td>{{ record.createdAt | date : "short" }}</td>
+        <td>{{ record.createdAt | date : 'short' }}</td>
         <td>{{ record.weather }}</td>
         <td>{{ record.clouds }}%</td>
         <td>{{ record.high }}</td>

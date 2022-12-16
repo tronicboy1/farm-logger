@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangeAvatarFormComponent } from "./change-avatar-form.component";
+import { ChangeAvatarFormComponent } from './change-avatar-form.component';
 
-describe("ChangeAvatarFormComponent", () => {
+describe('ChangeAvatarFormComponent', () => {
   let component: ChangeAvatarFormComponent;
   let fixture: ComponentFixture<ChangeAvatarFormComponent>;
 
@@ -16,7 +16,7 @@ describe("ChangeAvatarFormComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

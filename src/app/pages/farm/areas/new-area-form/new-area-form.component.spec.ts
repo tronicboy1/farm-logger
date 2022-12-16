@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewAreaFormComponent } from "./new-area-form.component";
+import { NewAreaFormComponent } from './new-area-form.component';
 
-describe("NewAreaFormComponent", () => {
+describe('NewAreaFormComponent', () => {
   let component: NewAreaFormComponent;
   let fixture: ComponentFixture<NewAreaFormComponent>;
 
@@ -16,7 +16,7 @@ describe("NewAreaFormComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

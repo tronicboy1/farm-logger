@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { first, map, Observable, switchMap } from "rxjs";
-import { AreaWithId } from "src/app/farm/area.model";
-import { AreaService } from "src/app/farm/area.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first, map, Observable, switchMap } from 'rxjs';
+import { AreaWithId } from 'src/app/farm/area.model';
+import { AreaService } from 'src/app/farm/area.service';
 
 @Component({
-  selector: "app-areas",
-  templateUrl: "./areas.component.html",
-  styleUrls: ["./areas.component.css"],
+  selector: 'app-areas',
+  templateUrl: './areas.component.html',
+  styleUrls: ['./areas.component.css'],
 })
 export class AreasComponent implements OnInit {
   public areas = new Observable<AreaWithId[]>();
@@ -20,7 +20,7 @@ export class AreasComponent implements OnInit {
       first(),
       map((params) => {
         const { farmId } = params;
-        if (typeof farmId !== "string") throw TypeError();
+        if (typeof farmId !== 'string') throw TypeError();
         return farmId;
       }),
       switchMap((farmId) => this.areaService.watchAreas(farmId)),

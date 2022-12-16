@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
-import { FormControl } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   BehaviorSubject,
   combineLatest,
@@ -14,22 +14,22 @@ import {
   Subscription,
   switchMap,
   tap,
-} from "rxjs";
-import { TreeReportService } from "src/app/farm/tree-report.service";
-import { CoffeeTreeReport, CoffeeTreeWithId } from "src/app/farm/tree.model";
-import { TreeService } from "src/app/farm/tree.service";
+} from 'rxjs';
+import { TreeReportService } from 'src/app/farm/tree-report.service';
+import { CoffeeTreeReport, CoffeeTreeWithId } from 'src/app/farm/tree.model';
+import { TreeService } from 'src/app/farm/tree.service';
 
 @Component({
-  selector: "app-trees",
-  templateUrl: "./trees.component.html",
-  styleUrls: ["./trees.component.css"],
+  selector: 'app-trees',
+  templateUrl: './trees.component.html',
+  styleUrls: ['./trees.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreesComponent implements OnInit, OnDestroy {
   public trees$ = new Observable<(CoffeeTreeWithId & { report: CoffeeTreeReport | null })[]>();
   private showAddModalSubject = new BehaviorSubject(false);
   public showAddModal = this.showAddModalSubject.asObservable();
-  public searchControl = new FormControl("");
+  public searchControl = new FormControl('');
   private subscriptions = new Subscription();
 
   constructor(
@@ -59,14 +59,14 @@ export class TreesComponent implements OnInit, OnDestroy {
     );
     this.subscriptions.add(
       this.searchControl.valueChanges.pipe(sampleTime(200)).subscribe((search) => {
-        this.treeService.setSearch(search ?? "");
+        this.treeService.setSearch(search ?? '');
       }),
     );
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
-    this.treeService.setSearch("");
+    this.treeService.setSearch('');
   }
 
   public toggleAddModal = (force?: boolean) => this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);
@@ -89,14 +89,14 @@ export class TreesComponent implements OnInit, OnDestroy {
       this.route.parent!.parent!.params.pipe(
         first(),
         map(({ farmId }) => {
-          if (typeof farmId !== "string") throw TypeError("no farmId");
+          if (typeof farmId !== 'string') throw TypeError('no farmId');
           return farmId;
         }),
       ),
       this.route.parent!.params.pipe(
         first(),
         map(({ areaId }) => {
-          if (typeof areaId !== "string") throw TypeError("no areaId");
+          if (typeof areaId !== 'string') throw TypeError('no areaId');
           return areaId;
         }),
       ),

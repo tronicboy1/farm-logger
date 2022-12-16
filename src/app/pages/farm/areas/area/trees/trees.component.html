@@ -30,8 +30,8 @@
         <td>{{ tree.regularId }}</td>
         <td>{{ tree.species }}</td>
         <td>{{ tree.startHeight }}cm</td>
-        <td>{{ tree.report ? tree.report.height + "cm" : "" }}</td>
-        <td>{{ tree.report?.createdAt | date : "shortDate" }}</td>
+        <td>{{ tree.report ? tree.report.height + 'cm' : '' }}</td>
+        <td>{{ tree.report?.createdAt | date : 'shortDate' }}</td>
       </tr>
     </tbody>
   </table>

@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewReportFormComponent } from "./new-report-form.component";
+import { NewReportFormComponent } from './new-report-form.component';
 
-describe("NewReportFormComponent", () => {
+describe('NewReportFormComponent', () => {
   let component: NewReportFormComponent;
   let fixture: ComponentFixture<NewReportFormComponent>;
 
@@ -16,7 +16,7 @@ describe("NewReportFormComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

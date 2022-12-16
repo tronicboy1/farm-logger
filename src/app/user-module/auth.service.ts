@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -10,15 +10,15 @@ import {
   fetchSignInMethodsForEmail,
   updateEmail,
   updateProfile,
-} from "firebase/auth";
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
-import { filter, map, Observable, shareReplay } from "rxjs";
-import type { OperatorFunction } from "rxjs";
-import type { User } from "firebase/auth";
-import { UserService } from "./user.service";
-import { app } from "@custom-firebase/firebase";
-import { UserModule } from "./user.module";
-import { Firebase } from "@custom-firebase/index";
+} from 'firebase/auth';
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { filter, map, Observable, shareReplay } from 'rxjs';
+import type { OperatorFunction } from 'rxjs';
+import type { User } from 'firebase/auth';
+import { UserService } from './user.service';
+import { app } from '@custom-firebase/firebase';
+import { UserModule } from './user.module';
+import { Firebase } from '@custom-firebase/index';
 
 export type FilteredAuthState = OperatorFunction<User | null, User>;
 
@@ -40,7 +40,7 @@ export class AuthService {
     return signInWithEmailAndPassword(Firebase.auth, email, password).then((creds) => {
       return this.userService
         .setUidRecord(email, creds.user.uid)
-        .then(() => this.userService.setOnlineStatus(creds.user.uid, "online"));
+        .then(() => this.userService.setOnlineStatus(creds.user.uid, 'online'));
     });
   }
 
@@ -54,13 +54,13 @@ export class AuthService {
 
   public changeEmail(newEmail: string) {
     const { currentUser } = Firebase.auth;
-    if (!currentUser) throw Error("Cannot change email if not logged in.");
+    if (!currentUser) throw Error('Cannot change email if not logged in.');
     return updateEmail(currentUser, newEmail).then(() => this.userService.setUidRecord(newEmail, currentUser.uid));
   }
 
   public updateAccount(accountData: Parameters<typeof updateProfile>[1], photo?: File) {
     const { currentUser } = Firebase.auth;
-    if (!currentUser) throw Error("Cannot change account if not logged in.");
+    if (!currentUser) throw Error('Cannot change account if not logged in.');
     return Promise.resolve(photo ? this.uploadAvatar(currentUser.uid, photo) : undefined).then((photoURL) => {
       const data = photoURL ? Object.assign(accountData, { photoURL }) : accountData;
       return Promise.all([updateProfile(currentUser, data), this.userService.updateUserRecord(currentUser.uid, data)]);
@@ -78,14 +78,14 @@ export class AuthService {
 
   public changePassword(newPassword: string) {
     const { currentUser } = Firebase.auth;
-    if (!currentUser) throw Error("Cannot change password if not logged in.");
+    if (!currentUser) throw Error('Cannot change password if not logged in.');
     return updatePassword(currentUser, newPassword);
   }
 
   public signOutUser() {
     const { currentUser } = Firebase.auth;
-    if (!currentUser) throw Error("User data was not available.");
-    return this.userService.setOnlineStatus(currentUser.uid, "offline").then(() => signOut(Firebase.auth));
+    if (!currentUser) throw Error('User data was not available.');
+    return this.userService.setOnlineStatus(currentUser.uid, 'offline').then(() => signOut(Firebase.auth));
   }
 
   public getAuthState() {

@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { Firebase } from "@custom-firebase/index";
+import { Injectable } from '@angular/core';
+import { Firebase } from '@custom-firebase/index';
 import {
   addDoc,
   collection,
@@ -14,9 +14,9 @@ import {
   QueryConstraint,
   QuerySnapshot,
   startAfter,
-} from "firebase/firestore";
-import { from, map, Observable } from "rxjs";
-import { FarmModule } from "./farm.module";
+} from 'firebase/firestore';
+import { from, map, Observable } from 'rxjs';
+import { FarmModule } from './farm.module';
 
 export type Cropdust = {
   completedAt: number;
@@ -29,7 +29,7 @@ export type CropdustWithId = Cropdust & { id: string };
   providedIn: FarmModule,
 })
 export class CropdustService {
-  static path = "cropdusts";
+  static path = 'cropdusts';
 
   constructor() {}
 
@@ -41,7 +41,7 @@ export class CropdustService {
   public watchCropdusts(farmId: string, areaId: string): Observable<CropdustWithId[]> {
     return new Observable<QuerySnapshot<DocumentData>>((observer) => {
       const ref = collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/${CropdustService.path}`);
-      const q = query(ref, orderBy("completedAt", "desc"));
+      const q = query(ref, orderBy('completedAt', 'desc'));
       return onSnapshot(q, (result) => observer.next(result), observer.error, observer.complete);
     }).pipe(
       map((result) => {
@@ -52,7 +52,7 @@ export class CropdustService {
   }
 
   public getCropdusts(farmId: string, areaId: string, lastDoc?: DocumentData, limitNumber = 10) {
-    const constraints: QueryConstraint[] = [orderBy("createdAt"), limit(limitNumber)];
+    const constraints: QueryConstraint[] = [orderBy('createdAt'), limit(limitNumber)];
     if (lastDoc) constraints.push(startAfter(lastDoc));
     const q = query(
       collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/${CropdustService.path}`),
@@ -67,7 +67,7 @@ export class CropdustService {
   public getLatestCropdust(farmId: string, areaId: string) {
     const q = query(
       collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/${CropdustService.path}`),
-      orderBy("createdAt", "desc"),
+      orderBy('createdAt', 'desc'),
       limit(1),
     );
     return from(

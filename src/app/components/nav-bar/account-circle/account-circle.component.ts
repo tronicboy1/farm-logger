@@ -1,13 +1,13 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
-import { AuthService } from "@user/auth.service";
-import { UserService } from "@user/user.service";
-import "@web-components/base-modal";
-import { fromEvent, map, mergeMap, Subscription, take } from "rxjs";
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from '@user/auth.service';
+import { UserService } from '@user/user.service';
+import '@web-components/base-modal';
+import { fromEvent, map, mergeMap, Subscription, take } from 'rxjs';
 
 @Component({
-  selector: "app-account-circle",
-  templateUrl: "./account-circle.component.html",
-  styleUrls: ["./account-circle.component.css"],
+  selector: 'app-account-circle',
+  templateUrl: './account-circle.component.html',
+  styleUrls: ['./account-circle.component.css'],
 })
 export class AccountCircleComponent implements OnInit, OnDestroy, AfterViewInit {
   public showAccountMenu = false;
@@ -17,7 +17,7 @@ export class AccountCircleComponent implements OnInit, OnDestroy, AfterViewInit 
   public photoSrc?: string;
   public photoLoaded = false;
 
-  @ViewChild("avatar")
+  @ViewChild('avatar')
   private avatarElement!: ElementRef<HTMLImageElement>;
   private subscriptions: Subscription[] = [];
 
@@ -44,9 +44,9 @@ export class AccountCircleComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   ngAfterViewInit(): void {
-    if (!this.avatarElement) throw Error("Avatar image element not found.");
+    if (!this.avatarElement) throw Error('Avatar image element not found.');
     this.subscriptions.push(
-      fromEvent(this.avatarElement.nativeElement, "load").subscribe(() => (this.photoLoaded = true)),
+      fromEvent(this.avatarElement.nativeElement, 'load').subscribe(() => (this.photoLoaded = true)),
     );
   }
 

@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavLocationComponent } from "./nav-location.component";
+import { NavLocationComponent } from './nav-location.component';
 
-describe("NavLocationComponent", () => {
+describe('NavLocationComponent', () => {
   let component: NavLocationComponent;
   let fixture: ComponentFixture<NavLocationComponent>;
 
@@ -16,7 +16,7 @@ describe("NavLocationComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

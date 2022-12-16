@@ -60,7 +60,7 @@ button:hover {
   border-color: var(--highlight-hover);
 }
 
-form:invalid button[type="submit"],
+form:invalid button[type='submit'],
 button:disabled {
   background-color: var(--secondary-color);
   border-color: var(--secondary-color);

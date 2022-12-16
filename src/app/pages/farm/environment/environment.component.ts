@@ -1,15 +1,15 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, catchError, finalize, first, map, mergeMap, Observable, of, ReplaySubject } from "rxjs";
-import { EnvironmentRecord, EnvironmentRecordService } from "src/app/farm/environment-record.service";
-import { FarmService } from "src/app/farm/farm.service";
-import { GeolocationService } from "src/app/farm/util/geolocation.service";
-import { WeatherService } from "src/app/farm/util/weather.service";
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, catchError, finalize, first, map, mergeMap, Observable, of, ReplaySubject } from 'rxjs';
+import { EnvironmentRecord, EnvironmentRecordService } from 'src/app/farm/environment-record.service';
+import { FarmService } from 'src/app/farm/farm.service';
+import { GeolocationService } from 'src/app/farm/util/geolocation.service';
+import { WeatherService } from 'src/app/farm/util/weather.service';
 
 @Component({
-  selector: "app-environment",
-  templateUrl: "./environment.component.html",
-  styleUrls: ["./environment.component.css"],
+  selector: 'app-environment',
+  templateUrl: './environment.component.html',
+  styleUrls: ['./environment.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EnvironmentComponent implements OnInit {
@@ -31,7 +31,7 @@ export class EnvironmentComponent implements OnInit {
       first(),
       map((params) => {
         const { farmId } = params;
-        if (typeof farmId !== "string") throw TypeError();
+        if (typeof farmId !== 'string') throw TypeError();
         return farmId;
       }),
       mergeMap((farmId) => this.environmentService.watchEnvironmentRecords(farmId)),
@@ -53,7 +53,7 @@ export class EnvironmentComponent implements OnInit {
         first(),
         map((params) => {
           const { farmId } = params;
-          if (typeof farmId !== "string") throw TypeError();
+          if (typeof farmId !== 'string') throw TypeError();
           return farmId;
         }),
         mergeMap((farmId) => {

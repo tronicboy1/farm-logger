@@ -1,11 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import { Utils } from "@lib/utils";
-import { AuthService } from "@user/auth.service";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Utils } from '@lib/utils';
+import { AuthService } from '@user/auth.service';
 
 @Component({
-  selector: "app-change-email-form",
-  templateUrl: "./change-email-form.component.html",
-  styleUrls: ["./change-email-form.component.css"],
+  selector: 'app-change-email-form',
+  templateUrl: './change-email-form.component.html',
+  styleUrls: ['./change-email-form.component.css'],
 })
 export class ChangeEmailFormComponent implements OnInit {
   public loading = false;
@@ -18,7 +18,7 @@ export class ChangeEmailFormComponent implements OnInit {
 
   public handleSubmit: EventListener = (event) => {
     const { formData } = Utils.getFormData(event);
-    const newEmail = formData.get("new-email")!.toString().trim();
+    const newEmail = formData.get('new-email')!.toString().trim();
     this.loading = true;
     this.authService
       .changeEmail(newEmail)

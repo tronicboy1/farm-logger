@@ -1,17 +1,17 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, first, map, mergeMap, tap } from "rxjs";
-import { EnvironmentRecordService } from "src/app/farm/environment-record.service";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, first, map, mergeMap, tap } from 'rxjs';
+import { EnvironmentRecordService } from 'src/app/farm/environment-record.service';
 
 @Component({
-  selector: "app-weather-form",
-  templateUrl: "./weather-form.component.html",
-  styleUrls: ["./weather-form.component.css", "../../../../../styles/basic-form.css"],
+  selector: 'app-weather-form',
+  templateUrl: './weather-form.component.html',
+  styleUrls: ['./weather-form.component.css', '../../../../../styles/basic-form.css'],
 })
 export class WeatherFormComponent implements OnInit {
   weatherFormGroup = new FormGroup({
-    weather: new FormControl(""),
+    weather: new FormControl(''),
     high: new FormControl(25),
     low: new FormControl(20),
     windSpeed: new FormControl(1),
@@ -25,7 +25,7 @@ export class WeatherFormComponent implements OnInit {
   ngOnInit(): void {}
 
   handleSubmit() {
-    const weather = this.weatherFormGroup.controls.weather.value ?? "";
+    const weather = this.weatherFormGroup.controls.weather.value ?? '';
     const high = this.weatherFormGroup.controls.high.value ?? 0;
     const low = this.weatherFormGroup.controls.low.value ?? 0;
     const windSpeed = this.weatherFormGroup.controls.windSpeed.value ?? 0;
@@ -52,7 +52,7 @@ export class WeatherFormComponent implements OnInit {
       first(),
       map((params) => {
         const { farmId } = params;
-        if (typeof farmId !== "string") throw TypeError();
+        if (typeof farmId !== 'string') throw TypeError();
         return farmId;
       }),
     );

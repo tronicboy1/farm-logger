@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { Firebase } from "@custom-firebase/index";
+import { Injectable } from '@angular/core';
+import { Firebase } from '@custom-firebase/index';
 import {
   addDoc,
   collection,
@@ -16,7 +16,7 @@ import {
   getDocs,
   where,
   QueryConstraint,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 import {
   BehaviorSubject,
   from,
@@ -29,9 +29,9 @@ import {
   Subject,
   switchMap,
   withLatestFrom,
-} from "rxjs";
-import { FarmModule } from "./farm.module";
-import { CoffeeTree, CoffeeTreeWithId } from "./tree.model";
+} from 'rxjs';
+import { FarmModule } from './farm.module';
+import { CoffeeTree, CoffeeTreeWithId } from './tree.model';
 
 @Injectable({
   providedIn: FarmModule,
@@ -55,7 +55,7 @@ export class TreeService {
     const ref = doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}`);
     return from(
       getDoc(ref).then((result) => {
-        if (!result) throw Error("Tree not found.");
+        if (!result) throw Error('Tree not found.');
         return result.data() as CoffeeTree;
       }),
     );
@@ -67,7 +67,7 @@ export class TreeService {
       return onSnapshot(ref, (result) => observer.next(result), observer.error, observer.complete);
     }).pipe(
       map((result) => {
-        if (!result.exists) throw Error("Tree not found.");
+        if (!result.exists) throw Error('Tree not found.');
         return result.data() as CoffeeTree;
       }),
     );
@@ -75,9 +75,9 @@ export class TreeService {
 
   private getTrees(farmId: string, areaId: string, lastDoc?: DocumentData, searchId?: number) {
     const ref = collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees`);
-    let constraints: QueryConstraint[] = [orderBy("regularId", "asc"), limit(TreeService.limit)];
+    let constraints: QueryConstraint[] = [orderBy('regularId', 'asc'), limit(TreeService.limit)];
     if (searchId) {
-      constraints = [where("regularId", "==", searchId)];
+      constraints = [where('regularId', '==', searchId)];
     }
     if (lastDoc) constraints.push(startAfter(lastDoc));
     const q = query(ref, ...constraints);
@@ -122,14 +122,14 @@ export class TreeService {
     this.clearPaginationCache();
   }
 
-  public createTree(farmId: string, areaId: string, treeData: Omit<CoffeeTree, "reports">) {
+  public createTree(farmId: string, areaId: string, treeData: Omit<CoffeeTree, 'reports'>) {
     const ref = collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees`);
     return addDoc(ref, treeData);
   }
 
   public treeRegularIdIsUnique(farmId: string, areaId: string, regularId: number) {
     const ref = collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees`);
-    const q = query(ref, where("regularId", "==", regularId));
+    const q = query(ref, where('regularId', '==', regularId));
     return from(getDocs(q)).pipe(map((result) => result.empty));
   }
 

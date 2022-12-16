@@ -50,7 +50,7 @@ p {
   white-space: nowrap;
 }
 
-input[type="file"] {
+input[type='file'] {
   opacity: 0;
   width: 0;
   border: none;

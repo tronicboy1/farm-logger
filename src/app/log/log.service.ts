@@ -1,17 +1,17 @@
-import { Injectable } from "@angular/core";
-import { Firebase } from "@custom-firebase/index";
-import { AuthService } from "@user/auth.service";
-import { UserData, UserService } from "@user/user.service";
-import { collection, getDocs, query, limit, orderBy, addDoc } from "firebase/firestore";
-import { first, forkJoin, from, map, Observable, switchMap } from "rxjs";
-import { logDictionary, LogEntry, RenderedLogEntry } from "./log.model";
-import { LogModule } from "./log.module";
+import { Injectable } from '@angular/core';
+import { Firebase } from '@custom-firebase/index';
+import { AuthService } from '@user/auth.service';
+import { UserData, UserService } from '@user/user.service';
+import { collection, getDocs, query, limit, orderBy, addDoc } from 'firebase/firestore';
+import { first, forkJoin, from, map, Observable, switchMap } from 'rxjs';
+import { logDictionary, LogEntry, RenderedLogEntry } from './log.model';
+import { LogModule } from './log.module';
 
 @Injectable({
   providedIn: LogModule,
 })
 export class LogService {
-  static path = "logs";
+  static path = 'logs';
   private logsCache$?: Observable<RenderedLogEntry[]>;
   private lastFetched?: Date;
   private cachedFarmId?: string;
@@ -25,7 +25,7 @@ export class LogService {
     return (this.logsCache$ ||= from(
       (() => {
         const ref = collection(Firebase.firestore, farmId, LogService.path);
-        const q = query(ref, limit(limitNumber), orderBy("createdAt", "desc"));
+        const q = query(ref, limit(limitNumber), orderBy('createdAt', 'desc'));
         return getDocs(q);
       })(),
     ).pipe(
@@ -52,7 +52,7 @@ export class LogService {
     ));
   }
 
-  public addLog(farmId: string, actionCode: number, value = "") {
+  public addLog(farmId: string, actionCode: number, value = '') {
     return this.authService.getUid().pipe(
       first(),
       switchMap((uid) => {

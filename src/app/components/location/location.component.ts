@@ -1,14 +1,14 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { SafeResourceUrl } from "@angular/platform-browser";
-import { BehaviorSubject, catchError, finalize, of } from "rxjs";
-import { GeolocationService } from "src/app/farm/util/geolocation.service";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { BehaviorSubject, catchError, finalize, of } from 'rxjs';
+import { GeolocationService } from 'src/app/farm/util/geolocation.service';
 
 export type Location = [number, number, number | null];
 
 @Component({
-  selector: "app-location",
-  templateUrl: "./location.component.html",
-  styleUrls: ["./location.component.css"],
+  selector: 'app-location',
+  templateUrl: './location.component.html',
+  styleUrls: ['./location.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LocationComponent implements OnInit {

@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { Firebase } from "@custom-firebase/index";
+import { Injectable } from '@angular/core';
+import { Firebase } from '@custom-firebase/index';
 import {
   addDoc,
   collection,
@@ -14,10 +14,10 @@ import {
   QueryConstraint,
   QuerySnapshot,
   startAfter,
-} from "firebase/firestore";
-import { from, map, Observable } from "rxjs";
-import { FarmModule } from "./farm.module";
-import { CoffeeTreeReport, CoffeeTreeReportWithId } from "./tree.model";
+} from 'firebase/firestore';
+import { from, map, Observable } from 'rxjs';
+import { FarmModule } from './farm.module';
+import { CoffeeTreeReport, CoffeeTreeReportWithId } from './tree.model';
 
 @Injectable({
   providedIn: FarmModule,
@@ -33,7 +33,7 @@ export class TreeReportService {
   public watchReports(farmId: string, areaId: string, treeId: string): Observable<CoffeeTreeReportWithId[]> {
     return new Observable<QuerySnapshot<DocumentData>>((observer) => {
       const ref = collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`);
-      const q = query(ref, orderBy("createdAt", "desc"));
+      const q = query(ref, orderBy('createdAt', 'desc'));
       return onSnapshot(q, (result) => observer.next(result), observer.error, observer.complete);
     }).pipe(
       map((result) => {
@@ -44,7 +44,7 @@ export class TreeReportService {
   }
 
   public getReports(farmId: string, areaId: string, treeId: string, lastDoc?: DocumentData, limitNumber = 10) {
-    const constraints: QueryConstraint[] = [orderBy("createdAt"), limit(limitNumber)];
+    const constraints: QueryConstraint[] = [orderBy('createdAt'), limit(limitNumber)];
     if (lastDoc) constraints.push(startAfter(lastDoc));
     const q = query(
       collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`),
@@ -59,7 +59,7 @@ export class TreeReportService {
   public getLatestReport(farmId: string, areaId: string, treeId: string) {
     const q = query(
       collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`),
-      orderBy("createdAt", "desc"),
+      orderBy('createdAt', 'desc'),
       limit(1),
     );
     return from(

@@ -1,6 +1,6 @@
-import { Cropdust } from "./cropdust.service";
-import { Fertilization } from "./fertilization.service";
-import { CoffeeTree } from "./tree.model";
+import { Cropdust } from './cropdust.service';
+import { Fertilization } from './fertilization.service';
+import { CoffeeTree } from './tree.model';
 
 export type Area = {
   name: string;

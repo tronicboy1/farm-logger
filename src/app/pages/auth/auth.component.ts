@@ -1,25 +1,25 @@
-import { Component, OnInit } from "@angular/core";
-import "@web-components/base-modal";
-import "@web-components/loading-spinner";
-import "@web-components/google-icon";
-import { Router } from "@angular/router";
-import { FirebaseError } from "firebase/app";
-import { Utils } from "@lib/utils";
-import { AuthService } from "@user/auth.service";
-import { take } from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import '@web-components/base-modal';
+import '@web-components/loading-spinner';
+import '@web-components/google-icon';
+import { Router } from '@angular/router';
+import { FirebaseError } from 'firebase/app';
+import { Utils } from '@lib/utils';
+import { AuthService } from '@user/auth.service';
+import { take } from 'rxjs';
 
-type AuthNavModes = "LOGIN" | "REGISTER";
+type AuthNavModes = 'LOGIN' | 'REGISTER';
 
 @Component({
-  selector: "app-auth",
-  templateUrl: "./auth.component.html",
-  styleUrls: ["./auth.component.css"],
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit {
   public showSendEmailModal = false;
   public showResetPasswordModal = false;
-  public mode: AuthNavModes = "LOGIN";
-  public error = "";
+  public mode: AuthNavModes = 'LOGIN';
+  public error = '';
   public loading = false;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -29,38 +29,38 @@ export class AuthComponent implements OnInit {
       .getAuthState()
       .pipe(take(1))
       .subscribe((user) => {
-        if (user) this.router.navigateByUrl("/home");
+        if (user) this.router.navigateByUrl('/home');
       });
   }
 
   public handleLoginSubmit: EventListener = (event) => {
     const { formData } = Utils.getFormData(event);
-    const email = formData.get("email")!.toString().trim();
-    const password = formData.get("password")!.toString().trim();
+    const email = formData.get('email')!.toString().trim();
+    const password = formData.get('password')!.toString().trim();
     const loginPromise =
-      this.mode === "LOGIN"
+      this.mode === 'LOGIN'
         ? this.authService.signInUser(email, password)
         : this.authService.createUser(email, password);
     this.setLoading(loginPromise).then(() => {
-      this.router.navigateByUrl("/home");
+      this.router.navigateByUrl('/home');
     });
   };
 
   public handleSendEmailSubmit: EventListener = (event) => {
     const { formData } = Utils.getFormData(event);
-    const email = formData.get("email")!.toString().trim();
+    const email = formData.get('email')!.toString().trim();
     this.setLoading(this.authService.sendSignInEmail(email)).then(() => (this.showSendEmailModal = false));
   };
 
   public handleResetPasswordSubmit: EventListener = (event) => {
     const { formData } = Utils.getFormData(event);
-    const email = formData.get("email")!.toString().trim();
+    const email = formData.get('email')!.toString().trim();
     this.setLoading(this.authService.sendPasswordResetEmail(email)).then(() => (this.showResetPasswordModal = false));
   };
 
   private setLoading<T>(promise: Promise<T>) {
     this.loading = true;
-    this.error = "";
+    this.error = '';
     return Promise.resolve(promise)
       .catch((error) => {
         if (!(error instanceof FirebaseError)) return;

@@ -1,14 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Params, Router } from "@angular/router";
-import { combineLatest, filter, map, Observable, of, OperatorFunction, switchMap } from "rxjs";
-import { AreaService } from "src/app/farm/area.service";
-import { FarmService } from "src/app/farm/farm.service";
-import { TreeService } from "src/app/farm/tree.service";
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+import { combineLatest, filter, map, Observable, of, OperatorFunction, switchMap } from 'rxjs';
+import { AreaService } from 'src/app/farm/area.service';
+import { FarmService } from 'src/app/farm/farm.service';
+import { TreeService } from 'src/app/farm/tree.service';
 
 @Component({
-  selector: "app-nav-location",
-  templateUrl: "./nav-location.component.html",
-  styleUrls: ["./nav-location.component.css"],
+  selector: 'app-nav-location',
+  templateUrl: './nav-location.component.html',
+  styleUrls: ['./nav-location.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavLocationComponent implements OnInit {
@@ -23,22 +23,22 @@ export class NavLocationComponent implements OnInit {
       return paramsMap;
     }),
   );
-  private farmId$ = this.params$.pipe(map((params) => params.get("farmId")));
+  private farmId$ = this.params$.pipe(map((params) => params.get('farmId')));
   readonly farmName$ = this.farmId$.pipe(
-    switchMap((farmId) => (farmId ? this.farmService.getFarm(farmId).pipe(map((farm) => farm.name)) : of(""))),
+    switchMap((farmId) => (farmId ? this.farmService.getFarm(farmId).pipe(map((farm) => farm.name)) : of(''))),
   );
-  private areaId$ = this.params$.pipe(map((params) => params.get("areaId")));
+  private areaId$ = this.params$.pipe(map((params) => params.get('areaId')));
   readonly areaName$ = combineLatest([this.farmId$, this.areaId$]).pipe(
     switchMap(([farmId, areaId]) =>
-      farmId && areaId ? this.areaService.watchArea(farmId, areaId).pipe(map((area) => area.name)) : of(""),
+      farmId && areaId ? this.areaService.watchArea(farmId, areaId).pipe(map((area) => area.name)) : of(''),
     ),
   );
-  private treeId$ = this.params$.pipe(map((params) => params.get("treeId")));
+  private treeId$ = this.params$.pipe(map((params) => params.get('treeId')));
   readonly treeRegularId$ = combineLatest([this.farmId$, this.areaId$, this.treeId$]).pipe(
     switchMap(([farmId, areaId, treeId]) =>
       farmId && areaId && treeId
         ? this.treeService.getTree(farmId, areaId, treeId).pipe(map((tree) => tree.regularId))
-        : of(""),
+        : of(''),
     ),
   );
 

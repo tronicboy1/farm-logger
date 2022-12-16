@@ -1,14 +1,14 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { UserService } from "@user/user.service";
-import { BehaviorSubject, combineLatest, map, Observable, Subscription, switchMap } from "rxjs";
-import { FarmWithId } from "src/app/farm/farm.model";
-import { FarmService } from "src/app/farm/farm.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '@user/user.service';
+import { BehaviorSubject, combineLatest, map, Observable, Subscription, switchMap } from 'rxjs';
+import { FarmWithId } from 'src/app/farm/farm.model';
+import { FarmService } from 'src/app/farm/farm.service';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public farms = new Observable<FarmWithId[]>();
@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public handleFarmClick(farmId: string) {
-    this.router.navigate(["/farms", farmId]);
+    this.router.navigate(['/farms', farmId]);
   }
   public toggleAddModal(force?: boolean) {
     this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);

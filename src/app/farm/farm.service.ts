@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { FarmModule } from "./farm.module";
+import { Injectable } from '@angular/core';
+import { FarmModule } from './farm.module';
 import {
   doc,
   DocumentData,
@@ -12,13 +12,13 @@ import {
   query,
   where,
   getDocs,
-} from "firebase/firestore";
-import { first, forkJoin, from, map, mergeMap, Observable, ReplaySubject, shareReplay, switchMap } from "rxjs";
-import { Farm, FarmWithId } from "./farm.model";
-import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from "firebase/storage";
-import { app } from "@custom-firebase/firebase";
-import { AuthService } from "@user/auth.service";
-import { Firebase } from "@custom-firebase/index";
+} from 'firebase/firestore';
+import { first, forkJoin, from, map, mergeMap, Observable, ReplaySubject, shareReplay, switchMap } from 'rxjs';
+import { Farm, FarmWithId } from './farm.model';
+import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from 'firebase/storage';
+import { app } from '@custom-firebase/firebase';
+import { AuthService } from '@user/auth.service';
+import { Firebase } from '@custom-firebase/index';
 
 @Injectable({
   providedIn: FarmModule,
@@ -38,7 +38,7 @@ export class FarmService {
     const ref = doc(Firebase.firestore, `farms/${id}`);
     return (this.cachedFarm$ ||= from(
       getDoc(ref).then((result) => {
-        if (!result) throw Error("Tree not found.");
+        if (!result) throw Error('Tree not found.');
         return result.data() as Farm;
       }),
     ).pipe(shareReplay(1)));
@@ -50,7 +50,7 @@ export class FarmService {
       return onSnapshot(ref, (result) => observer.next(result), observer.error, observer.complete);
     }).pipe(
       map((result) => {
-        if (!result.exists) throw Error("Farm does not exist");
+        if (!result.exists) throw Error('Farm does not exist');
         return result.data() as Farm;
       }),
       switchMap((farm) => this.checkIfUserIsMember(farm)),
@@ -61,7 +61,7 @@ export class FarmService {
     return this.authService.getUid().pipe(
       first(),
       map((uid) => {
-        if (!(farm.adminMembers.includes(uid) || farm.observerMembers.includes(uid))) throw Error("Not authorized.");
+        if (!(farm.adminMembers.includes(uid) || farm.observerMembers.includes(uid))) throw Error('Not authorized.');
         return farm;
       }),
     );
@@ -71,7 +71,7 @@ export class FarmService {
     return this.authService.getUid().pipe(
       first(),
       map((uid) => {
-        if (!farm.adminMembers.includes(uid)) throw Error("Not authorized.");
+        if (!farm.adminMembers.includes(uid)) throw Error('Not authorized.');
         return farm;
       }),
     );
@@ -92,8 +92,8 @@ export class FarmService {
   }
 
   private getAdminFarms(uid: string): Observable<FarmWithId[]> {
-    const col = collection(Firebase.firestore, "farms");
-    const q = query(col, where("adminMembers", "array-contains", uid));
+    const col = collection(Firebase.firestore, 'farms');
+    const q = query(col, where('adminMembers', 'array-contains', uid));
     return from(
       getDocs(q).then((results) => {
         if (results.empty) return [];
@@ -103,8 +103,8 @@ export class FarmService {
   }
 
   private getObservedFarms(uid: string): Observable<FarmWithId[]> {
-    const col = collection(Firebase.firestore, "farms");
-    const q = query(col, where("observerMembers", "array-contains", uid));
+    const col = collection(Firebase.firestore, 'farms');
+    const q = query(col, where('observerMembers', 'array-contains', uid));
     return from(
       getDocs(q).then((results) => {
         if (results.empty) return [];
@@ -113,8 +113,8 @@ export class FarmService {
     );
   }
 
-  public createFarm(farmData: Omit<Farm, "areas" | "environmentRecords">) {
-    const ref = collection(Firebase.firestore, "farms");
+  public createFarm(farmData: Omit<Farm, 'areas' | 'environmentRecords'>) {
+    const ref = collection(Firebase.firestore, 'farms');
     return addDoc(ref, farmData);
   }
 

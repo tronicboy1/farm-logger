@@ -1,14 +1,14 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { AuthService } from "@user/auth.service";
-import { UserData, UserService } from "@user/user.service";
-import { finalize, first, forkJoin, Subscription, switchMap, tap } from "rxjs";
-import { FarmService } from "src/app/farm/farm.service";
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@user/auth.service';
+import { UserData, UserService } from '@user/user.service';
+import { finalize, first, forkJoin, Subscription, switchMap, tap } from 'rxjs';
+import { FarmService } from 'src/app/farm/farm.service';
 
 @Component({
-  selector: "app-members",
-  templateUrl: "./members.component.html",
-  styleUrls: ["./members.component.css"],
+  selector: 'app-members',
+  templateUrl: './members.component.html',
+  styleUrls: ['./members.component.css'],
 })
 export class MembersComponent implements OnInit, OnDestroy, OnChanges {
   @Input() adminMembers: string[] = [];
@@ -73,12 +73,12 @@ export class MembersComponent implements OnInit, OnDestroy, OnChanges {
         }),
         switchMap((params) => {
           const { farmId } = params;
-          if (typeof farmId !== "string") throw Error("no farmId");
+          if (typeof farmId !== 'string') throw Error('no farmId');
           farmIdCache = farmId;
           return this.farmService.getFarm(farmId);
         }),
         switchMap((farm) => {
-          if (farm.owner === uidToDelete) throw Error("Cannot delete owner from farm admin members");
+          if (farm.owner === uidToDelete) throw Error('Cannot delete owner from farm admin members');
           const filterCallback = (uid: string) => uid !== uidToDelete;
           return this.farmService.updateFarm(farmIdCache, {
             adminMembers: farm.adminMembers.filter(filterCallback),
@@ -86,7 +86,7 @@ export class MembersComponent implements OnInit, OnDestroy, OnChanges {
           });
         }),
         tap(() => {
-          if (uidToDelete === uidCache) this.router.navigateByUrl("/home");
+          if (uidToDelete === uidCache) this.router.navigateByUrl('/home');
         }),
         finalize(() => (this.uidToDelete = undefined)),
       )

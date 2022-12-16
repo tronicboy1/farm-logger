@@ -1,7 +1,7 @@
-import { css, CSSResultGroup, html, LitElement } from "lit";
-import { customElement } from "lit/decorators.js";
+import { css, CSSResultGroup, html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
-const tagName = "google-icon";
+const tagName = 'google-icon';
 
 @customElement(tagName)
 export class GoogleIcon extends LitElement {

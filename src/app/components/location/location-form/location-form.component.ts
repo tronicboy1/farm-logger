@@ -1,11 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Location } from "../location.component";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Location } from '../location.component';
 
 @Component({
-  selector: "app-location-form",
-  templateUrl: "./location-form.component.html",
-  styleUrls: ["./location-form.component.css", "../../../../styles/basic-form.css"],
+  selector: 'app-location-form',
+  templateUrl: './location-form.component.html',
+  styleUrls: ['./location-form.component.css', '../../../../styles/basic-form.css'],
 })
 export class LocationFormComponent implements OnInit {
   locationFormGroup = new FormGroup({

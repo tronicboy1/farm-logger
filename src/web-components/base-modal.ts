@@ -1,14 +1,14 @@
-import { css, html, LitElement } from "lit";
-import { property, customElement } from "lit/decorators.js";
-import { globalStyles } from "./shared";
+import { css, html, LitElement } from 'lit';
+import { property, customElement } from 'lit/decorators.js';
+import { globalStyles } from './shared';
 
-export const tagName = "base-modal";
-const closeModalEventName = "modal-closed";
+export const tagName = 'base-modal';
+const closeModalEventName = 'modal-closed';
 
 @customElement(tagName)
 export class BaseModal extends LitElement {
-  @property({ attribute: "modal-title" })
-  modalTitle: string = "";
+  @property({ attribute: 'modal-title' })
+  modalTitle: string = '';
   @property({ attribute: true, reflect: true, type: Boolean })
   show: boolean = false;
 

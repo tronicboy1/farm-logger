@@ -1,6 +1,6 @@
-import { noChange } from "lit";
-import { AsyncDirective, directive } from "lit/async-directive.js";
-import { Observable, Subscription } from "rxjs";
+import { noChange } from 'lit';
+import { AsyncDirective, directive } from 'lit/async-directive.js';
+import { Observable, Subscription } from 'rxjs';
 
 class ObserveDirective extends AsyncDirective {
   observable: Observable<unknown> | undefined;
@@ -25,7 +25,7 @@ class ObserveDirective extends AsyncDirective {
         this.setValue(v);
       },
       complete() {
-        console.log("completed");
+        console.log('completed');
       },
     });
   }

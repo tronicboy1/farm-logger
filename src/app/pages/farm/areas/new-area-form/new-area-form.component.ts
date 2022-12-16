@@ -1,21 +1,21 @@
-import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, finalize, first, map, mergeMap, Subject, tap } from "rxjs";
-import { AreaService } from "src/app/farm/area.service";
-import { AreaNameIsUniqueValidator } from "./area-name-is-unique.validator";
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, finalize, first, map, mergeMap, Subject, tap } from 'rxjs';
+import { AreaService } from 'src/app/farm/area.service';
+import { AreaNameIsUniqueValidator } from './area-name-is-unique.validator';
 
 @Component({
-  selector: "app-new-area-form",
-  templateUrl: "./new-area-form.component.html",
-  styleUrls: ["./new-area-form.component.css", "../../../../../styles/basic-form.css"],
+  selector: 'app-new-area-form',
+  templateUrl: './new-area-form.component.html',
+  styleUrls: ['./new-area-form.component.css', '../../../../../styles/basic-form.css'],
   providers: [AreaNameIsUniqueValidator],
 })
 export class NewAreaFormComponent implements OnInit {
   private loadingSubject = new BehaviorSubject(false);
   public loading = this.loadingSubject.asObservable();
   public newAreaFormGroup = new FormGroup({
-    name: new FormControl("", {
+    name: new FormControl('', {
       validators: [Validators.required],
       asyncValidators: [this.areaNameValidator.validate.bind(this.areaNameValidator)],
     }),
@@ -38,7 +38,7 @@ export class NewAreaFormComponent implements OnInit {
         first(),
         map((params) => {
           const { farmId } = params;
-          if (typeof farmId !== "string") throw TypeError();
+          if (typeof farmId !== 'string') throw TypeError();
           return farmId;
         }),
         mergeMap((farmId) => this.areaService.createArea(farmId, { name, createdAt: Date.now() })),

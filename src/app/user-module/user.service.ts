@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { map, Observable } from "rxjs";
-import { onSnapshot, doc, updateDoc, setDoc, collection, query, where, getDocs, getDoc } from "firebase/firestore";
-import type { updateProfile } from "firebase/auth";
-import { UserModule } from "./user.module";
-import { Firebase } from "@custom-firebase/index";
+import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { onSnapshot, doc, updateDoc, setDoc, collection, query, where, getDocs, getDoc } from 'firebase/firestore';
+import type { updateProfile } from 'firebase/auth';
+import { UserModule } from './user.module';
+import { Firebase } from '@custom-firebase/index';
 
 type AccountDetails = Parameters<typeof updateProfile>[1];
-export type UserStatus = "online" | "away" | "offline" | "unknown" | "new-message" | undefined;
+export type UserStatus = 'online' | 'away' | 'offline' | 'unknown' | 'new-message' | undefined;
 export type UidRecord = { email: string; uid: string };
 export type UserData = {
   uid: string;
@@ -19,7 +19,7 @@ export type UserData = {
   providedIn: UserModule,
 })
 export class UserService {
-  static usersPath = "users";
+  static usersPath = 'users';
   private collection = collection(Firebase.firestore, UserService.usersPath);
 
   constructor() {}
@@ -34,7 +34,7 @@ export class UserService {
     return new Observable<UserData>((observer) => {
       let unsubscribe = onSnapshot(ref, (snapshot) => {
         const data = snapshot.data() as UserData | undefined;
-        if (!data) return observer.error("Specified uid did not have a user document.");
+        if (!data) return observer.error('Specified uid did not have a user document.');
         observer.next(data);
       });
       return unsubscribe;
@@ -60,7 +60,7 @@ export class UserService {
   }
 
   public getUserByEmail(email: string): Promise<UserData | undefined> {
-    const q = query(this.collection, where("email", "==", email));
+    const q = query(this.collection, where('email', '==', email));
     return getDocs(q).then((result) => {
       if (result.empty) return;
       const first = result.docs[0];
@@ -70,7 +70,7 @@ export class UserService {
 
   public getTheirUid(email: string) {
     return this.getUserByEmail(email).then((data) => {
-      if (!data) throw Error("User does not exist.");
+      if (!data) throw Error('User does not exist.');
       return data.uid;
     });
   }

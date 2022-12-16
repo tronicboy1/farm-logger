@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Utils } from "@lib/utils";
-import "@web-components/loading-spinner";
-import { InheritableAccountDetailsComponent } from "../inheritable-account-details-component";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Utils } from '@lib/utils';
+import '@web-components/loading-spinner';
+import { InheritableAccountDetailsComponent } from '../inheritable-account-details-component';
 
 @Component({
-  selector: "app-account-details-form",
-  templateUrl: "./account-details-form.component.html",
-  styleUrls: ["./account-details-form.component.css", "../../../../../styles/basic-form.css"],
+  selector: 'app-account-details-form',
+  templateUrl: './account-details-form.component.html',
+  styleUrls: ['./account-details-form.component.css', '../../../../../styles/basic-form.css'],
 })
 export class AccountDetailsFormComponent extends InheritableAccountDetailsComponent implements OnInit, OnDestroy {
   private photoPreview?: string;
@@ -18,7 +18,7 @@ export class AccountDetailsFormComponent extends InheritableAccountDetailsCompon
 
   public handleSubmit: EventListener = (event) => {
     const { formData } = Utils.getFormData(event);
-    const displayName = formData.get("display-name")!.toString().trim();
+    const displayName = formData.get('display-name')!.toString().trim();
     this.loading = true;
     this.authService
       .updateAccount({ displayName })

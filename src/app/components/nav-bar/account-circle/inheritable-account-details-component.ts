@@ -1,10 +1,10 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from "@angular/core";
-import { AuthService } from "@user/auth.service";
-import type { User } from "firebase/auth";
-import type { Subscription } from "rxjs";
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { AuthService } from '@user/auth.service';
+import type { User } from 'firebase/auth';
+import type { Subscription } from 'rxjs';
 
 @Component({
-  template: "",
+  template: '',
 })
 export class InheritableAccountDetailsComponent implements OnInit, OnDestroy {
   public loading = false;

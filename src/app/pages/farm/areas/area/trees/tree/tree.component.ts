@@ -1,14 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, first, forkJoin, map, mergeMap, Observable, switchMap } from "rxjs";
-import { TreeReportService } from "src/app/farm/tree-report.service";
-import { CoffeeTree, CoffeeTreeReportWithId } from "src/app/farm/tree.model";
-import { TreeService } from "src/app/farm/tree.service";
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, first, forkJoin, map, mergeMap, Observable, switchMap } from 'rxjs';
+import { TreeReportService } from 'src/app/farm/tree-report.service';
+import { CoffeeTree, CoffeeTreeReportWithId } from 'src/app/farm/tree.model';
+import { TreeService } from 'src/app/farm/tree.service';
 
 @Component({
-  selector: "app-tree",
-  templateUrl: "./tree.component.html",
-  styleUrls: ["./tree.component.css"],
+  selector: 'app-tree',
+  templateUrl: './tree.component.html',
+  styleUrls: ['./tree.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreeComponent implements OnInit {
@@ -49,21 +49,21 @@ export class TreeComponent implements OnInit {
       this.route.parent!.parent!.params.pipe(
         first(),
         map(({ farmId }) => {
-          if (typeof farmId !== "string") throw TypeError("no farmId");
+          if (typeof farmId !== 'string') throw TypeError('no farmId');
           return farmId;
         }),
       ),
       this.route.parent!.params.pipe(
         first(),
         map(({ areaId }) => {
-          if (typeof areaId !== "string") throw TypeError("no areaId");
+          if (typeof areaId !== 'string') throw TypeError('no areaId');
           return areaId;
         }),
       ),
       this.route.params.pipe(
         first(),
         map(({ treeId }) => {
-          if (typeof treeId !== "string") throw TypeError("no treeId");
+          if (typeof treeId !== 'string') throw TypeError('no treeId');
           return treeId;
         }),
       ),

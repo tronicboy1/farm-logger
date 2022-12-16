@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, first, forkJoin, map, mergeMap, Observable, switchMap } from "rxjs";
-import { CropdustService, CropdustWithId } from "src/app/farm/cropdust.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, first, forkJoin, map, mergeMap, Observable, switchMap } from 'rxjs';
+import { CropdustService, CropdustWithId } from 'src/app/farm/cropdust.service';
 
 @Component({
-  selector: "app-cropdust",
-  templateUrl: "./cropdust.component.html",
-  styleUrls: ["./cropdust.component.css"],
+  selector: 'app-cropdust',
+  templateUrl: './cropdust.component.html',
+  styleUrls: ['./cropdust.component.css'],
 })
 export class CropdustComponent implements OnInit {
   private showAddModalSubject = new BehaviorSubject(false);
@@ -34,14 +34,14 @@ export class CropdustComponent implements OnInit {
       this.route.parent!.parent!.params.pipe(
         first(),
         map(({ farmId }) => {
-          if (typeof farmId !== "string") throw TypeError("no farmId");
+          if (typeof farmId !== 'string') throw TypeError('no farmId');
           return farmId;
         }),
       ),
       this.route.parent!.params.pipe(
         first(),
         map(({ areaId }) => {
-          if (typeof areaId !== "string") throw TypeError("no areaId");
+          if (typeof areaId !== 'string') throw TypeError('no areaId');
           return areaId;
         }),
       ),

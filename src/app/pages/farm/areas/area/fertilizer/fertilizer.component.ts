@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, first, forkJoin, map, mergeMap, Observable, switchMap, tap } from "rxjs";
-import { FertilizationService, FertilizationWithId } from "src/app/farm/fertilization.service";
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, first, forkJoin, map, mergeMap, Observable, switchMap, tap } from 'rxjs';
+import { FertilizationService, FertilizationWithId } from 'src/app/farm/fertilization.service';
 
 @Component({
-  selector: "app-fertilizer",
-  templateUrl: "./fertilizer.component.html",
-  styleUrls: ["./fertilizer.component.css"],
+  selector: 'app-fertilizer',
+  templateUrl: './fertilizer.component.html',
+  styleUrls: ['./fertilizer.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FertilizerComponent implements OnInit {
@@ -35,14 +35,14 @@ export class FertilizerComponent implements OnInit {
       this.route.parent!.parent!.params.pipe(
         first(),
         map(({ farmId }) => {
-          if (typeof farmId !== "string") throw TypeError("no farmId");
+          if (typeof farmId !== 'string') throw TypeError('no farmId');
           return farmId;
         }),
       ),
       this.route.parent!.params.pipe(
         first(),
         map(({ areaId }) => {
-          if (typeof areaId !== "string") throw TypeError("no areaId");
+          if (typeof areaId !== 'string') throw TypeError('no areaId');
           return areaId;
         }),
       ),

@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { Firebase } from "@custom-firebase/index";
+import { Injectable } from '@angular/core';
+import { Firebase } from '@custom-firebase/index';
 import {
   addDoc,
   collection,
@@ -12,9 +12,9 @@ import {
   QueryConstraint,
   startAfter,
   updateDoc,
-} from "firebase/firestore";
-import { map, mergeWith, Observable, ReplaySubject, scan, shareReplay, Subject, switchMap } from "rxjs";
-import { FarmModule } from "./farm.module";
+} from 'firebase/firestore';
+import { map, mergeWith, Observable, ReplaySubject, scan, shareReplay, Subject, switchMap } from 'rxjs';
+import { FarmModule } from './farm.module';
 
 export type EnvironmentRecord = {
   createdAt: number;
@@ -34,7 +34,7 @@ export type EnvironmentRecord = {
   providedIn: FarmModule,
 })
 export class EnvironmentRecordService {
-  static path = "environmentRecords";
+  static path = 'environmentRecords';
   static limit = 20;
   private lastDocSubject = new ReplaySubject<DocumentData | undefined>(1);
   private lastDocCache?: DocumentData;
@@ -48,7 +48,7 @@ export class EnvironmentRecordService {
 
   public getEnvironmentRecords(farmId: string, lastDoc?: DocumentData) {
     const ref = collection(Firebase.firestore, `farms/${farmId}/${EnvironmentRecordService.path}`);
-    const constraints: QueryConstraint[] = [limit(EnvironmentRecordService.limit), orderBy("createdAt", "desc")];
+    const constraints: QueryConstraint[] = [limit(EnvironmentRecordService.limit), orderBy('createdAt', 'desc')];
     if (lastDoc) constraints.push(startAfter(lastDoc));
     const q = query(ref, ...constraints);
     return getDocs(q).then((result) => {

@@ -1,17 +1,17 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { AuthService } from "@user/auth.service";
-import { finalize, mergeMap, take, tap } from "rxjs";
-import { FarmService } from "src/app/farm/farm.service";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '@user/auth.service';
+import { finalize, mergeMap, take, tap } from 'rxjs';
+import { FarmService } from 'src/app/farm/farm.service';
 
 @Component({
-  selector: "app-new-farm-form",
-  templateUrl: "./new-farm-form.component.html",
-  styleUrls: ["./new-farm-form.component.css", "../../../../styles/basic-form.css"],
+  selector: 'app-new-farm-form',
+  templateUrl: './new-farm-form.component.html',
+  styleUrls: ['./new-farm-form.component.css', '../../../../styles/basic-form.css'],
 })
 export class NewFarmFormComponent implements OnInit {
   public newFarmForm = new FormGroup({
-    name: new FormControl("", [Validators.required, Validators.maxLength(64), Validators.minLength(1)]),
+    name: new FormControl('', [Validators.required, Validators.maxLength(64), Validators.minLength(1)]),
   });
   public loading = false;
   @Output() submitted = new EventEmitter<void>();

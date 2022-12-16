@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewTreeFormComponent } from "./new-tree-form.component";
+import { NewTreeFormComponent } from './new-tree-form.component';
 
-describe("NewTreeFormComponent", () => {
+describe('NewTreeFormComponent', () => {
   let component: NewTreeFormComponent;
   let fixture: ComponentFixture<NewTreeFormComponent>;
 
@@ -16,7 +16,7 @@ describe("NewTreeFormComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

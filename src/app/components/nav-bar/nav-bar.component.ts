@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { AuthService } from "@user/auth.service";
-import { Subscription } from "rxjs";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '@user/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "app-nav-bar",
-  templateUrl: "./nav-bar.component.html",
-  styleUrls: ["./nav-bar.component.css"],
+  selector: 'app-nav-bar',
+  templateUrl: './nav-bar.component.html',
+  styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit, OnDestroy {
   public isAuth = false;
@@ -27,6 +27,6 @@ export class NavBarComponent implements OnInit, OnDestroy {
   }
 
   public handleLogoutClick = () => {
-    this.authService.signOutUser().then(() => this.router.navigateByUrl("/auth"));
+    this.authService.signOutUser().then(() => this.router.navigateByUrl('/auth'));
   };
 }

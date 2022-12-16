@@ -1,12 +1,12 @@
-import { css, html, LitElement } from "lit";
-import { property, customElement } from "lit/decorators.js";
+import { css, html, LitElement } from 'lit';
+import { property, customElement } from 'lit/decorators.js';
 
-export const tagName = "loading-spinner";
+export const tagName = 'loading-spinner';
 
 @customElement(tagName)
 export class LoadingSpinner extends LitElement {
   @property({ attribute: true })
-  color: "blue" | "white" | "auto" = "auto";
+  color: 'blue' | 'white' | 'auto' = 'auto';
 
   static styles = css`
     div {

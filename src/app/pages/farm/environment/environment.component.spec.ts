@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EnvironmentComponent } from "./environment.component";
+import { EnvironmentComponent } from './environment.component';
 
-describe("EnvironmentComponent", () => {
+describe('EnvironmentComponent', () => {
   let component: EnvironmentComponent;
   let fixture: ComponentFixture<EnvironmentComponent>;
 
@@ -16,7 +16,7 @@ describe("EnvironmentComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

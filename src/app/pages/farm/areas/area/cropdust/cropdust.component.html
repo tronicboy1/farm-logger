@@ -22,7 +22,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let record of this.cropdusts | async">
-        <td>{{ record.completedAt | date : "short" }}</td>
+        <td>{{ record.completedAt | date : 'short' }}</td>
         <td>{{ record.type }}</td>
         <td>{{ record.note }}</td>
         <td class="remove">

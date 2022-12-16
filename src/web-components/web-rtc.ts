@@ -1,12 +1,12 @@
-import { css, html, LitElement } from "lit";
-import { query, customElement } from "lit/decorators.js";
-import { SignalingChannel } from "../lib/signaling-channel";
-import "webrtc-adapter";
-import { globalStyles } from "shared";
+import { css, html, LitElement } from 'lit';
+import { query, customElement } from 'lit/decorators.js';
+import { SignalingChannel } from '../lib/signaling-channel';
+import 'webrtc-adapter';
+import { globalStyles } from 'shared';
 
-export const tagName = "web-rtc";
+export const tagName = 'web-rtc';
 
-const dataChannelOpenEventName = "datachannelopen";
+const dataChannelOpenEventName = 'datachannelopen';
 
 /**
  * Will not delete this unused component.
@@ -46,9 +46,9 @@ export class WebRTC extends LitElement {
   public dataChannel: RTCDataChannel | null = null;
   private signalingChannel: SignalingChannel;
   public theirUsername: string | undefined;
-  @query("video#my-video")
+  @query('video#my-video')
   private myVideo!: HTMLVideoElement;
-  @query("video#their-video")
+  @query('video#their-video')
   private theirVideo!: HTMLVideoElement;
 
   constructor(private myUsername: string) {
@@ -60,10 +60,10 @@ export class WebRTC extends LitElement {
 
   firstUpdated() {
     this.myVideo.srcObject = this.myMediaStream;
-    [this.myVideo, this.theirVideo].forEach((video) => video.addEventListener("loadedmetadata", () => video.play()));
+    [this.myVideo, this.theirVideo].forEach((video) => video.addEventListener('loadedmetadata', () => video.play()));
   }
 
-  private handleMessage: Parameters<InstanceType<typeof SignalingChannel>["subscribe"]>[0] = async (
+  private handleMessage: Parameters<InstanceType<typeof SignalingChannel>['subscribe']>[0] = async (
     { candidate, description, offer, answer },
     theirUsername,
   ) => {
@@ -73,7 +73,7 @@ export class WebRTC extends LitElement {
       const answer = await this.peerConnection.createAnswer();
       await this.peerConnection.setLocalDescription(answer);
       const desciption = this.peerConnection.localDescription;
-      if (!desciption) throw TypeError("Local Description not set.");
+      if (!desciption) throw TypeError('Local Description not set.');
       return this.signalingChannel.send(this.theirUsername, { description, answer });
     }
     if (answer) {
@@ -86,9 +86,9 @@ export class WebRTC extends LitElement {
 
   public async makeOffer(theirUsername: string) {
     this.theirUsername = theirUsername;
-    this.dataChannel = this.peerConnection.createDataChannel("messages", { negotiated: false });
-    this.dataChannel.addEventListener("error", (event) => console.error("Data Channel Error", event));
-    this.dataChannel.addEventListener("open", this.handleDataChannelOpening);
+    this.dataChannel = this.peerConnection.createDataChannel('messages', { negotiated: false });
+    this.dataChannel.addEventListener('error', (event) => console.error('Data Channel Error', event));
+    this.dataChannel.addEventListener('open', this.handleDataChannelOpening);
     const offer = await this.peerConnection.createOffer();
     await this.peerConnection.setLocalDescription(offer);
     this.signalingChannel.send(this.theirUsername, { description: this.peerConnection.localDescription!, offer });
@@ -110,9 +110,9 @@ export class WebRTC extends LitElement {
       this.peerConnection = new RTCPeerConnection({ iceServers: WebRTC.iceServers });
       const tracks = stream.getTracks();
       tracks.forEach((track) => this.peerConnection.addTrack(track, stream));
-      this.peerConnection.addEventListener("track", this.handleTrackEvent);
-      this.peerConnection.addEventListener("icecandidate", this.handleIceCandidateEvent);
-      this.peerConnection.addEventListener("datachannel", this.handleDataChannel);
+      this.peerConnection.addEventListener('track', this.handleTrackEvent);
+      this.peerConnection.addEventListener('icecandidate', this.handleIceCandidateEvent);
+      this.peerConnection.addEventListener('datachannel', this.handleDataChannel);
     });
   }
 
@@ -120,7 +120,7 @@ export class WebRTC extends LitElement {
     const { track } = event;
     this.theirVideo.srcObject ||= this.theirMediaStream;
     // track is initially muted, but becomes unmuted automatically when packets are received
-    track.addEventListener("unmute", () => {
+    track.addEventListener('unmute', () => {
       this.theirMediaStream.addTrack(track);
     });
   };
@@ -128,14 +128,14 @@ export class WebRTC extends LitElement {
   private handleIceCandidateEvent = (event: RTCPeerConnectionIceEvent) => {
     const { candidate } = event;
     if (!candidate) return;
-    if (!this.theirUsername) throw TypeError("Their username was undefined.");
+    if (!this.theirUsername) throw TypeError('Their username was undefined.');
     this.signalingChannel.send(this.theirUsername, { candidate });
   };
 
   private handleDataChannel = (event: RTCDataChannelEvent) => {
     this.dataChannel = event.channel;
-    this.dataChannel.addEventListener("error", (event) => console.error("Data Channel Error", event));
-    this.dataChannel.addEventListener("open", this.handleDataChannelOpening);
+    this.dataChannel.addEventListener('error', (event) => console.error('Data Channel Error', event));
+    this.dataChannel.addEventListener('open', this.handleDataChannelOpening);
   };
 
   static styles = [

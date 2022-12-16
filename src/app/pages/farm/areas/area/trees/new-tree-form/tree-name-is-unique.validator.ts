@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { AbstractControl, AsyncValidator, ValidationErrors } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import { Injectable } from '@angular/core';
+import { AbstractControl, AsyncValidator, ValidationErrors } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import {
   catchError,
   filter,
@@ -13,8 +13,8 @@ import {
   sampleTime,
   switchMap,
   take,
-} from "rxjs";
-import { TreeService } from "src/app/farm/tree.service";
+} from 'rxjs';
+import { TreeService } from 'src/app/farm/tree.service';
 
 @Injectable()
 export class TreeNameIsUniqueValidator implements AsyncValidator {
@@ -22,9 +22,9 @@ export class TreeNameIsUniqueValidator implements AsyncValidator {
 
   validate(control: AbstractControl): Observable<ValidationErrors | null> {
     const { value } = control;
-    if (typeof value !== "number") throw TypeError("Value must be number");
+    if (typeof value !== 'number') throw TypeError('Value must be number');
     const value$ = control.valueChanges.pipe(
-      filter((value) => typeof value === "number") as OperatorFunction<any, number>,
+      filter((value) => typeof value === 'number') as OperatorFunction<any, number>,
       sampleTime(100),
       take(1),
     );
@@ -44,14 +44,14 @@ export class TreeNameIsUniqueValidator implements AsyncValidator {
       this.route.parent!.parent!.params.pipe(
         first(),
         map(({ farmId }) => {
-          if (typeof farmId !== "string") throw TypeError("no farmId");
+          if (typeof farmId !== 'string') throw TypeError('no farmId');
           return farmId;
         }),
       ),
       this.route.parent!.params.pipe(
         first(),
         map(({ areaId }) => {
-          if (typeof areaId !== "string") throw TypeError("no areaId");
+          if (typeof areaId !== 'string') throw TypeError('no areaId');
           return areaId;
         }),
       ),
