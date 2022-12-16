@@ -28,7 +28,7 @@ export class PhotoService {
             const { naturalHeight, naturalWidth } = image;
             const canvas = document.createElement("canvas");
             const compress = Math.max(naturalHeight, naturalWidth) > 400;
-            const widthCompressionRatio = 400 / naturalHeight
+            const widthCompressionRatio = 400 / naturalHeight;
             const compressedWidth = Math.floor(widthCompressionRatio * naturalWidth);
             canvas.width = compress ? compressedWidth : naturalWidth;
             canvas.height = compress ? 400 : naturalHeight;

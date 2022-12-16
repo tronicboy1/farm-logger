@@ -52,7 +52,11 @@
   <app-new-report-form (submitted)="this.toggleAddModal(false)"></app-new-report-form>
 </base-modal>
 
-<base-modal [show]="this.showPictureModal$ | async" (modal-closed)="this.togglePictureModal(undefined)" modal-title="写真詳細">
+<base-modal
+  [show]="this.showPictureModal$ | async"
+  (modal-closed)="this.togglePictureModal(undefined)"
+  modal-title="写真詳細"
+>
   <div class="photo-box">
     <img *ngIf="this.showPictureModal$ | async as picture" [src]="picture" alt="photo" />
   </div>

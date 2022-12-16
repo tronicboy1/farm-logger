@@ -7,8 +7,8 @@ import { ComponentsModule } from "./components/components.module";
 import { FarmModule } from "./farm/farm.module";
 import { PagesModule } from "./pages/pages.module";
 import { UserModule } from "./user-module/user.module";
-import jaLocale from "@angular/common/locales/ja"
-import { registerLocaleData } from '@angular/common';
+import jaLocale from "@angular/common/locales/ja";
+import { registerLocaleData } from "@angular/common";
 
 registerLocaleData(jaLocale);
 
