@@ -4,7 +4,7 @@ import { AuthService } from '@user/auth.service';
 import { UserData, UserService } from '@user/user.service';
 import { collection, getDocs, query, limit, orderBy, addDoc } from 'firebase/firestore';
 import { BehaviorSubject, first, forkJoin, from, map, Observable, of, shareReplay, switchMap } from 'rxjs';
-import { logDictionary, LogEntry, RenderedLogEntry, viewLogActions } from './log.model';
+import { LogActions, logDictionary, LogEntry, RenderedLogEntry, viewLogActions } from './log.model';
 import { LogModule } from './log.module';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class LogService {
   private logsCache$?: Observable<RenderedLogEntry[]>;
   private lastFetched?: Date;
   private cachedFarmId?: string;
-  private lastPageViewLog = new BehaviorSubject<Record<string, Record<number, number>>>({});
+  private lastPageViewLog = new BehaviorSubject<Record<string, Record<number, number>>>({}); // Record<farmId, Record<actionCode, last viewed at>>
 
   constructor(protected authService: AuthService, protected userService: UserService) {
     const lastPageViewLogLocalStorageCache = window.localStorage.getItem('lastPageViewLog');
@@ -65,7 +65,7 @@ export class LogService {
     ));
   }
 
-  public addLog(farmId: string, actionCode: number, value = ''): Observable<any> {
+  public addLog(farmId: string, actionCode: LogActions, value = ''): Observable<any> {
     let skipLog = false;
     if (viewLogActions.includes(actionCode)) {
       const lastPageViewLogForFarm = this.lastPageViewLog.getValue()[farmId] ?? {};

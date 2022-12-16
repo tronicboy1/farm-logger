@@ -1,7 +1,7 @@
 export type LogEntry = {
   uid: string;
   createdAt: number;
-  action: number;
+  action: LogActions;
   iconCode?: number;
   value: string;
 };
