@@ -24,7 +24,8 @@
       ],
       "@components/*": [
         "src/components/*"
-      ]
+      ],
+      "@log/*": ["src/log/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
