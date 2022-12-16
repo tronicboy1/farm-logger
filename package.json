@@ -9,7 +9,7 @@
     "test": "ng test",
     "format": "prettier --write ./src",
     "emulate": "firebase emulators:start",
-    "deploy:hosting": "yarn build && firebase deploy --only hosting"
+    "deploy": "yarn build && firebase deploy --only hosting"
   },
   "private": true,
   "dependencies": {
