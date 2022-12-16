@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { LocationFormComponent } from './location/location-form/location-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavLocationComponent } from './nav-bar/nav-location/nav-location.component';
+import { LogViewComponent } from './log-view/log-view.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NavLocationComponent } from './nav-bar/nav-location/nav-location.compon
     NavBarComponent,
     LocationFormComponent,
     NavLocationComponent,
+    LogViewComponent,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
   exports: [LocationComponent, NavBarComponent],

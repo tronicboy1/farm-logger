@@ -27,6 +27,7 @@ import { NewCropdustFormComponent } from './farm/areas/area/cropdust/new-cropdus
 import { CustomDirectivesModule } from '../custom-directives/custom-directives.module';
 import { WeatherFormComponent } from './farm/environment/weather-form/weather-form.component';
 import '@web-components/base-tooltip';
+import { LogViewComponent } from './farm/log-view/log-view.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import '@web-components/base-tooltip';
     NewFertilizationFormComponent,
     NewCropdustFormComponent,
     WeatherFormComponent,
+    LogViewComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule, ComponentsModule, CustomDirectivesModule],
   /** Adding custom Elements Schema allows use of custom tags i.e. Web Components. */

@@ -38,6 +38,7 @@ export enum LogIconCodes {
 export const logDictionary: Record<number, string> = {
   [LogActions.CreateFarm]: 'がこの農場を登録した',
   [LogActions.ViewFarm]: 'がこの農場を閲覧した',
+  [LogActions.ViewArea]: 'が区域を閲覧した：',
   [LogActions.AddMember]: 'がメンバーを追加した',
   [LogActions.DeleteMember]: 'がメンバーを削除した',
   [LogActions.AddArea]: 'が区域を追加した：',
@@ -51,3 +52,5 @@ export const logDictionary: Record<number, string> = {
   [LogActions.AddCropdust]: 'がこの農場を登録した。',
   [LogActions.DeleteCropdust]: 'がこの農場を登録した。',
 };
+
+export const viewLogActions = [LogActions.ViewFarm, LogActions.ViewArea]
