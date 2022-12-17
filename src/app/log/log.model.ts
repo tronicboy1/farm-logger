@@ -4,11 +4,14 @@ export type LogEntry = {
   action: LogActions;
   iconCode?: number;
   value: string;
+  viewedBy: string[]; // uid array
 };
 
 export type RenderedLogEntry = {
   createdAt: number;
   message: string;
+  id: string;
+  viewedCurrentUser: boolean
 };
 
 export enum LogActions {
