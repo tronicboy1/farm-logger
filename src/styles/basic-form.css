@@ -17,6 +17,15 @@ textarea {
 textarea {
   height: 100px;
 }
+select[multiple] {
+  height: 100%;
+  padding: 0 0.25rem;
+}
+select[multiple] option {
+  margin: 0.25rem 0;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+}
 
 label {
   margin-bottom: 0.25rem;

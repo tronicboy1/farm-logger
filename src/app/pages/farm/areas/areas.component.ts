@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first, map, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, first, map, Observable, switchMap } from 'rxjs';
 import { AreaWithId } from 'src/app/farm/area.model';
 import { AreaService } from 'src/app/farm/area.service';
 
@@ -8,10 +8,14 @@ import { AreaService } from 'src/app/farm/area.service';
   selector: 'app-areas',
   templateUrl: './areas.component.html',
   styleUrls: ['./areas.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AreasComponent implements OnInit {
   public areas = new Observable<AreaWithId[]>();
-  public showNewAreaForm = false;
+  private showNewAreaForm = new BehaviorSubject(false);
+  readonly showNewAreaForm$ = this.showNewAreaForm.asObservable();
+  private showDeleteAreaForm = new BehaviorSubject(false);
+  readonly showDeleteAreaForm$ = this.showDeleteAreaForm.asObservable()
 
   constructor(private route: ActivatedRoute, private areaService: AreaService, private router: Router) {}
 
@@ -27,7 +31,8 @@ export class AreasComponent implements OnInit {
     );
   }
 
-  toggleNewAreaForm = (force?: boolean) => (this.showNewAreaForm = force ?? !this.showNewAreaForm);
+  toggleNewAreaForm = (force?: boolean) => (this.showNewAreaForm.next(force ?? !this.showNewAreaForm.value));
+  toggleDeleteAreaForm = (force?: boolean) => (this.showDeleteAreaForm.next(force ?? !this.showDeleteAreaForm.value));
   handleAreaClick(areaId: string) {
     this.router.navigate([areaId], { relativeTo: this.route });
   }

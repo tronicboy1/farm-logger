@@ -3,8 +3,10 @@ import { Firebase } from '@custom-firebase/index';
 import {
   addDoc,
   collection,
+  CollectionReference,
   doc,
   DocumentData,
+  DocumentReference,
   DocumentSnapshot,
   getDoc,
   getDocs,
@@ -13,6 +15,7 @@ import {
   QuerySnapshot,
   updateDoc,
   where,
+  writeBatch,
 } from 'firebase/firestore';
 import { from, map, Observable, ReplaySubject, shareReplay, Subject } from 'rxjs';
 import { Area, AreaWithId } from './area.model';
@@ -62,7 +65,7 @@ export class AreaService {
     if (this.farmIdCache !== farmId) this.areasObservableCache$ = undefined;
     this.farmIdCache = farmId;
     return (this.areasObservableCache$ ||= new Observable<QuerySnapshot<DocumentData>>((observer) => {
-      const ref = collection(Firebase.firestore, `farms/${farmId}/areas`);
+      const ref = this.getRef(farmId);
       return onSnapshot(ref, (result) => observer.next(result), observer.error, observer.complete);
     }).pipe(
       map((result) => {
@@ -76,18 +79,32 @@ export class AreaService {
   }
 
   public farmNameIsUnique(farmId: string, areaName: string) {
-    const ref = collection(Firebase.firestore, `farms/${farmId}/areas`);
+    const ref = this.getRef(farmId);
     const q = query(ref, where('name', '==', areaName));
     return from(getDocs(q)).pipe(map((result) => result.empty));
   }
 
   public createArea(farmId: string, areaData: Omit<Area, 'trees' | 'fertilizations' | 'cropdusts'>) {
-    const ref = collection(Firebase.firestore, `farms/${farmId}/areas`);
+    const ref = this.getRef(farmId);
     return addDoc(ref, areaData);
   }
 
   public updateArea(farmId: string, areaId: string, areaData: Partial<Area>) {
-    const ref = doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}`);
+    const ref = this.getRef(farmId, areaId);
     return updateDoc(ref, areaData);
+  }
+
+  public deleteAreas(farmId: string, areaId: string | string[], ...args: string[]) {
+    const coalescedIds = typeof areaId === 'string' ? [areaId, ...args] : [...areaId, ...args]
+    const batch = writeBatch(Firebase.firestore);
+    const refs = coalescedIds.map(id => this.getRef(farmId, id));
+    refs.forEach(ref => batch.delete(ref));
+    return batch.commit();
+  }
+
+  private getRef(farmId: string, areaId?: undefined): CollectionReference<DocumentData>
+  private getRef(farmId: string, areaId: string): DocumentReference<DocumentData>
+  private getRef(farmId: string, areaId?: string) {
+    return areaId ? doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}`) : collection(Firebase.firestore, `farms/${farmId}/areas`);
   }
 }

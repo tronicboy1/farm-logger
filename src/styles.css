@@ -161,6 +161,9 @@ tbody .done svg {
   border: 1px solid var(--danger-color) !important;
   color: white;
 }
+.svg-delete svg {
+  fill: var(--danger-color) !important;
+}
 
 .delete:hover {
   background-color: var(--danger-color-hover) !important;
@@ -198,6 +201,17 @@ tbody .done svg {
   border-radius: var(--radius);
 }
 
+.round-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  max-width: 500px;
+  flex-wrap: wrap;
+  margin: 1rem auto;
+}
+.round-block .round {
+  margin: 0.5rem auto;
+}
 .round {
   display: block;
   margin: 1.5rem auto;
@@ -205,6 +219,7 @@ tbody .done svg {
   height: 64px;
   width: 64px;
   padding: 0;
+  padding: 0.25rem;
 }
 .round svg {
   fill: var(--secondary-color);
