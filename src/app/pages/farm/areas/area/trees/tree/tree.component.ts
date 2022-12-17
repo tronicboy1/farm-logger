@@ -45,9 +45,9 @@ export class TreeComponent implements OnInit {
     this.reportToDeleteSubject.next(id);
   }
   public removeReport() {
-    this.reportToDeleteSubject.next(undefined);
-    const id = this.reportToDeleteSubject.value
+    const id = this.reportToDeleteSubject.getValue();
     if (!id) return;
+    this.reportToDeleteSubject.next(undefined);
     this.getFarmIdAreaIdAndTreeId()
       .pipe(mergeMap(([farmId, areaId, treeId]) => this.treeReportService.removeReport(farmId, areaId, treeId, id)))
       .subscribe();
