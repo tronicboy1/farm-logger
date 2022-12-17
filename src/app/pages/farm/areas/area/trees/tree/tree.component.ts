@@ -20,6 +20,8 @@ export class TreeComponent implements OnInit {
   public showAddModal = this.showAddModalSubject.asObservable();
   private showPictureModalSubject = new BehaviorSubject<string | undefined>(undefined);
   readonly showPictureModal$ = this.showPictureModalSubject.asObservable();
+  private reportToDeleteSubject = new BehaviorSubject<string | undefined>(undefined);
+  readonly reportToDelete$ = this.reportToDeleteSubject.asObservable();
 
   constructor(
     private route: ActivatedRoute,
@@ -38,7 +40,14 @@ export class TreeComponent implements OnInit {
 
   public toggleAddModal = (force?: boolean) => this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);
   public togglePictureModal = (photoURL: string | undefined) => this.showPictureModalSubject.next(photoURL);
-  public removeDoc(id: string) {
+
+  public setReportToDelete(id: string | undefined) {
+    this.reportToDeleteSubject.next(id);
+  }
+  public removeReport() {
+    this.reportToDeleteSubject.next(undefined);
+    const id = this.reportToDeleteSubject.value
+    if (!id) return;
     this.getFarmIdAreaIdAndTreeId()
       .pipe(mergeMap(([farmId, areaId, treeId]) => this.treeReportService.removeReport(farmId, areaId, treeId, id)))
       .subscribe();
