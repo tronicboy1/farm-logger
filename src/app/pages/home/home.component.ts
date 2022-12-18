@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public handleFarmClick(farmId: string) {
-    this.router.navigate(['/farms', farmId]);
+    this.router.navigate(['/farms', farmId], { queryParams: { "show-logs": true } });
   }
   public toggleAddModal(force?: boolean) {
     this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);

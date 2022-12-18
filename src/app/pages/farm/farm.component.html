@@ -26,4 +26,5 @@
     </li>
   </ul>
 </nav>
+<app-log-view *ngIf="this.showLogs$ | async"></app-log-view>
 <router-outlet></router-outlet>

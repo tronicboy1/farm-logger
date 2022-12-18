@@ -30,7 +30,7 @@ export class AreaComponent implements OnInit {
       mergeMap(([farmId, areaId]) => this.areaService.watchArea(farmId, areaId)),
     );
     this.getFarmIdAndAreaId()
-      .pipe(mergeMap(([farmId]) => this.logService.addLog(farmId, LogActions.ViewArea)))
+      .pipe(mergeMap(([farmId, areaId]) => this.logService.addLog(farmId, LogActions.ViewArea, areaId)))
       .subscribe();
     this.googleMapsURL = this.area.pipe(map((area) => this.geolocationService.getGoogleMapsURL(area)));
   }

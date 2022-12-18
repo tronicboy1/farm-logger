@@ -53,8 +53,8 @@ export const logDictionary: Record<number, string> = {
   [LogActions.DeleteTreeReport]: 'が木の育成記録を削除した',
   [LogActions.AddFertilization]: 'が施肥記録を作成した',
   [LogActions.DeleteFertilization]: 'が施肥記録を削除した',
-  [LogActions.AddCropdust]: 'がこの農場を登録した',
-  [LogActions.DeleteCropdust]: 'がこの農場を登録した',
+  [LogActions.AddCropdust]: 'が散布記録を作成した',
+  [LogActions.DeleteCropdust]: 'が散布記録を削除した',
   [LogActions.DeleteArea]: 'が区域を削除した：'
 };
 

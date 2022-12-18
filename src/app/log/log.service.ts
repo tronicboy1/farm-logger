@@ -83,7 +83,7 @@ export class LogService {
       map(([logs, uid]) =>
         logs.map<RenderedLogEntry>((log) => ({
           createdAt: log.createdAt,
-          message: log.displayName ?? log.email + logDictionary[log.action] + log.value,
+          message: (log.displayName ?? log.email) + logDictionary[log.action] + log.value,
           id: log.id,
           viewedCurrentUser: log.viewedBy.includes(uid),
         })),

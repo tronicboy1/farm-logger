@@ -1,1 +1,9 @@
-<p>log-view works!</p>
+<div class="card">
+  <h2>操作ログ</h2>
+  <ul>
+    <li *ngFor="let log of this.logs$ | async">
+      <p>{{ log.message }}</p>
+      <small>{{ log.createdAt | date: 'short' }}</small>
+    </li>
+  </ul>
+</div>

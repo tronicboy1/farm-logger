@@ -12,26 +12,28 @@ import { LogService } from 'src/app/log/log.service';
   styleUrls: ['./farm.component.css'],
 })
 export class FarmComponent implements OnInit {
-  public farm = new Observable<Farm>();
+  private farmId$ = this.route.params.pipe(
+    map((params) => {
+      const { farmId } = params;
+      if (typeof farmId !== 'string') throw TypeError('Farm ID was not in params.');
+      return farmId;
+    }),
+  );
+  public farm = this.farmId$.pipe(
+    switchMap((farmId) => {
+      return this.farmService.watchFarm(farmId);
+    }),
+  );
+  readonly showLogs$ = this.route.queryParams.pipe(map((queryParams) => Boolean(queryParams['show-logs'])));
 
   constructor(private route: ActivatedRoute, private farmService: FarmService, private logService: LogService) {}
 
   ngOnInit(): void {
-    const farmId$ = this.route.params.pipe(
-      map((params) => {
-        const { farmId } = params;
-        if (typeof farmId !== 'string') throw TypeError('Farm ID was not in params.');
-        return farmId;
-      }),
-    );
-    this.farm = farmId$.pipe(
-      switchMap((farmId) => {
-        return this.farmService.watchFarm(farmId);
-      }),
-    );
-    farmId$.pipe(
-      first(),
-      switchMap((farmId) => this.logService.addLog(farmId, LogActions.ViewFarm)),
-    ).subscribe();
+    this.farmId$
+      .pipe(
+        first(),
+        switchMap((farmId) => this.logService.addLog(farmId, LogActions.ViewFarm)),
+      )
+      .subscribe();
   }
 }
