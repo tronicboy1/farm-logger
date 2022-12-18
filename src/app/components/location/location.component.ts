@@ -30,9 +30,9 @@ export class LocationComponent implements OnInit {
     this.geolocationService
       .aquireLocation()
       .pipe(
-        catchError((err) => {
+        catchError((err, caught) => {
           this.locationError.next(true);
-          return of();
+          return caught;
         }),
         finalize(() => {
           this.loading.next(false);

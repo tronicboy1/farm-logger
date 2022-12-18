@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, finalize, first, forkJoin, from, map, mergeMap, Observable, of, switchMap } from 'rxjs';
+import { BehaviorSubject, finalize, first, forkJoin, from, map, mergeMap, Observable, of, switchMap, tap } from 'rxjs';
 import { TreeReportService } from 'src/app/farm/tree-report.service';
 import { TreeService } from 'src/app/farm/tree.service';
 import { PhotoService } from 'src/app/farm/util/photo.service';
+import { LogActions } from 'src/app/log/log.model';
+import { LogService } from 'src/app/log/log.service';
 
 @Component({
   selector: 'app-new-report-form',
@@ -32,6 +34,7 @@ export class NewReportFormComponent implements OnInit {
     private treeService: TreeService,
     private treeReportService: TreeReportService,
     private photoService: PhotoService,
+    private logService: LogService,
   ) {}
 
   ngOnInit(): void {
@@ -52,7 +55,7 @@ export class NewReportFormComponent implements OnInit {
     const budding = this.newReportForm.controls.budding.value!.trim();
     const beanYield = this.newReportForm.controls.beanYield.value!;
     const picture = formData.get('picture')!;
-    let photoPath: string;
+    let photoPath = '';
     if (!(picture instanceof File)) throw TypeError();
     this.getFarmIdAndAreaId()
       .pipe(
@@ -69,6 +72,9 @@ export class NewReportFormComponent implements OnInit {
               : of(''),
           ]),
         ),
+        tap({
+          next: ([[farmId, _, treeId]]) => this.logService.addLog(farmId, LogActions.AddTreeReport, treeId).subscribe(),
+        }),
         switchMap(([[farmId, areaId, treeId], photoURL]) =>
           this.treeReportService.addReport(farmId, areaId, treeId, {
             notes,

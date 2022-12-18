@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, first, forkJoin, map, mergeMap, Observable, of, switchMap } from 'rxjs';
+import { BehaviorSubject, catchError, first, forkJoin, map, mergeMap, Observable, of, switchMap, tap } from 'rxjs';
 import { TreeReportService } from 'src/app/farm/tree-report.service';
 import { CoffeeTree, CoffeeTreeReportWithId } from 'src/app/farm/tree.model';
 import { TreeService } from 'src/app/farm/tree.service';
@@ -54,7 +54,8 @@ export class TreeComponent implements OnInit {
       first(),
       map((reports) => reports.find((report) => report.id === id)),
       map((report) => report?.photoPath),
-      mergeMap((photoPath) => (photoPath ? this.photoService.deletePhoto(photoPath).catch(() => {}) : of())),
+      mergeMap((photoPath) => (photoPath ? this.photoService.deletePhoto(photoPath) : of(''))),
+      catchError(() => of(''))
     );
     const deleteReport$ = this.getFarmIdAreaIdAndTreeId().pipe(
       mergeMap(([farmId, areaId, treeId]) => this.treeReportService.removeReport(farmId, areaId, treeId, id)),

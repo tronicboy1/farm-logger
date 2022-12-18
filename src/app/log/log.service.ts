@@ -1,9 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Firebase } from '@custom-firebase/index';
 import { AuthService } from '@user/auth.service';
-import { UserData, UserService } from '@user/user.service';
-import { collection, getDocs, query, limit, orderBy, addDoc, writeBatch, doc, CollectionReference, DocumentData, DocumentReference, arrayUnion } from 'firebase/firestore';
-import { BehaviorSubject, first, forkJoin, from, map, Observable, of, shareReplay, switchMap, withLatestFrom } from 'rxjs';
+import { UserService } from '@user/user.service';
+import {
+  collection,
+  getDocs,
+  query,
+  limit,
+  orderBy,
+  addDoc,
+  writeBatch,
+  doc,
+  CollectionReference,
+  DocumentData,
+  DocumentReference,
+  arrayUnion,
+} from 'firebase/firestore';
+import {
+  BehaviorSubject,
+  first,
+  forkJoin,
+  from,
+  map,
+  Observable,
+  of,
+  shareReplay,
+  switchMap,
+  withLatestFrom,
+} from 'rxjs';
 import { LogActions, logDictionary, LogEntry, RenderedLogEntry, viewLogActions } from './log.model';
 import { LogModule } from './log.module';
 
@@ -43,7 +67,7 @@ export class LogService {
     ).pipe(
       map((results) => {
         if (results.empty) return [];
-        return results.docs.map((doc) => ({...doc.data() as LogEntry, id: doc.id}));
+        return results.docs.map((doc) => ({ ...(doc.data() as LogEntry), id: doc.id }));
       }),
       switchMap((logs) =>
         forkJoin(
@@ -61,7 +85,7 @@ export class LogService {
           createdAt: log.createdAt,
           message: log.displayName ?? log.email + logDictionary[log.action] + log.value,
           id: log.id,
-          viewedCurrentUser: log.viewedBy.includes(uid)
+          viewedCurrentUser: log.viewedBy.includes(uid),
         })),
       ),
       shareReplay(1),
@@ -74,36 +98,38 @@ export class LogService {
       const lastPageViewLogForFarm = this.lastPageViewLog.getValue()[farmId] ?? {};
       const now = Date.now();
       const actionLastLoggedAt = lastPageViewLogForFarm[actionCode] ?? 0;
-      skipLog = now - actionLastLoggedAt > 2400000; // 40 mins
+      skipLog = !(now - actionLastLoggedAt > 2400000); // 40 mins
       this.lastPageViewLog.next({
         ...this.lastPageViewLog.value,
         [farmId]: { ...lastPageViewLogForFarm, [actionCode]: now },
       });
     }
-    return skipLog
-      ? this.authService.getUid().pipe(
-          first(),
-          switchMap((uid) => {
-            const logData: LogEntry = { uid, createdAt: Date.now(), action: actionCode, value, viewedBy: [] };
-            const ref = this.getRef(farmId);
-            return addDoc(ref, logData);
-          }),
-        )
-      : of();
+    if (skipLog) return of('');
+    return this.authService.getUid().pipe(
+      first(),
+      switchMap((uid) => {
+        const logData: LogEntry = { uid, createdAt: Date.now(), action: actionCode, value, viewedBy: [] };
+        const ref = this.getRef(farmId);
+        return addDoc(ref, logData);
+      }),
+    );
   }
 
   public setLogsAsViewed(farmId: string, logId: string | string[], ...args: string[]) {
-    const coalescedLogIds = typeof logId === "string" ? [logId, ...args] : [...logId, ...args]
-    const refs =coalescedLogIds.map(id => this.getRef(farmId, id))
-    return this.authService.getUid().pipe(first(), switchMap(uid => {
-      const batch = writeBatch(Firebase.firestore);
-      refs.forEach(ref => batch.update(ref, { viewedBy: arrayUnion(uid) }))
-      return batch.commit()
-    }))
+    const coalescedLogIds = typeof logId === 'string' ? [logId, ...args] : [...logId, ...args];
+    const refs = coalescedLogIds.map((id) => this.getRef(farmId, id));
+    return this.authService.getUid().pipe(
+      first(),
+      switchMap((uid) => {
+        const batch = writeBatch(Firebase.firestore);
+        refs.forEach((ref) => batch.update(ref, { viewedBy: arrayUnion(uid) }));
+        return batch.commit();
+      }),
+    );
   }
 
-  private getRef(farmId: string, logId?: undefined): CollectionReference<DocumentData>
-  private getRef(farmId: string, logId: string): DocumentReference<DocumentData>
+  private getRef(farmId: string, logId?: undefined): CollectionReference<DocumentData>;
+  private getRef(farmId: string, logId: string): DocumentReference<DocumentData>;
   private getRef(farmId: string, logId?: string) {
     const args = [Firebase.firestore, 'farms', farmId, LogService.path] as const;
     return logId ? doc(...args, logId) : collection(...args);
