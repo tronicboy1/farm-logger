@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, filter, finalize, first, forkJoin, map, mergeMap, tap } from 'rxjs';
 import { TreeService } from 'src/app/farm/tree.service';
+import { LogActions } from 'src/app/log/log.model';
+import { LogService } from 'src/app/log/log.service';
 import { TreeNameIsUniqueValidator } from './tree-name-is-unique.validator';
 
 @Component({
@@ -35,6 +37,7 @@ export class NewTreeFormComponent implements OnInit {
     private route: ActivatedRoute,
     private treeService: TreeService,
     private treeNameIsUnique: TreeNameIsUniqueValidator,
+    private logService: LogService,
   ) {}
 
   ngOnInit(): void {}
@@ -47,6 +50,9 @@ export class NewTreeFormComponent implements OnInit {
     const startHeight = this.newTreeFromGroup.controls.startHeight.value!;
     this.getFarmIdAndAreaId()
       .pipe(
+        tap({
+          next: ([farmId]) => this.logService.addLog(farmId, LogActions.AddTree).subscribe(),
+        }),
         mergeMap(([farmId, areaId]) =>
           this.treeService.createTree(farmId, areaId, { regularId, species, startHeight }),
         ),
