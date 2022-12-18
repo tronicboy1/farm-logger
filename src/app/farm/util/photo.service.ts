@@ -1,18 +1,26 @@
 import { Injectable } from '@angular/core';
 import { FarmModule } from '../farm.module';
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import { app } from '@custom-firebase/firebase';
 
 @Injectable({
   providedIn: FarmModule,
 })
 export class PhotoService {
+  static defaultFileEnd = 'img.png';
   constructor() {}
 
   public uploadPhoto(file: File, path: string) {
+    return uploadBytes(this.getRef(path), file).then((snapshot) => getDownloadURL(snapshot.ref));
+  }
+
+  public deletePhoto(path: string) {
+    return deleteObject(this.getRef(path));
+  }
+
+  private getRef(path: string) {
     const storage = getStorage(app);
-    const ref = storageRef(storage, path);
-    return uploadBytes(ref, file).then((snapshot) => getDownloadURL(snapshot.ref));
+    return storageRef(storage, path);
   }
 
   static compressPhoto(file: File): Promise<File> {
@@ -39,7 +47,7 @@ export class PhotoService {
             context.drawImage(image, 0, 0, naturalWidth, naturalHeight, 0, 0, width, height);
             canvas.toBlob((blob) => {
               if (!blob) throw Error('No blob was generated');
-              const file = new File([blob], 'img.png', { lastModified: Date.now() });
+              const file = new File([blob], this.defaultFileEnd, { lastModified: Date.now() });
               const transfer = new DataTransfer();
               transfer.items.add(file);
               resolve(transfer.files[0]);

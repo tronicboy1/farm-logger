@@ -7,6 +7,7 @@ export type CoffeeTree = {
 
 export type CoffeeTreeReport = {
   photoURL?: string;
+  photoPath?: string;
   createdAt: number;
   notes: string;
   height: number;

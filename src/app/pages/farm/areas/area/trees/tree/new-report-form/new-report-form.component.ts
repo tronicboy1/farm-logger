@@ -52,6 +52,7 @@ export class NewReportFormComponent implements OnInit {
     const budding = this.newReportForm.controls.budding.value!.trim();
     const beanYield = this.newReportForm.controls.beanYield.value!;
     const picture = formData.get('picture')!;
+    let photoPath: string;
     if (!(picture instanceof File)) throw TypeError();
     this.getFarmIdAndAreaId()
       .pipe(
@@ -60,12 +61,10 @@ export class NewReportFormComponent implements OnInit {
             of([farmId, areaId, treeId]),
             picture.size
               ? from(PhotoService.compressPhoto(picture)).pipe(
-                  mergeMap((picture) =>
-                    this.photoService.uploadPhoto(
-                      picture,
-                      `pictures/${farmId}/${areaId}/${treeId}/${Date.now() + picture.name}`,
-                    ),
-                  ),
+                  mergeMap((picture) => {
+                    photoPath = `pictures/${farmId}/${areaId}/${treeId}/${Date.now() + picture.name}`;
+                    return this.photoService.uploadPhoto(picture, photoPath);
+                  }),
                 )
               : of(''),
           ]),
@@ -78,6 +77,7 @@ export class NewReportFormComponent implements OnInit {
             createdAt: Date.now(),
             beanYield,
             photoURL,
+            photoPath,
           }),
         ),
         finalize(() => {
