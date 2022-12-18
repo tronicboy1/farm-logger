@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, filter, finalize, first, forkJoin, map, mergeMap, tap } from 'rxjs';
@@ -12,6 +12,7 @@ import { TreeNameIsUniqueValidator } from './tree-name-is-unique.validator';
   templateUrl: './new-tree-form.component.html',
   styleUrls: ['./new-tree-form.component.css', '../../../../../../../styles/basic-form.css'],
   providers: [TreeNameIsUniqueValidator],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewTreeFormComponent implements OnInit {
   public newTreeFromGroup = new FormGroup({

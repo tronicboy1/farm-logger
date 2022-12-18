@@ -1,13 +1,16 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, finalize, first, forkJoin, map, mergeMap } from 'rxjs';
+import { BehaviorSubject, finalize, first, forkJoin, map, mergeMap, tap } from 'rxjs';
 import { CropdustService } from 'src/app/farm/cropdust.service';
+import { LogActions } from 'src/app/log/log.model';
+import { LogService } from 'src/app/log/log.service';
 
 @Component({
   selector: 'app-new-cropdust-form',
   templateUrl: './new-cropdust-form.component.html',
   styleUrls: ['./new-cropdust-form.component.css', '../../../../../../../styles/basic-form.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewCropdustFormComponent implements OnInit {
   public newFertilizationForm = new FormGroup({
@@ -18,7 +21,11 @@ export class NewCropdustFormComponent implements OnInit {
   public loading = this.loadingSubject.asObservable();
   @Output() submitted = new EventEmitter<void>();
 
-  constructor(private route: ActivatedRoute, private cropdustService: CropdustService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private cropdustService: CropdustService,
+    private logService: LogService,
+  ) {}
 
   ngOnInit(): void {}
 
@@ -28,6 +35,9 @@ export class NewCropdustFormComponent implements OnInit {
     const note = this.newFertilizationForm.controls.note.value!.trim();
     this.getFarmIdAndAreaId()
       .pipe(
+        tap({
+          next: ([farmId]) => this.logService.addLog(farmId, LogActions.AddCropdust).subscribe(),
+        }),
         mergeMap(([farmId, areaId]) =>
           this.cropdustService.addCropdust(farmId, areaId, { completedAt: Date.now(), type, note }),
         ),

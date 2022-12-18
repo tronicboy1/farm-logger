@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, catchError, finalize, first, map, mergeMap, Observable, of, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, catchError, finalize, first, map, mergeMap, Observable, of, ReplaySubject, tap } from 'rxjs';
 import { EnvironmentRecord, EnvironmentRecordService } from 'src/app/farm/environment-record.service';
 import { FarmService } from 'src/app/farm/farm.service';
 import { GeolocationService } from 'src/app/farm/util/geolocation.service';
 import { WeatherService } from 'src/app/farm/util/weather.service';
+import { LogActions } from 'src/app/log/log.model';
+import { LogService } from 'src/app/log/log.service';
 
 @Component({
   selector: 'app-environment',
@@ -24,6 +26,7 @@ export class EnvironmentComponent implements OnInit {
     private geolocationService: GeolocationService,
     private farmService: FarmService,
     private weatherService: WeatherService,
+    private logService: LogService,
   ) {}
 
   ngOnInit(): void {
@@ -55,6 +58,9 @@ export class EnvironmentComponent implements OnInit {
           const { farmId } = params;
           if (typeof farmId !== 'string') throw TypeError();
           return farmId;
+        }),
+        tap({
+          next: (farmId) => this.logService.addLog(farmId, LogActions.AddWeatherData).subscribe(),
         }),
         mergeMap((farmId) => {
           farmIdCache = farmId;

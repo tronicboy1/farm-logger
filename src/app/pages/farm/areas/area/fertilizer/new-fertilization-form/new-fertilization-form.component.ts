@@ -1,16 +1,19 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, finalize, first, forkJoin, map, mergeMap } from 'rxjs';
+import { BehaviorSubject, finalize, first, forkJoin, map, mergeMap, tap } from 'rxjs';
 import { FertilizationService } from 'src/app/farm/fertilization.service';
+import { LogActions } from 'src/app/log/log.model';
+import { LogService } from 'src/app/log/log.service';
 
 @Component({
   selector: 'app-new-fertilization-form',
   templateUrl: './new-fertilization-form.component.html',
   styleUrls: ['./new-fertilization-form.component.css', '../../../../../../../styles/basic-form.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewFertilizationFormComponent implements OnInit {
-  public typeOptions = ['堆肥', '人工肥料', '緑肥', 'その他'];
+  readonly typeOptions = Object.freeze(['堆肥', '人工肥料', '緑肥', 'その他']);
   public newFertilizationForm = new FormGroup({
     type: new FormControl(this.typeOptions[0], [Validators.required]),
     note: new FormControl(''),
@@ -19,7 +22,11 @@ export class NewFertilizationFormComponent implements OnInit {
   public loading = this.loadingSubject.asObservable();
   @Output() submitted = new EventEmitter<void>();
 
-  constructor(private route: ActivatedRoute, private fertilizationService: FertilizationService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private fertilizationService: FertilizationService,
+    private logService: LogService,
+  ) {}
 
   ngOnInit(): void {}
 
@@ -29,6 +36,9 @@ export class NewFertilizationFormComponent implements OnInit {
     const note = this.newFertilizationForm.controls.note.value!.trim();
     this.getFarmIdAndAreaId()
       .pipe(
+        tap({
+          next: ([farmId]) => this.logService.addLog(farmId, LogActions.AddFertilization).subscribe(),
+        }),
         mergeMap(([farmId, areaId]) =>
           this.fertilizationService.addFertilization(farmId, areaId, { completedAt: Date.now(), type, note }),
         ),

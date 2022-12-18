@@ -7,6 +7,8 @@ import { Area } from 'src/app/farm/area.model';
 import { AreaService } from 'src/app/farm/area.service';
 import { CoffeeTree } from 'src/app/farm/tree.model';
 import { GeolocationService } from 'src/app/farm/util/geolocation.service';
+import { LogActions } from 'src/app/log/log.model';
+import { LogService } from 'src/app/log/log.service';
 
 @Component({
   selector: 'app-area',
@@ -20,12 +22,16 @@ export class AreaComponent implements OnInit {
     private route: ActivatedRoute,
     private areaService: AreaService,
     private geolocationService: GeolocationService,
+    private logService: LogService,
   ) {}
 
   ngOnInit(): void {
     this.area = this.getFarmIdAndAreaId().pipe(
       mergeMap(([farmId, areaId]) => this.areaService.watchArea(farmId, areaId)),
     );
+    this.getFarmIdAndAreaId()
+      .pipe(mergeMap(([farmId]) => this.logService.addLog(farmId, LogActions.ViewArea)))
+      .subscribe();
     this.googleMapsURL = this.area.pipe(map((area) => this.geolocationService.getGoogleMapsURL(area)));
   }
 
