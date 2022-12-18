@@ -1,6 +1,6 @@
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { bufferTime, bufferWhen, filter, fromEvent, interval, map, Subscription, tap } from 'rxjs';
+import { buffer, debounceTime, filter, fromEvent, map, Subscription } from 'rxjs';
 import { globalStyles } from './shared';
 
 export const tagName = 'base-tooltip';
@@ -73,7 +73,7 @@ export class BaseTooltip extends LitElement {
     this.subscription.add(
       clicks$
         .pipe(
-          bufferTime(600),
+          buffer(clicks$.pipe(debounceTime(500))),
           filter((events) => events.length > 0),
           map((events) => events.length > 1),
         )
