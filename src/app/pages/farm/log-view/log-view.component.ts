@@ -22,12 +22,22 @@ export class LogViewComponent {
     mergeMap((farmId) => this.logService.getLogs(farmId)),
   );
   readonly observer = new IntersectionObserver(
-    (entries) =>
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
+    (entries) => {
+      const ids = entries.reduce((acc, entry) => {
+        if (!entry.isIntersecting) return acc;
         this.observer.unobserve(entry.target); // only read once
-        console.log(entry);
-      }),
+        const { target } = entry;
+        if (!(target instanceof HTMLElement)) throw TypeError();
+        const id = target.dataset['id']!;
+        return [...acc, id];
+      }, [] as string[]);
+      this.farmId$
+        .pipe(
+          first(),
+          mergeMap((farmId) => this.logService.setLogsAsViewed(farmId, ids)),
+        )
+        .subscribe();
+    },
     { threshold: 1 },
   );
 

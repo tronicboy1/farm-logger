@@ -1,7 +1,7 @@
 <div class="card">
   <h2>操作ログ</h2>
   <ul>
-    <li *ngFor="let log of this.logs$ | async" appObserverChild [observer]="this.observer">
+    <li *ngFor="let log of this.logs$ | async" appObserverChild [observer]="this.observer" [attr.data-id]="log.id">
       <p>{{ log.message }}</p>
       <small>{{ log.createdAt | date : 'short' }}</small>
     </li>
