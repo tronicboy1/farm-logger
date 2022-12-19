@@ -98,7 +98,7 @@ export class LogService {
       const lastPageViewLogForFarm = this.lastPageViewLog.getValue()[farmId] ?? {};
       const now = Date.now();
       const actionLastLoggedAt = lastPageViewLogForFarm[actionCode] ?? 0;
-      skipLog = !(now - actionLastLoggedAt > 2400000); // 40 mins
+      skipLog = !(now - actionLastLoggedAt > 86400000); // 1 day
       this.lastPageViewLog.next({
         ...this.lastPageViewLog.value,
         [farmId]: { ...lastPageViewLogForFarm, [actionCode]: now },
