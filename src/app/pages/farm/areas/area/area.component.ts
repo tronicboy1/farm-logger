@@ -5,7 +5,6 @@ import { first, forkJoin, map, mergeMap, Observable } from 'rxjs';
 import { Location } from 'src/app/components/location/location.component';
 import { Area } from 'src/app/farm/area.model';
 import { AreaService } from 'src/app/farm/area.service';
-import { CoffeeTree } from 'src/app/farm/tree.model';
 import { GeolocationService } from 'src/app/farm/util/geolocation.service';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';

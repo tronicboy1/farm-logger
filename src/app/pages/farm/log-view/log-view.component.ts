@@ -21,6 +21,15 @@ export class LogViewComponent {
     first(),
     mergeMap((farmId) => this.logService.getLogs(farmId)),
   );
+  readonly observer = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        this.observer.unobserve(entry.target); // only read once
+        console.log(entry);
+      }),
+    { threshold: 1 },
+  );
 
   constructor(private logService: LogService, private route: ActivatedRoute) {}
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, finalize, first, map, mergeMap, Subject, tap } from 'rxjs';
+import { BehaviorSubject, finalize, first, forkJoin, map, mergeMap, of, Subject, tap } from 'rxjs';
 import { AreaService } from 'src/app/farm/area.service';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
@@ -44,10 +44,12 @@ export class NewAreaFormComponent implements OnInit {
           if (typeof farmId !== 'string') throw TypeError();
           return farmId;
         }),
-        tap({
-          next: ([farmId]) => this.logService.addLog(farmId, LogActions.AddArea).subscribe(),
+        mergeMap((farmId) =>
+          forkJoin([this.areaService.createArea(farmId, { name, createdAt: Date.now() }), of(farmId)]),
+        ),
+        mergeMap(([ref, farmId]) => {
+          return this.logService.addLog(farmId, LogActions.AddArea, ref.id);
         }),
-        mergeMap((farmId) => this.areaService.createArea(farmId, { name, createdAt: Date.now() })),
         finalize(() => {
           this.loadingSubject.next(false);
           this.newAreaFormGroup.reset();

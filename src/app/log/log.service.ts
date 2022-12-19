@@ -39,7 +39,7 @@ export class LogService {
   private logsCache$?: Observable<RenderedLogEntry[]>;
   private lastFetched?: Date;
   private cachedFarmId?: string;
-  private lastPageViewLog = new BehaviorSubject<Record<string, Record<number, number>>>({}); // Record<farmId, Record<actionCode, last viewed at>>
+  private lastPageViewLog = new BehaviorSubject<Record<string, number>>({}); // Record<farmId, Record<actionCode, last viewed at>>
 
   constructor(protected authService: AuthService, protected userService: UserService) {
     const lastPageViewLogLocalStorageCache = window.localStorage.getItem('lastPageViewLog');
@@ -95,13 +95,13 @@ export class LogService {
   public addLog(farmId: string, actionCode: LogActions, value = ''): Observable<any> {
     let skipLog = false;
     if (viewLogActions.includes(actionCode)) {
-      const lastPageViewLogForFarm = this.lastPageViewLog.getValue()[farmId] ?? {};
+      const key = `${farmId}-${actionCode}${value}`;
+      const actionLastLoggedAt = this.lastPageViewLog.getValue()[key] ?? 0;
       const now = Date.now();
-      const actionLastLoggedAt = lastPageViewLogForFarm[actionCode] ?? 0;
       skipLog = !(now - actionLastLoggedAt > 86400000); // 1 day
       this.lastPageViewLog.next({
         ...this.lastPageViewLog.value,
-        [farmId]: { ...lastPageViewLogForFarm, [actionCode]: now },
+        [key]: now,
       });
     }
     if (skipLog) return of('');

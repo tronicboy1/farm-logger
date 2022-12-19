@@ -5,7 +5,7 @@ import { Directive, ElementRef, EventEmitter, Output } from '@angular/core';
 })
 export class ObservableDirective {
   private observer: IntersectionObserver;
-  @Output() intersection = new EventEmitter();
+  @Output() intersection = new EventEmitter<void>();
 
   constructor(public el: ElementRef) {
     this.observer = new IntersectionObserver(this.callback, { rootMargin: '100px', threshold: 0.5, root: null });
