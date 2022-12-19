@@ -95,16 +95,18 @@ export class AreaService {
   }
 
   public deleteAreas(farmId: string, areaId: string | string[], ...args: string[]) {
-    const coalescedIds = typeof areaId === 'string' ? [areaId, ...args] : [...areaId, ...args]
+    const coalescedIds = typeof areaId === 'string' ? [areaId, ...args] : [...areaId, ...args];
     const batch = writeBatch(Firebase.firestore);
-    const refs = coalescedIds.map(id => this.getRef(farmId, id));
-    refs.forEach(ref => batch.delete(ref));
+    const refs = coalescedIds.map((id) => this.getRef(farmId, id));
+    refs.forEach((ref) => batch.delete(ref));
     return batch.commit();
   }
 
-  private getRef(farmId: string, areaId?: undefined): CollectionReference<DocumentData>
-  private getRef(farmId: string, areaId: string): DocumentReference<DocumentData>
+  private getRef(farmId: string, areaId?: undefined): CollectionReference<DocumentData>;
+  private getRef(farmId: string, areaId: string): DocumentReference<DocumentData>;
   private getRef(farmId: string, areaId?: string) {
-    return areaId ? doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}`) : collection(Firebase.firestore, `farms/${farmId}/areas`);
+    return areaId
+      ? doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}`)
+      : collection(Firebase.firestore, `farms/${farmId}/areas`);
   }
 }

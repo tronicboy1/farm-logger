@@ -10,7 +10,7 @@ import { LogService } from 'src/app/log/log.service';
   selector: 'app-new-fertilization-form',
   templateUrl: './new-fertilization-form.component.html',
   styleUrls: ['./new-fertilization-form.component.css', '../../../../../../../styles/basic-form.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewFertilizationFormComponent implements OnInit {
   readonly typeOptions = Object.freeze(['堆肥', '人工肥料', '緑肥', 'その他']);

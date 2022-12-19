@@ -10,7 +10,7 @@ import { LogService } from 'src/app/log/log.service';
   selector: 'app-new-cropdust-form',
   templateUrl: './new-cropdust-form.component.html',
   styleUrls: ['./new-cropdust-form.component.css', '../../../../../../../styles/basic-form.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewCropdustFormComponent implements OnInit {
   public newFertilizationForm = new FormGroup({

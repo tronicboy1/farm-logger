@@ -8,9 +8,8 @@ describe('LogViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LogViewComponent ]
-    })
-    .compileComponents();
+      declarations: [LogViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LogViewComponent);
     component = fixture.componentInstance;

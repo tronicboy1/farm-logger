@@ -85,7 +85,7 @@ export class LogService {
           createdAt: log.createdAt,
           message: (log.displayName ?? log.email) + logDictionary[log.action] + log.value,
           id: log.id,
-          viewedCurrentUser: log.viewedBy.includes(uid),
+          viewedCurrentUser: (log.viewedBy ?? [uid]).includes(uid), // old logs dont have array
         })),
       ),
       shareReplay(1),

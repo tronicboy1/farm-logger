@@ -55,7 +55,7 @@ export class TreeComponent implements OnInit {
       map((reports) => reports.find((report) => report.id === id)),
       map((report) => report?.photoPath),
       mergeMap((photoPath) => (photoPath ? this.photoService.deletePhoto(photoPath) : of(''))),
-      catchError(() => of(''))
+      catchError(() => of('')),
     );
     const deleteReport$ = this.getFarmIdAreaIdAndTreeId().pipe(
       mergeMap(([farmId, areaId, treeId]) => this.treeReportService.removeReport(farmId, areaId, treeId, id)),

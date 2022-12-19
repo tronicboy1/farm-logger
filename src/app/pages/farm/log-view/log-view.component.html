@@ -3,7 +3,7 @@
   <ul>
     <li *ngFor="let log of this.logs$ | async">
       <p>{{ log.message }}</p>
-      <small>{{ log.createdAt | date: 'short' }}</small>
+      <small>{{ log.createdAt | date : 'short' }}</small>
     </li>
   </ul>
 </div>

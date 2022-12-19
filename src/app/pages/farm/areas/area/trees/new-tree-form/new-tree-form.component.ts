@@ -12,7 +12,7 @@ import { TreeNameIsUniqueValidator } from './tree-name-is-unique.validator';
   templateUrl: './new-tree-form.component.html',
   styleUrls: ['./new-tree-form.component.css', '../../../../../../../styles/basic-form.css'],
   providers: [TreeNameIsUniqueValidator],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewTreeFormComponent implements OnInit {
   public newTreeFromGroup = new FormGroup({

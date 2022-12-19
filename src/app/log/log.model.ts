@@ -4,14 +4,14 @@ export type LogEntry = {
   action: LogActions;
   iconCode?: number;
   value: string;
-  viewedBy: string[]; // uid array
+  viewedBy?: string[]; // uid array, old logs not defined
 };
 
 export type RenderedLogEntry = {
   createdAt: number;
   message: string;
   id: string;
-  viewedCurrentUser: boolean
+  viewedCurrentUser: boolean;
 };
 
 export enum LogActions {
@@ -55,7 +55,7 @@ export const logDictionary: Record<number, string> = {
   [LogActions.DeleteFertilization]: 'が施肥記録を削除した',
   [LogActions.AddCropdust]: 'が散布記録を作成した',
   [LogActions.DeleteCropdust]: 'が散布記録を削除した',
-  [LogActions.DeleteArea]: 'が区域を削除した：'
+  [LogActions.DeleteArea]: 'が区域を削除した：',
 };
 
-export const viewLogActions = [LogActions.ViewFarm, LogActions.ViewArea]
+export const viewLogActions = [LogActions.ViewFarm, LogActions.ViewArea];

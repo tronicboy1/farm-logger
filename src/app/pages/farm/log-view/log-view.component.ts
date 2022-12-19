@@ -7,7 +7,7 @@ import { LogService } from 'src/app/log/log.service';
   selector: 'app-log-view',
   templateUrl: './log-view.component.html',
   styleUrls: ['./log-view.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LogViewComponent {
   private farmId$ = this.route.params.pipe(
