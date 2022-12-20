@@ -11,3 +11,14 @@ h1,
 h3 {
   text-align: center;
 }
+
+.round-block {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  row-gap: 1rem;
+}
+
+.round-block .round {
+  height: 96px;
+  width: 96px;
+}

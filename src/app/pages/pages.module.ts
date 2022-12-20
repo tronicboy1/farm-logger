@@ -29,6 +29,8 @@ import { WeatherFormComponent } from './farm/environment/weather-form/weather-fo
 import '@web-components/base-tooltip';
 import { LogViewComponent } from './farm/log-view/log-view.component';
 import { DeleteAreaFormComponent } from './farm/areas/delete-area-form/delete-area-form.component';
+import { EditTreeFormComponent } from './farm/areas/area/trees/tree/edit-tree-form/edit-tree-form.component';
+import { EditAreaFormComponent } from './farm/areas/area/index/edit-area-form/edit-area-form.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { DeleteAreaFormComponent } from './farm/areas/delete-area-form/delete-ar
     WeatherFormComponent,
     LogViewComponent,
     DeleteAreaFormComponent,
+    EditTreeFormComponent,
+    EditAreaFormComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule, ComponentsModule, CustomDirectivesModule],
   /** Adding custom Elements Schema allows use of custom tags i.e. Web Components. */

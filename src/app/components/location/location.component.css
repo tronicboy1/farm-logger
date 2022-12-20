@@ -26,16 +26,15 @@ h1 {
   flex-direction: column;
 }
 
-.card {
-  max-width: 60%;
+.warning-icon {
+  border-color: var(--warning-color);
+  background-color: var(--warning-color);
+}
+.warning-icon svg {
+  fill: var(--text-color);
 }
 
-.warning {
-  height: 60px;
-  width: 60px;
-}
-
-.warning svg {
-  max-width: 100%;
-  height: auto;
+.round {
+  height: 96px;
+  width: 96px;
 }
