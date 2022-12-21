@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { first, forkJoin, map } from 'rxjs';
+import { AreaService } from 'src/app/farm/area.service';
 import { TreeService } from 'src/app/farm/tree.service';
 
 @Component({
   template: '',
 })
-export class RouteParamsComponent {
+export class AreaRouteParamsComponent {
+  protected areaService = inject(AreaService);
+  protected route = inject(ActivatedRoute);
+  protected treeService = inject(TreeService);
   public newTreeFromGroup = new FormGroup({
     regularId: new FormControl(),
   });
-  constructor(protected route: ActivatedRoute, protected treeService: TreeService) {}
 
   protected getFarmIdAndAreaId() {
     const params$ = [
