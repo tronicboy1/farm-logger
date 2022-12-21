@@ -11,7 +11,7 @@ import { AreaRouteParamsComponent } from '../../route-params.inheritable';
 export class EditAreaFormComponent extends AreaRouteParamsComponent implements OnInit {
   @Output() submitted = new EventEmitter<void>();
   formGroup = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.minLength(1)]),
   });
   loading$ = new BehaviorSubject(false);
 
@@ -24,7 +24,7 @@ export class EditAreaFormComponent extends AreaRouteParamsComponent implements O
   }
 
   handleSubmit() {
-    if (this.loading$.getValue()) return;
+    if (this.loading$.getValue() || this.formGroup.invalid) return;
     const name = this.formGroup.value.name!;
     this.loading$.next(true);
     this.getFarmIdAndAreaId()
