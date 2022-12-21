@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, finalize, first, forkJoin, map, mergeMap, tap } from 'rxjs';
+import { BehaviorSubject, finalize, mergeMap, tap } from 'rxjs';
 import { FertilizationService } from 'src/app/farm/fertilization.service';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
+import { AreaRouteParamsComponent } from '../../route-params.inheritable';
 
 @Component({
   selector: 'app-new-fertilization-form',
@@ -12,7 +12,7 @@ import { LogService } from 'src/app/log/log.service';
   styleUrls: ['./new-fertilization-form.component.css', '../../../../../../../styles/basic-form.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewFertilizationFormComponent implements OnInit {
+export class NewFertilizationFormComponent extends AreaRouteParamsComponent {
   readonly typeOptions = Object.freeze(['堆肥', '人工肥料', '緑肥', 'その他']);
   public newFertilizationForm = new FormGroup({
     type: new FormControl(this.typeOptions[0], [Validators.required]),
@@ -22,13 +22,9 @@ export class NewFertilizationFormComponent implements OnInit {
   public loading = this.loadingSubject.asObservable();
   @Output() submitted = new EventEmitter<void>();
 
-  constructor(
-    private route: ActivatedRoute,
-    private fertilizationService: FertilizationService,
-    private logService: LogService,
-  ) {}
-
-  ngOnInit(): void {}
+  constructor(private fertilizationService: FertilizationService, private logService: LogService) {
+    super();
+  }
 
   public handleSubmit() {
     if (this.loadingSubject.value) return;
@@ -49,25 +45,5 @@ export class NewFertilizationFormComponent implements OnInit {
         }),
       )
       .subscribe();
-  }
-
-  private getFarmIdAndAreaId() {
-    const params$ = [
-      this.route.parent!.parent!.params.pipe(
-        first(),
-        map(({ farmId }) => {
-          if (typeof farmId !== 'string') throw TypeError('no farmId');
-          return farmId;
-        }),
-      ),
-      this.route.parent!.params.pipe(
-        first(),
-        map(({ areaId }) => {
-          if (typeof areaId !== 'string') throw TypeError('no areaId');
-          return areaId;
-        }),
-      ),
-    ] as const;
-    return forkJoin(params$);
   }
 }

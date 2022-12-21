@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, first, forkJoin, map, mergeMap, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, mergeMap, Observable, switchMap } from 'rxjs';
 import { CropdustService, CropdustWithId } from 'src/app/farm/cropdust.service';
+import { AreaRouteParamsComponent } from '../route-params.inheritable';
 
 @Component({
   selector: 'app-cropdust',
   templateUrl: './cropdust.component.html',
   styleUrls: ['./cropdust.component.css'],
 })
-export class CropdustComponent implements OnInit {
+export class CropdustComponent extends AreaRouteParamsComponent implements OnInit {
   private showAddModalSubject = new BehaviorSubject(false);
   public showAddModal = this.showAddModalSubject.asObservable();
   public cropdusts = new Observable<CropdustWithId[]>();
 
-  constructor(private route: ActivatedRoute, private cropdustService: CropdustService) {}
+  constructor(private cropdustService: CropdustService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.cropdusts = this.getFarmIdAndAreaId().pipe(
@@ -27,25 +29,5 @@ export class CropdustComponent implements OnInit {
     this.getFarmIdAndAreaId()
       .pipe(mergeMap(([farmId, areaId]) => this.cropdustService.removeCropdust(farmId, areaId, id)))
       .subscribe();
-  }
-
-  private getFarmIdAndAreaId() {
-    const params$ = [
-      this.route.parent!.parent!.params.pipe(
-        first(),
-        map(({ farmId }) => {
-          if (typeof farmId !== 'string') throw TypeError('no farmId');
-          return farmId;
-        }),
-      ),
-      this.route.parent!.params.pipe(
-        first(),
-        map(({ areaId }) => {
-          if (typeof areaId !== 'string') throw TypeError('no areaId');
-          return areaId;
-        }),
-      ),
-    ] as const;
-    return forkJoin(params$);
   }
 }

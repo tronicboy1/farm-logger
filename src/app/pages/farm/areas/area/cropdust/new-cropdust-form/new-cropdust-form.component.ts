@@ -5,6 +5,7 @@ import { BehaviorSubject, finalize, first, forkJoin, map, mergeMap, tap } from '
 import { CropdustService } from 'src/app/farm/cropdust.service';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
+import { AreaRouteParamsComponent } from '../../route-params.inheritable';
 
 @Component({
   selector: 'app-new-cropdust-form',
@@ -12,7 +13,7 @@ import { LogService } from 'src/app/log/log.service';
   styleUrls: ['./new-cropdust-form.component.css', '../../../../../../../styles/basic-form.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewCropdustFormComponent implements OnInit {
+export class NewCropdustFormComponent extends AreaRouteParamsComponent implements OnInit {
   public newFertilizationForm = new FormGroup({
     type: new FormControl('', [Validators.required]),
     note: new FormControl(''),
@@ -21,11 +22,9 @@ export class NewCropdustFormComponent implements OnInit {
   public loading = this.loadingSubject.asObservable();
   @Output() submitted = new EventEmitter<void>();
 
-  constructor(
-    private route: ActivatedRoute,
-    private cropdustService: CropdustService,
-    private logService: LogService,
-  ) {}
+  constructor(private cropdustService: CropdustService, private logService: LogService) {
+    super();
+  }
 
   ngOnInit(): void {}
 
@@ -48,25 +47,5 @@ export class NewCropdustFormComponent implements OnInit {
         }),
       )
       .subscribe();
-  }
-
-  private getFarmIdAndAreaId() {
-    const params$ = [
-      this.route.parent!.parent!.params.pipe(
-        first(),
-        map(({ farmId }) => {
-          if (typeof farmId !== 'string') throw TypeError('no farmId');
-          return farmId;
-        }),
-      ),
-      this.route.parent!.params.pipe(
-        first(),
-        map(({ areaId }) => {
-          if (typeof areaId !== 'string') throw TypeError('no areaId');
-          return areaId;
-        }),
-      ),
-    ] as const;
-    return forkJoin(params$);
   }
 }
