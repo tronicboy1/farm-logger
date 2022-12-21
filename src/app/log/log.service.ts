@@ -56,7 +56,7 @@ export class LogService {
 
   public getLogs(farmId: string, limitNumber = 10): Observable<RenderedLogEntry[]> {
     const isOutdated = this.lastFetched && Date.now() - this.lastFetched.getTime() > 240000; // 4 mins
-    const isDifferentFarm = this.cachedFarmId === farmId;
+    const isDifferentFarm = this.cachedFarmId !== farmId;
     if (isOutdated || isDifferentFarm) this.logsCache$ = undefined;
     this.cachedFarmId = farmId;
     return (this.logsCache$ ||= from(
