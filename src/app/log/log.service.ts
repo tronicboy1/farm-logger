@@ -58,6 +58,7 @@ export class LogService {
     const isOutdated = this.lastFetched && Date.now() - this.lastFetched.getTime() > 240000; // 4 mins
     const isDifferentFarm = this.cachedFarmId === farmId;
     if (isOutdated || isDifferentFarm) this.logsCache$ = undefined;
+    this.cachedFarmId = farmId;
     return (this.logsCache$ ||= from(
       (() => {
         const ref = this.getRef(farmId);
