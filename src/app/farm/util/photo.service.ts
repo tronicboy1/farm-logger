@@ -7,7 +7,6 @@ import { app } from '@custom-firebase/firebase';
   providedIn: FarmModule,
 })
 export class PhotoService {
-  static defaultFileEnd = 'img.png';
   constructor() {}
 
   public uploadPhoto(file: File, path: string) {
@@ -23,6 +22,9 @@ export class PhotoService {
     return storageRef(storage, path);
   }
 
+  static defaultFileEnd = 'img.jpeg';
+  static defaultImageType = 'image/jpeg';
+  static maxImageHeight = 600;
   static compressPhoto(file: File): Promise<File> {
     return new Promise<HTMLImageElement>((resolve) => {
       const image = new Image();
@@ -35,23 +37,30 @@ export class PhotoService {
           new Promise<File>((resolve) => {
             const { naturalHeight, naturalWidth } = image;
             const canvas = document.createElement('canvas');
-            const compress = Math.max(naturalHeight, naturalWidth) > 400;
-            const widthCompressionRatio = 400 / naturalHeight;
+            const compress = Math.max(naturalHeight, naturalWidth) > PhotoService.maxImageHeight;
+            const widthCompressionRatio = PhotoService.maxImageHeight / naturalHeight;
             const compressedWidth = Math.floor(widthCompressionRatio * naturalWidth);
             canvas.width = compress ? compressedWidth : naturalWidth;
-            canvas.height = compress ? 400 : naturalHeight;
+            canvas.height = compress ? PhotoService.maxImageHeight : naturalHeight;
             const context = canvas.getContext('2d');
             if (!context) throw Error('Unable to load context.');
             const { width, height } = canvas;
             context!.clearRect(0, 0, width, height);
             context.drawImage(image, 0, 0, naturalWidth, naturalHeight, 0, 0, width, height);
-            canvas.toBlob((blob) => {
-              if (!blob) throw Error('No blob was generated');
-              const file = new File([blob], this.defaultFileEnd, { lastModified: Date.now() });
-              const transfer = new DataTransfer();
-              transfer.items.add(file);
-              resolve(transfer.files[0]);
-            });
+            canvas.toBlob(
+              (blob) => {
+                if (!blob) throw Error('No blob was generated');
+                const file = new File([blob], this.defaultFileEnd, {
+                  lastModified: Date.now(),
+                  type: PhotoService.defaultImageType,
+                });
+                const transfer = new DataTransfer();
+                transfer.items.add(file);
+                resolve(transfer.files[0]);
+              },
+              PhotoService.defaultImageType,
+              0.8,
+            );
           }),
       )
       .catch(() => file);
