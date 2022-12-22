@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, finalize, first, forkJoin, from, map, mergeMap, Observable, of, switchMap, tap } from 'rxjs';
 import { TreeReportService } from 'src/app/farm/tree-report.service';
 import { TreeService } from 'src/app/farm/tree.service';
 import { PhotoService } from 'src/app/farm/util/photo.service';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
+import { TreeIdInheritable } from '../tree-id.inhertible';
 
 @Component({
   selector: 'app-new-report-form',
@@ -14,7 +14,7 @@ import { LogService } from 'src/app/log/log.service';
   styleUrls: ['./new-report-form.component.css', '../../../../../../../../styles/basic-form.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewReportFormComponent implements OnInit {
+export class NewReportFormComponent extends TreeIdInheritable implements OnInit {
   buddingOptions = ['未着花', '良好', '不良'];
   yieldOptions = ['未', '良好', '不良'];
   public newReportForm = new FormGroup({
@@ -30,18 +30,26 @@ export class NewReportFormComponent implements OnInit {
   @Output() submitted = new EventEmitter<void>();
 
   constructor(
-    private route: ActivatedRoute,
     private treeService: TreeService,
     private treeReportService: TreeReportService,
     private photoService: PhotoService,
     private logService: LogService,
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
-    this.regularId = this.getFarmIdAndAreaId().pipe(
+    this.regularId = this.getFarmIdAreaIdAndTreeId().pipe(
       switchMap(([farmId, areaId, treeId]) => this.treeService.getTree(farmId, areaId, treeId)),
       map((tree) => tree.regularId),
     );
+    // Load last recorded height to make input of just pictures easier
+    this.getFarmIdAreaIdAndTreeId()
+      .pipe(
+        mergeMap(([farmId, areaId, treeId]) => this.treeReportService.getLatestReport(farmId, areaId, treeId)),
+        first(),
+      )
+      .subscribe((report) => this.newReportForm.controls.height.setValue(report?.height ?? 100));
   }
 
   public handleReportSubmit(event: Event) {
@@ -57,7 +65,7 @@ export class NewReportFormComponent implements OnInit {
     const picture = formData.get('picture')!;
     let photoPath = '';
     if (!(picture instanceof File)) throw TypeError();
-    this.getFarmIdAndAreaId()
+    this.getFarmIdAreaIdAndTreeId()
       .pipe(
         switchMap(([farmId, areaId, treeId]) =>
           forkJoin([
@@ -93,32 +101,5 @@ export class NewReportFormComponent implements OnInit {
         }),
       )
       .subscribe();
-  }
-
-  private getFarmIdAndAreaId() {
-    const params$ = [
-      this.route.parent!.parent!.params.pipe(
-        first(),
-        map(({ farmId }) => {
-          if (typeof farmId !== 'string') throw TypeError('no farmId');
-          return farmId;
-        }),
-      ),
-      this.route.parent!.params.pipe(
-        first(),
-        map(({ areaId }) => {
-          if (typeof areaId !== 'string') throw TypeError('no areaId');
-          return areaId;
-        }),
-      ),
-      this.route.params.pipe(
-        first(),
-        map(({ treeId }) => {
-          if (typeof treeId !== 'string') throw TypeError('no treeId');
-          return treeId;
-        }),
-      ),
-    ] as const;
-    return forkJoin(params$);
   }
 }

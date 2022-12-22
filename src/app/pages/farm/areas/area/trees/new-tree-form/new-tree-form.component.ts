@@ -5,6 +5,7 @@ import { BehaviorSubject, filter, finalize, first, forkJoin, map, mergeMap, tap 
 import { TreeService } from 'src/app/farm/tree.service';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
+import { AreaRouteParamsComponent } from '../../route-params.inheritable';
 import { TreeNameIsUniqueValidator } from './tree-name-is-unique.validator';
 
 @Component({
@@ -14,7 +15,7 @@ import { TreeNameIsUniqueValidator } from './tree-name-is-unique.validator';
   providers: [TreeNameIsUniqueValidator],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewTreeFormComponent implements OnInit {
+export class NewTreeFormComponent extends AreaRouteParamsComponent implements OnInit {
   public newTreeFromGroup = new FormGroup({
     regularId: new FormControl<number | null>(null, {
       validators: [Validators.required, Validators.min(1)],
@@ -34,14 +35,19 @@ export class NewTreeFormComponent implements OnInit {
     }),
   );
 
-  constructor(
-    private route: ActivatedRoute,
-    private treeService: TreeService,
-    private treeNameIsUnique: TreeNameIsUniqueValidator,
-    private logService: LogService,
-  ) {}
+  constructor(private treeNameIsUnique: TreeNameIsUniqueValidator, private logService: LogService) {
+    super();
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getFarmIdAndAreaId()
+      .pipe(
+        mergeMap(([farmId, areaId]) => this.treeService.watchTrees(farmId, areaId)),
+        first(),
+        map((trees) => trees.reduce((regularId, tree) => (tree.regularId > regularId ? tree.regularId : regularId), 0)),
+      )
+      .subscribe((latestId) => this.newTreeFromGroup.controls.regularId.setValue(latestId + 1, { emitEvent: true }));
+  }
 
   handleSubmit() {
     if (this.loadingSubject.value) return;
@@ -64,23 +70,5 @@ export class NewTreeFormComponent implements OnInit {
         }),
       )
       .subscribe();
-  }
-
-  private getFarmIdAndAreaId() {
-    const params$ = [
-      this.route.parent!.parent!.params.pipe(
-        map(({ farmId }) => {
-          if (typeof farmId !== 'string') throw TypeError('no farmId');
-          return farmId;
-        }),
-      ),
-      this.route.parent!.params.pipe(
-        map(({ areaId }) => {
-          if (typeof areaId !== 'string') throw TypeError('no areaId');
-          return areaId;
-        }),
-      ),
-    ].map((param$) => param$.pipe(first()));
-    return forkJoin(params$);
   }
 }

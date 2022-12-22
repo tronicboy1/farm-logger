@@ -1,31 +1,33 @@
 import { inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { filter, first, forkJoin, map } from 'rxjs';
-import { AreaService } from 'src/app/farm/area.service';
-import { TreeService } from 'src/app/farm/tree.service';
+import { first, forkJoin, map } from 'rxjs';
 
-export class AreaRouteParamsComponent {
-  protected areaService = inject(AreaService);
-  protected route = inject(ActivatedRoute);
-  protected treeService = inject(TreeService);
-
-  protected getFarmIdAndAreaId() {
+export class TreeIdInheritable {
+  private route = inject(ActivatedRoute);
+  protected getFarmIdAreaIdAndTreeId() {
     const params$ = [
       this.route.parent!.parent!.params.pipe(
-        filter(({ farmId }) => Boolean(farmId)),
+        first(),
         map(({ farmId }) => {
           if (typeof farmId !== 'string') throw TypeError('no farmId');
           return farmId;
         }),
       ),
       this.route.parent!.params.pipe(
-        filter(({ areaId }) => Boolean(areaId)),
+        first(),
         map(({ areaId }) => {
           if (typeof areaId !== 'string') throw TypeError('no areaId');
           return areaId;
         }),
       ),
-    ].map((param$) => param$.pipe(first()));
+      this.route.params.pipe(
+        first(),
+        map(({ treeId }) => {
+          if (typeof treeId !== 'string') throw TypeError('no treeId');
+          return treeId;
+        }),
+      ),
+    ] as const;
     return forkJoin(params$);
   }
 }

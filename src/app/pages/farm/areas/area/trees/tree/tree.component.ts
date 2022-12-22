@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, catchError, first, forkJoin, map, mergeMap, Observable, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, catchError, first, map, mergeMap, Observable, of, switchMap } from 'rxjs';
 import { TreeReportService } from 'src/app/farm/tree-report.service';
 import { CoffeeTree, CoffeeTreeReportWithId } from 'src/app/farm/tree.model';
 import { TreeService } from 'src/app/farm/tree.service';
 import { PhotoService } from 'src/app/farm/util/photo.service';
+import { TreeIdInheritable } from './tree-id.inhertible';
 
 @Component({
   selector: 'app-tree',
@@ -12,7 +12,7 @@ import { PhotoService } from 'src/app/farm/util/photo.service';
   styleUrls: ['./tree.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TreeComponent implements OnInit {
+export class TreeComponent extends TreeIdInheritable implements OnInit {
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
   public tree = new Observable<CoffeeTree>();
@@ -25,11 +25,12 @@ export class TreeComponent implements OnInit {
   readonly reportToDelete$ = this.reportToDeleteSubject.asObservable();
 
   constructor(
-    private route: ActivatedRoute,
     private treeService: TreeService,
     private treeReportService: TreeReportService,
     private photoService: PhotoService,
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.tree = this.getFarmIdAreaIdAndTreeId().pipe(
@@ -61,32 +62,5 @@ export class TreeComponent implements OnInit {
       mergeMap(([farmId, areaId, treeId]) => this.treeReportService.removeReport(farmId, areaId, treeId, id)),
     );
     deletePhoto$.pipe(mergeMap(() => deleteReport$)).subscribe();
-  }
-
-  private getFarmIdAreaIdAndTreeId() {
-    const params$ = [
-      this.route.parent!.parent!.params.pipe(
-        first(),
-        map(({ farmId }) => {
-          if (typeof farmId !== 'string') throw TypeError('no farmId');
-          return farmId;
-        }),
-      ),
-      this.route.parent!.params.pipe(
-        first(),
-        map(({ areaId }) => {
-          if (typeof areaId !== 'string') throw TypeError('no areaId');
-          return areaId;
-        }),
-      ),
-      this.route.params.pipe(
-        first(),
-        map(({ treeId }) => {
-          if (typeof treeId !== 'string') throw TypeError('no treeId');
-          return treeId;
-        }),
-      ),
-    ] as const;
-    return forkJoin(params$);
   }
 }
