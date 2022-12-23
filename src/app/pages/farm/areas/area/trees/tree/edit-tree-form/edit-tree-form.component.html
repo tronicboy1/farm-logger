@@ -1,1 +1,12 @@
-<p>edit-tree-form works!</p>
+<form appSubmitOnModifierEnter [formGroup]="this.formGroup" (ngSubmit)="this.handleSubmit()">
+  <label for="regular-id">整理番号</label>
+  <p *ngIf="this.treeIdError$ | async" class="warning">整理番号は既に登録されています。</p>
+  <input id="regular-id" required type="number" min="1" formControlName="regularId" />
+  <label for="species">品種</label>
+  <input type="text" required id="species" formControlName="species" />
+  <label for="start-height">根付いた頃の高さ(cm)</label>
+  <input id="start-height" required type="number" min="1" formControlName="startHeight" />
+  <button type="submit" [disabled]="this.formGroup.invalid"><ng-container
+      *ngIf="!(this.loading$ | async); else loadingSpinner">送信</ng-container></button>
+</form>
+<ng-template #loadingSpinner><loading-spinner color="white"></loading-spinner></ng-template>

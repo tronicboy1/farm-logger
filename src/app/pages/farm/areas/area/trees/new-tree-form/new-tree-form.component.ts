@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, filter, finalize, first, forkJoin, map, mergeMap, tap } from 'rxjs';
-import { TreeService } from 'src/app/farm/tree.service';
+import { BehaviorSubject, filter, finalize, first, map, mergeMap, tap } from 'rxjs';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
 import { AreaRouteParamsComponent } from '../../route-params.inheritable';

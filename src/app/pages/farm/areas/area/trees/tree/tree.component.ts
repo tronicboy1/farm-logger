@@ -21,6 +21,7 @@ export class TreeComponent extends TreeIdInheritable implements OnInit {
   public showAddModal = this.showAddModalSubject.asObservable();
   private showPictureModalSubject = new BehaviorSubject<string | undefined>(undefined);
   readonly showPictureModal$ = this.showPictureModalSubject.asObservable();
+  readonly showEditModal$ = new BehaviorSubject(false);
   private reportToDeleteSubject = new BehaviorSubject<string | undefined>(undefined);
   readonly reportToDelete$ = this.reportToDeleteSubject.asObservable();
 
@@ -42,6 +43,7 @@ export class TreeComponent extends TreeIdInheritable implements OnInit {
   }
 
   public toggleAddModal = (force?: boolean) => this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);
+  public toggleEditModal = (force?: boolean) => this.showEditModal$.next(force ?? !this.showEditModal$.value);
   public togglePictureModal = (photoURL: string | undefined) => this.showPictureModalSubject.next(photoURL);
 
   public setReportToDelete(id: string | undefined) {

@@ -4,28 +4,15 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@custom-firebase/*": [
-        "src/firebase/*"
-      ],
-      "@lib/*": [
-        "src/lib/*"
-      ],
-      "@user/*": [
-        "src/app/user-module/*"
-      ],
-      "@web-components/*": [
-        "src/web-components/*"
-      ],
-      "@pages/*": [
-        "src/app/pages/*"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@log/*": ["src/log/*"]
+      "@custom-firebase/*": ["src/firebase/*"],
+      "@lib/*": ["src/lib/*"],
+      "@user/*": ["src/app/user-module/*"],
+      "@web-components/*": ["src/web-components/*"],
+      "@pages/*": ["src/app/pages/*"],
+      "@styles/*": ["src/styles/*"],
+      "@components/*": ["src/app/components/*"],
+      "@log/*": ["src/app/log/*"],
+      "@farm/*": ["src/app/farm/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -42,10 +29,7 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "es2020",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "lib": ["ESNext", "dom"],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {

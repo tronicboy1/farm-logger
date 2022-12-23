@@ -1,9 +1,14 @@
+import { AbstractControl } from '@angular/forms';
+
 export type CoffeeTree = {
   regularId: number;
   species: string;
   startHeight: number;
-  location?: [number, number, number | null];
 };
+
+type ToFormGroupType<T> = { [key in keyof T]: AbstractControl<T[key]> };
+
+export type CoffeeTreeForm = ToFormGroupType<CoffeeTree>;
 
 export type CoffeeTreeReport = {
   photoURL?: string;
