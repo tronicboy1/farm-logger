@@ -58,7 +58,7 @@
 </base-modal>
 
 <base-modal [show]="this.reportToDelete$ | async" (modal-closed)="this.setReportToDelete(undefined)"
-  modal-title="本当に削除しますか？">
+  modal-title="本当に削除しますか？" appCloseOnEsc>
   <div class="confirm-buttons">
     <button type="button" class="delete" (click)="this.removeReport()">削除</button>
     <button type="button" (click)="this.setReportToDelete(undefined)">キャンセル</button>

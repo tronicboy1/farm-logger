@@ -1,4 +1,4 @@
-<form (submit)="this.handleSubmit($event)" [formGroup]="this.deleteFormGroup" id="delete-form">
+<form (submit)="this.handleSubmit($event)" [formGroup]="this.deleteFormGroup" id="delete-form" appCloseOnEsc>
   <label for="areas">区域選択</label>
   <select name="areas" id="areas" multiple formControlName="areas">
     <option *ngFor="let area of this.areas$ | async" [ngValue]="area.id">{{ area.name }}</option>

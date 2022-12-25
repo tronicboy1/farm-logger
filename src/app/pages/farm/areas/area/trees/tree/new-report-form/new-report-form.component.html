@@ -1,17 +1,12 @@
-<form [formGroup]="this.newReportForm" (ngSubmit)="this.handleReportSubmit($event)">
+<form appSubmitOnModifierEnter appCloseOnEsc [formGroup]="this.newReportForm"
+  (ngSubmit)="this.handleReportSubmit($event)">
   <label for="regular-id">整理番号</label>
   <input id="regular-id" readonly type="number" [value]="this.regularId | async" />
   <label for="height">高さ (cm)</label>
-  <input type="number" name="height" id="height" required formControlName="height" />
+  <input type="number" name="height" id="height" required formControlName="height" appAutoFocus />
   <label for="picture">画像</label>
-  <input
-    type="file"
-    name="picture"
-    id="picture"
-    accept="image/png, image/jpeg"
-    size="500000"
-    formControlName="picture"
-  />
+  <input type="file" name="picture" id="picture" accept="image/png, image/jpeg" size="500000"
+    formControlName="picture" />
   <label for="budding">摘芯後の着花</label>
   <select name="budding" id="budding" formControlName="budding">
     <option *ngFor="let option of this.buddingOptions" [value]="option">{{ option }}</option>

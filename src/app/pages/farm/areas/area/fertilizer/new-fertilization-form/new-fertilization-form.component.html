@@ -1,4 +1,4 @@
-<form [formGroup]="this.newFertilizationForm" (ngSubmit)="this.handleSubmit()" appSubmitOnModifierEnter>
+<form [formGroup]="this.newFertilizationForm" (ngSubmit)="this.handleSubmit()" appSubmitOnModifierEnter appCloseOnEsc>
   <label for="type">肥料の種類</label>
   <select name="type" id="type" formControlName="type">
     <option *ngFor="let option of this.typeOptions" [value]="option">{{ option }}</option>

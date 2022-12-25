@@ -1,5 +1,5 @@
-<div class="card round" (click)="this.toggleMap()" title="位置情報を確認したり、更新したりする" style="position: relative"
-  [class.warning-icon]="!this.googleMapsURL">
+<div [title]="this.googleMapsURL ? '位置情報を確認したり、再設定する画面' : '位置情報が未設定'" class="card round" (click)="this.toggleMap()"
+  title="位置情報を確認したり、更新したりする" style="position: relative" [class.warning-icon]="!this.googleMapsURL">
   <svg *ngIf="this.googleMapsURL; else locationNotSet" xmlns="http://www.w3.org/2000/svg" height="48" width="48"
     viewBox="0,0,48,48">
     <path

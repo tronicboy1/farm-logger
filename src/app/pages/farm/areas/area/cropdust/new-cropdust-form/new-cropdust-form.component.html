@@ -1,6 +1,6 @@
-<form [formGroup]="this.newFertilizationForm" (ngSubmit)="this.handleSubmit()" appSubmitOnModifierEnter>
+<form appCloseOnEsc [formGroup]="this.newFertilizationForm" (ngSubmit)="this.handleSubmit()" appSubmitOnModifierEnter>
   <label for="type">農薬の種類</label>
-  <input type="text" name="type" id="type" required formControlName="type" />
+  <input type="text" name="type" id="type" required formControlName="type" appAutoFocus />
   <label for="note">メモ</label>
   <textarea name="note" id="note" formControlName="note"></textarea>
   <button type="submit">登録</button>
