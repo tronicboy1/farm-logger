@@ -9,7 +9,11 @@ export class AutoFocusDirective implements AfterViewInit, OnDestroy {
   static readonly observer = new IntersectionObserver((entries) =>
     entries
       .filter((entry) => entry.isIntersecting)
-      .map((entry) => entry.target as HTMLInputElement)
+      .map((entry) => {
+        const { target } = entry;
+        if (!(target instanceof HTMLInputElement)) throw TypeError('Must observe input elements');
+        return target;
+      })
       .forEach((el) => {
         const key = el[AutoFocusDirective.attributeKey];
         if (!key) throw TypeError('Input element has no auto focus attribute key.');
