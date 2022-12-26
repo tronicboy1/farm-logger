@@ -26,7 +26,8 @@ export class AutoFocusDirective implements AfterViewInit, OnDestroy {
   private uniqueKey = Symbol('InstanceStaticCacheKey');
   private el = inject(ElementRef);
   get nativeElement() {
-    if (!(this.el.nativeElement instanceof HTMLInputElement)) throw TypeError();
+    if (!(this.el.nativeElement instanceof HTMLInputElement))
+      throw TypeError('Auto focus must be used with input element.');
     return this.el.nativeElement;
   }
 
