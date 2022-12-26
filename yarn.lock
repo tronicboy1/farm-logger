@@ -4771,6 +4771,13 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+ngx-visible-autofocus@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/ngx-visible-autofocus/-/ngx-visible-autofocus-0.1.1.tgz#75e0fd88b00e25a95d739bcf372703750175a14e"
+  integrity sha512-2TBEuO/i7Ki8lP+A9CKN+Ru+PsyCDjStqeTeLaXIcgPJWCQ5pMvUq0O8JyG00vQhljuFs7qLVhwWROciZCvMJw==
+  dependencies:
+    tslib "^2.3.0"
+
 nice-napi@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/nice-napi/-/nice-napi-1.0.2.tgz#dc0ab5a1eac20ce548802fc5686eaa6bc654927b"

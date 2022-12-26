@@ -1,7 +1,7 @@
 <form appSubmitOnModifierEnter appCloseOnEsc [formGroup]="this.newTreeFromGroup" (ngSubmit)="this.handleSubmit()">
   <label for="regular-id">整理番号</label>
   <p *ngIf="this.treeIdError | async" class="warning">整理番号は既に登録されています。</p>
-  <input id="regular-id" required type="number" min="1" formControlName="regularId" appAutoFocus />
+  <input id="regular-id" required type="number" min="1" formControlName="regularId" ngxAutofocus />
   <label for="species">品種</label>
   <input type="text" required id="species" formControlName="species" />
   <label for="start-height">根付いた頃の高さ(cm)</label>

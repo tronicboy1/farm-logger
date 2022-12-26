@@ -1,6 +1,6 @@
 <form appSubmitOnModifierEnter appCloseOnEsc [formGroup]="this.formGroup" (ngSubmit)="this.handleSubmit()">
   <label for="name">区域名</label>
-  <input type="text" formControlName="name" required appAutoFocus />
+  <input type="text" formControlName="name" required ngxAutofocus />
   <button type="submit"><ng-container *ngIf="!(this.loading$ | async); else loadingSpinner">変更</ng-container></button>
   <ng-template #loadingSpinner><loading-spinner></loading-spinner></ng-template>
 </form>

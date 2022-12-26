@@ -1,6 +1,6 @@
 <form appSubmitOnModifierEnter appCloseOnEsc [formGroup]="this.newFarmForm" (ngSubmit)="this.handleFarmSubmit()">
   <label for="name">農園名</label>
-  <input type="text" name="name" id="name" formControlName="name" autocomplete="off" required="" appAutoFocus />
+  <input type="text" name="name" id="name" formControlName="name" autocomplete="off" required="" ngxAutofocus />
   <button type="submit">
     <loading-spinner *ngIf="this.loading; else submit" color="white"></loading-spinner>
   </button>

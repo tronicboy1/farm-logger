@@ -3,7 +3,7 @@
   <p *ngIf="this.treeIdError$ | async" class="warning">整理番号は既に登録されています。</p>
   <input id="regular-id" required type="number" min="1" formControlName="regularId" />
   <label for="species">品種</label>
-  <input type="text" required id="species" formControlName="species" appAutoFocus />
+  <input type="text" required id="species" formControlName="species" ngxAutofocus />
   <label for="start-height">根付いた頃の高さ(cm)</label>
   <input id="start-height" required type="number" min="1" formControlName="startHeight" />
   <button type="submit" [disabled]="this.formGroup.invalid"><ng-container
