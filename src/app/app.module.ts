@@ -22,7 +22,7 @@ registerLocaleData(jaLocale);
     PagesModule,
     FarmModule,
     ComponentsModule,
-    NgxObservableDirectiveModule.forRoot({ rootMargin: '40px' }),
+    NgxObservableDirectiveModule.forRoot({ rootMargin: '20px' }),
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'ja-JP' }],
   bootstrap: [AppComponent],
