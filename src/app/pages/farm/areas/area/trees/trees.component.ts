@@ -13,7 +13,23 @@ import { TreeService } from 'src/app/farm/tree.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreesComponent implements OnInit, OnDestroy {
-  public trees$ = new Observable<(CoffeeTreeWithId & { report: CoffeeTreeReport | null })[]>();
+  readonly trees$ = this.getFarmIdAndAreaId().pipe(
+    switchMap(([farmId, areaId]) =>
+      this.treeService
+        .watchTrees(farmId, areaId)
+        .pipe(
+          switchMap((trees) =>
+            forkJoin(
+              trees.map((tree) =>
+                this.treeReportService
+                  .getLatestReport(farmId, areaId, tree.id)
+                  .pipe(map((report) => ({ report, ...tree }))),
+              ),
+            ),
+          ),
+        ),
+    ),
+  );
   private showAddModalSubject = new BehaviorSubject(false);
   public showAddModal = this.showAddModalSubject.asObservable();
   public searchControl = new FormControl('');
@@ -27,23 +43,6 @@ export class TreesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.trees$ = this.getFarmIdAndAreaId().pipe(
-      switchMap(([farmId, areaId]) =>
-        this.treeService
-          .watchTrees(farmId, areaId)
-          .pipe(
-            switchMap((trees) =>
-              forkJoin(
-                trees.map((tree) =>
-                  this.treeReportService
-                    .getLatestReport(farmId, areaId, tree.id)
-                    .pipe(map((report) => ({ report, ...tree }))),
-                ),
-              ),
-            ),
-          ),
-      ),
-    );
     this.subscriptions.add(
       this.searchControl.valueChanges.pipe(sampleTime(200)).subscribe((search) => {
         this.treeService.setSearch(search ?? '');
