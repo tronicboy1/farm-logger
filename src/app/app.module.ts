@@ -9,12 +9,21 @@ import { PagesModule } from './pages/pages.module';
 import { UserModule } from './user-module/user.module';
 import jaLocale from '@angular/common/locales/ja';
 import { registerLocaleData } from '@angular/common';
+import { NgxObservableDirectiveModule } from 'ngx-observable-directive';
 
 registerLocaleData(jaLocale);
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, UserModule, PagesModule, FarmModule, ComponentsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    UserModule,
+    PagesModule,
+    FarmModule,
+    ComponentsModule,
+    NgxObservableDirectiveModule.forRoot({ rootMargin: '40px' }),
+  ],
   providers: [{ provide: LOCALE_ID, useValue: 'ja-JP' }],
   bootstrap: [AppComponent],
 })

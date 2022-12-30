@@ -1,20 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-  BehaviorSubject,
-  combineLatest,
-  filter,
-  first,
-  forkJoin,
-  map,
-  Observable,
-  of,
-  sampleTime,
-  Subscription,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { BehaviorSubject, first, forkJoin, map, Observable, sampleTime, Subscription, switchMap } from 'rxjs';
 import { TreeReportService } from 'src/app/farm/tree-report.service';
 import { CoffeeTreeReport, CoffeeTreeWithId } from 'src/app/farm/tree.model';
 import { TreeService } from 'src/app/farm/tree.service';
@@ -74,7 +61,10 @@ export class TreesComponent implements OnInit, OnDestroy {
     this.router.navigate([treeId], { relativeTo: this.route });
   }
   public loadNextPage() {
-    this.treeService.triggerNextPage();
+    this.trees$.pipe(first()).subscribe((trees) => {
+      if (!trees.length) return;
+      this.treeService.triggerNextPage();
+    });
   }
 
   public getLastReport(treeId: string) {

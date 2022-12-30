@@ -34,7 +34,7 @@
       </tr>
     </tbody>
   </table>
-  <p *ngIf="(this.environmentRecords | async)?.length" appObservable (intersection)="this.loadNextPage()">
+  <p *ngIf="(this.environmentRecords | async)?.length" ngxObservable (intersection)="this.loadNextPage()">
     気象情報は<a href="https://openweathermap.org/">OpenWeather</a>から取得しています。
   </p>
 </div>

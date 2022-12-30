@@ -32,5 +32,5 @@
       </tr>
     </tbody>
   </table>
-  <div *ngIf="(this.trees$ | async)?.length" appObservable (intersection)="this.loadNextPage()"></div>
+  <div *ngIf="(this.trees$ | async)?.length" ngxObservable (intersection)="this.loadNextPage()"></div>
 </div>

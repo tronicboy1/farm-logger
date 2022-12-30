@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, catchError, finalize, first, map, mergeMap, Observable, of, ReplaySubject, tap } from 'rxjs';
+import { BehaviorSubject, finalize, first, map, mergeMap, Observable, of, ReplaySubject, tap } from 'rxjs';
 import { EnvironmentRecord, EnvironmentRecordService } from 'src/app/farm/environment-record.service';
 import { FarmService } from 'src/app/farm/farm.service';
 import { GeolocationService } from 'src/app/farm/util/geolocation.service';
@@ -42,7 +42,10 @@ export class EnvironmentComponent implements OnInit {
   }
 
   public loadNextPage() {
-    this.environmentService.triggerNextPage();
+    this.environmentRecords.pipe(first()).subscribe((records) => {
+      if (!records.length) return;
+      this.environmentService.triggerNextPage();
+    });
   }
   public handleFormSubmit() {
     this.error.next(false);

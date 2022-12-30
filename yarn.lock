@@ -4771,10 +4771,17 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-ngx-visible-autofocus@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/ngx-visible-autofocus/-/ngx-visible-autofocus-0.1.1.tgz#75e0fd88b00e25a95d739bcf372703750175a14e"
-  integrity sha512-2TBEuO/i7Ki8lP+A9CKN+Ru+PsyCDjStqeTeLaXIcgPJWCQ5pMvUq0O8JyG00vQhljuFs7qLVhwWROciZCvMJw==
+ngx-observable-directive@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/ngx-observable-directive/-/ngx-observable-directive-0.0.8.tgz#0f6f8d5602ed4e5c34d3a2055f36778959aabca6"
+  integrity sha512-5jZX53qt6Q5fTWd4RNjouFz7sNeUtTy96l2sGXmxl3KF9L3L5H/OTKonILhC5qGe0atPWp0kBSUEb3Q788pM+Q==
+  dependencies:
+    tslib "^2.3.0"
+
+ngx-visible-autofocus@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ngx-visible-autofocus/-/ngx-visible-autofocus-0.2.0.tgz#ecaa4f57e36a3c5ff329470141ad874f18601240"
+  integrity sha512-qJDMtRo42K+guvF+Ydfv3AdAODz8F/l2G9VidYbVbJ/8+NJSTAIPnpXBvWBgpg6V4OzeVaSEeBQa8iGCNJQN1w==
   dependencies:
     tslib "^2.3.0"
 

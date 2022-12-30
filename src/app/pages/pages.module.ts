@@ -32,6 +32,7 @@ import { DeleteAreaFormComponent } from './farm/areas/delete-area-form/delete-ar
 import { EditTreeFormComponent } from './farm/areas/area/trees/tree/edit-tree-form/edit-tree-form.component';
 import { EditAreaFormComponent } from './farm/areas/area/index/edit-area-form/edit-area-form.component';
 import { NgxVisibleAutofocusModule } from 'ngx-visible-autofocus';
+import { NgxObservableDirectiveModule } from 'ngx-observable-directive';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { NgxVisibleAutofocusModule } from 'ngx-visible-autofocus';
     ComponentsModule,
     CustomDirectivesModule,
     NgxVisibleAutofocusModule,
+    NgxObservableDirectiveModule,
   ],
   /** Adding custom Elements Schema allows use of custom tags i.e. Web Components. */
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
