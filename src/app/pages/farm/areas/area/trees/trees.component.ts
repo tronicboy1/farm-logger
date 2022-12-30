@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { BehaviorSubject, first, forkJoin, map, sampleTime, Subscription, switchMap } from 'rxjs';
 import { TreeReportService } from 'src/app/farm/tree-report.service';
-import { TreeService } from 'src/app/farm/tree.service';
 import { AreaRouteParamsComponent } from '../route-params.inheritable';
 
 @Component({
@@ -31,6 +30,7 @@ export class TreesComponent extends AreaRouteParamsComponent implements OnInit, 
     ),
   );
   private showAddModalSubject = new BehaviorSubject(false);
+  readonly loading$ = new BehaviorSubject(true);
   public showAddModal = this.showAddModalSubject.asObservable();
   public searchControl = new FormControl('');
   private subscriptions = new Subscription();
@@ -40,6 +40,9 @@ export class TreesComponent extends AreaRouteParamsComponent implements OnInit, 
   }
 
   ngOnInit(): void {
+    this.trees$.pipe(first()).subscribe(() => {
+      this.loading$.next(false);
+    });
     this.subscriptions.add(
       this.searchControl.valueChanges.pipe(sampleTime(200)).subscribe((search) => {
         this.treeService.setSearch(search ?? '');

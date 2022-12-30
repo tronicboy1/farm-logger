@@ -32,5 +32,6 @@
       </tr>
     </tbody>
   </table>
+  <loading-spinner *ngIf="this.loading$ | async"></loading-spinner>
   <div *ngIf="(this.trees$ | async)?.length" ngxObservable (intersection)="this.loadNextPage()"></div>
 </div>
