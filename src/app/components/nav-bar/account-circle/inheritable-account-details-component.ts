@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { AuthService } from '@user/auth.service';
 import type { User } from 'firebase/auth';
+import { AuthService } from 'ngx-firebase-user-platform';
 import type { Subscription } from 'rxjs';
 
 @Component({

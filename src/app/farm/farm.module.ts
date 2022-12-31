@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserModule } from '@user/user.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LogModule } from '../log/log.module';
+import { NgxFirebaseUserPlatformModule } from 'ngx-firebase-user-platform';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, UserModule, HttpClientModule, LogModule],
+  imports: [CommonModule, HttpClientModule, LogModule, NgxFirebaseUserPlatformModule],
 })
 export class FarmModule {}

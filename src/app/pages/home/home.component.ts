@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '@user/user.service';
+import { UserService } from 'ngx-firebase-user-platform';
 import { BehaviorSubject, combineLatest, map, Observable, Subscription, switchMap } from 'rxjs';
 import { FarmWithId } from 'src/app/farm/farm.model';
 import { FarmService } from 'src/app/farm/farm.service';

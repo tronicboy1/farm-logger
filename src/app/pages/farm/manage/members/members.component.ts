@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '@user/auth.service';
-import { UserData, UserService } from '@user/user.service';
+import { AuthService, UserData, UserService } from 'ngx-firebase-user-platform';
 import { finalize, first, forkJoin, Subscription, switchMap, tap } from 'rxjs';
 import { FarmService } from 'src/app/farm/farm.service';
 

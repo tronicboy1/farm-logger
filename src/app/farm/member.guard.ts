@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { AuthService } from '@user/auth.service';
+import { AuthService } from 'ngx-firebase-user-platform';
 import { first, forkJoin, from, map, Observable, tap } from 'rxjs';
 import { FarmModule } from './farm.module';
 import { FarmService } from './farm.service';

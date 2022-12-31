@@ -13,7 +13,7 @@ import { FarmComponent } from '@pages/farm/farm.component';
 import { ManageComponent } from '@pages/farm/manage/manage.component';
 import { HomeComponent } from '@pages/home/home.component';
 import { PageNotFoundComponent } from '@pages/page-not-found/page-not-found.component';
-import { AuthGuard } from '@user/auth.guard';
+import { AuthGuard } from 'ngx-firebase-user-platform';
 import { MemberGuard } from './farm/member.guard';
 
 const routes: Routes = [

@@ -24,7 +24,3 @@ export class Firebase {
     return getFirestore(app);
   }
 }
-
-if (!environment.production) {
-  connectAuthEmulator(Firebase.auth, `http://localhost:${environment.emulatorPorts.auth}`);
-}

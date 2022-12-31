@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserModule } from '@user/user.module';
+import { NgxFirebaseUserPlatformModule } from 'ngx-firebase-user-platform';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, UserModule],
+  imports: [CommonModule, NgxFirebaseUserPlatformModule],
 })
 export class LogModule {}

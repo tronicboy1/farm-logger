@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from '@user/auth.service';
-import { UserService } from '@user/user.service';
 import '@web-components/base-modal';
+import { AuthService, UserService } from 'ngx-firebase-user-platform';
 import { fromEvent, map, mergeMap, Subscription, take } from 'rxjs';
 
 @Component({

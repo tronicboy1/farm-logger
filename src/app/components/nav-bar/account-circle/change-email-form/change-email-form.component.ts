@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Utils } from '@lib/utils';
-import { AuthService } from '@user/auth.service';
+import { AuthService } from 'ngx-firebase-user-platform';
 
 @Component({
   selector: 'app-change-email-form',

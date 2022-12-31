@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '@user/auth.service';
-import { EmailExistsValidator } from '@user/email-exists.validator';
-import { UserService } from '@user/user.service';
+import { AuthService, EmailExistsValidator, UserService } from 'ngx-firebase-user-platform';
 import { first, forkJoin, map, mergeMap, of, Subscription, tap } from 'rxjs';
 import { FarmService } from 'src/app/farm/farm.service';
 

@@ -17,8 +17,8 @@ import { first, forkJoin, from, map, mergeMap, Observable, ReplaySubject, shareR
 import { Farm, FarmWithId } from './farm.model';
 import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from 'firebase/storage';
 import { app } from '@custom-firebase/firebase';
-import { AuthService } from '@user/auth.service';
 import { Firebase } from '@custom-firebase/index';
+import { AuthService } from 'ngx-firebase-user-platform';
 
 @Injectable({
   providedIn: FarmModule,

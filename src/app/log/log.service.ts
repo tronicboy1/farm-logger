@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Firebase } from '@custom-firebase/index';
-import { AuthService } from '@user/auth.service';
-import { UserService } from '@user/user.service';
 import {
   collection,
   getDocs,
@@ -16,6 +14,7 @@ import {
   DocumentReference,
   arrayUnion,
 } from 'firebase/firestore';
+import { AuthService, UserService } from 'ngx-firebase-user-platform';
 import {
   BehaviorSubject,
   first,

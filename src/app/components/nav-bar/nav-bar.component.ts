@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '@user/auth.service';
+import { AuthService } from 'ngx-firebase-user-platform';
 import { Subscription } from 'rxjs';
 
 @Component({

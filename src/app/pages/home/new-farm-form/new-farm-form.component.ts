@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '@user/auth.service';
+import { AuthService } from 'ngx-firebase-user-platform';
 import { finalize, mergeMap, take, tap } from 'rxjs';
 import { FarmService } from 'src/app/farm/farm.service';
 

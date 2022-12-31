@@ -5,8 +5,8 @@ import '@web-components/google-icon';
 import { Router } from '@angular/router';
 import { FirebaseError } from 'firebase/app';
 import { Utils } from '@lib/utils';
-import { AuthService } from '@user/auth.service';
 import { take } from 'rxjs';
+import { AuthService } from 'ngx-firebase-user-platform';
 
 type AuthNavModes = 'LOGIN' | 'REGISTER';
 

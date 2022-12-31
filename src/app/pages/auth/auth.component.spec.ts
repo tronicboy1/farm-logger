@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AuthService } from '@user/auth.service';
+import { AuthService } from 'ngx-firebase-user-platform';
 
 import { AuthComponent } from './auth.component';
 
