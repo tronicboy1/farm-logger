@@ -4771,6 +4771,13 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+ngx-firebase-user-platform@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/ngx-firebase-user-platform/-/ngx-firebase-user-platform-0.0.5.tgz#8b13691f06fa31cd65249b91990cdd2e25bd7a21"
+  integrity sha512-h050X5SadWyDnO65SyNBuGTeOY198RFQXi/Swkv98Re0DGCI2regta4ES2N2udf8kQh7mWmO9xYOJS+77NphIw==
+  dependencies:
+    tslib "^2.3.0"
+
 ngx-observable-directive@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/ngx-observable-directive/-/ngx-observable-directive-0.1.0.tgz#39704bb6878c862f696b976773df10893d5a0a24"

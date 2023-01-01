@@ -96,7 +96,12 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
         ),
         finalize(() => {
           this.loadingSubject.next(false);
-          this.newReportForm.reset({ notes: '', height: 100, budding: '未着火', beanYield: '未' });
+          this.newReportForm.reset({
+            notes: '',
+            height: this.newReportForm.controls.height.value,
+            budding: '未着火',
+            beanYield: '未',
+          });
           this.submitted.emit();
         }),
       )
