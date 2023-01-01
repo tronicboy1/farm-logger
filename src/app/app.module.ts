@@ -25,15 +25,16 @@ registerLocaleData(jaLocale);
     FarmModule,
     ComponentsModule,
     NgxObservableDirectiveModule.forRoot({ rootMargin: '20px' }),
-    NgxFirebaseUserPlatformModule.forRoot(
+    NgxFirebaseUserPlatformModule.forRoot({
       firebaseConfig,
-      environment.production,
-      {
+      production: environment.production,
+      appCheck: {
         provider: new ReCaptchaV3Provider('6Lffd0wjAAAAAN7ghKd7xyOOyqcmthVEOecCx_g5'),
         isTokenAutoRefreshEnabled: true,
       },
-      environment.emulatorPorts,
-    ),
+      emulators: environment.emulatorPorts,
+      analytics: true,
+    }),
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'ja-JP' }],
   bootstrap: [AppComponent],
