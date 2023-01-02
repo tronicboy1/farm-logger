@@ -19,15 +19,21 @@ import {
 } from 'firebase/firestore';
 import {
   BehaviorSubject,
+  combineLatest,
   from,
   map,
   mergeWith,
   Observable,
+  of,
   ReplaySubject,
   scan,
   shareReplay,
+  startWith,
   Subject,
   switchMap,
+  takeUntil,
+  takeWhile,
+  tap,
   withLatestFrom,
 } from 'rxjs';
 import { FarmModule } from './farm.module';
@@ -45,6 +51,8 @@ export class TreeService {
   private areaIdCache?: string;
   private searchId$ = new BehaviorSubject<number | undefined>(undefined);
   private treesObservableCache$?: Observable<CoffeeTreeWithId[]>;
+  private treesLoadingSubject = new BehaviorSubject(true);
+  readonly treesLoading$ = this.treesLoadingSubject.asObservable();
   private refreshSubject = new Subject<void>();
 
   constructor() {
@@ -88,23 +96,25 @@ export class TreeService {
     if (this.farmIdCache !== farmId || this.areaIdCache !== areaId) this.treesObservableCache$ = undefined;
     this.farmIdCache = farmId;
     this.areaIdCache = areaId;
-    return (this.treesObservableCache$ ||= this.lastDocSubject.pipe(
-      withLatestFrom(this.searchId$),
-      switchMap(([lastDoc, searchId]) => this.getTrees(farmId, areaId, lastDoc, searchId)),
-      map((result) => {
-        if (result.empty) return [];
-        const { docs } = result;
-        this.lastDocCache = docs[docs.length - 1];
-        return docs.map((doc) => ({ ...doc.data(), id: doc.id })) as CoffeeTreeWithId[];
-      }),
-      map((records) => ({ records, reset: false })),
-      mergeWith(this.refreshSubject.pipe(map(() => ({ reset: true, records: [] })))),
-      scan((acc, current) => {
-        if (current.reset) {
-          return (acc = []);
-        }
-        return [...acc, ...current.records];
-      }, [] as CoffeeTreeWithId[]),
+    return (this.treesObservableCache$ ||= combineLatest([
+      this.searchId$,
+      this.refreshSubject.pipe(startWith(undefined)),
+    ]).pipe(
+      switchMap(([searchValue]) =>
+        this.lastDocSubject.pipe(
+          tap({ next: () => this.treesLoadingSubject.next(true) }),
+          switchMap((lastDoc) => this.getTrees(farmId, areaId, lastDoc, searchValue)),
+          tap({ next: () => this.treesLoadingSubject.next(false) }),
+          takeWhile((result) => !result.empty),
+          map((result) => {
+            if (result.empty) return [];
+            const { docs } = result;
+            this.lastDocCache = docs[docs.length - 1];
+            return docs.map((doc) => ({ ...doc.data(), id: doc.id })) as CoffeeTreeWithId[];
+          }),
+          scan((acc, current) => [...acc, ...current], [] as CoffeeTreeWithId[]),
+        ),
+      ),
       shareReplay(1),
     ));
   }

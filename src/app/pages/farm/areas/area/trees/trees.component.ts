@@ -30,7 +30,7 @@ export class TreesComponent extends AreaRouteParamsComponent implements OnInit, 
     ),
   );
   private showAddModalSubject = new BehaviorSubject(false);
-  readonly loading$ = new BehaviorSubject(true);
+  readonly loading$ = this.treeService.treesLoading$;
   public showAddModal = this.showAddModalSubject.asObservable();
   public searchControl = new FormControl('');
   private subscriptions = new Subscription();
@@ -40,9 +40,6 @@ export class TreesComponent extends AreaRouteParamsComponent implements OnInit, 
   }
 
   ngOnInit(): void {
-    this.trees$.pipe(first()).subscribe(() => {
-      this.loading$.next(false);
-    });
     this.subscriptions.add(
       this.searchControl.valueChanges.pipe(sampleTime(200)).subscribe((search) => {
         this.treeService.setSearch(search ?? '');
