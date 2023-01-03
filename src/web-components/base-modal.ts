@@ -41,10 +41,14 @@ export class BaseModal extends LitElement {
         border: 1px var(--primary-color) solid;
         border-radius: 10px;
         padding: 1rem;
-        width: 90%;
+        width: 95%;
         max-width: 450px;
-        max-height: 70%;
+        max-height: 85%;
         margin: auto;
+        position: relative;
+      }
+      #modal-content {
+        height: 100%;
         overflow-y: auto;
       }
 
