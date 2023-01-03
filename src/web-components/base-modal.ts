@@ -43,7 +43,7 @@ export class BaseModal extends LitElement {
         padding: 1rem;
         width: 95%;
         max-width: 450px;
-        max-height: 85%;
+        max-height: 80%;
         margin: auto;
         position: relative;
       }
