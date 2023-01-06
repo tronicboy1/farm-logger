@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import '@web-components/base-modal';
-import '@web-components/loading-spinner';
 import '@web-components/google-icon';
 import { Router } from '@angular/router';
 import { FirebaseError } from 'firebase/app';

@@ -55,14 +55,14 @@
   <app-new-report-form (submitted)="this.toggleAddModal(false)"></app-new-report-form>
 </base-modal>
 
-<base-modal [show]="this.showPictureModal$ | async" (modal-closed)="this.togglePictureModal(undefined)"
+<base-modal [show]="!!(this.showPictureModal$ | async)" (modal-closed)="this.togglePictureModal(undefined)"
   modal-title="写真詳細">
   <div class="photo-box">
     <img *ngIf="this.showPictureModal$ | async as picture" [src]="picture" alt="photo" />
   </div>
 </base-modal>
 
-<base-modal [show]="this.reportToDelete$ | async" (modal-closed)="this.setReportToDelete(undefined)"
+<base-modal [show]="!!(this.reportToDelete$ | async)" (modal-closed)="this.setReportToDelete(undefined)"
   modal-title="本当に削除しますか？" appCloseOnEsc>
   <div class="confirm-buttons">
     <button type="button" class="delete" (click)="this.removeReport()">削除</button>

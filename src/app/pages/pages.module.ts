@@ -33,6 +33,8 @@ import { EditTreeFormComponent } from './farm/areas/area/trees/tree/edit-tree-fo
 import { EditAreaFormComponent } from './farm/areas/area/index/edit-area-form/edit-area-form.component';
 import { NgxVisibleAutofocusModule } from 'ngx-visible-autofocus';
 import { NgxObservableDirectiveModule } from 'ngx-observable-directive';
+import { NgxBaseComponentsModule } from '@tronicboy/ngx-base-components';
+import { NgxGeolocationModule } from '@tronicboy/ngx-geolocation';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,8 @@ import { NgxObservableDirectiveModule } from 'ngx-observable-directive';
     CustomDirectivesModule,
     NgxVisibleAutofocusModule,
     NgxObservableDirectiveModule,
+    NgxBaseComponentsModule,
+    NgxGeolocationModule
   ],
   /** Adding custom Elements Schema allows use of custom tags i.e. Web Components. */
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

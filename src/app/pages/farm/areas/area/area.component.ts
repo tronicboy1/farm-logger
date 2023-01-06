@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
+import { LocationArray } from '@tronicboy/ngx-geolocation';
 import { map, mergeMap, Observable } from 'rxjs';
-import { Location } from 'src/app/components/location/location.component';
 import { Area } from 'src/app/farm/area.model';
 import { GeolocationService } from 'src/app/farm/util/geolocation.service';
 import { LogActions } from 'src/app/log/log.model';
@@ -30,7 +30,7 @@ export class AreaComponent extends AreaRouteParamsComponent implements OnInit {
     this.googleMapsURL = this.area.pipe(map((area) => this.geolocationService.getGoogleMapsURL(area)));
   }
 
-  setLocation(location: Location) {
+  setLocation(location: LocationArray) {
     this.getFarmIdAndAreaId()
       .pipe(mergeMap(([farmId, areaId]) => this.areaService.updateArea(farmId, areaId, { location })))
       .subscribe();

@@ -48,7 +48,7 @@
   </ng-template>
 </div>
 
-<base-modal (modal-closed)="this.handleModalClose()" [show]="this.uidToDelete" modal-title="本当に削除しますか？">
+<base-modal (modal-closed)="this.handleModalClose()" [show]="!!this.uidToDelete" modal-title="本当に削除しますか？">
   <div class="contact-buttons">
     <button type="button" class="delete" (click)="this.confirmDelete()">削除</button>
     <button type="button" (click)="this.handleModalClose()">キャンセル</button>

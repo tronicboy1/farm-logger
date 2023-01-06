@@ -1,9 +1,0 @@
-<form [formGroup]="this.locationFormGroup" (ngSubmit)="this.handleSubmit()">
-  <label for="latitude">緯度</label>
-  <input type="number" name="latitude" id="latitude" min="-90" max="90" formControlName="latitude" required />
-  <label for="longitude">経度</label>
-  <input type="number" name="longitude" id="longitude" min="-180" max="180" formControlName="longitude" required />
-  <label for="altitude">高度</label>
-  <input type="number" name="altitude" id="altitude" min="0" formControlName="altitude" />
-  <button type="submit">登録</button>
-</form>

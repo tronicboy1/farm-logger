@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { LocationArray } from '@tronicboy/ngx-geolocation';
 import { BehaviorSubject, map, mergeMap, tap } from 'rxjs';
-import { Location } from 'src/app/components/location/location.component';
 import { GeolocationService } from 'src/app/farm/util/geolocation.service';
 import { AreaRouteParamsComponent } from '../route-params.inheritable';
 
@@ -19,7 +19,7 @@ export class AreaIndexComponent extends AreaRouteParamsComponent {
   readonly googleMapsURL = this.area.pipe(map((area) => this.geolocationService.getGoogleMapsURL(area)));
   readonly showEditModal$ = new BehaviorSubject(false);
 
-  setLocation(location: Location) {
+  setLocation(location: LocationArray) {
     this.getFarmIdAndAreaId()
       .pipe(mergeMap(([farmId, areaId]) => this.areaService.updateArea(farmId, areaId, { location })))
       .subscribe();

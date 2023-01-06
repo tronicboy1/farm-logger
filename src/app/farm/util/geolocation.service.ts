@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { from, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Farm } from '../farm.model';
 import { FarmModule } from '../farm.module';
 
 @Injectable({
