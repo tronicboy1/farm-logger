@@ -32,6 +32,6 @@
   </button>
 </div>
 <base-modal [show]="this.showEditModal$ | async" (modal-closed)="this.toggleShowEditModal(false)"
-  [attr.modal-title]="this.areaEditTitle$ | async">
+  [modal-title]="(this.areaEditTitle$ | async) ?? ''">
   <farm-edit-area-form (submitted)="this.toggleShowEditModal(false)"></farm-edit-area-form>
 </base-modal>

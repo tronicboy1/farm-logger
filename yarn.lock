@@ -1799,6 +1799,18 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
   integrity sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==
 
+"@tronicboy/ngx-base-components@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@tronicboy/ngx-base-components/-/ngx-base-components-0.0.5.tgz#887dc508e6054a5dd6908e8745d582d62d474b54"
+  integrity sha512-NOgejlGW2CjdrZZEbET/QaO9UARvy+EDAf0xKgjWwinFy7XsuUbdqLZ7dg4DwXLBJHfGXb7NuaxSYmUrI1WWoQ==
+  dependencies:
+    tslib "^2.3.0"
+
+"@tronicboy/ngx-geolocation@file:.yalc/@tronicboy/ngx-geolocation":
+  version "0.0.1"
+  dependencies:
+    tslib "^2.3.0"
+
 "@types/body-parser@*":
   version "1.19.2"
   resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.19.2.tgz#aea2059e28b7658639081347ac4fab3de166e6f0"
@@ -4771,10 +4783,10 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-ngx-firebase-user-platform@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/ngx-firebase-user-platform/-/ngx-firebase-user-platform-0.0.5.tgz#8b13691f06fa31cd65249b91990cdd2e25bd7a21"
-  integrity sha512-h050X5SadWyDnO65SyNBuGTeOY198RFQXi/Swkv98Re0DGCI2regta4ES2N2udf8kQh7mWmO9xYOJS+77NphIw==
+ngx-firebase-user-platform@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/ngx-firebase-user-platform/-/ngx-firebase-user-platform-0.0.6.tgz#ee9c26fb4cb8beae9be5d0e15772e5cb990cd7f7"
+  integrity sha512-bLXZLr3A98BpbjPQy3h8c+DeZyJG/PxFNj4vwqDjI67R/PoxAVFPbp3tPScj4eWx3Jbx4jFkWxuQkJrxmFcfkw==
   dependencies:
     tslib "^2.3.0"
 
