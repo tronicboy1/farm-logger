@@ -18,6 +18,7 @@ export type CoffeeTreeReport = {
   height: number;
   budding: string;
   beanYield: string;
+  individualFertilization?: boolean;
 };
 
 export type CoffeeTreeReportWithId = CoffeeTreeReport & { id: string };

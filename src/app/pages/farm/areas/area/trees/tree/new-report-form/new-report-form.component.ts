@@ -23,6 +23,7 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
     budding: new FormControl('未着花'),
     beanYield: new FormControl('未'),
     picture: new FormControl<File | null>(null),
+    individualFertilization: new FormControl(false),
   });
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
