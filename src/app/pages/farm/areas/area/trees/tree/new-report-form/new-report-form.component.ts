@@ -65,7 +65,6 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
     const picture = formData.get('picture')!;
     let photoPath = '';
     if (!(picture instanceof File)) throw TypeError();
-    this.submitted.emit();
     this.getFarmIdAreaIdAndTreeId()
       .pipe(
         switchMap(([farmId, areaId, treeId]) =>
@@ -82,7 +81,10 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
           ]),
         ),
         tap({
-          next: ([[farmId, _, treeId]]) => this.logService.addLog(farmId, LogActions.AddTreeReport, treeId).subscribe(),
+          next: ([[farmId, _, treeId]]) => {
+            this.submitted.emit();
+            this.logService.addLog(farmId, LogActions.AddTreeReport, treeId).subscribe();
+          },
         }),
         switchMap(([[farmId, areaId, treeId], photoURL]) =>
           this.treeReportService.addReport(farmId, areaId, treeId, {
@@ -100,7 +102,7 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
           this.newReportForm.reset({
             notes: '',
             height: this.newReportForm.controls.height.value,
-            budding: '未着火',
+            budding: '未着花',
             beanYield: '未',
           });
         }),
