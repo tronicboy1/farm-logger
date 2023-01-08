@@ -9,6 +9,6 @@
   <input type="number" name="wind-speed" id="wind-speed" formControlName="windSpeed" />
   <label for="humidity">最低気温</label>
   <input type="number" name="humidity" id="humidity" formControlName="humidity" />
-  <loading-spinner *ngIf="this.loading | async"></loading-spinner>
+  <base-spinner *ngIf="this.loading | async"></base-spinner>
   <button type="submit">登録</button>
 </form>

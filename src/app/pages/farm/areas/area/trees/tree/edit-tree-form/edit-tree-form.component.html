@@ -9,4 +9,4 @@
   <button type="submit" [disabled]="this.formGroup.invalid"><ng-container
       *ngIf="!(this.loading$ | async); else loadingSpinner">送信</ng-container></button>
 </form>
-<ng-template #loadingSpinner><loading-spinner color="white"></loading-spinner></ng-template>
+<ng-template #loadingSpinner><base-spinner color="white"></base-spinner></ng-template>

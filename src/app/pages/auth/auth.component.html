@@ -10,7 +10,7 @@
       <input id="email-login-email" name="email" type="email" required autocomplete="email" />
     </div>
     <button id="submit-send-email" type="submit">
-      <loading-spinner *ngIf="this.loading; else sendEmailSubmitText" color="white"></loading-spinner>
+      <base-spinner *ngIf="this.loading; else sendEmailSubmitText" color="white"></base-spinner>
       <ng-template #sendEmailSubmitText>Send Login Email</ng-template>
     </button>
   </form>
@@ -28,7 +28,7 @@
       <input id="reset-password-email" name="email" type="email" required autocomplete="email" />
     </div>
     <button id="submit-reset-password" type="submit">
-      <loading-spinner *ngIf="this.loading; else sendPasswordSubmitText" color="white"></loading-spinner>
+      <base-spinner *ngIf="this.loading; else sendPasswordSubmitText" color="white"></base-spinner>
       <ng-template #sendPasswordSubmitText>Send Password Reset Email</ng-template>
     </button>
   </form>
@@ -80,7 +80,7 @@
       >
     </div>
     <button type="submit">
-      <loading-spinner *ngIf="this.loading; else submitText" color="white"></loading-spinner>
+      <base-spinner *ngIf="this.loading; else submitText" color="white"></base-spinner>
       <ng-template #submitText>送信</ng-template>
     </button>
   </form>

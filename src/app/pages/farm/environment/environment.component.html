@@ -5,7 +5,7 @@
     現在の気象情報を取得して登録する。農園の位置情報が登録されていれば、それを元に自動的に記録を作ることができます。
   </p>
   <button (click)="this.addRecord()" type="button">追加</button>
-  <loading-spinner *ngIf="this.loading | async"></loading-spinner>
+  <base-spinner *ngIf="this.loading | async"></base-spinner>
 </div>
 <div class="card">
   <table>

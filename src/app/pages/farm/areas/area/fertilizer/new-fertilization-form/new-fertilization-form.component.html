@@ -5,6 +5,6 @@
   </select>
   <label for="note">メモ</label>
   <textarea name="note" id="note" formControlName="note"></textarea>
-  <button type="submit">登録</button>
-  <loading-spinner *ngIf="this.loading | async"></loading-spinner>
+  <button type="submit"><ng-container *ngIf="!(this.loading | async); else loadingSpinner">登録</ng-container></button>
 </form>
+<ng-template #loadingSpinner><base-spinner color="white"></base-spinner></ng-template>

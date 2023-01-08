@@ -18,6 +18,6 @@
   <label for="notes">メモ</label>
   <textarea name="notes" id="notes" formControlName="notes"></textarea>
   <div style="margin-bottom: 3rem;"></div>
-  <button type="submit"><ng-container *ngIf="!(this.loading | async); else loadingSpinner">送信</ng-container></button>
+  <button type="submit"><ng-container *ngIf="!(this.loading | async); else loadingSpinner">追加</ng-container></button>
 </form>
-<ng-template #loadingSpinner><loading-spinner color="white"></loading-spinner></ng-template>
+<ng-template #loadingSpinner><base-spinner color="white"></base-spinner></ng-template>

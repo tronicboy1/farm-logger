@@ -2,5 +2,5 @@
   <label for="name">区域名</label>
   <input type="text" formControlName="name" required ngxAutofocus />
   <button [disabled]="(this.newAreaFormGroup.statusChanges | async) !== 'VALID'" type="submit">追加</button>
-  <loading-spinner *ngIf="this.loading | async"></loading-spinner>
+  <base-spinner *ngIf="this.loading | async"></base-spinner>
 </form>

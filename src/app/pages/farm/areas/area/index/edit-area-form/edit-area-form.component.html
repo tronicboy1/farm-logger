@@ -2,5 +2,5 @@
   <label for="name">区域名</label>
   <input type="text" formControlName="name" required ngxAutofocus />
   <button type="submit"><ng-container *ngIf="!(this.loading$ | async); else loadingSpinner">変更</ng-container></button>
-  <ng-template #loadingSpinner><loading-spinner></loading-spinner></ng-template>
+  <ng-template #loadingSpinner><base-spinner></base-spinner></ng-template>
 </form>

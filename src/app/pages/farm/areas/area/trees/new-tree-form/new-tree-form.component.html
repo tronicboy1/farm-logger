@@ -6,8 +6,8 @@
   <input type="text" required id="species" formControlName="species" />
   <label for="start-height">根付いた頃の高さ(cm)</label>
   <input id="start-height" required type="number" min="1" formControlName="startHeight" />
-  <loading-spinner *ngIf="this.loading | async"></loading-spinner>
+  <base-spinner *ngIf="this.loading | async"></base-spinner>
   <button type="submit" [disabled]="this.newTreeFromGroup.invalid"><ng-container
       *ngIf="!(this.loading | async); else loadingSpinner">追加</ng-container></button>
 </form>
-<ng-template #loadingSpinner><loading-spinner color="white"></loading-spinner></ng-template>
+<ng-template #loadingSpinner><base-spinner color="white"></base-spinner></ng-template>

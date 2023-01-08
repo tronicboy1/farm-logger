@@ -2,7 +2,7 @@
   <label for="name">農園名</label>
   <input type="text" name="name" id="name" formControlName="name" autocomplete="off" required="" ngxAutofocus />
   <button type="submit">
-    <loading-spinner *ngIf="this.loading; else submit" color="white"></loading-spinner>
+    <base-spinner *ngIf="this.loading; else submit" color="white"></base-spinner>
   </button>
 </form>
 
