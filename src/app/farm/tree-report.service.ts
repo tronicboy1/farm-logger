@@ -15,7 +15,7 @@ import {
   QuerySnapshot,
   startAfter,
 } from 'firebase/firestore';
-import { from, map, Observable } from 'rxjs';
+import { BehaviorSubject, from, map, Observable } from 'rxjs';
 import { FarmModule } from './farm.module';
 import { CoffeeTreeReport, CoffeeTreeReportWithId } from './tree.model';
 
@@ -23,11 +23,14 @@ import { CoffeeTreeReport, CoffeeTreeReportWithId } from './tree.model';
   providedIn: FarmModule,
 })
 export class TreeReportService {
+  private addReportLoadingSubject = new BehaviorSubject(false);
+  readonly addingReport$ = this.addReportLoadingSubject.asObservable();
   constructor() {}
 
   public addReport(farmId: string, areaId: string, treeId: string, reportData: CoffeeTreeReport) {
     const ref = collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}/reports`);
-    return addDoc(ref, reportData);
+    this.addReportLoadingSubject.next(true);
+    return addDoc(ref, reportData).finally(() => this.addReportLoadingSubject.next(false));
   }
 
   public watchReports(farmId: string, areaId: string, treeId: string): Observable<CoffeeTreeReportWithId[]> {

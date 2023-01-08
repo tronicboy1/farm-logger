@@ -30,6 +30,7 @@
       </tr>
     </thead>
     <tbody>
+      <base-spinner *ngIf="this.addingReport$ | async"></base-spinner>
       <tr *ngFor="let report of this.reports | async">
         <td>{{ report.createdAt | date : 'short' }}</td>
         <td>{{ report.height }}</td>

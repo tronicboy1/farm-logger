@@ -24,6 +24,7 @@ export class TreeComponent extends TreeIdInheritable implements OnInit {
   readonly showEditModal$ = new BehaviorSubject(false);
   private reportToDeleteSubject = new BehaviorSubject<string | undefined>(undefined);
   readonly reportToDelete$ = this.reportToDeleteSubject.asObservable();
+  readonly addingReport$: Observable<boolean>;
 
   constructor(
     private treeService: TreeService,
@@ -31,6 +32,7 @@ export class TreeComponent extends TreeIdInheritable implements OnInit {
     private photoService: PhotoService,
   ) {
     super();
+    this.addingReport$ = this.treeReportService.addingReport$;
   }
 
   ngOnInit(): void {
