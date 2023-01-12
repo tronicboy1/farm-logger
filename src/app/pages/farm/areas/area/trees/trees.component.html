@@ -28,7 +28,8 @@
           <th>品種</th>
           <th>根付いた頃の高さ</th>
           <th>現在の高さ</th>
-          <th>最後の育成記録</th>
+          <th>育成記録</th>
+          <th>個別施肥</th>
         </tr>
       </thead>
       <tbody>
@@ -38,6 +39,7 @@
           <td>{{ tree.startHeight }}cm</td>
           <td>{{ tree.report ? tree.report.height + 'cm' : '' }}</td>
           <td>{{ tree.report?.createdAt | date : 'M/d' }}</td>
+          <td>{{ tree.latestIndividualFertilization?.createdAt | date : 'M/d' }}</td>
         </tr>
       </tbody>
     </table>

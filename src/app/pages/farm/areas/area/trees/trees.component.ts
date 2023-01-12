@@ -14,19 +14,24 @@ import { AreaRouteParamsComponent } from '../route-params.inheritable';
 export class TreesComponent extends AreaRouteParamsComponent implements OnInit, OnDestroy {
   readonly trees$ = this.getFarmIdAndAreaId().pipe(
     switchMap(([farmId, areaId]) =>
-      this.treeService
-        .watchTrees(farmId, areaId)
-        .pipe(
-          switchMap((trees) =>
-            forkJoin(
-              trees.map((tree) =>
-                this.treeReportService
-                  .getLatestReport(farmId, areaId, tree.id)
-                  .pipe(map((report) => ({ report, ...tree }))),
+      this.treeService.watchTrees(farmId, areaId).pipe(
+        switchMap((trees) =>
+          forkJoin(
+            trees.map((tree) =>
+              forkJoin([
+                this.treeReportService.getLatestReport(farmId, areaId, tree.id),
+                this.treeReportService.getLatestIndividualFertilization(farmId, areaId, tree.id),
+              ]).pipe(
+                map(([report, latestIndividualFertilization]) => ({
+                  latestIndividualFertilization,
+                  report,
+                  ...tree,
+                })),
               ),
             ),
           ),
         ),
+      ),
     ),
   );
   private showAddModalSubject = new BehaviorSubject(false);

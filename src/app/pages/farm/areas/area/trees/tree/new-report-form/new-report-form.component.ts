@@ -18,12 +18,12 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
   buddingOptions = ['未着花', '良好', '不良'];
   yieldOptions = ['未', '良好', '不良'];
   public newReportForm = new FormGroup({
-    notes: new FormControl(''),
-    height: new FormControl(100, [Validators.required]),
-    budding: new FormControl('未着花'),
-    beanYield: new FormControl('未'),
+    notes: new FormControl('', { nonNullable: true }),
+    height: new FormControl(100, { nonNullable: true, validators: [Validators.required] }),
+    budding: new FormControl('未着花', { nonNullable: true }),
+    beanYield: new FormControl('未', { nonNullable: true }),
     picture: new FormControl<File | null>(null),
-    individualFertilization: new FormControl(false),
+    individualFertilization: new FormControl(false, { nonNullable: true }),
   });
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
@@ -63,6 +63,7 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
     const height = this.newReportForm.controls.height.value!;
     const budding = this.newReportForm.controls.budding.value!.trim();
     const beanYield = this.newReportForm.controls.beanYield.value!;
+    const individualFertilization = this.newReportForm.controls.individualFertilization.value;
     const picture = formData.get('picture')!;
     let photoPath = '';
     if (!(picture instanceof File)) throw TypeError();
@@ -96,6 +97,7 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
             beanYield,
             photoURL,
             photoPath,
+            individualFertilization,
           }),
         ),
         finalize(() => {
