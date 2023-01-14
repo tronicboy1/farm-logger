@@ -1,8 +1,31 @@
-<ng-template [ngIf]="this.farm">
-  <app-location [googleMapsURL]="this.googleMapsURL" (location)="this.handleLocationClick($event)"></app-location>
+<ng-container *ngIf="this.farm$ | async as farm; else loadingBlock">
+  <app-location [googleMapsURL]="(this.googleMapsURL$ | async) ?? undefined"
+    (location)="this.handleLocationClick($event)"></app-location>
 
   <app-members [adminMembers]="this.farm.adminMembers" [observerMembers]="this.farm.observerMembers"></app-members>
-</ng-template>
-<ng-template [ngIf]="!this.farm">
+
+  <div class="round-block">
+    <button title="この区域の情報を編集する" type="button" class="card round">
+      <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0,0,48,48">
+        <path
+          d="M9 39h2.2l22.15-22.15-2.2-2.2L9 36.8Zm30.7-24.3-6.4-6.4 2.1-2.1q.85-.85 2.1-.85t2.1.85l2.2 2.2q.85.85.85 2.1t-.85 2.1Zm-2.1 2.1L12.4 42H6v-6.4l25.2-25.2Zm-5.35-1.05-1.1-1.1 2.2 2.2Z" />
+      </svg>
+    </button>
+    <button class="card round svg-delete" type="button" (click)="this.toggleDeleteModal()">
+      <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0,0,48,48">
+        <path
+          d="M13.05 42q-1.25 0-2.125-.875T10.05 39V10.5H8v-3h9.4V6h13.2v1.5H40v3h-2.05V39q0 1.2-.9 2.1-.9.9-2.1.9Zm21.9-31.5h-21.9V39h21.9Zm-16.6 24.2h3V14.75h-3Zm8.3 0h3V14.75h-3Zm-13.6-24.2V39Z" />
+      </svg>
+    </button>
+  </div>
+  <base-modal [show]="this.showDeleteModal$ | async" modal-title="本当にこの農園を削除しますか？"
+    (modal-closed)="this.toggleDeleteModal(false)">
+    <p class="warning">農園を削除してしまうと、データは消えます。十分にご確認ください。</p>
+    <p>農園名：{{ farm.name }}</p>
+    <app-delete-farm-form (cancel)="this.toggleDeleteModal(false)"
+      (submitted)="this.handleDeleteFarm()"></app-delete-farm-form>
+  </base-modal>
+</ng-container>
+<ng-template #loadingBlock>
   <base-spinner></base-spinner>
 </ng-template>

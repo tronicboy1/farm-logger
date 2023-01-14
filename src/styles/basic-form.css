@@ -68,10 +68,14 @@ button:hover {
   background-color: var(--highlight-hover);
   border-color: var(--highlight-hover);
 }
+button + button {
+  margin-top: 1rem;
+}
 
 form:invalid button[type='submit'],
-button:disabled {
-  background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
+button:disabled,
+button[disabled] {
+  background-color: var(--secondary-color) !important;
+  border-color: var(--secondary-color) !important;
   cursor: not-allowed;
 }

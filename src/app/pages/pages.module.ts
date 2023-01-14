@@ -35,6 +35,7 @@ import { NgxVisibleAutofocusModule } from 'ngx-visible-autofocus';
 import { NgxObservableDirectiveModule } from 'ngx-observable-directive';
 import { NgxBaseComponentsModule } from '@tronicboy/ngx-base-components';
 import { NgxGeolocationModule } from '@tronicboy/ngx-geolocation';
+import { DeleteFarmFormComponent } from './farm/manage/delete-farm-form/delete-farm-form.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { NgxGeolocationModule } from '@tronicboy/ngx-geolocation';
     DeleteAreaFormComponent,
     EditTreeFormComponent,
     EditAreaFormComponent,
+    DeleteFarmFormComponent,
   ],
   imports: [
     CommonModule,

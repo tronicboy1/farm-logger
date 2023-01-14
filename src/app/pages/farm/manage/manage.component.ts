@@ -1,64 +1,46 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { SafeResourceUrl } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LocationArray } from '@tronicboy/ngx-geolocation';
-import { first, map, Subscription, switchMap } from 'rxjs';
-import { Farm } from 'src/app/farm/farm.model';
+import { BehaviorSubject, map, shareReplay, switchMap } from 'rxjs';
 import { FarmService } from 'src/app/farm/farm.service';
 import { GeolocationService } from 'src/app/farm/util/geolocation.service';
+import { ManageInheritable } from './inheritable';
 
 @Component({
   selector: 'app-manage',
   templateUrl: './manage.component.html',
   styleUrls: ['./manage.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ManageComponent implements OnInit, OnDestroy {
-  public farm?: Farm;
-  public googleMapsURL?: SafeResourceUrl;
-  public locationError = false;
-  public showMap = false;
-
-  private subscriptions: Subscription[] = [];
+export class ManageComponent extends ManageInheritable {
+  public farm$ = this.getFarmId().pipe(
+    switchMap((farmId) => {
+      return this.farmService.watchFarm(farmId);
+    }),
+    shareReplay(1),
+  );
+  public googleMapsURL$ = this.farm$.pipe(map((farm) => this.geolocationService.getGoogleMapsURL(farm)));
+  private showMap = new BehaviorSubject(false);
+  readonly showMap$ = this.showMap.asObservable();
+  private showDeleteModal = new BehaviorSubject(false);
+  readonly showDeleteModal$ = this.showDeleteModal.asObservable();
 
   constructor(
-    private route: ActivatedRoute,
     private farmService: FarmService,
     private geolocationService: GeolocationService,
-  ) {}
-
-  ngOnInit(): void {
-    this.subscriptions.push(
-      this.route
-        .parent!.params.pipe(
-          switchMap((params) => {
-            const { farmId } = params;
-            if (typeof farmId !== 'string') throw TypeError('Farm ID was not in params.');
-            return this.farmService.watchFarm(farmId);
-          }),
-        )
-        .subscribe((farm) => {
-          this.farm = farm;
-          this.googleMapsURL = this.geolocationService.getGoogleMapsURL(farm);
-        }),
-    );
+    private router: Router,
+  ) {
+    super();
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
+  toggleDeleteModal = (force?: boolean) => this.showDeleteModal.next(force ?? !this.showDeleteModal.value);
+  handleDeleteFarm() {
+    this.router.navigateByUrl('/home');
   }
-
-  public toggleMap = (force?: boolean) => (this.showMap = force ?? !this.showMap);
-  public handleLocationClick(location: LocationArray) {
-    this.locationError = false;
-    this.route
-      .parent!.params.pipe(
-        first(),
-        map(({ farmId }) => {
-          if (typeof farmId !== 'string') throw TypeError('Farm ID was not in params.');
-          return farmId;
-        }),
-        switchMap((farmId) => this.farmService.updateFarm(farmId, { location })),
-      )
+  toggleMap = (force?: boolean) => this.showMap.next(force ?? !this.showMap.value);
+  handleLocationClick(location: LocationArray) {
+    this.getFarmId()
+      .pipe(switchMap((farmId) => this.farmService.updateFarm(farmId, { location })))
       .subscribe();
   }
 }

@@ -55,16 +55,16 @@ export class TreeComponent extends TreeIdInheritable implements OnInit {
     const id = this.reportToDeleteSubject.getValue();
     if (!id) return;
     this.reportToDeleteSubject.next(undefined);
-    const deletePhoto$ = this.reports.pipe(
-      first(),
-      map((reports) => reports.find((report) => report.id === id)),
-      map((report) => report?.photoPath),
-      mergeMap((photoPath) => (photoPath ? this.photoService.deletePhoto(photoPath) : of(''))),
-      catchError(() => of('')),
-    );
-    const deleteReport$ = this.getFarmIdAreaIdAndTreeId().pipe(
-      mergeMap(([farmId, areaId, treeId]) => this.treeReportService.removeReport(farmId, areaId, treeId, id)),
-    );
-    deletePhoto$.pipe(mergeMap(() => deleteReport$)).subscribe();
+    // const deletePhoto$ = this.reports.pipe(
+    //   first(),
+    //   map((reports) => reports.find((report) => report.id === id)),
+    //   map((report) => report?.photoPath),
+    //   mergeMap((photoPath) => (photoPath ? this.photoService.deletePhoto(photoPath) : of(''))),
+    //   catchError(() => of('')),
+    // );
+    this.getFarmIdAreaIdAndTreeId()
+      .pipe(mergeMap(([farmId, areaId, treeId]) => this.treeReportService.removeReport(farmId, areaId, treeId, id)))
+      .subscribe();
+    //deletePhoto$.pipe(mergeMap(() => deleteReport$)).subscribe();
   }
 }

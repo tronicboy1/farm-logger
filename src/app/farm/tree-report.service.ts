@@ -8,6 +8,7 @@ import {
   doc,
   DocumentData,
   DocumentReference,
+  getDoc,
   getDocs,
   limit,
   onSnapshot,
@@ -21,6 +22,7 @@ import {
 import { BehaviorSubject, from, map, Observable } from 'rxjs';
 import { FarmModule } from './farm.module';
 import { CoffeeTreeReport, CoffeeTreeReportWithId } from './tree.model';
+import { PhotoService } from './util/photo.service';
 
 @Injectable({
   providedIn: FarmModule,
@@ -28,7 +30,7 @@ import { CoffeeTreeReport, CoffeeTreeReportWithId } from './tree.model';
 export class TreeReportService {
   private addReportLoadingSubject = new BehaviorSubject(false);
   readonly addingReport$ = this.addReportLoadingSubject.asObservable();
-  constructor() {}
+  constructor(private photoService: PhotoService) {}
 
   public addReport(farmId: string, areaId: string, treeId: string, reportData: CoffeeTreeReport) {
     const ref = this.getRef(farmId, areaId, treeId);
@@ -90,7 +92,14 @@ export class TreeReportService {
 
   public removeReport(farmId: string, areaId: string, treeId: string, reportId: string) {
     const ref = this.getRef(farmId, areaId, treeId, reportId);
-    return deleteDoc(ref);
+    return getDoc(ref)
+      .then((doc) => {
+        if (!doc.exists) throw Error('report did not exist');
+        const data = doc.data() as CoffeeTreeReport;
+        if (!data.photoPath) return Promise.resolve();
+        return this.photoService.deletePhoto(data.photoPath);
+      })
+      .then(() => deleteDoc(ref));
   }
 
   private getRef(farmId: string, areaId: string, treeId: string): CollectionReference<DocumentData>;
