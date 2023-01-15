@@ -150,7 +150,65 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
-            <trans-unit id="3246289070146965318" datatype="html">
+      <trans-unit id="3897348120591552265" datatype="html">
+        <source>Manage</source>
+        <target>管理</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/farm.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3570584475835614001" datatype="html">
+        <source>Areas</source>
+        <target>区域</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/farm.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5653202483299129380" datatype="html">
+        <source>Weather</source>
+        <target>気象</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/farm.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2794567415525711547" datatype="html">
+        <source>Edit this area&apos;s information</source>
+        <target>この農園の情報を編集する</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/manage.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <note priority="1" from="description">Edit this area&apos;s information</note>
+      </trans-unit>
+      <trans-unit id="2578646030970545288" datatype="html">
+        <source>Are you sure you want to delete this farm?</source>
+        <target>本当にこの農園を削除しますか？</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/manage.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <note priority="1" from="description">Are you sure you want to delete this farm?</note>
+      </trans-unit>
+      <trans-unit id="2276401990360445342" datatype="html">
+        <source>All data will be lost if you delet this farm.</source>
+        <target>農園を削除してしまうと、データは消えます。十分にご確認ください</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/manage.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6116651140564584654" datatype="html">
+        <source>Farm Name: <x id="INTERPOLATION" equiv-text="{{ farm.name }}"/></source>
+        <target>農園名： <x id="INTERPOLATION" equiv-text="{{ farm.name }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/manage.component.html</context>
+          <context context-type="linenumber">25,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3246289070146965318" datatype="html">
         <source>My Farms</source>
         <target>My 農園</target>
         <context-group purpose="location">

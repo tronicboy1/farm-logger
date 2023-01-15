@@ -5,7 +5,8 @@
   <app-members [adminMembers]="this.farm.adminMembers" [observerMembers]="this.farm.observerMembers"></app-members>
 
   <div class="round-block">
-    <button title="この区域の情報を編集する" type="button" class="card round">
+    <button i18n-title="Edit this farm's information" title="Edit this area's information" type="button"
+      class="card round">
       <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0,0,48,48">
         <path
           d="M9 39h2.2l22.15-22.15-2.2-2.2L9 36.8Zm30.7-24.3-6.4-6.4 2.1-2.1q.85-.85 2.1-.85t2.1.85l2.2 2.2q.85.85.85 2.1t-.85 2.1Zm-2.1 2.1L12.4 42H6v-6.4l25.2-25.2Zm-5.35-1.05-1.1-1.1 2.2 2.2Z" />
@@ -18,10 +19,10 @@
       </svg>
     </button>
   </div>
-  <base-modal [show]="this.showDeleteModal$ | async" modal-title="本当にこの農園を削除しますか？"
-    (modal-closed)="this.toggleDeleteModal(false)">
-    <p class="warning">農園を削除してしまうと、データは消えます。十分にご確認ください。</p>
-    <p>農園名：{{ farm.name }}</p>
+  <base-modal [show]="this.showDeleteModal$ | async" i18n-modal-title="Are you sure you want to delete this farm?"
+    modal-title="Are you sure you want to delete this farm?" (modal-closed)="this.toggleDeleteModal(false)">
+    <p class="warning" i18n>All data will be lost if you delete this farm.</p>
+    <p i18n>Farm Name: {{ farm.name }}</p>
     <app-delete-farm-form (cancel)="this.toggleDeleteModal(false)"
       (submitted)="this.handleDeleteFarm()"></app-delete-farm-form>
   </base-modal>

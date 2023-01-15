@@ -133,6 +133,57 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="3897348120591552265" datatype="html">
+        <source>Manage</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/farm.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3570584475835614001" datatype="html">
+        <source>Areas</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/farm.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5653202483299129380" datatype="html">
+        <source>Weather</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/farm.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2794567415525711547" datatype="html">
+        <source>Edit this area&apos;s information</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/manage.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <note priority="1" from="description">Edit this farm&apos;s information</note>
+      </trans-unit>
+      <trans-unit id="2578646030970545288" datatype="html">
+        <source>Are you sure you want to delete this farm?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/manage.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <note priority="1" from="description">Are you sure you want to delete this farm?</note>
+      </trans-unit>
+      <trans-unit id="2276401990360445342" datatype="html">
+        <source>All data will be lost if you delete this farm.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/manage.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6116651140564584654" datatype="html">
+        <source>Farm Name: <x id="INTERPOLATION" equiv-text="{{ farm.name }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/manage.component.html</context>
+          <context context-type="linenumber">25,26</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3246289070146965318" datatype="html">
         <source>My Farms</source>
         <context-group purpose="location">
@@ -145,6 +196,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.component.html</context>
           <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/new-farm-form/new-farm-form.component.html</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4691887509600985309" datatype="html">
