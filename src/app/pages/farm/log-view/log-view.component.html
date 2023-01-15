@@ -1,5 +1,5 @@
 <div class="card">
-  <h2>操作ログ</h2>
+  <h2 i18n>Logs</h2>
   <ul>
     <li *ngFor="let log of this.logs$ | async" ngxObservable (intersection)="this.handleIntersection(log.id)"
       [once]="true">

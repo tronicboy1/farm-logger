@@ -1,24 +1,20 @@
-<h1 title="当農園の気象情報を記録する場所">環境記録</h1>
-<p class="message">現在、気象情報を出力する方法は実装していませんが開発する予定はあります。</p>
+<h1 i18n-title title="Record weather data for your farm. It uses your farm's location if you have it registered." i18n>Weather Data</h1>
 <div class="card">
-  <p>
-    現在の気象情報を取得して登録する。農園の位置情報が登録されていれば、それを元に自動的に記録を作ることができます。
-  </p>
-  <button (click)="this.addRecord()" type="button">追加</button>
+  <button (click)="this.addRecord()" type="button" i18n>Add</button>
   <base-spinner *ngIf="this.loading | async"></base-spinner>
 </div>
 <div class="card">
   <table>
     <thead>
       <tr>
-        <th>日付</th>
-        <th>天気</th>
-        <th>雲の被覆率</th>
-        <th>最高気温</th>
-        <th>最低気温</th>
-        <th>湿度</th>
-        <th>風速</th>
-        <th>雨量</th>
+        <th i18n>Date</th>
+        <th i18n>Weather</th>
+        <th i18n>Cloud Coverage</th>
+        <th i18n>High Temp</th>
+        <th i18n>Low Temp</th>
+        <th i18n>humidity</th>
+        <th i18n>Wind Speed</th>
+        <th i18n>Rainfall</th>
       </tr>
     </thead>
     <tbody>
@@ -34,12 +30,12 @@
       </tr>
     </tbody>
   </table>
-  <p *ngIf="(this.environmentRecords | async)?.length" ngxObservable (intersection)="this.loadNextPage()">
-    気象情報は<a href="https://openweathermap.org/">OpenWeather</a>から取得しています。
+  <p *ngIf="(this.environmentRecords | async)?.length" ngxObservable (intersection)="this.loadNextPage()" i18n>
+    Weather data is taken from <a href="https://openweathermap.org/">OpenWeather</a>.
   </p>
 </div>
 
-<base-modal [show]="this.error | async" modal-title="天気登録" (modal-closed)="this.error.next(false)">
-  <p>自動登録が失敗しましたので、手動で天気情報をご入力ください。</p>
+<base-modal [show]="this.error | async" i18n-modal-title modal-title="Weather Report" (modal-closed)="this.error.next(false)">
+  <p i18n>Automatic weather report failed. Please manually add weather data.</p>
   <app-weather-form (submitted)="this.handleFormSubmit()"></app-weather-form>
 </base-modal>

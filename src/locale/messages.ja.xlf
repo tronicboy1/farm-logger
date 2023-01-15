@@ -342,6 +342,122 @@
           <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="7285710065221023584" datatype="html">
+        <source>Record weather data for your farm. It uses your farm&apos;s location if you have it registered.</source>
+        <target>当農園の気象情報を記録する場所</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="799353425260163708" datatype="html">
+        <source>Weather Data</source>
+        <target>気象データ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3249513483374643425" datatype="html">
+        <source>Add</source>
+        <target>追加</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3973931101896534797" datatype="html">
+        <source>Date</source>
+        <target>日付</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5653202483299129380" datatype="html">
+        <source>Weather</source>
+        <target>天気</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/farm.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6368068060243299899" datatype="html">
+        <source>Cloud Coverage</source>
+        <target>雲の被覆率</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1855160715014056368" datatype="html">
+        <source>High Temp</source>
+        <target>最高気温</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4411617940979422701" datatype="html">
+        <source>Low Temp</source>
+        <target>最低気温</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7866883910206291949" datatype="html">
+        <source>humidity</source>
+        <target>湿度</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7587296719360794530" datatype="html">
+        <source>Wind Speed</source>
+        <target>風速</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4793192168358279479" datatype="html">
+        <source>Rainfall</source>
+        <target>雨量</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5835261433321003255" datatype="html">
+        <source> Weather data is taken from <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://openweathermap.org/&quot;&gt;"/>OpenWeather<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </source>
+        <target>気象情報は<x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://openweathermap.org/&quot;&gt;"/>OpenWeather<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>から取得しています。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6841909492301249916" datatype="html">
+        <source>Weather Report</source>
+        <target>天気登録</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8457800480620034760" datatype="html">
+        <source>Automatic weather report failed. Please manually add weather data.</source>
+        <target>自動登録が失敗しましたので、手動で天気情報をご入力ください。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

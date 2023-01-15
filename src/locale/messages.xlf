@@ -133,6 +133,108 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="7285710065221023584" datatype="html">
+        <source>Record weather data for your farm. It uses your farm&apos;s location if you have it registered.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="799353425260163708" datatype="html">
+        <source>Weather Data</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3249513483374643425" datatype="html">
+        <source>Add</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3973931101896534797" datatype="html">
+        <source>Date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5653202483299129380" datatype="html">
+        <source>Weather</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/farm.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6368068060243299899" datatype="html">
+        <source>Cloud Coverage</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1855160715014056368" datatype="html">
+        <source>High Temp</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4411617940979422701" datatype="html">
+        <source>Low Temp</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7866883910206291949" datatype="html">
+        <source>humidity</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7587296719360794530" datatype="html">
+        <source>Wind Speed</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4793192168358279479" datatype="html">
+        <source>Rainfall</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5835261433321003255" datatype="html">
+        <source> Weather data is taken from <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://openweathermap.org/&quot;&gt;"/>OpenWeather<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6841909492301249916" datatype="html">
+        <source>Weather Report</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8457800480620034760" datatype="html">
+        <source>Automatic weather report failed. Please manually add weather data.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3897348120591552265" datatype="html">
         <source>Manage</source>
         <context-group purpose="location">
@@ -147,11 +249,11 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5653202483299129380" datatype="html">
-        <source>Weather</source>
+      <trans-unit id="4804785061014590286" datatype="html">
+        <source>Logs</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/farm.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="sourcefile">src/app/pages/farm/log-view/log-view.component.html</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2555945803261554567" datatype="html">
