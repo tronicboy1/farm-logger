@@ -1,12 +1,12 @@
 <div class="title">
   <base-tooltip
-    >ここで農園の格区域に関する情報を管理することができます。
+     i18n>Here you can edit information based on the different areas in your farm.
     <br />
-    一覧から区域をクリックすると、その区域に所属するコーヒーの木を一覧で見ることができます。
+    You can view the coffee trees that belong to each area by clicking on them.
     <br />
-    また、そこでコーヒーの木の育成記録を登録することもできます。
+    You can also add records to trees.
   </base-tooltip>
-  <h1>区域管理</h1>
+  <h1 i18n>Area Management</h1>
 </div>
 
 <ul class="card">
@@ -28,12 +28,13 @@
     </svg>
   </div>
 </div>
-<base-modal [show]="this.showNewAreaForm$ | async" modal-title="区域新規登録" (modal-closed)="this.toggleNewAreaForm()">
+<base-modal [show]="this.showNewAreaForm$ | async" i18n-modal-title modal-title="Add a New Area" (modal-closed)="this.toggleNewAreaForm()">
   <app-new-area-form></app-new-area-form>
 </base-modal>
 <base-modal
   [show]="this.showDeleteAreaForm$ | async"
-  modal-title="区域削除"
+  i18n-modal-title
+  modal-title="Delete Areas"
   (modal-closed)="this.toggleDeleteAreaForm()"
 >
   <app-delete-area-form [areas$]="this.areas" (submitted)="this.toggleDeleteAreaForm(false)"></app-delete-area-form>

@@ -494,6 +494,98 @@
           <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8541997220085078514" datatype="html">
+        <source>Here you can edit information based on the different areas in your farm. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> You can view the coffee trees that belong to each area by clicking on them. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> You can also add records to trees. </source>
+        <target>ここで農園の格区域に関する情報を管理することができます。<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>一覧から区域をクリックすると、その区域に所属するコーヒーの木を一覧で見ることができます。<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>また、そこでコーヒーの木の育成記録を登録することもできます。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/areas.component.html</context>
+          <context context-type="linenumber">3,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4298938573972253643" datatype="html">
+        <source>Area Management</source>
+        <target>区域管理</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/areas.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4651756948609875331" datatype="html">
+        <source>Add a New Area</source>
+        <target>区域新規登録</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/areas.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="447171722065910905" datatype="html">
+        <source>Select Areas</source>
+        <target>区域新規登録</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/delete-area-form/delete-area-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7022070615528435141" datatype="html">
+        <source>Delete</source>
+        <target>削除</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/delete-area-form/delete-area-form.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/delete-area-form/delete-area-form.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/delete-farm-form/delete-farm-form.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/members.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9067192494200027150" datatype="html">
+        <source>Delete Areas</source>
+        <target>区域削除</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/areas.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/delete-area-form/delete-area-form.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="168576082038632162" datatype="html">
+        <source>Deleting an area will delete all data associated with it.</source>
+        <target>区域を削除してしまうと、データは消えます。十分にご確認ください。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/delete-area-form/delete-area-form.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2255196123857960409" datatype="html">
+        <source>Area Name</source>
+        <target>区域名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/new-area-form/new-area-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3249513483374643425" datatype="html">
+        <source>Add</source>
+        <target>追加</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/new-area-form/new-area-form.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

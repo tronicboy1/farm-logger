@@ -1,6 +1,6 @@
 <form [formGroup]="this.newAreaFormGroup" (ngSubmit)="this.handleSubmit()" appSubmitOnModifierEnter appCloseOnEsc>
-  <label for="name">区域名</label>
+  <label for="name" i18n>Area Name</label>
   <input type="text" formControlName="name" required ngxAutofocus />
-  <button [disabled]="(this.newAreaFormGroup.statusChanges | async) !== 'VALID'" type="submit">追加</button>
+  <button [disabled]="(this.newAreaFormGroup.statusChanges | async) !== 'VALID'" type="submit" i18n>Add</button>
   <base-spinner *ngIf="this.loading | async"></base-spinner>
 </form>

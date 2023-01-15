@@ -1,13 +1,13 @@
 <form (submit)="this.handleSubmit($event)" [formGroup]="this.deleteFormGroup" id="delete-form" appCloseOnEsc>
-  <label for="areas">区域選択</label>
+  <label for="areas" i18n>Select Areas</label>
   <select name="areas" id="areas" multiple formControlName="areas">
     <option *ngFor="let area of this.areas$ | async" [ngValue]="area.id">{{ area.name }}</option>
   </select>
-  <button type="button" class="delete" (click)="this.toggleConfirmForm()">削除</button>
+  <button type="button" class="delete" (click)="this.toggleConfirmForm()" i18n>Delete</button>
 </form>
-<base-modal [show]="this.showConfirmForm$ | async" modal-title="区域削除" (modal-closed)="this.toggleConfirmForm()">
+<base-modal [show]="this.showConfirmForm$ | async" i18n-modal-title modal-title="Delete Areas" (modal-closed)="this.toggleConfirmForm()">
   <div>
-    <p class="warning">区域を削除してしまうと、データは消えます。十分にご確認ください。</p>
-    <button class="delete" form="delete-form" style="height: 60px">削除する</button>
+    <p class="warning" i18n>Deleting an area will delete all data associated with it.</p>
+    <button class="delete" form="delete-form" style="height: 60px" i18n>Delete</button>
   </div>
 </base-modal>

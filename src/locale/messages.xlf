@@ -133,6 +133,89 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8541997220085078514" datatype="html">
+        <source>Here you can edit information based on the different areas in your farm. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> You can view the coffee trees that belong to each area by clicking on them. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> You can also add records to trees. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/areas.component.html</context>
+          <context context-type="linenumber">3,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4298938573972253643" datatype="html">
+        <source>Area Management</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/areas.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4651756948609875331" datatype="html">
+        <source>Add a New Area</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/areas.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9067192494200027150" datatype="html">
+        <source>Delete Areas</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/areas.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/delete-area-form/delete-area-form.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="447171722065910905" datatype="html">
+        <source>Select Areas</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/delete-area-form/delete-area-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7022070615528435141" datatype="html">
+        <source>Delete</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/delete-area-form/delete-area-form.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/delete-area-form/delete-area-form.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/delete-farm-form/delete-farm-form.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/members.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="168576082038632162" datatype="html">
+        <source>Deleting an area will delete all data associated with it.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/delete-area-form/delete-area-form.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2255196123857960409" datatype="html">
+        <source>Area Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/new-area-form/new-area-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3249513483374643425" datatype="html">
+        <source>Add</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/new-area-form/new-area-form.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7285710065221023584" datatype="html">
         <source>Record weather data for your farm. It uses your farm&apos;s location if you have it registered.</source>
         <context-group purpose="location">
@@ -145,13 +228,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
           <context context-type="linenumber">1</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3249513483374643425" datatype="html">
-        <source>Add</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
-          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3973931101896534797" datatype="html">
@@ -288,17 +364,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/manage/delete-farm-form/delete-farm-form.component.html</context>
           <context context-type="linenumber">2</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7022070615528435141" datatype="html">
-        <source>Delete</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/manage/delete-farm-form/delete-farm-form.component.html</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/manage/members/members.component.html</context>
-          <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2159130950882492111" datatype="html">
