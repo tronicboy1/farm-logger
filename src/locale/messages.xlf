@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="5663262086756525973" datatype="html">
         <source>Change Email</source>
@@ -405,6 +405,41 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/manage/manage.component.html</context>
           <context context-type="linenumber">25,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9183003421020737649" datatype="html">
+        <source>The email you provided is not registered or is your own.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/add-member-form/add-member-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4768749765465246664" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/add-member-form/add-member-form.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2129531338102507188" datatype="html">
+        <source> The email address provided is not registered. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/add-member-form/add-member-form.component.html</context>
+          <context context-type="linenumber">4,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4145496584631696119" datatype="html">
+        <source>Role</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/add-member-form/add-member-form.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3463797202358605584" datatype="html">
+        <source>Invite</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/add-member-form/add-member-form.component.html</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="718580213555561832" datatype="html">
