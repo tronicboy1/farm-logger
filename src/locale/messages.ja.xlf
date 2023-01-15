@@ -322,6 +322,26 @@
         </context-group>
         <note priority="1" from="description">New Farm</note>
       </trans-unit>
+      <trans-unit id="2555945803261554567" datatype="html">
+        <source>Confirm farm name</source>
+        <target>農園名を入力してください</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/delete-farm-form/delete-farm-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2159130950882492111" datatype="html">
+        <source>Cancel</source>
+        <target>キャンセル</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/delete-farm-form/delete-farm-form.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/members.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

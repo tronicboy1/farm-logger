@@ -1,6 +1,6 @@
 <form [formGroup]="this.formGroup" (ngSubmit)="this.handleSubmit()">
-  <label for="name">農園名を入力してください。</label>
+  <label for="name" i18n>Confirm farm name</label>
   <input type="text" name="name" id="name" formControlName="name" autocomplete="off">
-  <button class="delete" type="submit" [disabled]="(this.formGroup.statusChanges | async) !== 'VALID'">削除する</button>
-  <button type="button" (click)="this.handleCancel()">キャンセル</button>
+  <button class="delete" type="submit" [disabled]="(this.formGroup.statusChanges | async) !== 'VALID'" i18n>Delete</button>
+  <button type="button" (click)="this.handleCancel()" i18n>Cancel</button>
 </form>
