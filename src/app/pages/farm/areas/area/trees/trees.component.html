@@ -1,7 +1,7 @@
 <base-modal [show]="this.showAddModal | async" modal-title="コーヒーの木新規登録" (modal-closed)="this.toggleAddModal(false)">
   <app-new-tree-form></app-new-tree-form>
 </base-modal>
-<h1>木一覧</h1>
+<h1 i18n>trees</h1>
 <div class="round-block">
   <a routerLink=".." class="card round">
     <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0,0,48,48">
@@ -17,7 +17,7 @@
 
 <div class="card">
   <div class="search">
-    <label for="tree-search">整理番号検索</label>
+    <label for="tree-search" i18n>Search by ID</label>
     <input id="tree-search" type="number" [formControl]="this.searchControl" />
   </div>
   <ng-container *ngIf="this.trees$ | async as trees">
@@ -25,11 +25,11 @@
       <thead>
         <tr>
           <th style="width: 20px">#</th>
-          <th>品種</th>
-          <th>根付いた頃の高さ</th>
-          <th>現在の高さ</th>
-          <th>育成記録</th>
-          <th>個別施肥</th>
+          <th i18n>Species</th>
+          <th i18n>Height at Planting</th>
+          <th i18n>Current Height</th>
+          <th i18n>Last Record</th>
+          <th i18n>Last Individual Fertilization</th>
         </tr>
       </thead>
       <tbody>

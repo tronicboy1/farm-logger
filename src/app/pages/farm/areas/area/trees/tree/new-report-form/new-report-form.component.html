@@ -1,25 +1,25 @@
 <form appSubmitOnModifierEnter appCloseOnEsc [formGroup]="this.newReportForm"
   (ngSubmit)="this.handleReportSubmit($event)">
-  <label for="regular-id">整理番号</label>
+  <label for="regular-id" i18n>ID</label>
   <input id="regular-id" readonly type="number" [value]="this.regularId | async" />
-  <label for="height">高さ (cm)</label>
+  <label for="height" i18n>Height (cm)</label>
   <input type="number" name="height" id="height" required formControlName="height" ngxAutofocus />
-  <label for="picture">画像</label>
+  <label for="picture" i18n>Photo</label>
   <input type="file" name="picture" id="picture" accept="image/png, image/jpeg" size="500000"
     formControlName="picture" />
-  <label for="budding">摘芯後の着花</label>
+  <label for="budding" i18n>Budding</label>
   <select name="budding" id="budding" formControlName="budding">
     <option *ngFor="let option of this.buddingOptions" [value]="option">{{ option }}</option>
   </select>
-  <label for="bean-yield">実付き</label>
+  <label for="bean-yield" i18n>Bean</label>
   <select name="bean-yield" id="bean-yield" formControlName="beanYield">
     <option *ngFor="let option of this.yieldOptions" [value]="option">{{ option }}</option>
   </select>
-  <label for="fertilization">個別施肥</label>
+  <label for="fertilization" i18n>Individual Fertilization</label>
   <input type="checkbox" name="fertilization" id="fertilization" formControlName="individualFertilization">
-  <label for="notes">メモ</label>
+  <label for="notes" i18n>Memo</label>
   <textarea name="notes" id="notes" formControlName="notes"></textarea>
   <div style="margin-bottom: 3rem;"></div>
-  <button type="submit"><ng-container *ngIf="!(this.loading | async); else loadingSpinner">追加</ng-container></button>
+  <button type="submit"><ng-container *ngIf="!(this.loading | async); else loadingSpinner" i18n>Add</ng-container></button>
 </form>
 <ng-template #loadingSpinner><base-spinner color="white"></base-spinner></ng-template>

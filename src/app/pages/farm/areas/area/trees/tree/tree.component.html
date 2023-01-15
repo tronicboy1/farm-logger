@@ -20,13 +20,13 @@
   <table>
     <thead>
       <tr>
-        <th>日付</th>
-        <th>高さ</th>
-        <th>着花</th>
-        <th>実付き</th>
-        <th>メモ</th>
-        <th>写真</th>
-        <th>削除</th>
+        <th i18n>Date</th>
+        <th i18n>Height</th>
+        <th i18n>Budding</th>
+        <th i18n>Bean</th>
+        <th i18n>Memo</th>
+        <th i18n>Photo</th>
+        <th i18n>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -52,25 +52,27 @@
   </table>
 </div>
 
-<base-modal [show]="this.showAddModal | async" modal-title="育成状況レポート新規登録" (modal-closed)="this.toggleAddModal(false)">
+<base-modal [show]="this.showAddModal | async" i18n-modal-title modal-title="New Report"
+  (modal-closed)="this.toggleAddModal(false)">
   <app-new-report-form (submitted)="this.toggleAddModal(false)"></app-new-report-form>
 </base-modal>
 
 <base-modal [show]="!!(this.showPictureModal$ | async)" (modal-closed)="this.togglePictureModal(undefined)"
-  modal-title="写真詳細">
+  i18n-modal-title modal-title="Photo">
   <div class="photo-box">
     <img *ngIf="this.showPictureModal$ | async as picture" [src]="picture" alt="photo" />
   </div>
 </base-modal>
 
 <base-modal [show]="!!(this.reportToDelete$ | async)" (modal-closed)="this.setReportToDelete(undefined)"
-  modal-title="本当に削除しますか？" appCloseOnEsc>
+  i18n-modal-title modal-title="Are you sure?" appCloseOnEsc>
   <div class="confirm-buttons">
-    <button type="button" class="delete" (click)="this.removeReport()">削除</button>
-    <button type="button" (click)="this.setReportToDelete(undefined)">キャンセル</button>
+    <button type="button" class="delete" (click)="this.removeReport()" i18n>Delete</button>
+    <button type="button" (click)="this.setReportToDelete(undefined)" i18n>Cancel</button>
   </div>
 </base-modal>
 
-<base-modal [show]="this.showEditModal$ | async" (modal-closed)="this.toggleEditModal(false)" modal-title="木編集">
+<base-modal [show]="this.showEditModal$ | async" (modal-closed)="this.toggleEditModal(false)" i18n-modal-title
+  modal-title="Edit Tree">
   <farm-edit-tree-form (submitted)="this.toggleEditModal(false)"></farm-edit-tree-form>
 </base-modal>
