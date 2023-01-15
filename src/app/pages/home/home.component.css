@@ -60,8 +60,11 @@ li h5 {
 
 .members-list ul {
   display: flex;
-  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -69,4 +72,21 @@ li h5 {
   max-width: 100%;
   text-overflow: ellipsis;
   font-size: 1.1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem;
+}
+
+.members-list li span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+li img {
+  max-width: 30%;
+  height: auto;
+  border: 1px solid var(--secondary-color);
+  border-radius: 50%;
 }

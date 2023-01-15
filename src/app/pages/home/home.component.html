@@ -7,7 +7,10 @@
       <h5 class="members-title">参加メンバー</h5>
       <div class="members-list">
         <ul>
-          <li *ngFor="let member of farm.adminMembers; let last">{{ member }}{{ last ? '' : ',' }}</li>
+          <li *ngFor="let member of farm.adminMembers">
+            <span>{{ member.name }}</span>
+            <img *ngIf="member.photoURL" [src]="member.photoURL" alt="Avatar" i18n-alt="Avatar">
+          </li>
         </ul>
       </div>
     </li>

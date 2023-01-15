@@ -1,8 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'ngx-firebase-user-platform';
-import { BehaviorSubject, combineLatest, map, Observable, Subscription, switchMap } from 'rxjs';
-import { FarmWithId } from 'src/app/farm/farm.model';
+import { BehaviorSubject, combineLatest, map, switchMap } from 'rxjs';
 import { FarmService } from 'src/app/farm/farm.service';
 
 @Component({
@@ -10,36 +9,29 @@ import { FarmService } from 'src/app/farm/farm.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  public farms = new Observable<FarmWithId[]>();
+export class HomeComponent {
+  public farms = this.farmService.loadMyFarms().pipe(
+    switchMap((farms) =>
+      combineLatest(
+        farms.map((farm) =>
+          combineLatest(
+            farm.adminMembers.map((uid) =>
+              this.userService.watchUserDoc(uid).pipe(
+                map((userData) => ({
+                  name: userData.displayName ?? userData.email,
+                  photoURL: userData.photoURL,
+                })),
+              ),
+            ),
+          ).pipe(map((usernames) => ({ ...farm, adminMembers: usernames }))),
+        ),
+      ),
+    ),
+  );
   private showAddModalSubject = new BehaviorSubject(false);
   public showAddModal = this.showAddModalSubject.asObservable();
 
-  private subscriptions: Subscription[] = [];
-
   constructor(private farmService: FarmService, private userService: UserService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.farms = this.farmService
-      .loadMyFarms()
-      .pipe(
-        switchMap((farms) =>
-          combineLatest(
-            farms.map((farm) =>
-              combineLatest(
-                farm.adminMembers.map((uid) =>
-                  this.userService.watchUserDoc(uid).pipe(map((userData) => userData.displayName ?? userData.email)),
-                ),
-              ).pipe(map((usernames) => ({ ...farm, adminMembers: usernames }))),
-            ),
-          ),
-        ),
-      );
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
-  }
 
   public handleFarmClick(farmId: string) {
     this.router.navigate(['/farms', farmId], { queryParams: { 'show-logs': true } });
