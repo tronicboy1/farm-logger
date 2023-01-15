@@ -93,6 +93,15 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="165200899014013637" datatype="html">
+        <source>Original Avatar</source>
+        <target>現在のアバター</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <note priority="1" from="description">Original Avatar</note>
+      </trans-unit>
       <trans-unit id="6371576811194810854" datatype="html">
         <source>After</source>
         <target>変更後</target>
@@ -140,6 +149,48 @@
           <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-email-form/change-email-form.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
+      </trans-unit>
+            <trans-unit id="3246289070146965318" datatype="html">
+        <source>My Farms</source>
+        <target>My 農園</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8031735782074203846" datatype="html">
+        <source>Farm Name</source>
+        <target>農園名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4691887509600985309" datatype="html">
+        <source>Members</source>
+        <target>メンバー</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6525109356951792180" datatype="html">
+        <source>Avatar</source>
+        <target>アバター</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note priority="1" from="description">Avatar</note>
+      </trans-unit>
+      <trans-unit id="1714300339163153525" datatype="html">
+        <source>New Farm</source>
+        <target>新規農園</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <note priority="1" from="description">New Farm</note>
       </trans-unit>
     </body>
   </file>

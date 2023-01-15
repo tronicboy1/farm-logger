@@ -1,10 +1,10 @@
 <div class="card">
-  <h1>My 農園</h1>
+  <h1 i18n>My Farms</h1>
   <ul>
     <li class="farm-li" *ngFor="let farm of this.farms | async" (click)="this.handleFarmClick(farm.id)">
-      <h5 class="farm-title">農園名</h5>
+      <h5 class="farm-title" i18n>Farm Name</h5>
       <h3 class="farm-name">{{ farm.name }}</h3>
-      <h5 class="members-title">参加メンバー</h5>
+      <h5 class="members-title" i18n>Members</h5>
       <div class="members-list">
         <ul>
           <li *ngFor="let member of farm.adminMembers">
@@ -22,6 +22,6 @@
   </svg>
 </div>
 
-<base-modal [show]="this.showAddModal | async" (modal-closed)="this.toggleAddModal(false)" modal-title="農園新規登録">
+<base-modal [show]="this.showAddModal | async" (modal-closed)="this.toggleAddModal(false)" modal-title="New Farm"  i18n-modal-title="New Farm">
   <app-new-farm-form (submitted)="this.toggleAddModal(false)"></app-new-farm-form>
 </base-modal>

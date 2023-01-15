@@ -1,6 +1,9 @@
 {
   "hosting": {
     "public": "dist/farm-logger",
+    "i18n": {
+      "root": "dist/farm-logger"
+    },
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -9,7 +12,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "/ja/index.html"
       }
     ]
   },
