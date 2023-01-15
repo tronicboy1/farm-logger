@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="5663262086756525973" datatype="html">
+        <source>Change Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-circle.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <note priority="1" from="description">Change Email</note>
+      </trans-unit>
+      <trans-unit id="5503535973615409737" datatype="html">
+        <source>Change Avatar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-circle.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-circle.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <note priority="1" from="description">Change Avatar</note>
+      </trans-unit>
+      <trans-unit id="3362041682064186624" datatype="html">
+        <source>Account Details</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-circle.component.html</context>
+          <context context-type="linenumber">1,2</context>
+        </context-group>
+        <note priority="1" from="description">Account Details</note>
+      </trans-unit>
+      <trans-unit id="3473847384764562920" datatype="html">
+        <source>Change Mail Address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-circle.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5693296612971286474" datatype="html">
+        <source>Account Information</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-circle.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3013055597615607317" datatype="html">
+        <source>Display Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-details-form/account-details-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1230154438678955604" datatype="html">
+        <source>Change</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-details-form/account-details-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-email-form/change-email-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5667785181508739660" datatype="html">
+        <source>Mail Address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-details-form/account-details-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8194554728555410336" datatype="html">
+        <source>Phone Number</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-details-form/account-details-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1218334388194408974" datatype="html">
+        <source>Before</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="165200899014013637" datatype="html">
+        <source>Original Avatar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <note priority="1" from="description">Original Avatar</note>
+      </trans-unit>
+      <trans-unit id="6371576811194810854" datatype="html">
+        <source>After</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3801621443904007979" datatype="html">
+        <source>Compressed</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5181535935481851555" datatype="html">
+        <source>No Photo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6932865105766151309" datatype="html">
+        <source>Upload</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4214393630982487481" datatype="html">
+        <source>Select Photo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7602575004643332165" datatype="html">
+        <source>New Mail Address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-email-form/change-email-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
