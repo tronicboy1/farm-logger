@@ -184,6 +184,69 @@
           <context context-type="linenumber">25,26</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="718580213555561832" datatype="html">
+        <source>Manage observer users which can only view information and worker members who can view and edit information.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/members.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2397780946182693385" datatype="html">
+        <source> Manage Members </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/members.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5952713281195831868" datatype="html">
+        <source>Workers</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/members.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="771904793483173761" datatype="html">
+        <source>Observers can only view information.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/members.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3032353933722739484" datatype="html">
+        <source>Observers</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/members.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7462149067179544469" datatype="html">
+        <source>Add Members</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/members.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7515883357904500238" datatype="html">
+        <source>Are you sure?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/members.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7022070615528435141" datatype="html">
+        <source>Delete</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/members.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2159130950882492111" datatype="html">
+        <source>Cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/manage/members/members.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3246289070146965318" datatype="html">
         <source>My Farms</source>
         <context-group purpose="location">
