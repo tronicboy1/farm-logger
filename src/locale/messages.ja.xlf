@@ -382,6 +382,10 @@
           <context context-type="linenumber">11</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/weather-form/weather-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/farm.component.html</context>
           <context context-type="linenumber">18</context>
         </context-group>
@@ -401,6 +405,10 @@
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/weather-form/weather-form.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="4411617940979422701" datatype="html">
         <source>Low Temp</source>
@@ -409,13 +417,21 @@
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
           <context context-type="linenumber">14</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/weather-form/weather-form.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
       </trans-unit>
-      <trans-unit id="7866883910206291949" datatype="html">
-        <source>humidity</source>
+      <trans-unit id="1403671235176659940" datatype="html">
+        <source>Humidity</source>
         <target>湿度</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
           <context context-type="linenumber">15</context>
+        </context-group>
+         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/weather-form/weather-form.component.html</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7587296719360794530" datatype="html">
@@ -424,6 +440,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
           <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/weather-form/weather-form.component.html</context>
+          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4793192168358279479" datatype="html">
@@ -440,6 +460,22 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
           <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="935187492052582731" datatype="html">
+        <source>Submit</source>
+        <target>登録</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/weather-form/weather-form.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4804785061014590286" datatype="html">
+        <source>Logs</source>
+        <target>操作ログ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/log-view/log-view.component.html</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6841909492301249916" datatype="html">
