@@ -25,6 +25,7 @@ export class PhotoService {
   static defaultFileEnd = 'img.jpeg';
   static defaultImageType = 'image/jpeg';
   static maxImageHeight = 600;
+  static quality = 0.9
   static compressPhoto(file: File): Promise<File> {
     return new Promise<HTMLImageElement>((resolve) => {
       const image = new Image();
@@ -59,7 +60,7 @@ export class PhotoService {
                 resolve(transfer.files[0]);
               },
               PhotoService.defaultImageType,
-              0.8,
+              PhotoService.quality,
             );
           }),
       )
