@@ -2,7 +2,7 @@
   "hosting": {
     "public": "dist/farm-logger",
     "i18n": {
-      "root": "dist/farm-logger"
+      "root": "/"
     },
     "ignore": [
       "firebase.json",
@@ -10,6 +10,10 @@
       "**/node_modules/**"
     ],
     "rewrites": [
+      {
+        "source": "en/**",
+        "destination": "/en/index.html"
+      },
       {
         "source": "**",
         "destination": "/ja/index.html"
