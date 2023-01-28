@@ -58,7 +58,12 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
         mergeMap(([farmId, areaId, treeId]) => this.treeReportService.getLatestReport(farmId, areaId, treeId)),
         first(),
       )
-      .subscribe((report) => this.newReportForm.controls.height.setValue(report?.height ?? 100));
+      .subscribe((report) => {
+        this.newReportForm.controls.height.setValue(report?.height ?? 100);
+        if (typeof report?.beanYield !== 'number' || typeof report.budding !== 'number') return; // Do not get default values for old data
+        this.newReportForm.controls.budding.setValue(report.budding);
+        this.newReportForm.controls.beanYield.setValue(report.beanYield);
+      });
   }
 
   public handleReportSubmit(event: Event) {
