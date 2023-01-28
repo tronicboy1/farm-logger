@@ -112,7 +112,7 @@ tbody tr {
   border: 2px solid var(--secondary-color);
 }
 td {
-  height: 50px;
+  height: 80px;
 }
 tbody .remove,
 tbody .done {

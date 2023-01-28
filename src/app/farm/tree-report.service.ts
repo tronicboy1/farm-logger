@@ -8,6 +8,7 @@ import {
   doc,
   DocumentData,
   DocumentReference,
+  DocumentSnapshot,
   getDoc,
   getDocs,
   limit,
@@ -24,7 +25,6 @@ import {
   map,
   mergeMap,
   Observable,
-  ReplaySubject,
   scan,
   shareReplay,
   startWith,
@@ -52,8 +52,9 @@ export class TreeReportService {
 
   private treeIdCache?: string;
   private reportsCache$?: Observable<CoffeeTreeReportWithId[]>;
-  private lastDocCache?: DocumentData;
-  private lastDoc$ = new ReplaySubject<DocumentData | undefined>();
+  private lastDocCache?: DocumentSnapshot<any>;
+  private lastDoc$ = new Subject<DocumentSnapshot<any> | undefined>();
+  private lastDocDistinct$ = this.lastDoc$.pipe(distinctUntilChanged((prev, current) => prev?.id === current?.id));
   private refresh$ = new Subject<void>();
   public watchReports(farmId: string, areaId: string, treeId: string): Observable<CoffeeTreeReportWithId[]> {
     if (treeId !== this.treeIdCache) {
@@ -64,9 +65,8 @@ export class TreeReportService {
     return (this.reportsCache$ ||= this.refresh$.pipe(
       startWith(undefined),
       switchMap(() =>
-        this.lastDoc$.pipe(
+        this.lastDocDistinct$.pipe(
           startWith(undefined),
-          distinctUntilChanged(),
           mergeMap((lastDoc) => this.getReports(farmId, areaId, treeId, lastDoc)),
           takeWhile((result) => !result.empty),
           map((result) => {
@@ -85,11 +85,10 @@ export class TreeReportService {
   }
   public triggerRefresh() {
     this.lastDocCache = undefined;
-    this.lastDoc$.next(undefined);
     this.refresh$.next();
   }
 
-  private getReports(farmId: string, areaId: string, treeId: string, lastDoc?: DocumentData, limitNumber = 5) {
+  private getReports(farmId: string, areaId: string, treeId: string, lastDoc?: DocumentSnapshot<any>, limitNumber = 5) {
     const constraints: QueryConstraint[] = [orderBy('createdAt', 'desc'), limit(limitNumber)];
     if (lastDoc) constraints.push(startAfter(lastDoc));
     const q = query(this.getRef(farmId, areaId, treeId), ...constraints);

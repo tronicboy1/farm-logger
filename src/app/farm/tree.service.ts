@@ -24,7 +24,6 @@ import {
   from,
   map,
   Observable,
-  ReplaySubject,
   scan,
   shareReplay,
   startWith,
@@ -42,8 +41,8 @@ import { CoffeeTree, CoffeeTreeWithId } from './tree.model';
 export class TreeService {
   static limit = 20;
 
-  private lastDocSubject = new ReplaySubject<DocumentData | undefined>(1);
-  private lastDocCache?: DocumentData;
+  private lastDocSubject = new Subject<DocumentSnapshot<any> | undefined>();
+  private lastDocCache?: DocumentSnapshot<any>;
   private farmIdCache?: string;
   private areaIdCache?: string;
   private searchId$ = new BehaviorSubject<number | undefined>(undefined);
@@ -89,6 +88,7 @@ export class TreeService {
     return getDocs(q);
   }
 
+  private lastDocDistinct$ = this.lastDocSubject.pipe(distinctUntilChanged((prev, curr) => prev?.id === curr?.id));
   public watchTrees(farmId: string, areaId: string) {
     if (this.farmIdCache !== farmId || this.areaIdCache !== areaId) this.treesObservableCache$ = undefined;
     this.farmIdCache = farmId;
@@ -98,8 +98,8 @@ export class TreeService {
       this.refreshSubject.pipe(startWith(undefined)),
     ]).pipe(
       switchMap(([searchValue]) =>
-        this.lastDocSubject.pipe(
-          distinctUntilChanged(), // try to fix double fetch of same docs
+        this.lastDocDistinct$.pipe(
+          startWith(undefined),
           tap({ next: () => this.treesLoadingSubject.next(true) }),
           switchMap((lastDoc) => this.getTrees(farmId, areaId, lastDoc, searchValue)),
           tap({ next: () => this.treesLoadingSubject.next(false) }),
