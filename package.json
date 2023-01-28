@@ -9,7 +9,8 @@
     "test": "ng test",
     "format": "prettier --write ./src",
     "emulate": "firebase emulators:start",
-    "deploy": "yarn build && firebase deploy --only hosting"
+    "deploy": "yarn build && firebase deploy --only hosting",
+    "i18n": "ng extract-i18n --output-path=\"./src/locale\""
   },
   "private": true,
   "dependencies": {
