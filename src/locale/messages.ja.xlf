@@ -890,6 +890,77 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1175096566157467928" datatype="html">
+        <source>人工</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/fertilization.model.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6108892308011385739" datatype="html">
+        <source>堆肥</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/fertilization.model.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1277243114706867329" datatype="html">
+        <source>緑肥</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/fertilization.model.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8693603235657020323" datatype="html">
+        <source>その他</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/fertilization.model.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8106961368057532785" datatype="html">
+        <source>水やり</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/fertilization.model.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="29167121133682512" datatype="html">
+        <source>良好</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/tree.model.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/tree.model.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6355984385466493800" datatype="html">
+        <source>不良</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/tree.model.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/tree.model.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5058896483256450656" datatype="html">
+        <source>未着花</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/tree.model.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7673255520772041788" datatype="html">
+        <source>未</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/tree.model.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

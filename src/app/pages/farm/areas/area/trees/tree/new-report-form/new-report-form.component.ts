@@ -20,11 +20,11 @@ type SelectOptions<T> = { value: T; name: string }[];
 export class NewReportFormComponent extends TreeIdInheritable implements OnInit {
   buddingOptions: SelectOptions<BuddingConditions> = Array.from(buddingConditionsText.entries()).map(
     ([value, name]) => ({ value, name }),
-  ); //['未着花', '良好', '不良'];
+  );
   yieldOptions: SelectOptions<YieldConditions> = Array.from(yieldConditionsText.entries()).map(([value, name]) => ({
     value,
     name,
-  })); //['未', '良好', '不良'];
+  }));
   public newReportForm = new FormGroup({
     notes: new FormControl('', { nonNullable: true }),
     height: new FormControl(100, { nonNullable: true, validators: [Validators.required] }),
