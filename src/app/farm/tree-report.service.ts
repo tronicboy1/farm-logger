@@ -22,6 +22,7 @@ import {
   distinctUntilChanged,
   from,
   map,
+  mergeMap,
   Observable,
   ReplaySubject,
   scan,
@@ -49,18 +50,24 @@ export class TreeReportService {
     return addDoc(ref, reportData).finally(() => this.addReportLoadingSubject.next(false));
   }
 
+  private treeIdCache?: string;
+  private reportsCache$?: Observable<CoffeeTreeReportWithId[]>;
   private lastDocCache?: DocumentData;
   private lastDoc$ = new ReplaySubject<DocumentData | undefined>();
   private refresh$ = new Subject<void>();
   public watchReports(farmId: string, areaId: string, treeId: string): Observable<CoffeeTreeReportWithId[]> {
-    this.lastDocCache = undefined;
-    return this.refresh$.pipe(
+    if (treeId !== this.treeIdCache) {
+      this.treeIdCache = treeId;
+      this.reportsCache$ = undefined;
+      this.lastDocCache = undefined;
+    }
+    return (this.reportsCache$ ||= this.refresh$.pipe(
       startWith(undefined),
       switchMap(() =>
         this.lastDoc$.pipe(
           startWith(undefined),
           distinctUntilChanged(),
-          switchMap((lastDoc) => this.getReports(farmId, areaId, treeId, lastDoc)),
+          mergeMap((lastDoc) => this.getReports(farmId, areaId, treeId, lastDoc)),
           takeWhile((result) => !result.empty),
           map((result) => {
             if (result.empty) return [];
@@ -71,7 +78,7 @@ export class TreeReportService {
         ),
       ),
       shareReplay(1),
-    );
+    ));
   }
   public triggerNextPage() {
     this.lastDoc$.next(this.lastDocCache);
