@@ -29,13 +29,8 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "es2020",
-    "lib": [
-      "ESNext",
-      "dom"
-    ],
-    "types": [
-      "@angular/localize"
-    ],
+    "lib": ["ESNext", "dom"],
+    "types": ["@angular/localize", "jasmine"],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
