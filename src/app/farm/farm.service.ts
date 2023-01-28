@@ -167,7 +167,7 @@ export class FarmService {
       ),
       map((trees) => trees.flat()),
       mergeMap((trees) =>
-        forkJoin(trees.map((tree) => this.treeReportService.getReports(farmId, tree.areaId, tree.treeId))).pipe(
+        forkJoin(trees.map((tree) => this.treeReportService.getAllReports(farmId, tree.areaId, tree.treeId))).pipe(
           defaultIfEmpty([]),
         ),
       ),

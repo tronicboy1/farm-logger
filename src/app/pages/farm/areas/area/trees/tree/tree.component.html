@@ -50,11 +50,12 @@
       </tr>
     </tbody>
   </table>
+  <div ngxObservable (intersection)="this.handleEndOfPage()"></div>
 </div>
 
 <base-modal [show]="this.showAddModal | async" i18n-modal-title modal-title="New Report"
   (modal-closed)="this.toggleAddModal(false)">
-  <app-new-report-form (submitted)="this.toggleAddModal(false)"></app-new-report-form>
+  <app-new-report-form (submitted)="this.handleNewReportSubmission()"></app-new-report-form>
 </base-modal>
 
 <base-modal [show]="!!(this.showPictureModal$ | async)" (modal-closed)="this.togglePictureModal(undefined)"

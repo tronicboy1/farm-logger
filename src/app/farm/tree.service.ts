@@ -23,19 +23,15 @@ import {
   distinctUntilChanged,
   from,
   map,
-  mergeWith,
   Observable,
-  of,
   ReplaySubject,
   scan,
   shareReplay,
   startWith,
   Subject,
   switchMap,
-  takeUntil,
   takeWhile,
   tap,
-  withLatestFrom,
 } from 'rxjs';
 import { FarmModule } from './farm.module';
 import { CoffeeTree, CoffeeTreeWithId } from './tree.model';

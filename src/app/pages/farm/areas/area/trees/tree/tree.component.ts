@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { BehaviorSubject, catchError, first, map, mergeMap, Observable, of, switchMap } from 'rxjs';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { BehaviorSubject, first, mergeMap, Observable, switchMap } from 'rxjs';
 import { TreeReportService } from 'src/app/farm/tree-report.service';
-import { CoffeeTree, CoffeeTreeReportWithId } from 'src/app/farm/tree.model';
 import { TreeService } from 'src/app/farm/tree.service';
 import { PhotoService } from 'src/app/farm/util/photo.service';
 import { TreeIdInheritable } from './tree-id.inhertible';
@@ -12,11 +11,15 @@ import { TreeIdInheritable } from './tree-id.inhertible';
   styleUrls: ['./tree.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TreeComponent extends TreeIdInheritable implements OnInit {
+export class TreeComponent extends TreeIdInheritable {
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
-  public tree = new Observable<CoffeeTree>();
-  public reports = new Observable<CoffeeTreeReportWithId[]>();
+  readonly tree = this.getFarmIdAreaIdAndTreeId().pipe(
+    switchMap(([farmId, areaId, treeId]) => this.treeService.watchTree(farmId, areaId, treeId)),
+  );
+  readonly reports = this.getFarmIdAreaIdAndTreeId().pipe(
+    switchMap(([farmId, areaId, treeId]) => this.treeReportService.watchReports(farmId, areaId, treeId)),
+  );
   private showAddModalSubject = new BehaviorSubject(false);
   public showAddModal = this.showAddModalSubject.asObservable();
   private showPictureModalSubject = new BehaviorSubject<string | undefined>(undefined);
@@ -35,18 +38,19 @@ export class TreeComponent extends TreeIdInheritable implements OnInit {
     this.addingReport$ = this.treeReportService.addingReport$;
   }
 
-  ngOnInit(): void {
-    this.tree = this.getFarmIdAreaIdAndTreeId().pipe(
-      switchMap(([farmId, areaId, treeId]) => this.treeService.watchTree(farmId, areaId, treeId)),
-    );
-    this.reports = this.getFarmIdAreaIdAndTreeId().pipe(
-      switchMap(([farmId, areaId, treeId]) => this.treeReportService.watchReports(farmId, areaId, treeId)),
-    );
-  }
-
   public toggleAddModal = (force?: boolean) => this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);
   public toggleEditModal = (force?: boolean) => this.showEditModal$.next(force ?? !this.showEditModal$.value);
   public togglePictureModal = (photoURL: string | undefined) => this.showPictureModalSubject.next(photoURL);
+  handleNewReportSubmission() {
+    this.toggleAddModal(false);
+    this.treeReportService.triggerRefresh();
+  }
+  handleEndOfPage() {
+    this.reports.pipe(first()).subscribe((reports) => {
+      if (!reports.length) return;
+      this.treeReportService.triggerNextPage();
+    });
+  }
 
   public setReportToDelete(id: string | undefined) {
     this.reportToDeleteSubject.next(id);
@@ -55,16 +59,8 @@ export class TreeComponent extends TreeIdInheritable implements OnInit {
     const id = this.reportToDeleteSubject.getValue();
     if (!id) return;
     this.reportToDeleteSubject.next(undefined);
-    // const deletePhoto$ = this.reports.pipe(
-    //   first(),
-    //   map((reports) => reports.find((report) => report.id === id)),
-    //   map((report) => report?.photoPath),
-    //   mergeMap((photoPath) => (photoPath ? this.photoService.deletePhoto(photoPath) : of(''))),
-    //   catchError(() => of('')),
-    // );
     this.getFarmIdAreaIdAndTreeId()
       .pipe(mergeMap(([farmId, areaId, treeId]) => this.treeReportService.removeReport(farmId, areaId, treeId, id)))
-      .subscribe();
-    //deletePhoto$.pipe(mergeMap(() => deleteReport$)).subscribe();
+      .subscribe({ complete: () => this.treeReportService.triggerRefresh() });
   }
 }
