@@ -20,6 +20,7 @@ import {
 import {
   BehaviorSubject,
   combineLatest,
+  distinctUntilChanged,
   from,
   map,
   mergeWith,
@@ -102,6 +103,7 @@ export class TreeService {
     ]).pipe(
       switchMap(([searchValue]) =>
         this.lastDocSubject.pipe(
+          distinctUntilChanged(), // try to fix double fetch of same docs
           tap({ next: () => this.treesLoadingSubject.next(true) }),
           switchMap((lastDoc) => this.getTrees(farmId, areaId, lastDoc, searchValue)),
           tap({ next: () => this.treesLoadingSubject.next(false) }),
@@ -109,7 +111,7 @@ export class TreeService {
           map((result) => {
             if (result.empty) return [];
             const { docs } = result;
-            this.lastDocCache = docs[docs.length - 1];
+            this.lastDocCache = docs.at(-1);
             return docs.map((doc) => ({ ...doc.data(), id: doc.id })) as CoffeeTreeWithId[];
           }),
           scan((acc, current) => [...acc, ...current], [] as CoffeeTreeWithId[]),
