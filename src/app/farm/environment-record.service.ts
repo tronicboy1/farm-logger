@@ -53,7 +53,7 @@ export class EnvironmentRecordService {
     const q = query(ref, ...constraints);
     return getDocs(q).then((result) => {
       if (result.empty) return [];
-      this.lastDocCache = result.docs[result.docs.length - 1];
+      this.lastDocCache = result.docs.at(-1);
       return result.docs.map((doc) => doc.data()) as EnvironmentRecord[];
     });
   }

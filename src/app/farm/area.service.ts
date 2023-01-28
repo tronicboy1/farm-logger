@@ -71,7 +71,7 @@ export class AreaService {
       map((result) => {
         if (result.empty) return [];
         const { docs } = result;
-        this.lastDocCache = docs[docs.length - 1];
+        this.lastDocCache = docs.at(-1);
         return docs.map((doc) => ({ ...(doc.data() as Area), id: doc.id }));
       }),
       shareReplay(1),
