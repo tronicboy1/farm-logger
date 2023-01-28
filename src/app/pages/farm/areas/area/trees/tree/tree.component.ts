@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { BehaviorSubject, first, mergeMap, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, first, mergeMap, Observable, shareReplay, switchMap } from 'rxjs';
 import { TreeReportService } from 'src/app/farm/tree-report.service';
 import { TreeService } from 'src/app/farm/tree.service';
-import { PhotoService } from 'src/app/farm/util/photo.service';
 import { TreeIdInheritable } from './tree-id.inhertible';
 
 @Component({
@@ -19,6 +18,7 @@ export class TreeComponent extends TreeIdInheritable {
   );
   readonly reports = this.getFarmIdAreaIdAndTreeId().pipe(
     switchMap(([farmId, areaId, treeId]) => this.treeReportService.watchReports(farmId, areaId, treeId)),
+    shareReplay(1),
   );
   private showAddModalSubject = new BehaviorSubject(false);
   public showAddModal = this.showAddModalSubject.asObservable();
@@ -29,11 +29,7 @@ export class TreeComponent extends TreeIdInheritable {
   readonly reportToDelete$ = this.reportToDeleteSubject.asObservable();
   readonly addingReport$: Observable<boolean>;
 
-  constructor(
-    private treeService: TreeService,
-    private treeReportService: TreeReportService,
-    private photoService: PhotoService,
-  ) {
+  constructor(private treeService: TreeService, private treeReportService: TreeReportService) {
     super();
     this.addingReport$ = this.treeReportService.addingReport$;
   }

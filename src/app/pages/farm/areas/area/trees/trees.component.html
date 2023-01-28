@@ -43,7 +43,7 @@
         </tr>
       </tbody>
     </table>
+    <div *ngIf="trees.length > 19" ngxObservable (intersection)="this.loadNextPage()"></div>
     <base-spinner *ngIf="this.loading$ | async"></base-spinner>
-    <div *ngIf="trees.length" ngxObservable (intersection)="this.loadNextPage()"></div>
   </ng-container>
 </div>

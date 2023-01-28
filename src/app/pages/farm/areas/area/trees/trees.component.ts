@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject, first, forkJoin, map, sampleTime, Subscription, switchMap } from 'rxjs';
+import { BehaviorSubject, forkJoin, map, sampleTime, shareReplay, Subscription, switchMap } from 'rxjs';
 import { TreeReportService } from 'src/app/farm/tree-report.service';
 import { AreaRouteParamsComponent } from '../route-params.inheritable';
 
@@ -33,6 +33,7 @@ export class TreesComponent extends AreaRouteParamsComponent implements OnInit, 
         ),
       ),
     ),
+    shareReplay(1),
   );
   private showAddModalSubject = new BehaviorSubject(false);
   readonly loading$ = this.treeService.treesLoading$;
@@ -62,9 +63,6 @@ export class TreesComponent extends AreaRouteParamsComponent implements OnInit, 
     this.router.navigate([treeId], { relativeTo: this.route });
   }
   public loadNextPage() {
-    this.trees$.pipe(first()).subscribe((trees) => {
-      if (!trees.length) return;
-      this.treeService.triggerNextPage();
-    });
+    this.treeService.triggerNextPage();
   }
 }

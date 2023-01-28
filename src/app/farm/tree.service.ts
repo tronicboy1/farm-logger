@@ -16,14 +16,17 @@ import {
   getDocs,
   where,
   QueryConstraint,
+  QuerySnapshot,
+  QueryDocumentSnapshot,
 } from 'firebase/firestore';
 import {
   BehaviorSubject,
   combineLatest,
-  distinctUntilChanged,
+  debounceTime,
   from,
   map,
   Observable,
+  OperatorFunction,
   scan,
   shareReplay,
   startWith,
@@ -41,19 +44,7 @@ import { CoffeeTree, CoffeeTreeWithId } from './tree.model';
 export class TreeService {
   static limit = 20;
 
-  private lastDocSubject = new Subject<DocumentSnapshot<any> | undefined>();
-  private lastDocCache?: DocumentSnapshot<any>;
-  private farmIdCache?: string;
-  private areaIdCache?: string;
-  private searchId$ = new BehaviorSubject<number | undefined>(undefined);
-  private treesObservableCache$?: Observable<CoffeeTreeWithId[]>;
-  private treesLoadingSubject = new BehaviorSubject(true);
-  readonly treesLoading$ = this.treesLoadingSubject.asObservable();
-  private refreshSubject = new Subject<void>();
-
-  constructor() {
-    this.lastDocSubject.next(undefined);
-  }
+  constructor() {}
 
   public getTree(farmId: string, areaId: string, treeId: string) {
     const ref = doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${treeId}`);
@@ -88,46 +79,56 @@ export class TreeService {
     return getDocs(q);
   }
 
-  private lastDocDistinct$ = this.lastDocSubject.pipe(distinctUntilChanged((prev, curr) => prev?.id === curr?.id));
+  private nextPage$ = new Subject<void>();
+  private searchId$ = new BehaviorSubject<number | undefined>(undefined);
+  private treesLoadingSubject = new BehaviorSubject(true);
+  readonly treesLoading$ = this.treesLoadingSubject.asObservable();
+  private refreshSubject = new Subject<void>();
   public watchTrees(farmId: string, areaId: string) {
-    if (this.farmIdCache !== farmId || this.areaIdCache !== areaId) this.treesObservableCache$ = undefined;
-    this.farmIdCache = farmId;
-    this.areaIdCache = areaId;
-    return (this.treesObservableCache$ ||= combineLatest([
-      this.searchId$,
-      this.refreshSubject.pipe(startWith(undefined)),
-    ]).pipe(
+    return combineLatest([this.searchId$, this.refreshSubject.pipe(startWith(undefined))]).pipe(
       switchMap(([searchValue]) =>
-        this.lastDocDistinct$.pipe(
+        this.nextPage$.pipe(
+          debounceTime(100),
           startWith(undefined),
           tap({ next: () => this.treesLoadingSubject.next(true) }),
-          switchMap((lastDoc) => this.getTrees(farmId, areaId, lastDoc, searchValue)),
+          this.loadTreesAndCacheLastDoc(farmId, areaId, searchValue),
           tap({ next: () => this.treesLoadingSubject.next(false) }),
           takeWhile((result) => !result.empty),
           map((result) => {
             if (result.empty) return [];
             const { docs } = result;
-            this.lastDocCache = docs.at(-1);
             return docs.map((doc) => ({ ...doc.data(), id: doc.id })) as CoffeeTreeWithId[];
           }),
           scan((acc, current) => [...acc, ...current], [] as CoffeeTreeWithId[]),
         ),
       ),
-      shareReplay(1),
-    ));
+    );
   }
   public triggerNextPage() {
-    this.lastDocSubject.next(this.lastDocCache);
+    this.nextPage$.next();
   }
   public clearPaginationCache() {
-    this.lastDocCache = undefined;
-    this.lastDocSubject.next(undefined);
     this.refreshSubject.next();
   }
   public setSearch(searchId: string) {
     const searchNumber = Number(searchId);
     this.searchId$.next(isNaN(searchNumber) ? undefined : searchNumber);
-    this.clearPaginationCache();
+  }
+
+  private loadTreesAndCacheLastDoc(
+    farmId: string,
+    areaId: string,
+    searchValue: number | undefined,
+  ): OperatorFunction<void, QuerySnapshot<DocumentData>> {
+    let lastDocCache: QueryDocumentSnapshot<DocumentData> | undefined;
+    return (source) =>
+      source.pipe(
+        switchMap(() => this.getTrees(farmId, areaId, lastDocCache, searchValue)),
+        tap((result) => {
+          if (result.empty) return;
+          lastDocCache = result.docs.at(-1);
+        }),
+      );
   }
 
   public createTree(farmId: string, areaId: string, treeData: Omit<CoffeeTree, 'reports'>) {

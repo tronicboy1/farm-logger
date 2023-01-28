@@ -15,22 +15,24 @@ import {
   orderBy,
   query,
   QueryConstraint,
+  QueryDocumentSnapshot,
+  QuerySnapshot,
   startAfter,
   where,
 } from 'firebase/firestore';
 import {
   BehaviorSubject,
-  distinctUntilChanged,
+  debounceTime,
   from,
   map,
-  mergeMap,
   Observable,
+  OperatorFunction,
   scan,
-  shareReplay,
   startWith,
   Subject,
   switchMap,
   takeWhile,
+  tap,
 } from 'rxjs';
 import { FarmModule } from './farm.module';
 import { CoffeeTreeReport, CoffeeTreeReportWithId } from './tree.model';
@@ -50,41 +52,46 @@ export class TreeReportService {
     return addDoc(ref, reportData).finally(() => this.addReportLoadingSubject.next(false));
   }
 
-  private treeIdCache?: string;
-  private reportsCache$?: Observable<CoffeeTreeReportWithId[]>;
-  private lastDocCache?: DocumentSnapshot<any>;
-  private lastDoc$ = new Subject<DocumentSnapshot<any> | undefined>();
-  private lastDocDistinct$ = this.lastDoc$.pipe(distinctUntilChanged((prev, current) => prev?.id === current?.id));
+  private nextPage$ = new Subject<void>();
   private refresh$ = new Subject<void>();
   public watchReports(farmId: string, areaId: string, treeId: string): Observable<CoffeeTreeReportWithId[]> {
-    if (treeId !== this.treeIdCache) {
-      this.treeIdCache = treeId;
-      this.reportsCache$ = undefined;
-      this.lastDocCache = undefined;
-    }
-    return (this.reportsCache$ ||= this.refresh$.pipe(
+    return this.refresh$.pipe(
       startWith(undefined),
       switchMap(() =>
-        this.lastDocDistinct$.pipe(
+        this.nextPage$.pipe(
+          debounceTime(200),
           startWith(undefined),
-          mergeMap((lastDoc) => this.getReports(farmId, areaId, treeId, lastDoc)),
+          this.loadReportsAndCacheLastDoc(farmId, areaId, treeId),
           takeWhile((result) => !result.empty),
           map((result) => {
             if (result.empty) return [];
-            this.lastDocCache = result.docs.at(-1)!;
             return result.docs.map((doc) => ({ ...(doc.data() as CoffeeTreeReport), id: doc.id }));
           }),
           scan((acc, reports) => [...acc, ...reports], [] as CoffeeTreeReportWithId[]),
         ),
       ),
-      shareReplay(1),
-    ));
+    );
+  }
+
+  private loadReportsAndCacheLastDoc(
+    farmId: string,
+    areaId: string,
+    treeId: string,
+  ): OperatorFunction<void, QuerySnapshot<DocumentData>> {
+    let lastDocCache: QueryDocumentSnapshot<DocumentData> | undefined;
+    return (source) =>
+      source.pipe(
+        switchMap(() => this.getReports(farmId, areaId, treeId, lastDocCache)),
+        tap((result) => {
+          if (result.empty) return;
+          lastDocCache = result.docs.at(-1);
+        }),
+      );
   }
   public triggerNextPage() {
-    this.lastDoc$.next(this.lastDocCache);
+    this.nextPage$.next();
   }
   public triggerRefresh() {
-    this.lastDocCache = undefined;
     this.refresh$.next();
   }
 
