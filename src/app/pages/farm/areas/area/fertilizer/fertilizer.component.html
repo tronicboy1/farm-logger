@@ -27,7 +27,7 @@
     <tbody>
       <tr *ngFor="let record of this.fertilizations | async">
         <td>{{ record.completedAt | date : 'short' }}</td>
-        <td>{{ record.type }}</td>
+        <td>{{ record.type | fertilizationType }}</td>
         <td>{{ record.note }}</td>
         <td class="remove">
           <svg (click)="this.removeFertilization(record.id)" xmlns="http://www.w3.org/2000/svg" height="48" width="48"
