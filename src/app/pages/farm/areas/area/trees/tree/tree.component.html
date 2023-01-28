@@ -34,8 +34,8 @@
       <tr *ngFor="let report of this.reports | async">
         <td>{{ report.createdAt | date : 'short' }}</td>
         <td>{{ report.height }}</td>
-        <td>{{ report.budding }}</td>
-        <td>{{ report.beanYield }}</td>
+        <td>{{ report.budding | treeReportBudding }}</td>
+        <td>{{ report.beanYield | treeReportYield }}</td>
         <td (click)="this.togglePictureModal(report.photoURL)">{{ report.notes }}</td>
         <td (click)="this.togglePictureModal(report.photoURL)">
           <img *ngIf="report.photoURL" [src]="report.photoURL" alt="photo" />

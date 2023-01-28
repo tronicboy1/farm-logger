@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FertilizationWithId } from '@farm/fertilization.model';
 import { BehaviorSubject, mergeMap, Observable, switchMap } from 'rxjs';
-import { FertilizationService, FertilizationWithId } from 'src/app/farm/fertilization.service';
+import { FertilizationService } from 'src/app/farm/fertilization.service';
 import { AreaRouteParamsComponent } from '../route-params.inheritable';
 
 @Component({

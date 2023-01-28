@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FertilizationType, fertilizationTypeText } from '@farm/fertilization.model';
 import { BehaviorSubject, finalize, mergeMap, tap } from 'rxjs';
 import { FertilizationService } from 'src/app/farm/fertilization.service';
 import { LogActions } from 'src/app/log/log.model';
@@ -13,10 +14,13 @@ import { AreaRouteParamsComponent } from '../../route-params.inheritable';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewFertilizationFormComponent extends AreaRouteParamsComponent {
-  readonly typeOptions = Object.freeze(['堆肥', '人工肥料', '緑肥', 'その他']);
+  readonly typeOptions = Array.from(fertilizationTypeText.entries()).map(([value, name]) => ({ value, name }));
   public newFertilizationForm = new FormGroup({
-    type: new FormControl(this.typeOptions[0], [Validators.required]),
-    note: new FormControl(''),
+    type: new FormControl<FertilizationType>(FertilizationType.Watering, {
+      validators: [Validators.required],
+      nonNullable: true,
+    }),
+    note: new FormControl('', { nonNullable: true }),
   });
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
@@ -28,8 +32,8 @@ export class NewFertilizationFormComponent extends AreaRouteParamsComponent {
 
   public handleSubmit() {
     if (this.loadingSubject.value) return;
-    const type = this.newFertilizationForm.controls.type.value!.trim();
-    const note = this.newFertilizationForm.controls.note.value!.trim();
+    const type = this.newFertilizationForm.controls.type.value;
+    const note = this.newFertilizationForm.controls.note.value.trim();
     this.getFarmIdAndAreaId()
       .pipe(
         tap({
@@ -41,7 +45,7 @@ export class NewFertilizationFormComponent extends AreaRouteParamsComponent {
         finalize(() => {
           this.loadingSubject.next(false);
           this.submitted.emit();
-          this.newFertilizationForm.reset({ type: this.typeOptions[0], note: '' });
+          this.newFertilizationForm.reset({ type: FertilizationType.Watering, note: '' });
         }),
       )
       .subscribe();

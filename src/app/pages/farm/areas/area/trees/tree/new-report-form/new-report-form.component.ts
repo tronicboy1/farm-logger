@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BuddingConditions, buddingConditionsText, YieldConditions, yieldConditionsText } from '@farm/tree.model';
 import { BehaviorSubject, finalize, first, forkJoin, from, map, mergeMap, Observable, of, switchMap, tap } from 'rxjs';
 import { TreeReportService } from 'src/app/farm/tree-report.service';
 import { TreeService } from 'src/app/farm/tree.service';
@@ -8,6 +9,8 @@ import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
 import { TreeIdInheritable } from '../tree-id.inhertible';
 
+type SelectOptions<T> = { value: T; name: string }[];
+
 @Component({
   selector: 'app-new-report-form',
   templateUrl: './new-report-form.component.html',
@@ -15,13 +18,18 @@ import { TreeIdInheritable } from '../tree-id.inhertible';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewReportFormComponent extends TreeIdInheritable implements OnInit {
-  buddingOptions = ['未着花', '良好', '不良'];
-  yieldOptions = ['未', '良好', '不良'];
+  buddingOptions: SelectOptions<BuddingConditions> = Array.from(buddingConditionsText.entries()).map(
+    ([value, name]) => ({ value, name }),
+  ); //['未着花', '良好', '不良'];
+  yieldOptions: SelectOptions<YieldConditions> = Array.from(yieldConditionsText.entries()).map(([value, name]) => ({
+    value,
+    name,
+  })); //['未', '良好', '不良'];
   public newReportForm = new FormGroup({
     notes: new FormControl('', { nonNullable: true }),
     height: new FormControl(100, { nonNullable: true, validators: [Validators.required] }),
-    budding: new FormControl('未着花', { nonNullable: true }),
-    beanYield: new FormControl('未', { nonNullable: true }),
+    budding: new FormControl<BuddingConditions>(BuddingConditions.NotYet, { nonNullable: true }),
+    beanYield: new FormControl<YieldConditions>(YieldConditions.NotYet, { nonNullable: true }),
     picture: new FormControl<File | null>(null),
     individualFertilization: new FormControl(false, { nonNullable: true }),
   });
@@ -59,10 +67,10 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
     if (!(form instanceof HTMLFormElement)) throw Error();
     const formData = new FormData(form);
     this.loadingSubject.next(true);
-    const notes = this.newReportForm.controls.notes.value!.trim();
-    const height = this.newReportForm.controls.height.value!;
-    const budding = this.newReportForm.controls.budding.value!.trim();
-    const beanYield = this.newReportForm.controls.beanYield.value!;
+    const notes = this.newReportForm.controls.notes.value.trim();
+    const height = this.newReportForm.controls.height.value;
+    const budding = this.newReportForm.controls.budding.value;
+    const beanYield = this.newReportForm.controls.beanYield.value;
     const individualFertilization = this.newReportForm.controls.individualFertilization.value;
     const picture = formData.get('picture')!;
     let photoPath = '';
@@ -105,8 +113,8 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
           this.newReportForm.reset({
             notes: '',
             height: this.newReportForm.controls.height.value,
-            budding: '未着花',
-            beanYield: '未',
+            budding: this.newReportForm.controls.budding.value,
+            beanYield: this.newReportForm.controls.beanYield.value,
           });
         }),
       )

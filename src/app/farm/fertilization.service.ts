@@ -16,17 +16,10 @@ import {
   startAfter,
 } from 'firebase/firestore';
 import { from, map, Observable } from 'rxjs';
-import { FarmModule } from './farm.module';
-
-export type Fertilization = {
-  completedAt: number;
-  type: string;
-  note: string;
-};
-export type FertilizationWithId = Fertilization & { id: string };
+import { Fertilization, FertilizationWithId } from './fertilization.model';
 
 @Injectable({
-  providedIn: FarmModule,
+  providedIn: 'root',
 })
 export class FertilizationService {
   static path = 'fertilizations';

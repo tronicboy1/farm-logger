@@ -9,17 +9,18 @@
     formControlName="picture" />
   <label for="budding" i18n>Budding</label>
   <select name="budding" id="budding" formControlName="budding">
-    <option *ngFor="let option of this.buddingOptions" [value]="option">{{ option }}</option>
+    <option *ngFor="let option of this.buddingOptions" [ngValue]="option.value">{{ option.name }}</option>
   </select>
   <label for="bean-yield" i18n>Bean</label>
   <select name="bean-yield" id="bean-yield" formControlName="beanYield">
-    <option *ngFor="let option of this.yieldOptions" [value]="option">{{ option }}</option>
+    <option *ngFor="let option of this.yieldOptions" [ngValue]="option.value">{{ option.name }}</option>
   </select>
   <label for="fertilization" i18n>Individual Fertilization</label>
   <input type="checkbox" name="fertilization" id="fertilization" formControlName="individualFertilization">
   <label for="notes" i18n>Memo</label>
   <textarea name="notes" id="notes" formControlName="notes"></textarea>
   <div style="margin-bottom: 3rem;"></div>
-  <button type="submit"><ng-container *ngIf="!(this.loading | async); else loadingSpinner" i18n>Add</ng-container></button>
+  <button type="submit"><ng-container *ngIf="!(this.loading | async); else loadingSpinner"
+      i18n>Add</ng-container></button>
 </form>
 <ng-template #loadingSpinner><base-spinner color="white"></base-spinner></ng-template>

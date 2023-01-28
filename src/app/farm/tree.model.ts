@@ -16,10 +16,31 @@ export type CoffeeTreeReport = {
   createdAt: number;
   notes: string;
   height: number;
-  budding: string;
-  beanYield: string;
+  budding: BuddingConditions;
+  beanYield: YieldConditions;
   individualFertilization?: boolean;
 };
+
+export enum BuddingConditions {
+  Good,
+  Poor,
+  NotYet,
+}
+export const buddingConditionsText = new Map<BuddingConditions, string>([
+  [BuddingConditions.Good, $localize`Good`],
+  [BuddingConditions.Poor, $localize`Poor`],
+  [BuddingConditions.NotYet, $localize`No Budding`],
+]);
+export enum YieldConditions {
+  Good,
+  Poor,
+  NotYet,
+}
+export const yieldConditionsText = new Map<YieldConditions, string>([
+  [YieldConditions.Good, $localize`Good`],
+  [YieldConditions.Poor, $localize`Poor`],
+  [YieldConditions.NotYet, $localize`No Yield`],
+]);
 
 export type CoffeeTreeReportWithId = CoffeeTreeReport & { id: string };
 

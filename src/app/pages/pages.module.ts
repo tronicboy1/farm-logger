@@ -36,6 +36,7 @@ import { NgxObservableDirectiveModule } from 'ngx-observable-directive';
 import { NgxBaseComponentsModule } from '@tronicboy/ngx-base-components';
 import { NgxGeolocationModule } from '@tronicboy/ngx-geolocation';
 import { DeleteFarmFormComponent } from './farm/manage/delete-farm-form/delete-farm-form.component';
+import { FarmModule } from '@farm/farm.module';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { DeleteFarmFormComponent } from './farm/manage/delete-farm-form/delete-f
     NgxVisibleAutofocusModule,
     NgxObservableDirectiveModule,
     NgxBaseComponentsModule,
-    NgxGeolocationModule
+    NgxGeolocationModule,
+    FarmModule
   ],
   /** Adding custom Elements Schema allows use of custom tags i.e. Web Components. */
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
