@@ -44,6 +44,6 @@
       </tbody>
     </table>
     <div *ngIf="trees.length > 19" ngxObservable (intersection)="this.loadNextPage()"></div>
-    <base-spinner *ngIf="this.loading$ | async"></base-spinner>
+    <base-spinner *ngIf="this.loading$ | async" [fullScreen]="true"></base-spinner>
   </ng-container>
 </div>
