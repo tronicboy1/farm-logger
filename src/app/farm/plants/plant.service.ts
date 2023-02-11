@@ -36,9 +36,9 @@ import {
   tap,
 } from 'rxjs';
 import { Plant, PlantWithId } from './plant.model';
-import { PlantService } from './plant.service.abstract';
+import { PlantAbstractService } from './plant.service.abstract';
 
-export class PlantServiceInheritable implements PlantService, PaginatedService {
+export class PlantService<T extends Plant = Plant> implements PlantAbstractService, PaginatedService {
   static limit = 20;
 
   public getPlant(farmId: string, areaId: string, plantId: string) {
@@ -46,7 +46,7 @@ export class PlantServiceInheritable implements PlantService, PaginatedService {
     return from(
       getDoc(ref).then((result) => {
         if (!result) throw Error('Tree not found.');
-        return result.data() as Plant;
+        return result.data() as T;
       }),
     );
   }
@@ -58,14 +58,14 @@ export class PlantServiceInheritable implements PlantService, PaginatedService {
     }).pipe(
       map((result) => {
         if (!result.exists) throw Error('Tree not found.');
-        return result.data() as Plant;
+        return result.data() as T;
       }),
     );
   }
 
   private getPlants(farmId: string, areaId: string, lastDoc?: DocumentData, searchId?: number) {
     const ref = collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees`);
-    let constraints: QueryConstraint[] = [orderBy('regularId', 'asc'), limit(PlantServiceInheritable.limit)];
+    let constraints: QueryConstraint[] = [orderBy('regularId', 'asc'), limit(PlantService.limit)];
     if (searchId) {
       constraints = [where('regularId', '==', searchId)];
     }
@@ -92,9 +92,9 @@ export class PlantServiceInheritable implements PlantService, PaginatedService {
           map((result) => {
             if (result.empty) return [];
             const { docs } = result;
-            return docs.map((doc) => ({ ...doc.data(), id: doc.id })) as PlantWithId[];
+            return docs.map((doc) => ({ ...doc.data(), id: doc.id })) as (T & PlantWithId)[];
           }),
-          scan((acc, current) => [...acc, ...current], [] as PlantWithId[]),
+          scan((acc, current) => [...acc, ...current], [] as (T & PlantWithId)[]),
         ),
       ),
       shareReplay(1),
@@ -127,7 +127,7 @@ export class PlantServiceInheritable implements PlantService, PaginatedService {
       );
   }
 
-  public create(farmId: string, areaId: string, data: Plant) {
+  public create(farmId: string, areaId: string, data: T) {
     const ref = collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees`);
     return addDoc(ref, data);
   }

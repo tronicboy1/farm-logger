@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { PlantService } from './plant.service.abstract';
-import { PlantServiceInheritable } from './plant.service.inheritable';
-import { CoffeeTree, CoffeeTreeWithId } from './tree.model';
+import { PlantService } from './plant.service';
+import { CoffeeTree } from './tree.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TreeService extends PlantServiceInheritable implements PlantService {
-  public getTree(farmId: string, areaId: string, treeId: string): Observable<CoffeeTree> {
+export class TreeService extends PlantService<CoffeeTree> {
+  public getTree(farmId: string, areaId: string, treeId: string) {
     return super.getPlant(farmId, areaId, treeId);
   }
 
-  public watchTree(farmId: string, areaId: string, treeId: string): Observable<CoffeeTree> {
+  public watchTree(farmId: string, areaId: string, treeId: string) {
     return super.watchPlant(farmId, areaId, treeId);
   }
 
-  public watchTrees(farmId: string, areaId: string): Observable<CoffeeTreeWithId[]> {
+  public watchTrees(farmId: string, areaId: string) {
     return super.watchAll(farmId, areaId);
   }
 
