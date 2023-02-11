@@ -5,8 +5,6 @@ import { PlantReport, PlantReportWithId } from './plant.model';
 export abstract class PlantReportServiceAbstract extends PaginatedService<PlantReportWithId[]> {
   abstract addReport(farmId: string, areaId: string, plantId: string, reportData: PlantReport): Promise<any>;
 
-  abstract watchAll(farmId: string, areaId: string, plantId: string): Observable<PlantReportWithId[]>;
-
   /**
    * Used for deleting all photos on area delete.
    */

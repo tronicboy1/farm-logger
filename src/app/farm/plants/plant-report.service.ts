@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Firebase } from '@custom-firebase/index';
-import { PaginatedService } from '@farm/paginated.service.abstract';
+import { PaginatedService, SubjectCache } from '@farm/paginated.service.abstract';
 import { PhotoService } from '@farm/util/photo.service';
 import {
   addDoc,
@@ -47,7 +47,7 @@ export class PlantReportService<T extends PlantReport = PlantReport>
 {
   private addReportLoadingSubject = new BehaviorSubject(false);
   readonly addingReport$ = this.addReportLoadingSubject.asObservable();
-  private photoService = inject(PhotoService)
+  private photoService = inject(PhotoService);
 
   public addReport(farmId: string, areaId: string, plantId: string, reportData: T) {
     const ref = this.getRef(farmId, areaId, plantId);
@@ -55,13 +55,22 @@ export class PlantReportService<T extends PlantReport = PlantReport>
     return addDoc(ref, reportData).finally(() => this.addReportLoadingSubject.next(false));
   }
 
-  private nextPage$ = new Subject<void>();
-  private refresh$ = new Subject<void>();
-  public watchAll(farmId: string, areaId: string, plantId: string): Observable<(T & PlantReportWithId)[]> {
-    return this.refresh$.pipe(
+  private nextPageSubjectCache = new WeakMap() as SubjectCache;
+  private refreshSubjectCache = new WeakMap() as SubjectCache;
+  public watchAll(
+    component: Object,
+    farmId: string,
+    areaId: string,
+    plantId: string,
+  ): Observable<(T & PlantReportWithId)[]> {
+    const refresh$ = new Subject<void>();
+    const nextPage$ = new Subject<void>();
+    this.nextPageSubjectCache.set(component, nextPage$);
+    this.refreshSubjectCache.set(component, refresh$);
+    return refresh$.pipe(
       startWith(undefined),
       switchMap(() =>
-        this.nextPage$.pipe(
+        nextPage$.pipe(
           debounceTime(200),
           startWith(undefined),
           this.loadReportsAndCacheLastDoc(farmId, areaId, plantId),
@@ -91,11 +100,15 @@ export class PlantReportService<T extends PlantReport = PlantReport>
         }),
       );
   }
-  public triggerNextPage() {
-    this.nextPage$.next();
+  public triggerNextPage(component: Object) {
+    const nextPage$ = this.nextPageSubjectCache.get(component);
+    if (!nextPage$) throw ReferenceError('next page subject not in cache.');
+    nextPage$.next();
   }
-  public clearPaginationCache() {
-    this.refresh$.next();
+  public clearPaginationCache(component: Object) {
+    const refresh$ = this.refreshSubjectCache.get(component);
+    if (!refresh$) throw ReferenceError('Refresh subject not in cache.');
+    refresh$.next();
   }
 
   private getReports(
