@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firebase } from '@custom-firebase/index';
+import { PaginatedService } from '@farm/paginated.service.abstract';
 import { PhotoService } from '@farm/util/photo.service';
 import {
   addDoc,
@@ -40,7 +41,7 @@ import { CoffeeTreeReport, CoffeeTreeReportWithId } from './tree.model';
 @Injectable({
   providedIn: 'root',
 })
-export class TreeReportService {
+export class TreeReportService implements PaginatedService {
   private addReportLoadingSubject = new BehaviorSubject(false);
   readonly addingReport$ = this.addReportLoadingSubject.asObservable();
   constructor(private photoService: PhotoService) {}
@@ -53,7 +54,7 @@ export class TreeReportService {
 
   private nextPage$ = new Subject<void>();
   private refresh$ = new Subject<void>();
-  public watchReports(farmId: string, areaId: string, treeId: string): Observable<CoffeeTreeReportWithId[]> {
+  public watchAll(farmId: string, areaId: string, treeId: string): Observable<CoffeeTreeReportWithId[]> {
     return this.refresh$.pipe(
       startWith(undefined),
       switchMap(() =>
@@ -90,7 +91,7 @@ export class TreeReportService {
   public triggerNextPage() {
     this.nextPage$.next();
   }
-  public triggerRefresh() {
+  public clearPaginationCache() {
     this.refresh$.next();
   }
 

@@ -15,6 +15,7 @@ import {
 } from 'firebase/firestore';
 import { map, mergeWith, Observable, ReplaySubject, scan, shareReplay, Subject, switchMap } from 'rxjs';
 import { FarmModule } from './farm.module';
+import { PaginatedService } from './paginated.service.abstract';
 
 export type EnvironmentRecord = {
   createdAt: number;
@@ -33,7 +34,7 @@ export type EnvironmentRecord = {
 @Injectable({
   providedIn: FarmModule,
 })
-export class EnvironmentRecordService {
+export class EnvironmentRecordService implements PaginatedService {
   static path = 'environmentRecords';
   static limit = 20;
   private lastDocSubject = new ReplaySubject<DocumentData | undefined>(1);
@@ -58,7 +59,7 @@ export class EnvironmentRecordService {
     });
   }
 
-  public watchEnvironmentRecords(farmId: string) {
+  public watchAll(farmId: string) {
     if (farmId !== this.farmIdCache) this.environmentRecordsCache$ = undefined;
     this.farmIdCache = farmId;
     return (this.environmentRecordsCache$ ||= this.lastDocSubject.pipe(

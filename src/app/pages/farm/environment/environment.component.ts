@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, finalize, first, map, mergeMap, Observable, of, ReplaySubject, tap } from 'rxjs';
-import { EnvironmentRecord, EnvironmentRecordService } from 'src/app/farm/environment-record.service';
+import { BehaviorSubject, finalize, first, map, mergeMap, of, ReplaySubject, tap } from 'rxjs';
+import { EnvironmentRecordService } from 'src/app/farm/environment-record.service';
 import { FarmService } from 'src/app/farm/farm.service';
 import { GeolocationService } from 'src/app/farm/util/geolocation.service';
 import { WeatherService } from 'src/app/farm/util/weather.service';
@@ -14,8 +14,16 @@ import { LogService } from 'src/app/log/log.service';
   styleUrls: ['./environment.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EnvironmentComponent implements OnInit {
-  public environmentRecords = new Observable<EnvironmentRecord[]>();
+export class EnvironmentComponent {
+  readonly environmentRecords = this.route.parent!.params.pipe(
+    first(),
+    map((params) => {
+      const { farmId } = params;
+      if (typeof farmId !== 'string') throw TypeError();
+      return farmId;
+    }),
+    mergeMap((farmId) => this.environmentService.watchAll(farmId)),
+  );
   private loadingSubject = new ReplaySubject<boolean>(1);
   public loading = this.loadingSubject.asObservable();
   public error = new BehaviorSubject(false);
@@ -28,18 +36,6 @@ export class EnvironmentComponent implements OnInit {
     private weatherService: WeatherService,
     private logService: LogService,
   ) {}
-
-  ngOnInit(): void {
-    this.environmentRecords = this.route.parent!.params.pipe(
-      first(),
-      map((params) => {
-        const { farmId } = params;
-        if (typeof farmId !== 'string') throw TypeError();
-        return farmId;
-      }),
-      mergeMap((farmId) => this.environmentService.watchEnvironmentRecords(farmId)),
-    );
-  }
 
   public loadNextPage() {
     this.environmentRecords.pipe(first()).subscribe((records) => {

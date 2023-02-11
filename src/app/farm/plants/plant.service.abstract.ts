@@ -1,7 +1,8 @@
+import { PaginatedService } from '@farm/paginated.service.abstract';
 import { Observable } from 'rxjs';
 import { Plant, PlantWithId } from './plant.model';
 
-export abstract class PlantService {
+export abstract class PlantService implements PaginatedService {
   static limit: number;
 
   abstract getPlant(farmId: string, areaId: string, treeId: string): Observable<Plant>;
@@ -11,7 +12,7 @@ export abstract class PlantService {
   /**
    * Returns an observable with pagination functions
    */
-  abstract watchPlants(farmId: string, areaId: string): Observable<PlantWithId[]>;
+  abstract watchAll(farmId: string, areaId: string): Observable<PlantWithId[]>;
   abstract triggerNextPage(): void;
   abstract clearPaginationCache(): void;
   abstract setSearch(searchId: string): void;

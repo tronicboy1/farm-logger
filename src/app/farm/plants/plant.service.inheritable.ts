@@ -1,4 +1,5 @@
 import { Firebase } from '@custom-firebase/index';
+import { PaginatedService } from '@farm/paginated.service.abstract';
 import {
   addDoc,
   collection,
@@ -37,7 +38,7 @@ import {
 import { Plant, PlantWithId } from './plant.model';
 import { PlantService } from './plant.service.abstract';
 
-export class PlantServiceInheritable implements PlantService {
+export class PlantServiceInheritable implements PlantService, PaginatedService {
   static limit = 20;
 
   public getPlant(farmId: string, areaId: string, plantId: string) {
@@ -78,7 +79,7 @@ export class PlantServiceInheritable implements PlantService {
   private treesLoadingSubject = new BehaviorSubject(true);
   readonly treesLoading$ = this.treesLoadingSubject.asObservable();
   private refreshSubject = new Subject<void>();
-  public watchPlants(farmId: string, areaId: string) {
+  public watchAll(farmId: string, areaId: string) {
     return combineLatest([this.searchId$, this.refreshSubject.pipe(startWith(undefined))]).pipe(
       switchMap(([searchValue]) =>
         this.nextPage$.pipe(

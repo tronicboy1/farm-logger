@@ -17,7 +17,7 @@ export class TreeComponent extends TreeIdInheritable {
     switchMap(([farmId, areaId, treeId]) => this.treeService.watchTree(farmId, areaId, treeId)),
   );
   readonly reports = this.getFarmIdAreaIdAndTreeId().pipe(
-    switchMap(([farmId, areaId, treeId]) => this.treeReportService.watchReports(farmId, areaId, treeId)),
+    switchMap(([farmId, areaId, treeId]) => this.treeReportService.watchAll(farmId, areaId, treeId)),
     shareReplay(1),
   );
   private showAddModalSubject = new BehaviorSubject(false);
@@ -39,7 +39,7 @@ export class TreeComponent extends TreeIdInheritable {
   public togglePictureModal = (photoURL: string | undefined) => this.showPictureModalSubject.next(photoURL);
   handleNewReportSubmission() {
     this.toggleAddModal(false);
-    this.treeReportService.triggerRefresh();
+    this.treeReportService.clearPaginationCache();
   }
   handleEndOfPage() {
     this.reports.pipe(first()).subscribe((reports) => {
@@ -57,6 +57,6 @@ export class TreeComponent extends TreeIdInheritable {
     this.reportToDeleteSubject.next(undefined);
     this.getFarmIdAreaIdAndTreeId()
       .pipe(mergeMap(([farmId, areaId, treeId]) => this.treeReportService.removeReport(farmId, areaId, treeId, id)))
-      .subscribe({ complete: () => this.treeReportService.triggerRefresh() });
+      .subscribe({ complete: () => this.treeReportService.clearPaginationCache() });
   }
 }

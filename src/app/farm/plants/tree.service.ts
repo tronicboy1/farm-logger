@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { PlantService } from './plant.service.abstract';
 import { PlantServiceInheritable } from './plant.service.inheritable';
 import { CoffeeTree, CoffeeTreeWithId } from './tree.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TreeService extends PlantServiceInheritable {
+export class TreeService extends PlantServiceInheritable implements PlantService {
   public getTree(farmId: string, areaId: string, treeId: string): Observable<CoffeeTree> {
     return super.getPlant(farmId, areaId, treeId);
   }
@@ -16,7 +17,7 @@ export class TreeService extends PlantServiceInheritable {
   }
 
   public watchTrees(farmId: string, areaId: string): Observable<CoffeeTreeWithId[]> {
-    return super.watchPlants(farmId, areaId);
+    return super.watchAll(farmId, areaId);
   }
 
   public createTree(farmId: string, areaId: string, treeData: CoffeeTree) {
