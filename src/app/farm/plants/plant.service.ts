@@ -39,7 +39,7 @@ import {
 import { Plant, PlantWithId } from './plant.model';
 import { PlantAbstractService } from './plant.service.abstract';
 
-export class PlantService<T extends Plant = Plant> extends PlantAbstractService implements PaginatedService {
+export class PlantService<T extends Plant = Plant> implements PaginatedService, PlantAbstractService {
   static limit = 20;
 
   public get(farmId: string, areaId: string, plantId: string) {
@@ -168,6 +168,9 @@ export class PlantService<T extends Plant = Plant> extends PlantAbstractService 
       : collection(Firebase.firestore, this.getBasePath(farmId, areaId));
   }
 
+  /**
+   * Use to override plant storage path
+   */
   protected getBasePath(farmId: string, areaId: string) {
     return `farms/${farmId}/areas/${areaId}/plants`;
   }

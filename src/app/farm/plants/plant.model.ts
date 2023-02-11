@@ -3,7 +3,6 @@ import type { AbstractControl } from "@angular/forms";
 export interface Plant {
   regularId: number;
   species: string;
-  startHeight: number;
 }
 
 export interface PlantReport {

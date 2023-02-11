@@ -1,6 +1,8 @@
 import { Plant, PlantReport, PlantReportWithId, PlantWithId, ToFormGroupType } from '../plant.model';
 
-export interface CoffeeTree extends Plant {}
+export interface CoffeeTree extends Plant {
+  startHeight: number;
+}
 export interface CoffeeTreeReport extends PlantReport {
   budding: BuddingConditions;
   beanYield: YieldConditions;

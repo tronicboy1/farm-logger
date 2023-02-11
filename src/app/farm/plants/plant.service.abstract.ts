@@ -26,6 +26,4 @@ export abstract class PlantAbstractService extends PaginatedService {
   abstract regularIdIsUnique(farmId: string, areaId: string, regularId: number): Observable<boolean>;
 
   abstract update(farmId: string, areaId: string, treeId: string, areaData: Partial<Plant>): Promise<void>;
-
-  protected abstract getBasePath(farmId: string, areaId: string): string;
 }
