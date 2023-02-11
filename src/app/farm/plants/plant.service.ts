@@ -138,7 +138,7 @@ export class PlantService<T extends Plant = Plant> implements PlantAbstractServi
     return from(getDocs(q)).pipe(map((result) => result.empty));
   }
 
-  public update(farmId: string, areaId: string, plantId: string, data: Partial<Plant>) {
+  public update(farmId: string, areaId: string, plantId: string, data: Partial<Plant> & Partial<T>) {
     const ref = doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${plantId}`);
     return updateDoc(ref, data);
   }
