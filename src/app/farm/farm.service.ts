@@ -158,9 +158,9 @@ export class FarmService {
       mergeMap((areaIds) =>
         forkJoin(
           areaIds.map((areaId) =>
-            this.treeService.watchAll(farmId, areaId).pipe(
+            from(this.treeService.getAll(farmId, areaId)).pipe(
               first(),
-              map((trees) => trees.map((tree) => ({ treeId: tree.id, areaId }))),
+              map((results) => results.docs.map((doc) => ({ treeId: doc.id, areaId }))),
             ),
           ),
         ).pipe(defaultIfEmpty([])),

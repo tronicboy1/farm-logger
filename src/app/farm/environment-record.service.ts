@@ -10,12 +10,26 @@ import {
   orderBy,
   query,
   QueryConstraint,
+  QueryDocumentSnapshot,
+  QuerySnapshot,
   startAfter,
   updateDoc,
 } from 'firebase/firestore';
-import { map, mergeWith, Observable, ReplaySubject, scan, shareReplay, Subject, switchMap } from 'rxjs';
+import {
+  debounceTime,
+  map,
+  OperatorFunction,
+  ReplaySubject,
+  scan,
+  shareReplay,
+  startWith,
+  Subject,
+  switchMap,
+  takeWhile,
+  tap,
+} from 'rxjs';
 import { FarmModule } from './farm.module';
-import { PaginatedService } from './paginated.service.abstract';
+import { PaginatedService, SubjectCache } from './paginated.service.abstract';
 
 export type EnvironmentRecord = {
   createdAt: number;
@@ -38,10 +52,6 @@ export class EnvironmentRecordService implements PaginatedService {
   static path = 'environmentRecords';
   static limit = 20;
   private lastDocSubject = new ReplaySubject<DocumentData | undefined>(1);
-  private lastDocCache?: DocumentData;
-  private farmIdCache?: string;
-  private refreshSubject = new Subject<void>();
-  private environmentRecordsCache$?: Observable<EnvironmentRecord[]>;
 
   constructor() {
     this.lastDocSubject.next(undefined);
@@ -52,36 +62,57 @@ export class EnvironmentRecordService implements PaginatedService {
     const constraints: QueryConstraint[] = [limit(EnvironmentRecordService.limit), orderBy('createdAt', 'desc')];
     if (lastDoc) constraints.push(startAfter(lastDoc));
     const q = query(ref, ...constraints);
-    return getDocs(q).then((result) => {
-      if (result.empty) return [];
-      this.lastDocCache = result.docs.at(-1);
-      return result.docs.map((doc) => doc.data()) as EnvironmentRecord[];
-    });
+    return getDocs(q);
   }
 
-  public watchAll(farmId: string) {
-    if (farmId !== this.farmIdCache) this.environmentRecordsCache$ = undefined;
-    this.farmIdCache = farmId;
-    return (this.environmentRecordsCache$ ||= this.lastDocSubject.pipe(
-      switchMap((lastDoc) => this.getEnvironmentRecords(farmId, lastDoc)),
-      map((records) => ({ records, reset: false })),
-      mergeWith(this.refreshSubject.pipe(map(() => ({ reset: true, records: [] })))),
-      scan((acc, current) => {
-        if (current.reset) {
-          return (acc = []);
-        }
-        return [...acc, ...current.records];
-      }, [] as EnvironmentRecord[]),
+  private nextPageSubjectCache = new WeakMap() as SubjectCache;
+  private refreshSubjectCache = new WeakMap() as SubjectCache;
+  public watchAll(component: Object, farmId: string) {
+    const nextPage$ = new Subject<void>();
+    const refresh$ = new Subject<void>();
+    this.nextPageSubjectCache.set(component, nextPage$);
+    this.refreshSubjectCache.set(component, refresh$);
+    const refreshWithInitial$ = refresh$.pipe(startWith(undefined));
+    return refreshWithInitial$.pipe(
+      switchMap(() =>
+        nextPage$.pipe(
+          debounceTime(100),
+          startWith(undefined),
+          this.loadRecordsAndCacheLastDoc(farmId),
+          takeWhile((results) => !results.empty),
+          map((results) => {
+            if (results.empty) return [];
+            return results.docs.map((doc) => doc.data() as EnvironmentRecord);
+          }),
+          scan((acc, current) => {
+            return [...acc, ...current];
+          }, [] as EnvironmentRecord[]),
+        ),
+      ),
       shareReplay(1),
-    ));
+    );
   }
-  public triggerNextPage() {
-    this.lastDocSubject.next(this.lastDocCache);
+  public triggerNextPage(component: Object) {
+    const nextPage$ = this.nextPageSubjectCache.get(component);
+    if (!nextPage$) throw ReferenceError('next page subject not in cache.');
+    nextPage$.next();
   }
-  public clearPaginationCache() {
-    this.lastDocCache = undefined;
-    this.lastDocSubject.next(undefined);
-    this.refreshSubject.next();
+  public clearPaginationCache(component: Object) {
+    const refresh$ = this.refreshSubjectCache.get(component);
+    if (!refresh$) throw ReferenceError('Refresh subject not in cache.');
+    console.log('next', refresh$);
+    refresh$.next();
+  }
+
+  private loadRecordsAndCacheLastDoc(farmId: string): OperatorFunction<void, QuerySnapshot<DocumentData>> {
+    let lastDoc: QueryDocumentSnapshot<DocumentData> | undefined;
+    return (source) =>
+      source.pipe(
+        switchMap(() => this.getEnvironmentRecords(farmId, lastDoc)),
+        tap((results) => {
+          lastDoc = results.docs.at(-1);
+        }),
+      );
   }
 
   public createEnvironmentRecord(farmId: string, environmentRecordData: EnvironmentRecord) {

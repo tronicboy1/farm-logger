@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, filter, finalize, first, map, mergeMap, tap } from 'rxjs';
 import { LogActions } from 'src/app/log/log.model';
@@ -32,6 +32,7 @@ export class NewTreeFormComponent extends AreaRouteParamsComponent implements On
         : false;
     }),
   );
+  @Output() submitted = new EventEmitter<void>();
 
   constructor(private treeNameIsUnique: TreeNameIsUniqueValidator, private logService: LogService) {
     super();
@@ -40,7 +41,7 @@ export class NewTreeFormComponent extends AreaRouteParamsComponent implements On
   ngOnInit(): void {
     this.getFarmIdAndAreaId()
       .pipe(
-        mergeMap(([farmId, areaId]) => this.treeService.watchAll(farmId, areaId)),
+        mergeMap(([farmId, areaId]) => this.treeService.watchAll(this, farmId, areaId)),
         first(),
         map((trees) => trees.reduce((regularId, tree) => (tree.regularId > regularId ? tree.regularId : regularId), 0)),
       )
@@ -58,15 +59,12 @@ export class NewTreeFormComponent extends AreaRouteParamsComponent implements On
         tap({
           next: ([farmId]) => this.logService.addLog(farmId, LogActions.AddTree).subscribe(),
         }),
-        mergeMap(([farmId, areaId]) =>
-          this.treeService.create(farmId, areaId, { regularId, species, startHeight }),
-        ),
+        mergeMap(([farmId, areaId]) => this.treeService.create(farmId, areaId, { regularId, species, startHeight })),
         finalize(() => {
           this.loadingSubject.next(false);
           this.newTreeFromGroup.controls.regularId.setValue(this.newTreeFromGroup.controls.regularId.value! + 1);
-          this.treeService.clearPaginationCache();
         }),
       )
-      .subscribe();
+      .subscribe(() => this.submitted.emit());
   }
 }

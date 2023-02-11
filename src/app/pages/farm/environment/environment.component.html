@@ -1,9 +1,10 @@
-<h1 i18n-title title="Record weather data for your farm. It uses your farm's location if you have it registered." i18n>Weather Data</h1>
+<h1 i18n-title title="Record weather data for your farm. It uses your farm's location if you have it registered." i18n>
+  Weather Data</h1>
 <div class="card">
   <button (click)="this.addRecord()" type="button" i18n>Add</button>
   <base-spinner *ngIf="this.loading | async"></base-spinner>
 </div>
-<div class="card">
+<div class="card" *ngIf="this.environmentRecords$ | async as environmentRecords">
   <table>
     <thead>
       <tr>
@@ -18,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let record of this.environmentRecords | async">
+      <tr *ngFor="let record of environmentRecords">
         <td>{{ record.createdAt | date : 'short' }}</td>
         <td>{{ record.weather }}</td>
         <td>{{ record.clouds }}%</td>
@@ -30,12 +31,13 @@
       </tr>
     </tbody>
   </table>
-  <p *ngIf="(this.environmentRecords | async)?.length" ngxObservable (intersection)="this.loadNextPage()" i18n>
+  <p *ngIf="environmentRecords.length" ngxObservable (intersection)="this.loadNextPage()" i18n>
     Weather data is taken from <a href="https://openweathermap.org/">OpenWeather</a>.
   </p>
 </div>
 
-<base-modal [show]="this.error | async" i18n-modal-title modal-title="Weather Report" (modal-closed)="this.error.next(false)">
+<base-modal [show]="this.error | async" i18n-modal-title modal-title="Weather Report"
+  (modal-closed)="this.error.next(false)">
   <p i18n>Automatic weather report failed. Please manually add weather data.</p>
   <app-weather-form (submitted)="this.handleFormSubmit()"></app-weather-form>
 </base-modal>

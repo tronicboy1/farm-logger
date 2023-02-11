@@ -1,5 +1,5 @@
 import { Firebase } from '@custom-firebase/index';
-import { PaginatedService } from '@farm/paginated.service.abstract';
+import { PaginatedService, SubjectCache } from '@farm/paginated.service.abstract';
 import {
   addDoc,
   collection,
@@ -52,6 +52,10 @@ export class PlantService<T extends Plant = Plant> extends PlantAbstractService 
     );
   }
 
+  getAll(farmId: string, areaId: string) {
+    return getDocs(this.getRef(farmId, areaId));
+  }
+
   public watchOne(farmId: string, areaId: string, plantId: string) {
     return new Observable<DocumentSnapshot<DocumentData>>((observer) => {
       return onSnapshot(
@@ -78,15 +82,21 @@ export class PlantService<T extends Plant = Plant> extends PlantAbstractService 
     return getDocs(q);
   }
 
-  private nextPage$ = new Subject<void>();
-  private searchId$ = new BehaviorSubject<number | undefined>(undefined);
+  private nextPageSubjectCache = new WeakMap() as SubjectCache;
+  private refreshSubjectCache = new WeakMap() as SubjectCache;
+  private searchIdSubjectCache = new WeakMap<Object, BehaviorSubject<any>>();
   private treesLoadingSubject = new BehaviorSubject(true);
   readonly treesLoading$ = this.treesLoadingSubject.asObservable();
-  private refreshSubject = new Subject<void>();
-  public watchAll(farmId: string, areaId: string) {
-    return combineLatest([this.searchId$, this.refreshSubject.pipe(startWith(undefined))]).pipe(
+  public watchAll(component: Object, farmId: string, areaId: string) {
+    const nextPage$ = new Subject<void>();
+    const refreshSubject = new Subject<void>();
+    const searchId$ = new BehaviorSubject<number | undefined>(undefined);
+    this.nextPageSubjectCache.set(component, nextPage$);
+    this.refreshSubjectCache.set(component, refreshSubject);
+    this.searchIdSubjectCache.set(component, searchId$);
+    return combineLatest([searchId$, refreshSubject.pipe(startWith(undefined))]).pipe(
       switchMap(([searchValue]) =>
-        this.nextPage$.pipe(
+        nextPage$.pipe(
           debounceTime(100),
           startWith(undefined),
           tap({ next: () => this.treesLoadingSubject.next(true) }),
@@ -103,15 +113,21 @@ export class PlantService<T extends Plant = Plant> extends PlantAbstractService 
       ),
     );
   }
-  public triggerNextPage() {
-    this.nextPage$.next();
+  public triggerNextPage(component: Object) {
+    const nextPage$ = this.nextPageSubjectCache.get(component);
+    if (!nextPage$) throw ReferenceError('next page subject not in cache.');
+    nextPage$.next();
   }
-  public clearPaginationCache() {
-    this.refreshSubject.next();
+  public clearPaginationCache(component: Object) {
+    const refresh$ = this.refreshSubjectCache.get(component);
+    if (!refresh$) throw ReferenceError('Refresh subject not in cache.');
+    refresh$.next();
   }
-  public setSearch(searchId: string) {
+  public setSearch(component: Object, searchId: string) {
+    const searchId$ = this.searchIdSubjectCache.get(component);
+    if (!searchId$) throw ReferenceError('Search subject not in cache.');
     const searchNumber = Number(searchId);
-    this.searchId$.next(isNaN(searchNumber) ? undefined : searchNumber);
+    searchId$.next(isNaN(searchNumber) ? undefined : searchNumber);
   }
 
   private loadPlantsAndCacheLastDoc(

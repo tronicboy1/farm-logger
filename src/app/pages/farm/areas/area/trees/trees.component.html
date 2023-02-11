@@ -1,5 +1,5 @@
 <base-modal [show]="this.showAddModal | async" modal-title="コーヒーの木新規登録" (modal-closed)="this.toggleAddModal(false)">
-  <app-new-tree-form></app-new-tree-form>
+  <app-new-tree-form (submitted)="this.refreshTrees()"></app-new-tree-form>
 </base-modal>
 <h1 i18n>Trees</h1>
 <div class="round-block">

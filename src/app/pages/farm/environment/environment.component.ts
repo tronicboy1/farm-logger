@@ -15,14 +15,14 @@ import { LogService } from 'src/app/log/log.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EnvironmentComponent {
-  readonly environmentRecords = this.route.parent!.params.pipe(
+  readonly environmentRecords$ = this.route.parent!.params.pipe(
     first(),
     map((params) => {
       const { farmId } = params;
       if (typeof farmId !== 'string') throw TypeError();
       return farmId;
     }),
-    mergeMap((farmId) => this.environmentService.watchAll(farmId)),
+    mergeMap((farmId) => this.environmentService.watchAll(this, farmId)),
   );
   private loadingSubject = new ReplaySubject<boolean>(1);
   public loading = this.loadingSubject.asObservable();
@@ -38,10 +38,7 @@ export class EnvironmentComponent {
   ) {}
 
   public loadNextPage() {
-    this.environmentRecords.pipe(first()).subscribe((records) => {
-      if (!records.length) return;
-      this.environmentService.triggerNextPage();
-    });
+    this.environmentService.triggerNextPage(this);
   }
   public handleFormSubmit() {
     this.error.next(false);
@@ -84,7 +81,7 @@ export class EnvironmentComponent {
           }),
         ),
         finalize(() => {
-          this.environmentService.clearPaginationCache();
+          this.environmentService.clearPaginationCache(this);
           this.loadingSubject.next(false);
         }),
       )
