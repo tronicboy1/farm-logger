@@ -1,25 +1,15 @@
-import { AbstractControl } from '@angular/forms';
+import { Plant, PlantReport, PlantReportWithId, PlantWithId, ToFormGroupType } from './plant.model';
 
-export type CoffeeTree = {
-  regularId: number;
-  species: string;
-  startHeight: number;
-};
-
-type ToFormGroupType<T> = { [key in keyof T]: AbstractControl<T[key]> };
-
-export type CoffeeTreeForm = ToFormGroupType<CoffeeTree>;
-
-export type CoffeeTreeReport = {
-  photoURL?: string;
-  photoPath: string;
-  createdAt: number;
-  notes: string;
-  height: number;
+export interface CoffeeTree extends Plant {}
+export interface CoffeeTreeReport extends PlantReport {
   budding: BuddingConditions;
   beanYield: YieldConditions;
-  individualFertilization?: boolean;
-};
+}
+
+export interface CoffeeTreeReportWithId extends CoffeeTreeReport, PlantReportWithId {}
+
+export interface CoffeeTreeWithId extends CoffeeTree, PlantWithId {}
+export type CoffeeTreeForm = ToFormGroupType<CoffeeTree>;
 
 export enum BuddingConditions {
   Good,
@@ -31,6 +21,7 @@ export const buddingConditionsText = new Map<BuddingConditions, string>([
   [BuddingConditions.Poor, $localize`Poor`],
   [BuddingConditions.NotYet, $localize`No Budding`],
 ]);
+
 export enum YieldConditions {
   Good,
   Poor,
@@ -41,7 +32,3 @@ export const yieldConditionsText = new Map<YieldConditions, string>([
   [YieldConditions.Poor, $localize`Poor`],
   [YieldConditions.NotYet, $localize`No Yield`],
 ]);
-
-export type CoffeeTreeReportWithId = CoffeeTreeReport & { id: string };
-
-export type CoffeeTreeWithId = { id: string } & CoffeeTree;
