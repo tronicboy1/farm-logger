@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TreeReportService } from '@farm/plants/tree-report.service';
 import { BehaviorSubject, forkJoin, map, sampleTime, shareReplay, Subscription, switchMap } from 'rxjs';
-import { TreeReportService } from 'src/app/farm/tree-report.service';
 import { AreaRouteParamsComponent } from '../route-params.inheritable';
 
 @Component({

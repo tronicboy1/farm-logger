@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firebase } from '@custom-firebase/index';
+import { PhotoService } from '@farm/util/photo.service';
 import {
   addDoc,
   collection,
@@ -34,12 +35,10 @@ import {
   takeWhile,
   tap,
 } from 'rxjs';
-import { FarmModule } from './farm.module';
 import { CoffeeTreeReport, CoffeeTreeReportWithId } from './tree.model';
-import { PhotoService } from './util/photo.service';
 
 @Injectable({
-  providedIn: FarmModule,
+  providedIn: 'root',
 })
 export class TreeReportService {
   private addReportLoadingSubject = new BehaviorSubject(false);

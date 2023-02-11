@@ -32,9 +32,9 @@ import { Farm, FarmWithId } from './farm.model';
 import { Firebase } from '@custom-firebase/index';
 import { AuthService } from 'ngx-firebase-user-platform';
 import { AreaService } from './area.service';
-import { TreeService } from './tree.service';
-import { TreeReportService } from './tree-report.service';
+import { TreeService } from './plants/tree.service';
 import { PhotoService } from './util/photo.service';
+import { TreeReportService } from './plants/tree-report.service';
 
 @Injectable({
   providedIn: FarmModule,

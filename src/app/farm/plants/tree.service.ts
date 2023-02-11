@@ -35,7 +35,7 @@ import {
   takeWhile,
   tap,
 } from 'rxjs';
-import { FarmModule } from './farm.module';
+import { FarmModule } from '../farm.module';
 import { CoffeeTree, CoffeeTreeWithId } from './tree.model';
 
 @Injectable({

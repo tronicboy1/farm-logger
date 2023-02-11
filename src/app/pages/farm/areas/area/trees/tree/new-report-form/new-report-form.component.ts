@@ -1,13 +1,18 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BuddingConditions, buddingConditionsText, YieldConditions, yieldConditionsText } from '@farm/tree.model';
+import {
+  BuddingConditions,
+  buddingConditionsText,
+  YieldConditions,
+  yieldConditionsText,
+} from '@farm/plants/tree.model';
 import { BehaviorSubject, finalize, first, forkJoin, from, map, mergeMap, Observable, of, switchMap, tap } from 'rxjs';
-import { TreeReportService } from 'src/app/farm/tree-report.service';
-import { TreeService } from 'src/app/farm/tree.service';
+import { TreeService } from '@farm/plants/tree.service';
 import { PhotoService } from 'src/app/farm/util/photo.service';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
 import { TreeIdInheritable } from '../tree-id.inhertible';
+import { TreeReportService } from '@farm/plants/tree-report.service';
 
 type SelectOptions<T> = { value: T; name: string }[];
 

@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { filter, first, forkJoin, map } from 'rxjs';
 import { AreaService } from 'src/app/farm/area.service';
-import { TreeService } from 'src/app/farm/tree.service';
+import { TreeService } from '@farm/plants/tree.service';
 
 export class AreaRouteParamsComponent {
   protected areaService = inject(AreaService);

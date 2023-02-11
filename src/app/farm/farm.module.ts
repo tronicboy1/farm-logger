@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { LogModule } from '../log/log.module';
 import { NgxFirebaseUserPlatformModule } from 'ngx-firebase-user-platform';
-import { TreeReportBuddingPipe } from './tree-report-budding.pipe';
-import { TreeReportYieldPipe } from './tree-report-yield.pipe';
+import { TreeReportBuddingPipe } from './plants/tree-report-budding.pipe';
+import { TreeReportYieldPipe } from './plants/tree-report-yield.pipe';
 import { FertilizationTypePipe } from './fertilization-type.pipe';
 
 @NgModule({

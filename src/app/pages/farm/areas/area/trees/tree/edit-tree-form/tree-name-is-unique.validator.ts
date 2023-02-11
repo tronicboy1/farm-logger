@@ -14,7 +14,7 @@ import {
   switchMap,
   take,
 } from 'rxjs';
-import { TreeService } from 'src/app/farm/tree.service';
+import { TreeService } from '@farm/plants/tree.service';
 
 @Injectable()
 export class TreeNameIsUniqueValidator implements AsyncValidator {
