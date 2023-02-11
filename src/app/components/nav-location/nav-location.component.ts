@@ -37,7 +37,7 @@ export class NavLocationComponent implements OnInit {
   readonly treeRegularId$ = combineLatest([this.farmId$, this.areaId$, this.treeId$]).pipe(
     switchMap(([farmId, areaId, treeId]) =>
       farmId && areaId && treeId
-        ? this.treeService.getTree(farmId, areaId, treeId).pipe(map((tree) => tree.regularId))
+        ? this.treeService.get(farmId, areaId, treeId).pipe(map((tree) => tree.regularId))
         : of(''),
     ),
   );

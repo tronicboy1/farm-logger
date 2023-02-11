@@ -14,7 +14,7 @@ import { AreaRouteParamsComponent } from '../route-params.inheritable';
 export class TreesComponent extends AreaRouteParamsComponent implements OnInit, OnDestroy {
   readonly trees$ = this.getFarmIdAndAreaId().pipe(
     switchMap(([farmId, areaId]) =>
-      this.treeService.watchTrees(farmId, areaId).pipe(
+      this.treeService.watchAll(farmId, areaId).pipe(
         switchMap((trees) =>
           forkJoin(
             trees.map((tree) =>

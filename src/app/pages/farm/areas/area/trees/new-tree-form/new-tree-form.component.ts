@@ -40,7 +40,7 @@ export class NewTreeFormComponent extends AreaRouteParamsComponent implements On
   ngOnInit(): void {
     this.getFarmIdAndAreaId()
       .pipe(
-        mergeMap(([farmId, areaId]) => this.treeService.watchTrees(farmId, areaId)),
+        mergeMap(([farmId, areaId]) => this.treeService.watchAll(farmId, areaId)),
         first(),
         map((trees) => trees.reduce((regularId, tree) => (tree.regularId > regularId ? tree.regularId : regularId), 0)),
       )
@@ -59,7 +59,7 @@ export class NewTreeFormComponent extends AreaRouteParamsComponent implements On
           next: ([farmId]) => this.logService.addLog(farmId, LogActions.AddTree).subscribe(),
         }),
         mergeMap(([farmId, areaId]) =>
-          this.treeService.createTree(farmId, areaId, { regularId, species, startHeight }),
+          this.treeService.create(farmId, areaId, { regularId, species, startHeight }),
         ),
         finalize(() => {
           this.loadingSubject.next(false);

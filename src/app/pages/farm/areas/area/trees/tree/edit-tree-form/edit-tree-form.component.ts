@@ -39,7 +39,7 @@ export class EditTreeFormComponent extends TreeIdInheritable implements OnInit {
   ngOnInit(): void {
     this.getFarmIdAreaIdAndTreeId()
       .pipe(
-        mergeMap(([farmId, areaId, treeId]) => this.treeService.getTree(farmId, areaId, treeId)),
+        mergeMap(([farmId, areaId, treeId]) => this.treeService.get(farmId, areaId, treeId)),
         first(),
       )
       .subscribe((tree) => {
@@ -58,7 +58,7 @@ export class EditTreeFormComponent extends TreeIdInheritable implements OnInit {
     this.getFarmIdAreaIdAndTreeId()
       .pipe(
         mergeMap(([farmId, areaId, treeId]) =>
-          this.treeService.updateTree(farmId, areaId, treeId, { regularId, species, startHeight }),
+          this.treeService.update(farmId, areaId, treeId, { regularId, species, startHeight }),
         ),
         tap({ next: () => this.submitted.emit(), finalize: () => this.loading$.next(false) }),
       )

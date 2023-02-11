@@ -30,7 +30,7 @@ export class TreeNameIsUniqueValidator implements AsyncValidator {
     );
     const observables = [...this.getFarmIdAndAreaIdObservables(), value$] as const;
     return forkJoin(observables).pipe(
-      switchMap(([farmId, areaId, value]) => this.treeService.treeRegularIdIsUnique(farmId, areaId, value)),
+      switchMap(([farmId, areaId, value]) => this.treeService.regularIdIsUnique(farmId, areaId, value)),
       map((isUnique) => {
         if (isUnique) return null;
         return { treeIdNotUnique: true };

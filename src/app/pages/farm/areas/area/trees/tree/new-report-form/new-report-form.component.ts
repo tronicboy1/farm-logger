@@ -54,7 +54,7 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
 
   ngOnInit(): void {
     this.regularId = this.getFarmIdAreaIdAndTreeId().pipe(
-      switchMap(([farmId, areaId, treeId]) => this.treeService.getTree(farmId, areaId, treeId)),
+      switchMap(([farmId, areaId, treeId]) => this.treeService.get(farmId, areaId, treeId)),
       map((tree) => tree.regularId),
     );
     // Load last recorded height to make input of just pictures easier

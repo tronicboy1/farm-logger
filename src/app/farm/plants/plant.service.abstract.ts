@@ -5,9 +5,9 @@ import { Plant, PlantWithId } from './plant.model';
 export abstract class PlantAbstractService extends PaginatedService {
   static limit: number;
 
-  abstract getPlant(farmId: string, areaId: string, treeId: string): Observable<Plant>;
+  abstract get(farmId: string, areaId: string, treeId: string): Observable<Plant>;
 
-  abstract watchPlant(farmId: string, areaId: string, treeId: string): Observable<Plant>;
+  abstract watchOne(farmId: string, areaId: string, treeId: string): Observable<Plant>;
 
   /**
    * Returns an observable with pagination functions
@@ -20,4 +20,6 @@ export abstract class PlantAbstractService extends PaginatedService {
   abstract regularIdIsUnique(farmId: string, areaId: string, regularId: number): Observable<boolean>;
 
   abstract update(farmId: string, areaId: string, treeId: string, areaData: Partial<Plant>): Promise<void>;
+
+  protected abstract getBasePath(farmId: string, areaId: string): string;
 }

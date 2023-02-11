@@ -18,6 +18,8 @@ import {
   QueryConstraint,
   QuerySnapshot,
   QueryDocumentSnapshot,
+  DocumentReference,
+  CollectionReference,
 } from 'firebase/firestore';
 import {
   BehaviorSubject,
@@ -28,7 +30,6 @@ import {
   Observable,
   OperatorFunction,
   scan,
-  shareReplay,
   startWith,
   Subject,
   switchMap,
@@ -38,11 +39,11 @@ import {
 import { Plant, PlantWithId } from './plant.model';
 import { PlantAbstractService } from './plant.service.abstract';
 
-export class PlantService<T extends Plant = Plant> implements PlantAbstractService, PaginatedService {
+export class PlantService<T extends Plant = Plant> extends PlantAbstractService implements PaginatedService {
   static limit = 20;
 
-  public getPlant(farmId: string, areaId: string, plantId: string) {
-    const ref = doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${plantId}`);
+  public get(farmId: string, areaId: string, plantId: string) {
+    const ref = this.getRef(farmId, areaId, plantId);
     return from(
       getDoc(ref).then((result) => {
         if (!result) throw Error('Tree not found.');
@@ -51,10 +52,14 @@ export class PlantService<T extends Plant = Plant> implements PlantAbstractServi
     );
   }
 
-  public watchPlant(farmId: string, areaId: string, plantId: string) {
+  public watchOne(farmId: string, areaId: string, plantId: string) {
     return new Observable<DocumentSnapshot<DocumentData>>((observer) => {
-      const ref = doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${plantId}`);
-      return onSnapshot(ref, (result) => observer.next(result), observer.error, observer.complete);
+      return onSnapshot(
+        this.getRef(farmId, areaId, plantId),
+        (result) => observer.next(result),
+        observer.error,
+        observer.complete,
+      );
     }).pipe(
       map((result) => {
         if (!result.exists) throw Error('Tree not found.');
@@ -64,13 +69,12 @@ export class PlantService<T extends Plant = Plant> implements PlantAbstractServi
   }
 
   private getPlants(farmId: string, areaId: string, lastDoc?: DocumentData, searchId?: number) {
-    const ref = collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees`);
     let constraints: QueryConstraint[] = [orderBy('regularId', 'asc'), limit(PlantService.limit)];
     if (searchId) {
       constraints = [where('regularId', '==', searchId)];
     }
     if (lastDoc) constraints.push(startAfter(lastDoc));
-    const q = query(ref, ...constraints);
+    const q = query(this.getRef(farmId, areaId), ...constraints);
     return getDocs(q);
   }
 
@@ -97,7 +101,6 @@ export class PlantService<T extends Plant = Plant> implements PlantAbstractServi
           scan((acc, current) => [...acc, ...current], [] as (T & PlantWithId)[]),
         ),
       ),
-      shareReplay(1),
     );
   }
   public triggerNextPage() {
@@ -128,18 +131,28 @@ export class PlantService<T extends Plant = Plant> implements PlantAbstractServi
   }
 
   public create(farmId: string, areaId: string, data: T) {
-    const ref = collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees`);
-    return addDoc(ref, data);
+    return addDoc(this.getRef(farmId, areaId), data);
   }
 
   public regularIdIsUnique(farmId: string, areaId: string, regularId: number) {
-    const ref = collection(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees`);
-    const q = query(ref, where('regularId', '==', regularId));
+    const q = query(this.getRef(farmId, areaId), where('regularId', '==', regularId));
     return from(getDocs(q)).pipe(map((result) => result.empty));
   }
 
   public update(farmId: string, areaId: string, plantId: string, data: Partial<Plant> & Partial<T>) {
-    const ref = doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}/trees/${plantId}`);
+    const ref = this.getRef(farmId, areaId, plantId);
     return updateDoc(ref, data);
+  }
+
+  private getRef(farmId: string, areaId: string): CollectionReference<DocumentData>;
+  private getRef(farmId: string, areaId: string, plantId: string): DocumentReference<DocumentData>;
+  private getRef(farmId: string, areaId: string, plantId?: string) {
+    return plantId
+      ? doc(Firebase.firestore, `${this.getBasePath(farmId, areaId)}/${plantId}`)
+      : collection(Firebase.firestore, this.getBasePath(farmId, areaId));
+  }
+
+  protected getBasePath(farmId: string, areaId: string) {
+    return `farms/${farmId}/areas/${areaId}/plants`;
   }
 }

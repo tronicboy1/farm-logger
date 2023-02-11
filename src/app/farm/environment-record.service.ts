@@ -89,7 +89,7 @@ export class EnvironmentRecordService implements PaginatedService {
     return addDoc(ref, environmentRecordData);
   }
 
-  public updateTree(farmId: string, environmentRecordId: string, environmentRecordData: Partial<EnvironmentRecord>) {
+  public update(farmId: string, environmentRecordId: string, environmentRecordData: Partial<EnvironmentRecord>) {
     const ref = doc(Firebase.firestore, `farms/${farmId}/${EnvironmentRecordService.path}/${environmentRecordId}`);
     return updateDoc(ref, environmentRecordData);
   }

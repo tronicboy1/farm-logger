@@ -14,7 +14,7 @@ export class TreeComponent extends TreeIdInheritable {
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
   readonly tree = this.getFarmIdAreaIdAndTreeId().pipe(
-    switchMap(([farmId, areaId, treeId]) => this.treeService.watchTree(farmId, areaId, treeId)),
+    switchMap(([farmId, areaId, treeId]) => this.treeService.watchOne(farmId, areaId, treeId)),
   );
   readonly reports = this.getFarmIdAreaIdAndTreeId().pipe(
     switchMap(([farmId, areaId, treeId]) => this.treeReportService.watchAll(farmId, areaId, treeId)),

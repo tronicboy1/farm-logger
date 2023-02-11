@@ -158,7 +158,7 @@ export class FarmService {
       mergeMap((areaIds) =>
         forkJoin(
           areaIds.map((areaId) =>
-            this.treeService.watchTrees(farmId, areaId).pipe(
+            this.treeService.watchAll(farmId, areaId).pipe(
               first(),
               map((trees) => trees.map((tree) => ({ treeId: tree.id, areaId }))),
             ),
