@@ -5,14 +5,14 @@ import {
   buddingConditionsText,
   YieldConditions,
   yieldConditionsText,
-} from '@farm/plants/tree.model';
+} from '@farm/plants/coffee-tree/tree.model';
 import { BehaviorSubject, finalize, first, forkJoin, from, map, mergeMap, Observable, of, switchMap, tap } from 'rxjs';
-import { TreeService } from '@farm/plants/tree.service';
+import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 import { PhotoService } from 'src/app/farm/util/photo.service';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
 import { TreeIdInheritable } from '../tree-id.inhertible';
-import { TreeReportService } from '@farm/plants/tree-report.service';
+import { TreeReportService } from '@farm/plants/coffee-tree/tree-report.service';
 
 type SelectOptions<T> = { value: T; name: string }[];
 

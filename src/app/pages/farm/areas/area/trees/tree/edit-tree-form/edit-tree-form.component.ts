@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CoffeeTreeForm } from '@farm/plants/tree.model';
-import { TreeService } from '@farm/plants/tree.service';
+import { CoffeeTreeForm } from '@farm/plants/coffee-tree/tree.model';
+import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 import { BehaviorSubject, filter, first, map, mergeMap, tap } from 'rxjs';
 import { TreeIdInheritable } from '../tree-id.inhertible';
 import { TreeNameIsUniqueValidator } from './tree-name-is-unique.validator';

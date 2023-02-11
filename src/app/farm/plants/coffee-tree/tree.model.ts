@@ -1,4 +1,4 @@
-import { Plant, PlantReport, PlantReportWithId, PlantWithId, ToFormGroupType } from './plant.model';
+import { Plant, PlantReport, PlantReportWithId, PlantWithId, ToFormGroupType } from '../plant.model';
 
 export interface CoffeeTree extends Plant {}
 export interface CoffeeTreeReport extends PlantReport {

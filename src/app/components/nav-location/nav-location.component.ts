@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { combineLatest, filter, map, Observable, of, OperatorFunction, switchMap } from 'rxjs';
 import { AreaService } from 'src/app/farm/area.service';
 import { FarmService } from 'src/app/farm/farm.service';
-import { TreeService } from '@farm/plants/tree.service';
+import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 
 @Component({
   selector: 'app-nav-location',

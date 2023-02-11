@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TreeReportService } from '@farm/plants/coffee-tree/tree-report.service';
+import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 import { BehaviorSubject, first, mergeMap, Observable, shareReplay, switchMap } from 'rxjs';
-import { TreeService } from '@farm/plants/tree.service';
 import { TreeIdInheritable } from './tree-id.inhertible';
-import { TreeReportService } from '@farm/plants/tree-report.service';
 
 @Component({
   selector: 'app-tree',

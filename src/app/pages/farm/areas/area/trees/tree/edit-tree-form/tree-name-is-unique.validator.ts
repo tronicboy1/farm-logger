@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, AsyncValidator, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 import {
   catchError,
   filter,
@@ -14,7 +15,6 @@ import {
   switchMap,
   take,
 } from 'rxjs';
-import { TreeService } from '@farm/plants/tree.service';
 
 @Injectable()
 export class TreeNameIsUniqueValidator implements AsyncValidator {

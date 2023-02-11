@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PlantService } from './plant.service';
+import { PlantService } from '../plant.service';
 import { CoffeeTree } from './tree.model';
 
 @Injectable({

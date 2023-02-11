@@ -1,4 +1,4 @@
-import { PlantFactory } from './plant.factory';
+import { PlantFactory } from '../plant.factory';
 import { BuddingConditions, CoffeeTree, CoffeeTreeReport, YieldConditions } from './tree.model';
 
 export class TreeFactory implements PlantFactory {
