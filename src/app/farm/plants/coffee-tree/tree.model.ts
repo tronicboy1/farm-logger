@@ -1,7 +1,16 @@
-import { Plant, PlantReport, PlantReportWithId, PlantWithId, ToFormGroupType } from '../plant.model';
+import {
+  IncludeId,
+  Plant,
+  PlantReport,
+  PlantReportWithId,
+  PlantTypes,
+  PlantWithId,
+  ToFormGroupType,
+} from '../plant.model';
 
 export interface CoffeeTree extends Plant {
   startHeight: number;
+  plantType: PlantTypes.CoffeeTree;
 }
 export interface CoffeeTreeReport extends PlantReport {
   budding: BuddingConditions;
@@ -10,8 +19,8 @@ export interface CoffeeTreeReport extends PlantReport {
 
 export interface CoffeeTreeReportWithId extends CoffeeTreeReport, PlantReportWithId {}
 
-export interface CoffeeTreeWithId extends CoffeeTree, PlantWithId {}
-export type CoffeeTreeForm = ToFormGroupType<CoffeeTree>;
+export interface CoffeeTreeWithId extends CoffeeTree, IncludeId {}
+export type CoffeeTreeForm = ToFormGroupType<Omit<CoffeeTree, 'plantType'>>;
 
 export enum BuddingConditions {
   Good,

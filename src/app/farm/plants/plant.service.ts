@@ -36,11 +36,15 @@ import {
   takeWhile,
   tap,
 } from 'rxjs';
-import { Plant, PlantWithId } from './plant.model';
+import { IncludeId, Plant, plantTypePaths, PlantTypes } from './plant.model';
 import { PlantAbstractService } from './plant.service.abstract';
 
 export class PlantService<T extends Plant = Plant> implements PaginatedService, PlantAbstractService {
   static limit = 20;
+  /**
+   * Must be overwritten to change path in children.
+   */
+  protected plantType = PlantTypes.Plant;
 
   public get(farmId: string, areaId: string, plantId: string) {
     const ref = this.getRef(farmId, areaId, plantId);
@@ -106,9 +110,9 @@ export class PlantService<T extends Plant = Plant> implements PaginatedService, 
           map((result) => {
             if (result.empty) return [];
             const { docs } = result;
-            return docs.map((doc) => ({ ...doc.data(), id: doc.id })) as (T & PlantWithId)[];
+            return docs.map((doc) => ({ ...doc.data(), id: doc.id })) as (T & IncludeId)[];
           }),
-          scan((acc, current) => [...acc, ...current], [] as (T & PlantWithId)[]),
+          scan((acc, current) => [...acc, ...current], [] as (T & IncludeId)[]),
         ),
       ),
     );
@@ -146,8 +150,8 @@ export class PlantService<T extends Plant = Plant> implements PaginatedService, 
       );
   }
 
-  public create(farmId: string, areaId: string, data: T) {
-    return addDoc(this.getRef(farmId, areaId), data);
+  public create(farmId: string, areaId: string, data: Omit<T, 'plantType'> & Partial<Pick<T, 'plantType'>>) {
+    return addDoc(this.getRef(farmId, areaId), { ...data, plantType: this.plantType });
   }
 
   public regularIdIsUnique(farmId: string, areaId: string, regularId: number) {
@@ -171,7 +175,9 @@ export class PlantService<T extends Plant = Plant> implements PaginatedService, 
   /**
    * Use to override plant storage path
    */
-  protected getBasePath(farmId: string, areaId: string) {
-    return `farms/${farmId}/areas/${areaId}/plants`;
+  private getBasePath(farmId: string, areaId: string) {
+    const path = plantTypePaths.get(this.plantType);
+    if (!path) throw ReferenceError('Path not found.');
+    return `farms/${farmId}/areas/${areaId}/${path}`;
   }
 }

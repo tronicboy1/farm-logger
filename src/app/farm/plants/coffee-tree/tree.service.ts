@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { PlantTypes } from '../plant.model';
 import { PlantService } from '../plant.service';
 import { CoffeeTree } from './tree.model';
 
@@ -6,7 +7,5 @@ import { CoffeeTree } from './tree.model';
   providedIn: 'root',
 })
 export class TreeService extends PlantService<CoffeeTree> {
-  protected getBasePath(farmId: string, areaId: string) {
-    return `farms/${farmId}/areas/${areaId}/trees`;
-  }
+  protected plantType = PlantTypes.CoffeeTree;
 }

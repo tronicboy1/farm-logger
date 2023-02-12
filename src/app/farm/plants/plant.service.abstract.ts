@@ -21,7 +21,7 @@ export abstract class PlantAbstractService extends PaginatedService {
   abstract watchAll(component: Object, farmId: string, areaId: string): Observable<PlantWithId[]>;
   abstract setSearch(component: any, searchId: string): void;
 
-  abstract create(farmId: string, areaId: string, data: Plant): Promise<any>;
+  abstract create(farmId: string, areaId: string, data: Omit<Plant, 'plantType'>): Promise<any>;
 
   abstract regularIdIsUnique(farmId: string, areaId: string, regularId: number): Observable<boolean>;
 

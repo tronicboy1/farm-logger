@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CoffeeTree } from '@farm/plants/coffee-tree/tree.model';
+import { PlantTypes } from '@farm/plants/plant.model';
 import { BehaviorSubject, filter, finalize, first, map, mergeMap, tap } from 'rxjs';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
@@ -41,8 +43,12 @@ export class NewTreeFormComponent extends AreaRouteParamsComponent implements On
   ngOnInit(): void {
     this.getFarmIdAndAreaId()
       .pipe(
-        mergeMap(([farmId, areaId]) => this.treeService.watchAll(this, farmId, areaId)),
+        mergeMap(([farmId, areaId]) => this.treeService.getAll(farmId, areaId)),
         first(),
+        map((result) => {
+          if (result.empty) return [];
+          return result.docs.map(doc => doc.data() as CoffeeTree)
+        }),
         map((trees) => trees.reduce((regularId, tree) => (tree.regularId > regularId ? tree.regularId : regularId), 0)),
       )
       .subscribe((latestId) => this.newTreeFromGroup.controls.regularId.setValue(latestId + 1, { emitEvent: true }));
@@ -59,7 +65,14 @@ export class NewTreeFormComponent extends AreaRouteParamsComponent implements On
         tap({
           next: ([farmId]) => this.logService.addLog(farmId, LogActions.AddTree).subscribe(),
         }),
-        mergeMap(([farmId, areaId]) => this.treeService.create(farmId, areaId, { regularId, species, startHeight })),
+        mergeMap(([farmId, areaId]) =>
+          this.treeService.create(farmId, areaId, {
+            regularId,
+            species,
+            startHeight,
+            plantType: PlantTypes.CoffeeTree,
+          }),
+        ),
         finalize(() => {
           this.loadingSubject.next(false);
           this.newTreeFromGroup.controls.regularId.setValue(this.newTreeFromGroup.controls.regularId.value! + 1);
