@@ -4,7 +4,7 @@ export type LogEntry = {
   action: LogActions;
   iconCode?: number;
   value: string;
-  viewedBy?: string[]; // uid array, old logs not defined
+  viewedBy: string[];
 };
 
 export type RenderedLogEntry = {
@@ -39,7 +39,7 @@ export enum LogIconCodes {
   View,
 }
 
-export const logDictionary: Record<number, string> = {
+export const logDictionary: Record<LogActions, string> = {
   [LogActions.CreateFarm]: 'がこの農場を登録した',
   [LogActions.ViewFarm]: 'がこの農場を閲覧した',
   [LogActions.ViewArea]: 'が区域を閲覧した：',
