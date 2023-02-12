@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TreeReportService } from '@farm/plants/coffee-tree/tree-report.service';
-import { BehaviorSubject, forkJoin, map, sampleTime, shareReplay, Subscription, switchMap, withLatestFrom } from 'rxjs';
+import { TreeService } from '@farm/plants/coffee-tree/tree.service';
+import { BehaviorSubject, forkJoin, map, sampleTime, shareReplay, Subscription, switchMap } from 'rxjs';
 import { AreaRouteParamsComponent } from '../route-params.inheritable';
 
 @Component({
@@ -14,9 +15,10 @@ import { AreaRouteParamsComponent } from '../route-params.inheritable';
 export class TreesComponent extends AreaRouteParamsComponent implements OnInit, OnDestroy {
   private treeReportService = inject(TreeReportService);
   private router = inject(Router);
+  protected plantService = inject(TreeService);
   readonly trees$ = this.getFarmIdAndAreaId().pipe(
     switchMap(([farmId, areaId]) =>
-      this.treeService.watchAll(this, farmId, areaId).pipe(
+      this.plantService.watchAll(this, farmId, areaId).pipe(
         switchMap((trees) =>
           forkJoin(
             trees.map((tree) =>
@@ -38,7 +40,7 @@ export class TreesComponent extends AreaRouteParamsComponent implements OnInit, 
     shareReplay(1),
   );
   private showAddModalSubject = new BehaviorSubject(false);
-  readonly loading$ = this.treeService.treesLoading$;
+  readonly loading$ = this.plantService.treesLoading$;
   public showAddModal = this.showAddModalSubject.asObservable();
   public searchControl = new FormControl('');
   private subscriptions = new Subscription();
@@ -46,7 +48,7 @@ export class TreesComponent extends AreaRouteParamsComponent implements OnInit, 
   ngOnInit(): void {
     this.subscriptions.add(
       this.searchControl.valueChanges.pipe(sampleTime(200)).subscribe((search) => {
-        this.treeService.setSearch(this, search ?? '');
+        this.plantService.setSearch(this, search ?? '');
       }),
     );
   }
@@ -60,10 +62,10 @@ export class TreesComponent extends AreaRouteParamsComponent implements OnInit, 
     this.router.navigate([treeId], { relativeTo: this.route });
   }
   public loadNextPage() {
-    this.treeService.triggerNextPage(this);
+    this.plantService.triggerNextPage(this);
   }
 
   refreshTrees() {
-    this.treeService.clearPaginationCache(this);
+    this.plantService.clearPaginationCache(this);
   }
 }

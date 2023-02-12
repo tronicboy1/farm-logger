@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CoffeeTree } from '@farm/plants/coffee-tree/tree.model';
+import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 import { PlantTypes } from '@farm/plants/plant.model';
 import { BehaviorSubject, filter, finalize, first, map, mergeMap, tap } from 'rxjs';
 import { LogActions } from 'src/app/log/log.model';
@@ -16,6 +17,7 @@ import { TreeNameIsUniqueValidator } from './tree-name-is-unique.validator';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewTreeFormComponent extends AreaRouteParamsComponent implements OnInit {
+  protected plantService = inject(TreeService);
   public newTreeFromGroup = new FormGroup({
     regularId: new FormControl<number | null>(null, {
       validators: [Validators.required, Validators.min(1)],
@@ -43,11 +45,11 @@ export class NewTreeFormComponent extends AreaRouteParamsComponent implements On
   ngOnInit(): void {
     this.getFarmIdAndAreaId()
       .pipe(
-        mergeMap(([farmId, areaId]) => this.treeService.getAll(farmId, areaId)),
+        mergeMap(([farmId, areaId]) => this.plantService.getAll(farmId, areaId)),
         first(),
         map((result) => {
           if (result.empty) return [];
-          return result.docs.map(doc => doc.data() as CoffeeTree)
+          return result.docs.map((doc) => doc.data() as CoffeeTree);
         }),
         map((trees) => trees.reduce((regularId, tree) => (tree.regularId > regularId ? tree.regularId : regularId), 0)),
       )
@@ -66,7 +68,7 @@ export class NewTreeFormComponent extends AreaRouteParamsComponent implements On
           next: ([farmId]) => this.logService.addLog(farmId, LogActions.AddTree).subscribe(),
         }),
         mergeMap(([farmId, areaId]) =>
-          this.treeService.create(farmId, areaId, {
+          this.plantService.create(farmId, areaId, {
             regularId,
             species,
             startHeight,

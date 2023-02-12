@@ -7,7 +7,7 @@ import { AreaService } from 'src/app/farm/area.service';
 export class AreaRouteParamsComponent {
   protected areaService = inject(AreaService);
   protected route = inject(ActivatedRoute);
-  protected treeService = inject(TreeService);
+  protected plantService = inject(TreeService);
 
   protected getFarmIdAndAreaId() {
     const params$ = [
