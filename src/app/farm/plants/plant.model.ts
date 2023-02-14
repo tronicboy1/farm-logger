@@ -12,7 +12,7 @@ export interface PlantReport {
   createdAt: number;
   notes: string;
   height: number;
-  individualFertilization?: boolean;
+  individualFertilization: boolean;
 }
 
 export interface IncludeId {

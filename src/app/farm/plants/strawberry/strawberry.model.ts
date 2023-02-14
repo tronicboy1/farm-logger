@@ -4,11 +4,11 @@ export interface StrawberryPlant extends Plant {
   plantType: PlantTypes.StrawberryPlant;
 }
 export interface StrawberryReport extends PlantReport {
-  flowering: Flowering;
+  flowering: StrawberryFlowering;
   pollination: boolean;
 }
 
-enum Flowering {
+export enum StrawberryFlowering {
   NotYet,
   Good,
   Poor,

@@ -37,13 +37,13 @@ import {
   tap,
 } from 'rxjs';
 import { PlantReportServiceAbstract } from './plant-report.service.abstract';
-import { PlantReport, PlantReportWithId } from './plant.model';
+import { IncludeId, PlantReport } from './plant.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlantReportService<T extends PlantReport = PlantReport>
-  implements PaginatedService, PlantReportServiceAbstract
+  implements PaginatedService<(T & IncludeId)[]>, PlantReportServiceAbstract
 {
   private addReportLoadingSubject = new BehaviorSubject(false);
   readonly addingReport$ = this.addReportLoadingSubject.asObservable();
@@ -57,12 +57,7 @@ export class PlantReportService<T extends PlantReport = PlantReport>
 
   private nextPageSubjectCache = new WeakMap() as SubjectCache;
   private refreshSubjectCache = new WeakMap() as SubjectCache;
-  public watchAll(
-    component: Object,
-    farmId: string,
-    areaId: string,
-    plantId: string,
-  ): Observable<(T & PlantReportWithId)[]> {
+  public watchAll(component: Object, farmId: string, areaId: string, plantId: string): Observable<(T & IncludeId)[]> {
     const refresh$ = new Subject<void>();
     const nextPage$ = new Subject<void>();
     this.nextPageSubjectCache.set(component, nextPage$);
@@ -79,7 +74,7 @@ export class PlantReportService<T extends PlantReport = PlantReport>
             if (result.empty) return [];
             return result.docs.map((doc) => ({ ...(doc.data() as T), id: doc.id }));
           }),
-          scan((acc, reports) => [...acc, ...reports], [] as (T & PlantReportWithId)[]),
+          scan((acc, reports) => [...acc, ...reports], [] as (T & IncludeId)[]),
         ),
       ),
     );

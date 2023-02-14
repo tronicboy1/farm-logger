@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { Firebase } from '@custom-firebase/index';
 import { PaginatedService, SubjectCache } from '@farm/paginated.service.abstract';
 import {
@@ -39,6 +40,7 @@ import {
 import { IncludeId, Plant, plantTypePaths, PlantTypes } from './plant.model';
 import { PlantAbstractService } from './plant.service.abstract';
 
+@Injectable({ providedIn: 'root' })
 export class PlantService<T extends Plant = Plant> implements PaginatedService, PlantAbstractService {
   static limit = 20;
   /**
