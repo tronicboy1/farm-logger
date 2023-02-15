@@ -1,12 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { AbstractControl, AsyncValidator, ValidationErrors } from '@angular/forms';
-import { PlantService } from '@farm/plants/plant.service';
+import { PlantServiceImplementation } from '@farm/plants/plant.service';
 import { catchError, filter, forkJoin, map, Observable, of, OperatorFunction, sampleTime, switchMap, take } from 'rxjs';
-import { PlantIdInheritable } from '../plant-id.inhertible';
+import { PlantIdInheritable } from './plant-id.inhertible';
 
 @Injectable()
 export class PlantIdIsUniqueValidator extends PlantIdInheritable implements AsyncValidator {
-  protected plantService = inject(PlantService);
+  protected plantService = inject(PlantServiceImplementation);
 
   validate(control: AbstractControl): Observable<ValidationErrors | null> {
     const { value } = control;

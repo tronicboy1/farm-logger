@@ -40,7 +40,6 @@ import {
 import { IncludeId, Plant, plantTypePaths, PlantTypes } from './plant.model';
 import { PlantAbstractService } from './plant.service.abstract';
 
-@Injectable({ providedIn: 'root' })
 export class PlantService<T extends Plant = Plant> implements PaginatedService, PlantAbstractService {
   static limit = 20;
   /**
@@ -93,7 +92,7 @@ export class PlantService<T extends Plant = Plant> implements PaginatedService, 
   private searchIdSubjectCache = new WeakMap<Object, BehaviorSubject<any>>();
   private treesLoadingSubject = new BehaviorSubject(true);
   readonly treesLoading$ = this.treesLoadingSubject.asObservable();
-  public watchAll(component: Object, farmId: string, areaId: string) {
+  public watchAll(component: Object, farmId: string, areaId: string): Observable<(T & IncludeId)[]> {
     const nextPage$ = new Subject<void>();
     const refreshSubject = new Subject<void>();
     const searchId$ = new BehaviorSubject<number | undefined>(undefined);
@@ -183,3 +182,6 @@ export class PlantService<T extends Plant = Plant> implements PaginatedService, 
     return `farms/${farmId}/areas/${areaId}/${path}`;
   }
 }
+
+@Injectable({ providedIn: 'root' })
+export class PlantServiceImplementation extends PlantService<Plant> {}

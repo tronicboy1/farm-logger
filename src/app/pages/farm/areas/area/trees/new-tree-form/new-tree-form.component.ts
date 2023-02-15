@@ -1,46 +1,38 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CoffeeTree } from '@farm/plants/coffee-tree/tree.model';
+import { CoffeeTreeFactory } from '@farm/plants/coffee-tree/tree.factory';
 import { TreeService } from '@farm/plants/coffee-tree/tree.service';
-import { PlantTypes } from '@farm/plants/plant.model';
-import { BehaviorSubject, filter, finalize, first, map, mergeMap, tap } from 'rxjs';
-import { LogActions } from 'src/app/log/log.model';
-import { LogService } from 'src/app/log/log.service';
-import { AreaRouteParamsComponent } from '../../route-params.inheritable';
-import { TreeNameIsUniqueValidator } from './tree-name-is-unique.validator';
+import { filter, first, map, mergeMap } from 'rxjs';
+import { NewPlantFormComponent } from '../../plants/new-plant-form/new-plant-form.component';
+import { PlantIdIsUniqueValidator } from '../../plants/plant/plant-id-is-unique.validator';
 
 @Component({
   selector: 'app-new-tree-form',
   templateUrl: './new-tree-form.component.html',
   styleUrls: ['./new-tree-form.component.css', '../../../../../../../styles/basic-form.css'],
-  providers: [TreeNameIsUniqueValidator],
+  providers: [PlantIdIsUniqueValidator],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewTreeFormComponent extends AreaRouteParamsComponent implements OnInit {
+export class NewTreeFormComponent extends NewPlantFormComponent implements OnInit {
   protected plantService = inject(TreeService);
-  public newTreeFromGroup = new FormGroup({
+  protected plantFactory = new CoffeeTreeFactory();
+  public newPlantFromGroup = new FormGroup({
     regularId: new FormControl<number | null>(null, {
       validators: [Validators.required, Validators.min(1)],
-      asyncValidators: [this.treeNameIsUnique.validate.bind(this.treeNameIsUnique)],
+      asyncValidators: [this.plantIdIsUnique.validate.bind(this.plantIdIsUnique)],
     }),
     species: new FormControl('', [Validators.required]),
     startHeight: new FormControl(1, [Validators.required]),
   });
-  private loadingSubject = new BehaviorSubject<boolean>(false);
-  public loading = this.loadingSubject.asObservable();
-  public treeIdError = this.newTreeFromGroup.statusChanges.pipe(
+  public treeIdError = this.newPlantFromGroup.statusChanges.pipe(
     filter((status) => status !== 'PENDING'),
     map(() => {
-      return this.newTreeFromGroup.controls.regularId.errors
-        ? Boolean(this.newTreeFromGroup.controls.regularId.errors['treeIdNotUnique'])
+      return this.newPlantFromGroup.controls.regularId.errors
+        ? Boolean(this.newPlantFromGroup.controls.regularId.errors['treeIdNotUnique'])
         : false;
     }),
   );
-  @Output() submitted = new EventEmitter<void>();
-
-  constructor(private treeNameIsUnique: TreeNameIsUniqueValidator, private logService: LogService) {
-    super();
-  }
 
   ngOnInit(): void {
     this.getFarmIdAndAreaId()
@@ -53,33 +45,13 @@ export class NewTreeFormComponent extends AreaRouteParamsComponent implements On
         }),
         map((trees) => trees.reduce((regularId, tree) => (tree.regularId > regularId ? tree.regularId : regularId), 0)),
       )
-      .subscribe((latestId) => this.newTreeFromGroup.controls.regularId.setValue(latestId + 1, { emitEvent: true }));
+      .subscribe((latestId) => this.newPlantFromGroup.controls.regularId.setValue(latestId + 1, { emitEvent: true }));
   }
 
-  handleSubmit() {
-    if (this.loadingSubject.value) return;
-    this.loadingSubject.next(true);
-    const regularId = this.newTreeFromGroup.controls.regularId.value!;
-    const species = this.newTreeFromGroup.controls.species.value!.trim();
-    const startHeight = this.newTreeFromGroup.controls.startHeight.value!;
-    this.getFarmIdAndAreaId()
-      .pipe(
-        tap({
-          next: ([farmId]) => this.logService.addLog(farmId, LogActions.AddTree).subscribe(),
-        }),
-        mergeMap(([farmId, areaId]) =>
-          this.plantService.create(farmId, areaId, {
-            regularId,
-            species,
-            startHeight,
-            plantType: PlantTypes.CoffeeTree,
-          }),
-        ),
-        finalize(() => {
-          this.loadingSubject.next(false);
-          this.newTreeFromGroup.controls.regularId.setValue(this.newTreeFromGroup.controls.regularId.value! + 1);
-        }),
-      )
-      .subscribe(() => this.submitted.emit());
+  protected createPlantData(): CoffeeTree {
+    const regularId = this.newPlantFromGroup.controls.regularId.value!;
+    const species = this.newPlantFromGroup.controls.species.value!.trim();
+    const startHeight = this.newPlantFromGroup.controls.startHeight.value!;
+    return this.plantFactory.create({ regularId, species, startHeight });
   }
 }

@@ -39,9 +39,6 @@ import {
 import { PlantReportServiceAbstract } from './plant-report.service.abstract';
 import { IncludeId, PlantReport } from './plant.model';
 
-@Injectable({
-  providedIn: 'root',
-})
 export class PlantReportService<T extends PlantReport = PlantReport>
   implements PaginatedService<(T & IncludeId)[]>, PlantReportServiceAbstract
 {
@@ -179,3 +176,8 @@ export class PlantReportService<T extends PlantReport = PlantReport>
     return `farms/${farmId}/areas/${areaId}/plants/${plantId}/reports`;
   }
 }
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PlantReportServiceImplementation extends PlantReportService<PlantReport> {}

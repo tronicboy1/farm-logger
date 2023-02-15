@@ -1,16 +1,14 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, finalize, first, forkJoin, from, map, mergeMap, Observable, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, finalize, first, forkJoin, from, map, mergeMap, of, switchMap, tap } from 'rxjs';
 import { PhotoService } from 'src/app/farm/util/photo.service';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
 import { PlantIdInheritable } from '../plant-id.inhertible';
-import { PlantService } from '@farm/plants/plant.service';
-import { PlantReportService } from '@farm/plants/plant-report.service';
-import { PlantReportFactory } from '@farm/plants/plant-report.factory';
 import { PlantReport } from '@farm/plants/plant.model';
-
-type SelectOptions<T> = { value: T; name: string }[];
+import { PlantFactory } from '@farm/plants/plant.factory';
+import { PlantServiceImplementation } from '@farm/plants/plant.service';
+import { PlantReportServiceImplementation } from '@farm/plants/plant-report.service';
 
 @Component({
   selector: 'farm-new-plant-report-form',
@@ -19,11 +17,11 @@ type SelectOptions<T> = { value: T; name: string }[];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewPlantReportFormComponent extends PlantIdInheritable implements OnInit {
-  protected plantService = inject(PlantService);
-  protected plantReportService = inject(PlantReportService);
+  protected plantService = inject(PlantServiceImplementation);
+  protected plantReportService = inject(PlantReportServiceImplementation);
   private photoService = inject(PhotoService);
   private logService = inject(LogService);
-  protected plantReportFactory = new PlantReportFactory();
+  protected plantFactory = new PlantFactory();
   readonly newReportForm = new FormGroup({
     notes: new FormControl('', { nonNullable: true }),
     height: new FormControl(100, { nonNullable: true, validators: [Validators.required] }),
@@ -47,7 +45,6 @@ export class NewPlantReportFormComponent extends PlantIdInheritable implements O
       )
       .subscribe((report) => {
         this.newReportForm.controls.height.setValue(report?.height ?? 100);
-        if (typeof report?.beanYield !== 'number' || typeof report.budding !== 'number') return; // Do not get default values for old data
       });
   }
 
@@ -55,7 +52,7 @@ export class NewPlantReportFormComponent extends PlantIdInheritable implements O
     const notes = this.newReportForm.controls.notes.value.trim();
     const height = this.newReportForm.controls.height.value;
     const individualFertilization = this.newReportForm.controls.individualFertilization.value;
-    return this.plantReportFactory.create({ notes, height, individualFertilization });
+    return this.plantFactory.createReport({ notes, height, individualFertilization });
   }
 
   public handleReportSubmit(event: Event) {

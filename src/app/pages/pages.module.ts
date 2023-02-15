@@ -37,6 +37,11 @@ import { NgxBaseComponentsModule } from '@tronicboy/ngx-base-components';
 import { NgxGeolocationModule } from '@tronicboy/ngx-geolocation';
 import { DeleteFarmFormComponent } from './farm/manage/delete-farm-form/delete-farm-form.component';
 import { FarmModule } from '@farm/farm.module';
+import { PlantsComponent } from './farm/areas/area/plants/plants.component';
+import { EditPlantFormComponent } from './farm/areas/area/plants/plant/edit-plant-form/edit-plant-form.component';
+import { NewPlantReportFormComponent } from './farm/areas/area/plants/plant/new-report-form/new-plant-report-form.component';
+import { PlantComponent } from './farm/areas/area/plants/plant/plant.component';
+import { NewPlantFormComponent } from './farm/areas/area/plants/new-plant-form/new-plant-form.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +57,11 @@ import { FarmModule } from '@farm/farm.module';
     EnvironmentComponent,
     NewAreaFormComponent,
     AreaComponent,
+    PlantsComponent,
+    PlantComponent,
+    NewPlantReportFormComponent,
+    EditPlantFormComponent,
+    NewPlantFormComponent,
     TreesComponent,
     FertilizerComponent,
     CropdustComponent,
@@ -78,7 +88,7 @@ import { FarmModule } from '@farm/farm.module';
     NgxObservableDirectiveModule,
     NgxBaseComponentsModule,
     NgxGeolocationModule,
-    FarmModule
+    FarmModule,
   ],
   /** Adding custom Elements Schema allows use of custom tags i.e. Web Components. */
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
