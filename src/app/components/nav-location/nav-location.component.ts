@@ -3,7 +3,6 @@ import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { combineLatest, filter, map, Observable, of, OperatorFunction, switchMap } from 'rxjs';
 import { AreaService } from 'src/app/farm/area.service';
 import { FarmService } from 'src/app/farm/farm.service';
-import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 
 @Component({
   selector: 'app-nav-location',
@@ -33,20 +32,20 @@ export class NavLocationComponent implements OnInit {
       farmId && areaId ? this.areaService.watchArea(farmId, areaId).pipe(map((area) => area.name)) : of(''),
     ),
   );
-  private treeId$ = this.params$.pipe(map((params) => params.get('treeId')));
-  readonly treeRegularId$ = combineLatest([this.farmId$, this.areaId$, this.treeId$]).pipe(
-    switchMap(([farmId, areaId, treeId]) =>
-      farmId && areaId && treeId
-        ? this.treeService.get(farmId, areaId, treeId).pipe(map((tree) => tree.regularId))
-        : of(''),
-    ),
-  );
+  // TODO fix implementation for multiple plant types
+  // private plantId$ = this.params$.pipe(map((params) => params.get('plantId')));
+  // readonly plantRegularId$ = combineLatest([this.farmId$, this.areaId$, this.plantId$]).pipe(
+  //   switchMap(([farmId, areaId, plantId]) =>
+  //     farmId && areaId && plantId
+  //       ? this.plantService.get(farmId, areaId, plantId).pipe(map((plant) => plant.regularId))
+  //       : of(''),
+  //   ),
+  // );
 
   constructor(
     private router: Router,
     private farmService: FarmService,
     private areaService: AreaService,
-    private treeService: TreeService,
   ) {}
 
   ngOnInit(): void {}

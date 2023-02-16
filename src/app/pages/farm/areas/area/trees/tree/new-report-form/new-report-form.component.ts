@@ -1,18 +1,17 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   BuddingConditions,
   buddingConditionsText,
+  CoffeeTreeReport,
   YieldConditions,
   yieldConditionsText,
 } from '@farm/plants/coffee-tree/tree.model';
-import { BehaviorSubject, finalize, first, forkJoin, from, map, mergeMap, Observable, of, switchMap, tap } from 'rxjs';
+import { first, mergeMap } from 'rxjs';
 import { TreeService } from '@farm/plants/coffee-tree/tree.service';
-import { PhotoService } from 'src/app/farm/util/photo.service';
-import { LogActions } from 'src/app/log/log.model';
-import { LogService } from 'src/app/log/log.service';
-import { TreeIdInheritable } from '../tree-id.inhertible';
 import { TreeReportService } from '@farm/plants/coffee-tree/tree-report.service';
+import { NewPlantReportFormComponent } from '../../../plants/plant/new-report-form/new-plant-report-form.component';
+import { CoffeeTreeFactory } from '@farm/plants/coffee-tree/tree.factory';
 
 type SelectOptions<T> = { value: T; name: string }[];
 
@@ -22,7 +21,10 @@ type SelectOptions<T> = { value: T; name: string }[];
   styleUrls: ['./new-report-form.component.css', '../../../../../../../../styles/basic-form.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewReportFormComponent extends TreeIdInheritable implements OnInit {
+export class NewReportFormComponent extends NewPlantReportFormComponent implements OnInit {
+  protected plantFactory = new CoffeeTreeFactory();
+  protected plantService = inject(TreeService);
+  protected plantReportService = inject(TreeReportService);
   buddingOptions: SelectOptions<BuddingConditions> = Array.from(buddingConditionsText.entries()).map(
     ([value, name]) => ({ value, name }),
   );
@@ -30,7 +32,7 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
     value,
     name,
   }));
-  public newReportForm = new FormGroup({
+  newReportForm = new FormGroup({
     notes: new FormControl('', { nonNullable: true }),
     height: new FormControl(100, { nonNullable: true, validators: [Validators.required] }),
     budding: new FormControl<BuddingConditions>(BuddingConditions.NotYet, { nonNullable: true }),
@@ -38,29 +40,12 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
     picture: new FormControl<File | null>(null),
     individualFertilization: new FormControl(false, { nonNullable: true }),
   });
-  private loadingSubject = new BehaviorSubject<boolean>(false);
-  public loading = this.loadingSubject.asObservable();
-  public regularId = new Observable<number>();
-  @Output() submitted = new EventEmitter<void>();
-
-  constructor(
-    private treeService: TreeService,
-    private treeReportService: TreeReportService,
-    private photoService: PhotoService,
-    private logService: LogService,
-  ) {
-    super();
-  }
 
   ngOnInit(): void {
-    this.regularId = this.getFarmIdAreaIdAndTreeId().pipe(
-      switchMap(([farmId, areaId, treeId]) => this.treeService.get(farmId, areaId, treeId)),
-      map((tree) => tree.regularId),
-    );
     // Load last recorded height to make input of just pictures easier
-    this.getFarmIdAreaIdAndTreeId()
+    this.getFarmIdAreaIdAndPlantId()
       .pipe(
-        mergeMap(([farmId, areaId, treeId]) => this.treeReportService.getLatestReport(farmId, areaId, treeId)),
+        mergeMap(([farmId, areaId, treeId]) => this.plantReportService.getLatestReport(farmId, areaId, treeId)),
         first(),
       )
       .subscribe((report) => {
@@ -71,63 +56,12 @@ export class NewReportFormComponent extends TreeIdInheritable implements OnInit 
       });
   }
 
-  public handleReportSubmit(event: Event) {
-    if (this.loadingSubject.value) return;
-    const form = event.target;
-    if (!(form instanceof HTMLFormElement)) throw Error();
-    const formData = new FormData(form);
-    this.loadingSubject.next(true);
+  protected createReportData(): CoffeeTreeReport {
     const notes = this.newReportForm.controls.notes.value.trim();
     const height = this.newReportForm.controls.height.value;
+    const individualFertilization = this.newReportForm.controls.individualFertilization.value;
     const budding = this.newReportForm.controls.budding.value;
     const beanYield = this.newReportForm.controls.beanYield.value;
-    const individualFertilization = this.newReportForm.controls.individualFertilization.value;
-    const picture = formData.get('picture')!;
-    let photoPath = '';
-    if (!(picture instanceof File)) throw TypeError();
-    this.getFarmIdAreaIdAndTreeId()
-      .pipe(
-        switchMap(([farmId, areaId, treeId]) =>
-          forkJoin([
-            of([farmId, areaId, treeId]),
-            picture.size
-              ? from(PhotoService.compressPhoto(picture)).pipe(
-                  mergeMap((picture) => {
-                    photoPath = `pictures/${farmId}/${areaId}/${treeId}/${Date.now() + picture.name}`;
-                    return this.photoService.uploadPhoto(picture, photoPath);
-                  }),
-                )
-              : of(''),
-          ]),
-        ),
-        tap({
-          next: ([[farmId, _, treeId]]) => {
-            this.submitted.emit();
-            this.logService.addLog(farmId, LogActions.AddTreeReport, treeId).subscribe();
-          },
-        }),
-        switchMap(([[farmId, areaId, treeId], photoURL]) =>
-          this.treeReportService.addReport(farmId, areaId, treeId, {
-            notes,
-            height,
-            budding,
-            createdAt: Date.now(),
-            beanYield,
-            photoURL,
-            photoPath,
-            individualFertilization,
-          }),
-        ),
-        finalize(() => {
-          this.loadingSubject.next(false);
-          this.newReportForm.reset({
-            notes: '',
-            height: this.newReportForm.controls.height.value,
-            budding: this.newReportForm.controls.budding.value,
-            beanYield: this.newReportForm.controls.beanYield.value,
-          });
-        }),
-      )
-      .subscribe();
+    return this.plantFactory.createReport({ notes, height, individualFertilization, budding, beanYield });
   }
 }

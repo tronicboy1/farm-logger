@@ -5,7 +5,7 @@ import { PhotoService } from 'src/app/farm/util/photo.service';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
 import { PlantIdInheritable } from '../plant-id.inhertible';
-import { PlantReport } from '@farm/plants/plant.model';
+import { Plant, PlantReport, ToFormGroupType } from '@farm/plants/plant.model';
 import { PlantFactory } from '@farm/plants/plant.factory';
 import { PlantServiceImplementation } from '@farm/plants/plant.service';
 import { PlantReportServiceImplementation } from '@farm/plants/plant-report.service';
@@ -22,7 +22,7 @@ export class NewPlantReportFormComponent extends PlantIdInheritable implements O
   private photoService = inject(PhotoService);
   private logService = inject(LogService);
   protected plantFactory = new PlantFactory();
-  readonly newReportForm = new FormGroup({
+  newReportForm: FormGroup = new FormGroup({
     notes: new FormControl('', { nonNullable: true }),
     height: new FormControl(100, { nonNullable: true, validators: [Validators.required] }),
     picture: new FormControl<File | null>(null),
@@ -44,14 +44,14 @@ export class NewPlantReportFormComponent extends PlantIdInheritable implements O
         first(),
       )
       .subscribe((report) => {
-        this.newReportForm.controls.height.setValue(report?.height ?? 100);
+        this.newReportForm.controls['height'].setValue(report?.height ?? 100);
       });
   }
 
   protected createReportData(): PlantReport {
-    const notes = this.newReportForm.controls.notes.value.trim();
-    const height = this.newReportForm.controls.height.value;
-    const individualFertilization = this.newReportForm.controls.individualFertilization.value;
+    const notes = this.newReportForm.controls['notes'].value.trim();
+    const height = this.newReportForm.controls['height'].value;
+    const individualFertilization = this.newReportForm.controls['individualFertilization'].value;
     return this.plantFactory.createReport({ notes, height, individualFertilization });
   }
 
@@ -91,6 +91,8 @@ export class NewPlantReportFormComponent extends PlantIdInheritable implements O
         ),
         finalize(() => {
           this.loadingSubject.next(false);
+          this.newReportForm.controls['notes'].reset();
+          this.newReportForm.controls['individualFertilization'].reset();
         }),
       )
       .subscribe();

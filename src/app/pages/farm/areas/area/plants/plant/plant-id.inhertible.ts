@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { first, forkJoin, map } from 'rxjs';
+import { first, forkJoin, map, tap } from 'rxjs';
 
 export class PlantIdInheritable {
   private route = inject(ActivatedRoute);

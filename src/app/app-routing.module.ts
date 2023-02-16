@@ -31,7 +31,7 @@ const routes: Routes = [
         component: AreaComponent,
         children: [
           { path: 'trees', component: TreesComponent },
-          { path: 'trees/:treeId', component: TreeComponent },
+          { path: 'trees/:plantId', component: TreeComponent },
           { path: 'fertilizer', component: FertilizerComponent },
           { path: 'cropdust', component: CropdustComponent },
           { path: '', component: AreaIndexComponent, pathMatch: 'full' },
