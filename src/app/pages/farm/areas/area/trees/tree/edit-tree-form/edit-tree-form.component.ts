@@ -6,9 +6,7 @@ import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 import { filter, first, map, mergeMap, tap } from 'rxjs';
 import { EditPlantFormComponent } from '../../../plants/plant/edit-plant-form/edit-plant-form.component';
 import { PlantIdIsUniqueOrUnchangedValidator } from '../../../plants/plant/plant-id-is-unique-or-unchanged.validator';
-import { PlantIdIsUniqueValidator } from '../../../plants/plant/plant-id-is-unique.validator';
 import { TreeIdIsUniqueOrUnchangedValidator } from '../tree-id-is-unique-or-unchanged.validator';
-import { TreeIdIsUniqueValidator } from '../tree-id-is-unique.validator';
 
 @Component({
   selector: 'farm-edit-tree-form',

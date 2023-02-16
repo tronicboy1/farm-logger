@@ -6,17 +6,19 @@ import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 import { filter, first, map, mergeMap } from 'rxjs';
 import { NewPlantFormComponent } from '../../plants/new-plant-form/new-plant-form.component';
 import { PlantIdIsUniqueValidator } from '../../plants/plant/plant-id-is-unique.validator';
+import { TreeIdIsUniqueValidator } from '../tree/tree-id-is-unique.validator';
 
 @Component({
   selector: 'app-new-tree-form',
   templateUrl: './new-tree-form.component.html',
   styleUrls: ['./new-tree-form.component.css', '../../../../../../../styles/basic-form.css'],
-  providers: [PlantIdIsUniqueValidator],
+  providers: [PlantIdIsUniqueValidator, TreeIdIsUniqueValidator],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewTreeFormComponent extends NewPlantFormComponent implements OnInit {
   protected plantService = inject(TreeService);
   protected plantFactory = new CoffeeTreeFactory();
+  protected plantIdIsUnique = inject(TreeIdIsUniqueValidator);
   public newPlantFromGroup = new FormGroup({
     regularId: new FormControl<number | null>(null, {
       validators: [Validators.required, Validators.min(1)],
@@ -29,7 +31,7 @@ export class NewTreeFormComponent extends NewPlantFormComponent implements OnIni
     filter((status) => status !== 'PENDING'),
     map(() => {
       return this.newPlantFromGroup.controls.regularId.errors
-        ? Boolean(this.newPlantFromGroup.controls.regularId.errors['treeIdNotUnique'])
+        ? Boolean(this.newPlantFromGroup.controls.regularId.errors['plantIdNotUnique'])
         : false;
     }),
   );

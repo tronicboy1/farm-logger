@@ -16,7 +16,7 @@ export class PlantIdIsUniqueValidator extends PlantIdInheritable implements Asyn
       sampleTime(100),
       take(1),
     );
-    return forkJoin([this.getFarmIdAreaIdAndPlantId(), value$]).pipe(
+    return forkJoin([this.getFarmIdAndAreaId(), value$]).pipe(
       switchMap(([[farmId, areaId], value]) => this.plantService.regularIdIsUnique(farmId, areaId, value)),
       map((isUnique) => {
         if (isUnique) return null;
