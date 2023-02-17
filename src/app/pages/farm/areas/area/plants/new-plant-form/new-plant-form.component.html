@@ -1,11 +1,9 @@
 <form appSubmitOnModifierEnter appCloseOnEsc [formGroup]="this.newPlantFromGroup" (ngSubmit)="this.handleSubmit()">
-  <label for="regular-id">整理番号</label>
-  <p *ngIf="this.plantIdError | async" class="warning">整理番号は既に登録されています。</p>
+  <label for="regular-id" i18n>ID</label>
+  <p *ngIf="this.plantIdError | async" class="warning" i18n>ID is already in use!</p>
   <input id="regular-id" required type="number" min="1" formControlName="regularId" ngxAutofocus />
   <label for="species">品種</label>
   <input type="text" required id="species" formControlName="species" />
-  <label for="start-height">根付いた頃の高さ(cm)</label>
-  <input id="start-height" required type="number" min="1" formControlName="startHeight" />
   <base-spinner *ngIf="this.loading | async"></base-spinner>
   <button type="submit" [disabled]="this.newPlantFromGroup.invalid"><ng-container
       *ngIf="!(this.loading | async); else loadingSpinner">追加</ng-container></button>

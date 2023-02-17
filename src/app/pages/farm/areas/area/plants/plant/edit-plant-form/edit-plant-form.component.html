@@ -1,6 +1,6 @@
 <form appSubmitOnModifierEnter appCloseOnEsc [formGroup]="this.formGroup" (ngSubmit)="this.handleSubmit()">
-  <label for="regular-id" i18n>Plant ID</label>
-  <p *ngIf="this.plantIdError$ | async" class="warning" i18n>This ID is already in use.</p>
+  <label for="regular-id" i18n>ID</label>
+  <p *ngIf="this.plantIdError$ | async" class="warning" i18n>ID is already in use!</p>
   <input id="regular-id" required type="number" min="1" formControlName="regularId" />
   <label for="species" i18n>Species</label>
   <input type="text" required id="species" formControlName="species" ngxAutofocus />
@@ -8,3 +8,4 @@
       *ngIf="!(this.loading$ | async); else loadingSpinner" i18n>Submit</ng-container></button>
 </form>
 <ng-template #loadingSpinner><base-spinner color="white"></base-spinner></ng-template>
+1

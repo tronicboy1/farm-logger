@@ -7,6 +7,6 @@
   <label for="start-height" i18n>Height at Planting (cm)</label>
   <input id="start-height" required type="number" min="1" formControlName="startHeight" />
   <button type="submit" [disabled]="this.formGroup.invalid"><ng-container
-      *ngIf="!(this.loading$ | async); else loadingSpinner" i18n>Submit</ng-container></button>
+      *ngIf="!(this.loading$ | async); else loadingSpinner" i18n>Edit</ng-container></button>
 </form>
 <ng-template #loadingSpinner><base-spinner color="white"></base-spinner></ng-template>

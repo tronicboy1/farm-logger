@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NewPlantFormComponent } from './new-plant-form.component';
 
-import { NewTreeFormComponent } from './new-tree-form.component';
 
-describe('NewTreeFormComponent', () => {
-  let component: NewTreeFormComponent;
-  let fixture: ComponentFixture<NewTreeFormComponent>;
+describe('NewPlantFormComponent', () => {
+  let component: NewPlantFormComponent;
+  let fixture: ComponentFixture<NewPlantFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NewTreeFormComponent],
+      declarations: [NewPlantFormComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NewTreeFormComponent);
+    fixture = TestBed.createComponent(NewPlantFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

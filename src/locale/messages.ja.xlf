@@ -166,6 +166,14 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6486796347027130929" datatype="html">
+        <source>Weather Data</source>
+        <target>気象データ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5653202483299129380" datatype="html">
         <source>Weather</source>
         <target>気象</target>
@@ -379,7 +387,7 @@
         <target>天気</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">12</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/weather-form/weather-form.component.html</context>
@@ -395,7 +403,7 @@
         <target>雲の被覆率</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1855160715014056368" datatype="html">
@@ -403,7 +411,7 @@
         <target>最高気温</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">14</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/weather-form/weather-form.component.html</context>
@@ -415,7 +423,7 @@
         <target>最低気温</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">15</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/weather-form/weather-form.component.html</context>
@@ -427,7 +435,7 @@
         <target>湿度</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">16</context>
         </context-group>
          <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/weather-form/weather-form.component.html</context>
@@ -439,7 +447,7 @@
         <target>風速</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/weather-form/weather-form.component.html</context>
@@ -451,7 +459,7 @@
         <target>雨量</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5835261433321003255" datatype="html">
@@ -459,7 +467,7 @@
         <target>気象情報は<x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://openweathermap.org/&quot;&gt;"/>OpenWeather<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>から取得しています。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
-          <context context-type="linenumber">34,35</context>
+          <context context-type="linenumber">35,36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="935187492052582731" datatype="html">
@@ -483,7 +491,7 @@
         <target>天気登録</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8457800480620034760" datatype="html">
@@ -491,7 +499,7 @@
         <target>自動登録が失敗しましたので、手動で天気情報をご入力ください。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8541997220085078514" datatype="html">
@@ -621,6 +629,26 @@
       <trans-unit id="8040881171107393560" datatype="html">
         <source>ID</source>
         <target>整理番号</target>
+         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/new-plant-form/new-plant-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/edit-plant-form/edit-plant-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/new-report-form/new-plant-report-form.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/new-tree-form/new-tree-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
           <context context-type="linenumber">3</context>
@@ -633,10 +661,26 @@
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="5750485945694679561" datatype="html">
         <source>Photo</source>
         <target>写真</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/new-report-form/new-plant-report-form.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">63,62</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
           <context context-type="linenumber">7</context>
@@ -647,7 +691,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
-          <context context-type="linenumber">62,61</context>
+          <context context-type="linenumber">65,64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7538107186905064143" datatype="html">
@@ -678,6 +722,10 @@
         <source>Individual Fertilization</source>
         <target>個別施肥</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/new-report-form/new-plant-report-form.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
           <context context-type="linenumber">18</context>
         </context-group>
@@ -685,6 +733,14 @@
       <trans-unit id="7877837275359417976" datatype="html">
         <source>Memo</source>
         <target>メモ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/new-report-form/new-plant-report-form.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
           <context context-type="linenumber">20</context>
@@ -698,8 +754,16 @@
         <source>Add</source>
         <target>追加</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/new-report-form/new-plant-report-form.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/new-tree-form/new-tree-form.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">24</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/new-area-form/new-area-form.component.html</context>
@@ -707,39 +771,87 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3973931101896534797" datatype="html">
         <source>Date</source>
         <target>日付</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
           <context context-type="linenumber">23</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3033623772164647792" datatype="html">
         <source>Height</source>
         <target>高さ</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
           <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7538107186905064143" datatype="html">
+        <source>Budding</source>
+        <target>摘芯後着花</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4082337700553574687" datatype="html">
+        <source>Bean</source>
+        <target>実付き</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7022070615528435141" datatype="html">
         <source>Delete</source>
         <target>削除</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
           <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">73</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/delete-area-form/delete-area-form.component.html</context>
@@ -762,16 +874,24 @@
         <source>New Report</source>
         <target>育成状況レポート新規登録</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7515883357904500238" datatype="html">
         <source>Are you sure?</source>
         <target>本当に削除しますか？</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
-          <context context-type="linenumber">68</context>
+          <context context-type="linenumber">71</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/manage/members/members.component.html</context>
@@ -782,8 +902,12 @@
         <source>Cancel</source>
         <target>キャンセル</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">74</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/manage/delete-farm-form/delete-farm-form.component.html</context>
@@ -798,8 +922,12 @@
         <source>Edit Tree</source>
         <target>木の情報を編集する</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="71535171276471116" datatype="html">
@@ -810,9 +938,33 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="9049201181229172389" datatype="html">
+        <source>Add a Plant</source>
+        <target>植物を追加する</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8877687816412324053" datatype="html">
+        <source>Plants</source>
+        <target>植物</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="4702930459556730654" datatype="html">
         <source>Search by ID</source>
         <target>整理番号検索</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/trees.component.html</context>
           <context context-type="linenumber">20</context>
@@ -838,6 +990,10 @@
         <source>Current Height</source>
         <target>現在の高さ</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/trees.component.html</context>
           <context context-type="linenumber">30</context>
         </context-group>
@@ -845,6 +1001,10 @@
       <trans-unit id="5946760147825604431" datatype="html">
         <source>Last Record</source>
         <target>育成記録</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/trees.component.html</context>
           <context context-type="linenumber">31</context>
@@ -854,8 +1014,40 @@
         <source>Last Individual Fertilization</source>
         <target>個別施肥</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/trees.component.html</context>
           <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3105632685495699654" datatype="html">
+        <source>Height at Planting (cm)</source>
+        <target>根付いた頃の高さ(cm)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/new-tree-form/new-tree-form.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7585826646011739428" datatype="html">
+        <source>Edit</source>
+        <target>編集</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8190106963760760343" datatype="html">
+        <source>Height at Planting</source>
+        <target>根付いた頃の高さ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/trees.component.html</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4768749765465246664" datatype="html">
@@ -928,37 +1120,100 @@
       <trans-unit id="29167121133682512" datatype="html">
         <source>良好</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/farm/tree.model.ts</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
+          <context context-type="linenumber">31</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/farm/tree.model.ts</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6355984385466493800" datatype="html">
         <source>不良</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/farm/tree.model.ts</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
+          <context context-type="linenumber">32</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/farm/tree.model.ts</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5058896483256450656" datatype="html">
         <source>未着花</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/farm/tree.model.ts</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7673255520772041788" datatype="html">
         <source>未</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/farm/tree.model.ts</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8487145046812391533" datatype="html">
+        <source>Arabica</source>
+        <target>アラビカ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.factory.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5308797364828010076" datatype="html">
+        <source>ID is already in use!</source>
+        <target>IDは既に使用されています</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/new-plant-form/new-plant-form.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/edit-plant-form/edit-plant-form.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/new-tree-form/new-tree-form.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="804718756894489062" datatype="html">
+        <source>Species</source>
+        <target>品種</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/edit-plant-form/edit-plant-form.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/new-tree-form/new-tree-form.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/trees.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="935187492052582731" datatype="html">
+        <source>送信</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/edit-plant-form/edit-plant-form.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/weather-form/weather-form.component.html</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
     </body>
