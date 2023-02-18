@@ -1949,10 +1949,10 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
   integrity sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==
 
-"@tronicboy/ngx-base-components@0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@tronicboy/ngx-base-components/-/ngx-base-components-0.0.8.tgz#8fbe7f2ea543c564369bc3ebb5d4f53d1c684613"
-  integrity sha512-EZ/YCsENVF4JA/bAqXBRKp5ieY3k/hkzE2jPxeeIevh9Ww+YznNTAEWY6hQ/HKwHcwFA1DtnlhIw1OtNKsGwhg==
+"@tronicboy/ngx-base-components@0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@tronicboy/ngx-base-components/-/ngx-base-components-0.0.14.tgz#77971611bfe5bcf9e571a2208bcf22cea9ac0dd0"
+  integrity sha512-4+Dq6WZJFcvZ8ahONkZacGSqX45KDiWq2Ls0OnNP0BCmpQu6WOkX912e35J5+7Ubs7YuvUOG2rXvgZWYhudbUw==
   dependencies:
     tslib "^2.3.0"
 

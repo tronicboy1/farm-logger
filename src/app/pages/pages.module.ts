@@ -20,7 +20,6 @@ import { CropdustComponent } from './farm/areas/area/cropdust/cropdust.component
 import { AreaIndexComponent } from './farm/areas/area/index/index.component';
 import { NewFertilizationFormComponent } from './farm/areas/area/fertilizer/new-fertilization-form/new-fertilization-form.component';
 import { NewCropdustFormComponent } from './farm/areas/area/cropdust/new-cropdust-form/new-cropdust-form.component';
-import { CustomDirectivesModule } from '../custom-directives/custom-directives.module';
 import { WeatherFormComponent } from './farm/environment/weather-form/weather-form.component';
 import '@web-components/base-tooltip';
 import { LogViewComponent } from './farm/log-view/log-view.component';
@@ -63,7 +62,6 @@ import { FarmModule } from '@farm/farm.module';
     ReactiveFormsModule,
     RouterModule,
     ComponentsModule,
-    CustomDirectivesModule,
     NgxVisibleAutofocusModule,
     NgxObservableDirectiveModule,
     NgxBaseComponentsModule,
