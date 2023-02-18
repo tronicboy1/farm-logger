@@ -34,4 +34,4 @@ import { FarmModule } from '@farm/farm.module';
     FarmModule,
   ],
 })
-export class PlantsPagesModule {}
+export class PlantPagesModule {}
