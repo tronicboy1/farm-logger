@@ -1948,10 +1948,17 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
   integrity sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==
 
-"@tronicboy/ngx-base-components@0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@tronicboy/ngx-base-components/-/ngx-base-components-0.0.7.tgz#78872ee8ccb64a860b506d02afbf476ac50cee8c"
-  integrity sha512-+quDhEUk9+ACMU/dni1mXjrKYvy9wmuBDYjwcJkz1vPIV65ZxXoRP0XEpvJvU314C87cYiuFxp2yiq1jAYqheg==
+"@tronicboy/ngx-base-components@0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@tronicboy/ngx-base-components/-/ngx-base-components-0.0.8.tgz#8fbe7f2ea543c564369bc3ebb5d4f53d1c684613"
+  integrity sha512-EZ/YCsENVF4JA/bAqXBRKp5ieY3k/hkzE2jPxeeIevh9Ww+YznNTAEWY6hQ/HKwHcwFA1DtnlhIw1OtNKsGwhg==
+  dependencies:
+    tslib "^2.3.0"
+
+"@tronicboy/ngx-firebase-user-navbar@0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@tronicboy/ngx-firebase-user-navbar/-/ngx-firebase-user-navbar-0.0.1.tgz#50158fef481f9df8a1c5bab50277a70a9a44ab35"
+  integrity sha512-aJWGvF/3je032tRTFZUAj153NTk2QHUG0xnwrkN7F2O54L7qZ01PZ8NOe0xPpkF1k3jnbVRjd4dxgry1n9aWyg==
   dependencies:
     tslib "^2.3.0"
 

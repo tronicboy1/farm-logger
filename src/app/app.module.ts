@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 import { ReCaptchaV3Provider } from 'firebase/app-check';
 import { NgxBaseComponentsModule } from '@tronicboy/ngx-base-components';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxFirebaseUserNavbarModule } from '@tronicboy/ngx-firebase-user-navbar';
 
 registerLocaleData(jaLocale);
 
@@ -27,6 +28,7 @@ registerLocaleData(jaLocale);
     PagesModule,
     FarmModule, // can delete
     ComponentsModule,
+    NgxFirebaseUserNavbarModule,
     NgxObservableDirectiveModule.forRoot({ rootMargin: '20px' }),
     NgxFirebaseUserPlatformModule.forRoot({
       firebaseConfig,
