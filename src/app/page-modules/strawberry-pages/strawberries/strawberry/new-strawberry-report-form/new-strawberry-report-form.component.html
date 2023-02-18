@@ -1,0 +1,18 @@
+<form appSubmitOnModifierEnter appCloseOnEsc [formGroup]="this.newReportForm"
+  (ngSubmit)="this.handleReportSubmit($event)">
+  <label for="regular-id" i18n>ID</label>
+  <input id="regular-id" readonly type="number" [value]="this.regularId | async" />
+  <label for="width" i18n>Width (cm)</label>
+  <input type="number" name="width" id="width" required formControlName="width" ngxAutofocus />
+  <label for="picture" i18n>Photo</label>
+  <input type="file" name="picture" id="picture" accept="image/png, image/jpeg" size="500000"
+    formControlName="picture" />
+  <label for="fertilization" i18n>Individual Fertilization</label>
+  <input type="checkbox" name="fertilization" id="fertilization" formControlName="individualFertilization">
+  <label for="notes" i18n>Memo</label>
+  <textarea name="notes" id="notes" formControlName="notes"></textarea>
+  <div style="margin-bottom: 3rem;"></div>
+  <button type="submit"><ng-container *ngIf="!(this.loading | async); else loadingSpinner"
+      i18n>Add</ng-container></button>
+</form>
+<ng-template #loadingSpinner><base-spinner color="white"></base-spinner></ng-template>

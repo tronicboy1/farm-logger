@@ -21,6 +21,7 @@
     <thead>
       <tr>
         <th i18n>Date</th>
+        <th i18n>Width</th>
         <th i18n>Memo</th>
         <th i18n>Photo</th>
         <th i18n>Delete</th>
@@ -31,6 +32,7 @@
       <ng-container *ngIf="this.reports | async as reportsValue">
         <tr *ngFor="let report of reportsValue">
           <td>{{ report.createdAt | date : 'short' }}</td>
+          <td>{{ report.width }}</td>
           <td (click)="this.togglePictureModal(report.photoURL)">{{ report.notes }}</td>
           <td (click)="this.togglePictureModal(report.photoURL)">
             <img *ngIf="report.photoURL" [src]="report.photoURL" alt="photo" />
@@ -51,7 +53,7 @@
 
 <base-modal [show]="this.showAddModal | async" i18n-modal-title modal-title="New Report"
   (modal-closed)="this.toggleAddModal(false)">
-  <app-new-plant-form (submitted)="this.handleNewReportSubmission()"></app-new-plant-form>
+  <app-new-strawberry-report-form (submitted)="this.handleNewReportSubmission()"></app-new-strawberry-report-form>
 </base-modal>
 
 <base-modal [show]="!!(this.showPictureModal$ | async)" (modal-closed)="this.togglePictureModal(undefined)"
@@ -71,5 +73,5 @@
 
 <base-modal [show]="this.showEditModal$ | async" (modal-closed)="this.toggleEditModal(false)" i18n-modal-title
   modal-title="Edit Tree">
-  <farm-edit-plant-form (submitted)="this.toggleEditModal(false)"></farm-edit-plant-form>
+  <app-edit-strawberry-form (submitted)="this.toggleEditModal(false)"></app-edit-strawberry-form>
 </base-modal>

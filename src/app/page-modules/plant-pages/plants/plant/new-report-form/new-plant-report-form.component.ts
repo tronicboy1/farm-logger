@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, finalize, first, forkJoin, from, map, mergeMap, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, finalize, forkJoin, from, map, mergeMap, of, switchMap, tap } from 'rxjs';
 import { PhotoService } from 'src/app/farm/util/photo.service';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
@@ -16,7 +16,7 @@ import { PlantReportServiceImplementation } from '@farm/plants/plant-report.serv
   styleUrls: ['./new-plant-report-form.component.css', '../../../../../../styles/basic-form.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewPlantReportFormComponent extends PlantIdInheritable implements OnInit {
+export class NewPlantReportFormComponent extends PlantIdInheritable {
   protected plantService = inject(PlantServiceImplementation);
   protected plantReportService = inject(PlantReportServiceImplementation);
   private photoService = inject(PhotoService);
@@ -36,23 +36,10 @@ export class NewPlantReportFormComponent extends PlantIdInheritable implements O
   );
   @Output() submitted = new EventEmitter<void>();
 
-  ngOnInit(): void {
-    // Load last recorded height to make input of just pictures easier
-    this.getFarmIdAreaIdAndPlantId()
-      .pipe(
-        mergeMap(([farmId, areaId, plantId]) => this.plantReportService.getLatestReport(farmId, areaId, plantId)),
-        first(),
-      )
-      .subscribe((report) => {
-        this.newReportForm.controls['height'].setValue(report?.height ?? 100);
-      });
-  }
-
   protected createReportData(): PlantReport {
     const notes = this.newReportForm.controls['notes'].value.trim();
-    const height = this.newReportForm.controls['height'].value;
     const individualFertilization = this.newReportForm.controls['individualFertilization'].value;
-    return this.plantFactory.createReport({ notes, height, individualFertilization });
+    return this.plantFactory.createReport({ notes, individualFertilization });
   }
 
   public handleReportSubmit(event: Event) {

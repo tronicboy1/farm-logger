@@ -4,11 +4,12 @@ import { StrawberryFlowering, StrawberryPlant, StrawberryReport } from './strawb
 
 export class StrawberryFactory extends PlantFactory {
   override create(params?: Partial<StrawberryPlant> | undefined): StrawberryPlant {
-    return Object.assign<Plant, typeof params>(
+    return Object.assign<StrawberryPlant, typeof params>(
       {
         regularId: 0,
         species: '',
         plantType: PlantTypes.StrawberryPlant,
+        startingWidth: 0,
       },
       params,
     );
@@ -20,7 +21,7 @@ export class StrawberryFactory extends PlantFactory {
         photoPath: '',
         createdAt: Date.now(),
         notes: '',
-        height: 10,
+        width: 1,
         individualFertilization: false,
         flowering: StrawberryFlowering.NotYet,
         pollination: false,

@@ -18,7 +18,7 @@ export class PlantComponent extends PlantIdInheritable {
   readonly plant = this.getFarmIdAreaIdAndPlantId().pipe(
     switchMap(([farmId, areaId, plantId]) => this.plantService.watchOne(farmId, areaId, plantId)),
   );
-  readonly reports = this.getFarmIdAreaIdAndPlantId().pipe(
+  reports = this.getFarmIdAreaIdAndPlantId().pipe(
     switchMap(([farmId, areaId, plantId]) => this.plantReportService.watchAll(this, farmId, areaId, plantId)),
     shareReplay(1),
   );

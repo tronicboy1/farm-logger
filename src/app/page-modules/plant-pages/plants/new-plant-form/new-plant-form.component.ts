@@ -21,21 +21,20 @@ export class NewPlantFormComponent extends PlantIdInheritable implements OnInit 
   protected plantFactory = new PlantFactory();
   protected plantIdIsUnique = inject(PlantIdIsUniqueValidator);
   private logService = inject(LogService);
-  public newPlantFromGroup = new FormGroup({
+  public newPlantFromGroup = new FormGroup<any>({
     regularId: new FormControl<number | null>(null, {
       validators: [Validators.required, Validators.min(1)],
       asyncValidators: [this.plantIdIsUnique.validate.bind(this.plantIdIsUnique)],
     }),
     species: new FormControl('', [Validators.required]),
-    startHeight: new FormControl(1, [Validators.required]),
   });
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading = this.loadingSubject.asObservable();
   public plantIdError = this.newPlantFromGroup.statusChanges.pipe(
     filter((status) => status !== 'PENDING'),
     map(() => {
-      return this.newPlantFromGroup.controls.regularId.errors
-        ? Boolean(this.newPlantFromGroup.controls.regularId.errors['plantIdNotUnique'])
+      return this.newPlantFromGroup.controls['regularId'].errors
+        ? Boolean(this.newPlantFromGroup.controls['regularId'].errors['plantIdNotUnique'])
         : false;
     }),
   );
@@ -54,12 +53,12 @@ export class NewPlantFormComponent extends PlantIdInheritable implements OnInit 
           plants.reduce((regularId, plant) => (plant.regularId > regularId ? plant.regularId : regularId), 0),
         ),
       )
-      .subscribe((latestId) => this.newPlantFromGroup.controls.regularId.setValue(latestId + 1, { emitEvent: true }));
+      .subscribe((latestId) => this.newPlantFromGroup.controls['regularId'].setValue(latestId + 1, { emitEvent: true }));
   }
 
   protected createPlantData(): Plant {
-    const regularId = this.newPlantFromGroup.controls.regularId.value!;
-    const species = this.newPlantFromGroup.controls.species.value!.trim();
+    const regularId = this.newPlantFromGroup.controls['regularId'].value!;
+    const species = this.newPlantFromGroup.controls['species'].value!.trim();
     return this.plantFactory.create({ regularId, species });
   }
 
@@ -75,7 +74,7 @@ export class NewPlantFormComponent extends PlantIdInheritable implements OnInit 
         mergeMap(([farmId, areaId]) => this.plantService.create(farmId, areaId, plantData)),
         finalize(() => {
           this.loadingSubject.next(false);
-          this.newPlantFromGroup.controls.regularId.setValue(this.newPlantFromGroup.controls.regularId.value! + 1);
+          this.newPlantFromGroup.controls['regularId'].setValue(this.newPlantFromGroup.controls['regularId'].value! + 1);
         }),
       )
       .subscribe(() => this.submitted.emit());

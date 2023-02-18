@@ -19,7 +19,6 @@ export class PlantFactory implements PlantFactoryAbstract {
         photoPath: '',
         createdAt: Date.now(),
         notes: '',
-        height: 10,
         individualFertilization: false,
       },
       params,

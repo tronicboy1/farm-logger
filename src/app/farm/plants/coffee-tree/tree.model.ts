@@ -15,6 +15,7 @@ export interface CoffeeTree extends Plant {
 export interface CoffeeTreeReport extends PlantReport {
   budding: BuddingConditions;
   beanYield: YieldConditions;
+  height: number;
 }
 
 export interface CoffeeTreeReportWithId extends CoffeeTreeReport, PlantReportWithId {}

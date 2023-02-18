@@ -11,7 +11,6 @@ export interface PlantReport {
   photoPath: string;
   createdAt: number;
   notes: string;
-  height: number;
   individualFertilization: boolean;
 }
 

@@ -4,6 +4,8 @@
   <input id="regular-id" required type="number" min="1" formControlName="regularId" ngxAutofocus />
   <label for="species" i18n>Species</label>
   <input type="text" required id="species" formControlName="species" />
+  <label for="starting-width" i18n>Width at Planting</label>
+  <input type="number" required min="1" id="starting-width" formControlName="startingWidth" />
   <base-spinner *ngIf="this.loading | async"></base-spinner>
   <button type="submit" [disabled]="this.newPlantFromGroup.invalid"><ng-container
       *ngIf="!(this.loading | async); else loadingSpinner" i18n>Add</ng-container></button>

@@ -1,15 +1,15 @@
-<base-modal [show]="this.showAddModal | async" i18n-modal-title modal-title="Add a Plant"
+<base-modal [show]="this.showAddModal | async" i18n-modal-title modal-title="Add a Strawberry"
   (modal-closed)="this.toggleAddModal(false)">
-  <app-new-plant-form (submitted)="this.refreshPlants()"></app-new-plant-form>
+  <app-new-strawberry-form (submitted)="this.refreshPlants()"></app-new-strawberry-form>
 </base-modal>
-<h1 i18n>Plants</h1>
+<h1 i18n>Strawberries</h1>
 <div class="round-block">
   <a routerLink=".." class="card round">
     <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0,0,48,48">
       <path d="M24 40 8 24 24 8l2.1 2.1-12.4 12.4H40v3H13.7l12.4 12.4Z" />
     </svg>
   </a>
-  <div i18n-title title="Add a Plant" class="card round" (click)="this.toggleAddModal(true)">
+  <div i18n-title title="Add a Strawberry" class="card round" (click)="this.toggleAddModal(true)">
     <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0,0,48,48">
       <path d="M22.5 38V25.5H10v-3h12.5V10h3v12.5H38v3H25.5V38Z" />
     </svg>
@@ -21,12 +21,13 @@
     <label for="plant-search" i18n>Search by ID</label>
     <input id="plant-search" type="number" [formControl]="this.searchControl" />
   </div>
-  <ng-container *ngIf="this.plants$ | async as plants">
+  <ng-container *ngIf="this.strawberries$ | async as plants">
     <table>
       <thead>
         <tr>
           <th style="width: 20px">#</th>
           <th i18n>Species</th>
+          <th i18n>Current Height</th>
           <th i18n>Last Record</th>
           <th i18n>Last Individual Fertilization</th>
         </tr>
@@ -35,6 +36,7 @@
         <tr *ngFor="let plant of plants" (click)="this.handlePlantClick(plant.id)">
           <td>{{ plant.regularId }}</td>
           <td>{{ plant.species }}</td>
+          <td>{{ plant.report ? plant.report.width + 'cm' : '' }}</td>
           <td>{{ plant.report?.createdAt | date : 'M/d' }}</td>
           <td>{{ plant.latestIndividualFertilization?.createdAt | date : 'M/d' }}</td>
         </tr>

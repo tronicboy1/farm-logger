@@ -25,7 +25,7 @@ export class PlantsComponent extends PlantIdInheritable implements OnInit, OnDes
   protected plantReportService = inject(PlantReportServiceImplementation);
   private router = inject(Router);
   protected plantService = inject(PlantServiceImplementation);
-  readonly plants$ = this.getFarmIdAndAreaId().pipe(
+  plants$ = this.getFarmIdAndAreaId().pipe(
     switchMap(([farmId, areaId]) =>
       this.plantService.watchAll(this, farmId, areaId).pipe(
         switchMap((plants) =>
