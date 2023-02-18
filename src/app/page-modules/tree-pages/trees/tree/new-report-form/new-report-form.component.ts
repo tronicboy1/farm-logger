@@ -18,7 +18,7 @@ type SelectOptions<T> = { value: T; name: string }[];
 @Component({
   selector: 'app-new-report-form',
   templateUrl: './new-report-form.component.html',
-  styleUrls: ['./new-report-form.component.css', '../../../../../../../../../styles/basic-form.css'],
+  styleUrls: ['./new-report-form.component.css', '../../../../../../styles/basic-form.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewReportFormComponent extends NewPlantReportFormComponent implements OnInit {

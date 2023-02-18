@@ -31,7 +31,7 @@ const routes: Routes = [
           {
             path: 'trees',
             loadChildren: () =>
-              import('./pages/farm/areas/area/tree-pages/tree-pages.module').then((m) => m.TreePagesModule),
+              import('./page-modules/tree-pages/tree-pages.module').then((m) => m.TreePagesModule),
           },
           { path: 'fertilizer', component: FertilizerComponent },
           { path: 'cropdust', component: CropdustComponent },

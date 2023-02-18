@@ -11,7 +11,7 @@ import { NewPlantFormComponent } from '@plant-pages/plants/new-plant-form/new-pl
 @Component({
   selector: 'app-new-tree-form',
   templateUrl: './new-tree-form.component.html',
-  styleUrls: ['./new-tree-form.component.css', '../../../../../../../../styles/basic-form.css'],
+  styleUrls: ['./new-tree-form.component.css', '../../../../../styles/basic-form.css'],
   providers: [PlantIdIsUniqueValidator, TreeIdIsUniqueValidator],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

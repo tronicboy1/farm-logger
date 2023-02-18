@@ -11,7 +11,7 @@ import { TreeIdIsUniqueOrUnchangedValidator } from '../tree-id-is-unique-or-unch
 @Component({
   selector: 'farm-edit-tree-form',
   templateUrl: './edit-tree-form.component.html',
-  styleUrls: ['./edit-tree-form.component.css', '../../../../../../../../../styles/basic-form.css'],
+  styleUrls: ['./edit-tree-form.component.css', '../../../../../../styles/basic-form.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [TreeIdIsUniqueOrUnchangedValidator, PlantIdIsUniqueOrUnchangedValidator],
 })
