@@ -5,7 +5,7 @@ import { PhotoService } from 'src/app/farm/util/photo.service';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
 import { PlantIdInheritable } from '../plant-id.inhertible';
-import { Plant, PlantReport, ToFormGroupType } from '@farm/plants/plant.model';
+import { PlantReport } from '@farm/plants/plant.model';
 import { PlantFactory } from '@farm/plants/plant.factory';
 import { PlantServiceImplementation } from '@farm/plants/plant.service';
 import { PlantReportServiceImplementation } from '@farm/plants/plant-report.service';
@@ -13,7 +13,7 @@ import { PlantReportServiceImplementation } from '@farm/plants/plant-report.serv
 @Component({
   selector: 'farm-new-plant-report-form',
   templateUrl: './new-plant-report-form.component.html',
-  styleUrls: ['./new-plant-report-form.component.css', '../../../../../../../../styles/basic-form.css'],
+  styleUrls: ['./new-plant-report-form.component.css', '../../../../../../../../../styles/basic-form.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewPlantReportFormComponent extends PlantIdInheritable implements OnInit {

@@ -11,7 +11,7 @@ import { PlantIdIsUniqueOrUnchangedValidator } from '../plant-id-is-unique-or-un
 @Component({
   selector: 'farm-edit-plant-form',
   templateUrl: './edit-plant-form.component.html',
-  styleUrls: ['./edit-plant-form.component.css', '../../../../../../../../styles/basic-form.css'],
+  styleUrls: ['./edit-plant-form.component.css', '../../../../../../../../../styles/basic-form.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [PlantIdIsUniqueOrUnchangedValidator],
 })

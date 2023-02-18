@@ -14,14 +14,10 @@ import { AreasComponent } from './farm/areas/areas.component';
 import { EnvironmentComponent } from './farm/environment/environment.component';
 import { NewAreaFormComponent } from './farm/areas/new-area-form/new-area-form.component';
 import { AreaComponent } from './farm/areas/area/area.component';
-import { TreesComponent } from './farm/areas/area/trees/trees.component';
 import { ComponentsModule } from '../components/components.module';
 import { FertilizerComponent } from './farm/areas/area/fertilizer/fertilizer.component';
 import { CropdustComponent } from './farm/areas/area/cropdust/cropdust.component';
 import { AreaIndexComponent } from './farm/areas/area/index/index.component';
-import { NewTreeFormComponent } from './farm/areas/area/trees/new-tree-form/new-tree-form.component';
-import { TreeComponent } from './farm/areas/area/trees/tree/tree.component';
-import { NewReportFormComponent } from './farm/areas/area/trees/tree/new-report-form/new-report-form.component';
 import { NewFertilizationFormComponent } from './farm/areas/area/fertilizer/new-fertilization-form/new-fertilization-form.component';
 import { NewCropdustFormComponent } from './farm/areas/area/cropdust/new-cropdust-form/new-cropdust-form.component';
 import { CustomDirectivesModule } from '../custom-directives/custom-directives.module';
@@ -29,7 +25,6 @@ import { WeatherFormComponent } from './farm/environment/weather-form/weather-fo
 import '@web-components/base-tooltip';
 import { LogViewComponent } from './farm/log-view/log-view.component';
 import { DeleteAreaFormComponent } from './farm/areas/delete-area-form/delete-area-form.component';
-import { EditTreeFormComponent } from './farm/areas/area/trees/tree/edit-tree-form/edit-tree-form.component';
 import { EditAreaFormComponent } from './farm/areas/area/index/edit-area-form/edit-area-form.component';
 import { NgxVisibleAutofocusModule } from 'ngx-visible-autofocus';
 import { NgxObservableDirectiveModule } from 'ngx-observable-directive';
@@ -37,11 +32,6 @@ import { NgxBaseComponentsModule } from '@tronicboy/ngx-base-components';
 import { NgxGeolocationModule } from '@tronicboy/ngx-geolocation';
 import { DeleteFarmFormComponent } from './farm/manage/delete-farm-form/delete-farm-form.component';
 import { FarmModule } from '@farm/farm.module';
-import { PlantsComponent } from './farm/areas/area/plants/plants.component';
-import { EditPlantFormComponent } from './farm/areas/area/plants/plant/edit-plant-form/edit-plant-form.component';
-import { NewPlantReportFormComponent } from './farm/areas/area/plants/plant/new-report-form/new-plant-report-form.component';
-import { PlantComponent } from './farm/areas/area/plants/plant/plant.component';
-import { NewPlantFormComponent } from './farm/areas/area/plants/new-plant-form/new-plant-form.component';
 
 @NgModule({
   declarations: [
@@ -57,24 +47,14 @@ import { NewPlantFormComponent } from './farm/areas/area/plants/new-plant-form/n
     EnvironmentComponent,
     NewAreaFormComponent,
     AreaComponent,
-    PlantsComponent,
-    PlantComponent,
-    NewPlantReportFormComponent,
-    EditPlantFormComponent,
-    NewPlantFormComponent,
-    TreesComponent,
     FertilizerComponent,
     CropdustComponent,
     AreaIndexComponent,
-    NewTreeFormComponent,
-    TreeComponent,
-    NewReportFormComponent,
     NewFertilizationFormComponent,
     NewCropdustFormComponent,
     WeatherFormComponent,
     LogViewComponent,
     DeleteAreaFormComponent,
-    EditTreeFormComponent,
     EditAreaFormComponent,
     DeleteFarmFormComponent,
   ],

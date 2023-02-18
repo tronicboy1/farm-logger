@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@
 import { TreeReportService } from '@farm/plants/coffee-tree/tree-report.service';
 import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 import { forkJoin, map, shareReplay, switchMap } from 'rxjs';
-import { PlantsComponent } from '../plants/plants.component';
+import { PlantsComponent } from '@plants-pages-module/plants/plants.component';
 
 @Component({
   selector: 'app-trees',
   templateUrl: './trees.component.html',
-  styleUrls: ['../plants/plants.component.css', './trees.component.css'],
+  styleUrls: ['../../plants-pages-module/plants/plants.component.css', './trees.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreesComponent extends PlantsComponent implements OnInit, OnDestroy {

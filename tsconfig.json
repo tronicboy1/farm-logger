@@ -12,7 +12,8 @@
       "@styles/*": ["src/styles/*"],
       "@components/*": ["src/app/components/*"],
       "@log/*": ["src/app/log/*"],
-      "@farm/*": ["src/app/farm/*"]
+      "@farm/*": ["src/app/farm/*"],
+      "@plants-pages-module/*": ["src/app/pages/farm/areas/area/plants-pages-module/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

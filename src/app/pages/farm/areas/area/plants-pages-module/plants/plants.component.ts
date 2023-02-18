@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PlantReportServiceImplementation } from '@farm/plants/plant-report.service';
-import { Plant, PlantReport, PlantTypes, PlantWithId } from '@farm/plants/plant.model';
 import { PlantServiceImplementation } from '@farm/plants/plant.service';
 import {
   BehaviorSubject,
@@ -14,7 +13,7 @@ import {
   Subscription,
   switchMap,
 } from 'rxjs';
-import { AreaRouteParamsComponent } from '../route-params.inheritable';
+import { PlantIdInheritable } from './plant/plant-id.inhertible';
 
 @Component({
   selector: 'app-plants',
@@ -22,7 +21,7 @@ import { AreaRouteParamsComponent } from '../route-params.inheritable';
   styleUrls: ['./plants.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlantsComponent extends AreaRouteParamsComponent implements OnInit, OnDestroy {
+export class PlantsComponent extends PlantIdInheritable implements OnInit, OnDestroy {
   protected plantReportService = inject(PlantReportServiceImplementation);
   private router = inject(Router);
   protected plantService = inject(PlantServiceImplementation);

@@ -3,15 +3,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CoffeeTreeFactory } from '@farm/plants/coffee-tree/tree.factory';
 import { CoffeeTree, CoffeeTreeForm } from '@farm/plants/coffee-tree/tree.model';
 import { TreeService } from '@farm/plants/coffee-tree/tree.service';
-import { filter, first, map, mergeMap, tap } from 'rxjs';
-import { EditPlantFormComponent } from '../../../plants/plant/edit-plant-form/edit-plant-form.component';
-import { PlantIdIsUniqueOrUnchangedValidator } from '../../../plants/plant/plant-id-is-unique-or-unchanged.validator';
+import { filter, first, map, mergeMap } from 'rxjs';
+import { EditPlantFormComponent } from '@plants-pages-module/plants/plant/edit-plant-form/edit-plant-form.component';
+import { PlantIdIsUniqueOrUnchangedValidator } from '@plants-pages-module/plants/plant/plant-id-is-unique-or-unchanged.validator';
 import { TreeIdIsUniqueOrUnchangedValidator } from '../tree-id-is-unique-or-unchanged.validator';
 
 @Component({
   selector: 'farm-edit-tree-form',
   templateUrl: './edit-tree-form.component.html',
-  styleUrls: ['./edit-tree-form.component.css', '../../../../../../../../styles/basic-form.css'],
+  styleUrls: ['./edit-tree-form.component.css', '../../../../../../../../../styles/basic-form.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [TreeIdIsUniqueOrUnchangedValidator, PlantIdIsUniqueOrUnchangedValidator],
 })

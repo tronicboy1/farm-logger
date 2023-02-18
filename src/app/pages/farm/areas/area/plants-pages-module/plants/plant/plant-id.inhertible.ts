@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { first, forkJoin, map, tap } from 'rxjs';
 
 export class PlantIdInheritable {
-  private route = inject(ActivatedRoute);
+  protected route = inject(ActivatedRoute);
   protected getFarmIdAreaIdAndPlantId() {
     const params$ = [
       this.route.parent!.parent!.params.pipe(

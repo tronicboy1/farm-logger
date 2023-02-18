@@ -10,15 +10,15 @@ import {
 import { first, mergeMap } from 'rxjs';
 import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 import { TreeReportService } from '@farm/plants/coffee-tree/tree-report.service';
-import { NewPlantReportFormComponent } from '../../../plants/plant/new-report-form/new-plant-report-form.component';
 import { CoffeeTreeFactory } from '@farm/plants/coffee-tree/tree.factory';
+import { NewPlantReportFormComponent } from '@plants-pages-module/plants/plant/new-report-form/new-plant-report-form.component';
 
 type SelectOptions<T> = { value: T; name: string }[];
 
 @Component({
   selector: 'app-new-report-form',
   templateUrl: './new-report-form.component.html',
-  styleUrls: ['./new-report-form.component.css', '../../../../../../../../styles/basic-form.css'],
+  styleUrls: ['./new-report-form.component.css', '../../../../../../../../../styles/basic-form.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewReportFormComponent extends NewPlantReportFormComponent implements OnInit {

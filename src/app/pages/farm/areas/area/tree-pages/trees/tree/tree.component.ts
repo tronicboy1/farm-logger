@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TreeReportService } from '@farm/plants/coffee-tree/tree-report.service';
 import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 import { shareReplay, switchMap } from 'rxjs';
-import { PlantComponent } from '../../plants/plant/plant.component';
+import { PlantComponent } from '@plants-pages-module/plants/plant/plant.component';
 
 @Component({
   selector: 'app-tree',

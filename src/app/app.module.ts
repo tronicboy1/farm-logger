@@ -14,6 +14,7 @@ import { firebaseConfig } from '@custom-firebase/config';
 import { environment } from 'src/environments/environment';
 import { ReCaptchaV3Provider } from 'firebase/app-check';
 import { NgxBaseComponentsModule } from '@tronicboy/ngx-base-components';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(jaLocale);
 
@@ -22,8 +23,9 @@ registerLocaleData(jaLocale);
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     PagesModule,
-    FarmModule,
+    FarmModule, // can delete
     ComponentsModule,
     NgxObservableDirectiveModule.forRoot({ rootMargin: '20px' }),
     NgxFirebaseUserPlatformModule.forRoot({
@@ -36,7 +38,7 @@ registerLocaleData(jaLocale);
       emulators: environment.emulatorPorts,
       analytics: true,
     }),
-    NgxBaseComponentsModule
+    NgxBaseComponentsModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'ja-JP' }],
   bootstrap: [AppComponent],

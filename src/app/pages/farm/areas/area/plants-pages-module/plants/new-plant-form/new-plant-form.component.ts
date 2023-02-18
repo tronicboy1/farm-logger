@@ -6,17 +6,17 @@ import { PlantServiceImplementation } from '@farm/plants/plant.service';
 import { BehaviorSubject, filter, finalize, first, map, mergeMap, tap } from 'rxjs';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
-import { AreaRouteParamsComponent } from '../../route-params.inheritable';
 import { PlantIdIsUniqueValidator } from '../plant/plant-id-is-unique.validator';
+import { PlantIdInheritable } from '../plant/plant-id.inhertible';
 
 @Component({
   selector: 'app-new-plant-form',
   templateUrl: './new-plant-form.component.html',
-  styleUrls: ['./new-plant-form.component.css', '../../../../../../../styles/basic-form.css'],
+  styleUrls: ['./new-plant-form.component.css', '../../../../../../../../styles/basic-form.css'],
   providers: [PlantIdIsUniqueValidator],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewPlantFormComponent extends AreaRouteParamsComponent implements OnInit {
+export class NewPlantFormComponent extends PlantIdInheritable implements OnInit {
   protected plantService = inject(PlantServiceImplementation);
   protected plantFactory = new PlantFactory();
   protected plantIdIsUnique = inject(PlantIdIsUniqueValidator);

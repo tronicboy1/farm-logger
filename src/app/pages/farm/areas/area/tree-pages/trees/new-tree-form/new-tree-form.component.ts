@@ -4,14 +4,14 @@ import { CoffeeTree } from '@farm/plants/coffee-tree/tree.model';
 import { CoffeeTreeFactory } from '@farm/plants/coffee-tree/tree.factory';
 import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 import { filter, first, map, mergeMap } from 'rxjs';
-import { NewPlantFormComponent } from '../../plants/new-plant-form/new-plant-form.component';
-import { PlantIdIsUniqueValidator } from '../../plants/plant/plant-id-is-unique.validator';
 import { TreeIdIsUniqueValidator } from '../tree/tree-id-is-unique.validator';
+import { PlantIdIsUniqueValidator } from '@plants-pages-module/plants/plant/plant-id-is-unique.validator';
+import { NewPlantFormComponent } from '@plants-pages-module/plants/new-plant-form/new-plant-form.component';
 
 @Component({
   selector: 'app-new-tree-form',
   templateUrl: './new-tree-form.component.html',
-  styleUrls: ['./new-tree-form.component.css', '../../../../../../../styles/basic-form.css'],
+  styleUrls: ['./new-tree-form.component.css', '../../../../../../../../styles/basic-form.css'],
   providers: [PlantIdIsUniqueValidator, TreeIdIsUniqueValidator],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

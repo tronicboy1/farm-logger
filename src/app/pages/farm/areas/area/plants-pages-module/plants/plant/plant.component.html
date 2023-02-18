@@ -55,7 +55,7 @@
 
 <base-modal [show]="this.showAddModal | async" i18n-modal-title modal-title="New Report"
   (modal-closed)="this.toggleAddModal(false)">
-  <app-new-report-form (submitted)="this.handleNewReportSubmission()"></app-new-report-form>
+  <app-new-plant-form (submitted)="this.handleNewReportSubmission()"></app-new-plant-form>
 </base-modal>
 
 <base-modal [show]="!!(this.showPictureModal$ | async)" (modal-closed)="this.togglePictureModal(undefined)"
@@ -75,5 +75,5 @@
 
 <base-modal [show]="this.showEditModal$ | async" (modal-closed)="this.toggleEditModal(false)" i18n-modal-title
   modal-title="Edit Tree">
-  <farm-edit-tree-form (submitted)="this.toggleEditModal(false)"></farm-edit-tree-form>
+  <farm-edit-plant-form (submitted)="this.toggleEditModal(false)"></farm-edit-plant-form>
 </base-modal>
