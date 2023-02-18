@@ -5,7 +5,7 @@
       <trans-unit id="5663262086756525973" datatype="html">
         <source>Change Email</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-circle.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/account-circle.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
         <note priority="1" from="description">Change Email</note>
@@ -13,11 +13,11 @@
       <trans-unit id="5503535973615409737" datatype="html">
         <source>Change Avatar</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-circle.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/account-circle.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-circle.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/account-circle.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
         <note priority="1" from="description">Change Avatar</note>
@@ -25,7 +25,7 @@
       <trans-unit id="3362041682064186624" datatype="html">
         <source>Account Details</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-circle.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/account-circle.component.html</context>
           <context context-type="linenumber">1,2</context>
         </context-group>
         <note priority="1" from="description">Account Details</note>
@@ -33,60 +33,60 @@
       <trans-unit id="3473847384764562920" datatype="html">
         <source>Change Mail Address</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-circle.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/account-circle.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5693296612971286474" datatype="html">
         <source>Account Information</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-circle.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/account-circle.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3013055597615607317" datatype="html">
         <source>Display Name</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-details-form/account-details-form.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/account-details-form/account-details-form.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1230154438678955604" datatype="html">
         <source>Change</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-details-form/account-details-form.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/account-details-form/account-details-form.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-email-form/change-email-form.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/change-email-form/change-email-form.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5667785181508739660" datatype="html">
         <source>Mail Address</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-details-form/account-details-form.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/account-details-form/account-details-form.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8194554728555410336" datatype="html">
         <source>Phone Number</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/account-details-form/account-details-form.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/account-details-form/account-details-form.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1218334388194408974" datatype="html">
         <source>Before</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/change-avatar-form/change-avatar-form.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="165200899014013637" datatype="html">
         <source>Original Avatar</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/change-avatar-form/change-avatar-form.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
         <note priority="1" from="description">Original Avatar</note>
@@ -94,42 +94,70 @@
       <trans-unit id="6371576811194810854" datatype="html">
         <source>After</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/change-avatar-form/change-avatar-form.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3801621443904007979" datatype="html">
         <source>Compressed</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/change-avatar-form/change-avatar-form.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5181535935481851555" datatype="html">
         <source>No Photo</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/change-avatar-form/change-avatar-form.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6932865105766151309" datatype="html">
         <source>Upload</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/change-avatar-form/change-avatar-form.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4214393630982487481" datatype="html">
         <source>Select Photo</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-avatar-form/change-avatar-form.component.ts</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/change-avatar-form/change-avatar-form.component.ts</context>
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7602575004643332165" datatype="html">
         <source>New Mail Address</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/tronicboy/ngx-base-components/src/lib/nav-bar/account-circle/change-email-form/change-email-form.component.html</context>
+          <context context-type="sourcefile">projects/tronicboy/ngx-firebase-user-navbar/src/lib/account-circle/change-email-form/change-email-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5941163000633299901" datatype="html">
+        <source>位置情報を確認したり、更新したりする</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-geolocation/src/lib/location/location.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4473080627014622065" datatype="html">
+        <source>場所は設定されていません。</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-geolocation/src/lib/location/location.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4786802087376973946" datatype="html">
+        <source>位置情報取得に失敗しました。ブラウザの設定をご確認ください。</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-geolocation/src/lib/location/location.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8906344100714242219" datatype="html">
+        <source>もしくは、手動で位置情報を登録することもできます。</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/tronicboy/ngx-geolocation/src/lib/location/location.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
@@ -179,17 +207,6 @@
         <source>Good</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
-          <context context-type="linenumber">31</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
-          <context context-type="linenumber">42</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6355984385466493800" datatype="html">
-        <source>Poor</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
           <context context-type="linenumber">32</context>
         </context-group>
         <context-group purpose="location">
@@ -197,118 +214,177 @@
           <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6355984385466493800" datatype="html">
+        <source>Poor</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5058896483256450656" datatype="html">
         <source>No Budding</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7673255520772041788" datatype="html">
         <source>No Yield</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2891219671834877559" datatype="html">
-        <source>Trees</source>
+      <trans-unit id="5549565424035571089" datatype="html">
+        <source>Coffee Tree</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/area.component.html</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/trees.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="sourcefile">src/app/farm/plants/plant.model.ts</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8689365011373873591" datatype="html">
-        <source>Fertilizations</source>
+      <trans-unit id="3696604428372681109" datatype="html">
+        <source>Strawberry</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/area.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5320394245519038476" datatype="html">
-        <source>Cropdusts</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/area.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="sourcefile">src/app/farm/plants/plant.model.ts</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8040881171107393560" datatype="html">
         <source>ID</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/new-plant-form/new-plant-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/new-plant-form/new-plant-form.component.html</context>
           <context context-type="linenumber">2</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/edit-plant-form/edit-plant-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/edit-plant-form/edit-plant-form.component.html</context>
           <context context-type="linenumber">2</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/new-report-form/new-plant-report-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/new-report-form/new-plant-report-form.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/new-tree-form/new-tree-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/new-strawberry-form/new-strawberry-form.component.html</context>
           <context context-type="linenumber">2</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/new-strawberry-report-form/new-strawberry-report-form.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/new-tree-form/new-tree-form.component.html</context>
           <context context-type="linenumber">2</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/new-report-form/new-report-form.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5308797364828010076" datatype="html">
         <source>ID is already in use!</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/new-plant-form/new-plant-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/new-plant-form/new-plant-form.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/edit-plant-form/edit-plant-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/edit-plant-form/edit-plant-form.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/new-tree-form/new-tree-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/new-strawberry-form/new-strawberry-form.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/new-tree-form/new-tree-form.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="804718756894489062" datatype="html">
         <source>Species</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/edit-plant-form/edit-plant-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/new-plant-form/new-plant-form.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/edit-plant-form/edit-plant-form.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plants.component.html</context>
           <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/new-tree-form/new-tree-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/new-strawberry-form/new-strawberry-form.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberries.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/new-tree-form/new-tree-form.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/trees.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/trees.component.html</context>
           <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3249513483374643425" datatype="html">
+        <source>Add</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/new-plant-form/new-plant-form.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/new-report-form/new-plant-report-form.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/new-strawberry-form/new-strawberry-form.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/new-strawberry-report-form/new-strawberry-report-form.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/new-tree-form/new-tree-form.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/new-report-form/new-report-form.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/new-area-form/new-area-form.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="935187492052582731" datatype="html">
         <source>Submit</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/edit-plant-form/edit-plant-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/edit-plant-form/edit-plant-form.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
         <context-group purpose="location">
@@ -319,102 +395,107 @@
       <trans-unit id="6390426569284839080" datatype="html">
         <source>Height (cm)</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/new-report-form/new-plant-report-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/new-report-form/new-plant-report-form.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/new-report-form/new-report-form.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5750485945694679561" datatype="html">
         <source>Photo</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/new-report-form/new-plant-report-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/new-report-form/new-plant-report-form.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">25</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
-          <context context-type="linenumber">63,62</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">59,58</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/new-strawberry-report-form/new-strawberry-report-form.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
+          <context context-type="linenumber">61,60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/new-report-form/new-report-form.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
           <context context-type="linenumber">28</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
           <context context-type="linenumber">65,64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5560604461697448175" datatype="html">
         <source>Individual Fertilization</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/new-report-form/new-plant-report-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/new-report-form/new-plant-report-form.component.html</context>
           <context context-type="linenumber">10</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/new-strawberry-report-form/new-strawberry-report-form.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/new-report-form/new-report-form.component.html</context>
           <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7877837275359417976" datatype="html">
         <source>Memo</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/new-report-form/new-plant-report-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/new-report-form/new-plant-report-form.component.html</context>
           <context context-type="linenumber">12</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
-          <context context-type="linenumber">27</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
-          <context context-type="linenumber">27</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3249513483374643425" datatype="html">
-        <source>Add</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/new-report-form/new-plant-report-form.component.html</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/new-tree-form/new-tree-form.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/plant.component.html</context>
           <context context-type="linenumber">24</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/new-area-form/new-area-form.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/new-strawberry-report-form/new-strawberry-report-form.component.html</context>
+          <context context-type="linenumber">12</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/environment/environment.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/new-report-form/new-report-form.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3973931101896534797" datatype="html">
         <source>Date</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/plant.component.html</context>
           <context context-type="linenumber">23</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
           <context context-type="linenumber">23</context>
         </context-group>
         <context-group purpose="location">
@@ -422,63 +503,30 @@
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3033623772164647792" datatype="html">
-        <source>Height</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7538107186905064143" datatype="html">
-        <source>Budding</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
-          <context context-type="linenumber">25</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
-          <context context-type="linenumber">25</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4082337700553574687" datatype="html">
-        <source>Bean</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/new-report-form/new-report-form.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="7022070615528435141" datatype="html">
         <source>Delete</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
           <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
-          <context context-type="linenumber">71</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
-          <context context-type="linenumber">29</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
           <context context-type="linenumber">73</context>
         </context-group>
         <context-group purpose="location">
@@ -501,22 +549,30 @@
       <trans-unit id="7292419068049110792" datatype="html">
         <source>New Report</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">52</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
           <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7515883357904500238" datatype="html">
         <source>Are you sure?</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">65</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
           <context context-type="linenumber">71</context>
         </context-group>
         <context-group purpose="location">
@@ -527,11 +583,15 @@
       <trans-unit id="2159130950882492111" datatype="html">
         <source>Cancel</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">68</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
           <context context-type="linenumber">74</context>
         </context-group>
         <context-group purpose="location">
@@ -546,99 +606,239 @@
       <trans-unit id="4467201548090405824" datatype="html">
         <source>Edit Tree</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plant/plant.component.html</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plant/plant.component.html</context>
+          <context context-type="linenumber">73</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/tree.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
           <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9049201181229172389" datatype="html">
         <source>Add a Plant</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plants.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plants.component.html</context>
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8877687816412324053" datatype="html">
         <source>Plants</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plants.component.html</context>
           <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/area.component.html</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4702930459556730654" datatype="html">
         <source>Search by ID</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plants.component.html</context>
           <context context-type="linenumber">21</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/trees.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberries.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/trees.component.html</context>
           <context context-type="linenumber">20</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7246471487088285854" datatype="html">
-        <source>Current Height</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/trees.component.html</context>
-          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5946760147825604431" datatype="html">
         <source>Last Record</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plants.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberries.component.html</context>
           <context context-type="linenumber">31</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/trees.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/trees.component.html</context>
           <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2975821719027513614" datatype="html">
         <source>Last Individual Fertilization</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/plants/plants.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/plant-pages/plants/plants.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberries.component.html</context>
           <context context-type="linenumber">32</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/trees.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/trees.component.html</context>
           <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1773382336079677555" datatype="html">
+        <source>Width at Planting</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/new-strawberry-form/new-strawberry-form.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4160974855916643893" datatype="html">
+        <source>Add a Strawberry</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberries.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberries.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="115151306350552969" datatype="html">
+        <source>Strawberries</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberries.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="525068833149987192" datatype="html">
+        <source>Current Width</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberries.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2545025695605853758" datatype="html">
+        <source>Width (cm)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/new-strawberry-report-form/new-strawberry-report-form.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2018922024247045709" datatype="html">
+        <source>Width</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3105632685495699654" datatype="html">
         <source>Height at Planting (cm)</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/new-tree-form/new-tree-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/new-tree-form/new-tree-form.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7585826646011739428" datatype="html">
         <source>Edit</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
           <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7538107186905064143" datatype="html">
+        <source>Budding</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/new-report-form/new-report-form.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4082337700553574687" datatype="html">
+        <source>Bean</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/new-report-form/new-report-form.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3033623772164647792" datatype="html">
+        <source>Height</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2891219671834877559" datatype="html">
+        <source>Trees</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/trees.component.html</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8190106963760760343" datatype="html">
         <source>Height at Planting</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/farm/areas/area/trees/trees.component.html</context>
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/trees.component.html</context>
           <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7246471487088285854" datatype="html">
+        <source>Current Height</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/trees.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8689365011373873591" datatype="html">
+        <source>Fertilizations</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/area.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5320394245519038476" datatype="html">
+        <source>Cropdusts</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/area.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1305974498665147128" datatype="html">
+        <source>すべての木の一覧を見る</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/index/index.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3093384421210551072" datatype="html">
+        <source>肥料をまいた記録を見る</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/index/index.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4689291964594083432" datatype="html">
+        <source>農薬・水等を散布した記録を見る、</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/index/index.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8323318485257094723" datatype="html">
+        <source>この区域の情報を編集する</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/area/index/index.component.html</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8541997220085078514" datatype="html">
@@ -692,6 +892,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/farm/areas/new-area-form/new-area-form.component.html</context>
           <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5607586933803011620" datatype="html">
+        <source>Plant Type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/farm/areas/new-area-form/new-area-form.component.html</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7285710065221023584" datatype="html">

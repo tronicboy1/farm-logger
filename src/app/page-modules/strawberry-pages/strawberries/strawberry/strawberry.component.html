@@ -22,6 +22,8 @@
       <tr>
         <th i18n>Date</th>
         <th i18n>Width</th>
+        <th i18n>Budding</th>
+        <th i18n>Pollination</th>
         <th i18n>Memo</th>
         <th i18n>Photo</th>
         <th i18n>Delete</th>
@@ -33,6 +35,8 @@
         <tr *ngFor="let report of reportsValue">
           <td>{{ report.createdAt | date : 'short' }}</td>
           <td>{{ report.width }}</td>
+          <td>{{ report.flowering }}</td>
+          <td>{{ report.pollination ? 'O' : '' }}</td>
           <td (click)="this.togglePictureModal(report.photoURL)">{{ report.notes }}</td>
           <td (click)="this.togglePictureModal(report.photoURL)">
             <img *ngIf="report.photoURL" [src]="report.photoURL" alt="photo" />

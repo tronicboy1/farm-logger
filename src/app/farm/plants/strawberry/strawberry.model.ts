@@ -15,3 +15,9 @@ export enum StrawberryFlowering {
   Good,
   Poor,
 }
+
+export const strawberryFloweringTypes = new Map([
+  [StrawberryFlowering.NotYet, $localize`None`],
+  [StrawberryFlowering.Good, $localize`Good`],
+  [StrawberryFlowering.Poor, $localize`Poor`],
+]);
