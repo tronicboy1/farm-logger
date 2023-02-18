@@ -17,8 +17,9 @@ import {
   where,
   writeBatch,
 } from 'firebase/firestore';
-import { from, map, Observable, shareReplay } from 'rxjs';
+import { from, map, Observable, OperatorFunction, shareReplay } from 'rxjs';
 import { Area, AreaWithId } from './area.model';
+import { plantTypePaths } from './plants/plant.model';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +31,13 @@ export class AreaService {
   private areasObservableCache$?: Observable<AreaWithId[]>;
   private areaIdCache?: string;
   private areaObservableCache$?: Observable<Area>;
+
+  static getPlantsLink: OperatorFunction<Area, string> = (source) =>
+    source.pipe(
+      map((area) => /** go to coffee by default */ area.plantType ?? 1),
+      map((plantType) => plantTypePaths.get(plantType)!),
+      map((plantPath) => `./${plantPath}`),
+    );
 
   public getArea(farmId: string, areaId: string) {
     const ref = doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}`);
