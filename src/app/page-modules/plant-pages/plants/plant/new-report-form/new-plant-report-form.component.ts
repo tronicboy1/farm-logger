@@ -13,7 +13,7 @@ import { PlantReportServiceImplementation } from '@farm/plants/plant-report.serv
 @Component({
   selector: 'farm-new-plant-report-form',
   templateUrl: './new-plant-report-form.component.html',
-  styleUrls: ['./new-plant-report-form.component.css', '../../../../../../../../../styles/basic-form.css'],
+  styleUrls: ['./new-plant-report-form.component.css', '../../../../../../styles/basic-form.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewPlantReportFormComponent extends PlantIdInheritable implements OnInit {

@@ -12,7 +12,7 @@ import { PlantIdInheritable } from '../plant/plant-id.inhertible';
 @Component({
   selector: 'app-new-plant-form',
   templateUrl: './new-plant-form.component.html',
-  styleUrls: ['./new-plant-form.component.css', '../../../../../../../../styles/basic-form.css'],
+  styleUrls: ['./new-plant-form.component.css', '../../../../../styles/basic-form.css'],
   providers: [PlantIdIsUniqueValidator],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

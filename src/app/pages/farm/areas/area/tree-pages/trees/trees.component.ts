@@ -7,7 +7,7 @@ import { PlantsComponent } from '@plants-pages-module/plants/plants.component';
 @Component({
   selector: 'app-trees',
   templateUrl: './trees.component.html',
-  styleUrls: ['../../plants-pages-module/plants/plants.component.css', './trees.component.css'],
+  styleUrls: ['../../../../../../page-modules/plant-pages/plants/plants.component.css', './trees.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreesComponent extends PlantsComponent implements OnInit, OnDestroy {

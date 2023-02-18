@@ -13,7 +13,7 @@ import { TreeComponent } from './trees/tree/tree.component';
 import { NewTreeFormComponent } from './trees/new-tree-form/new-tree-form.component';
 import { EditTreeFormComponent } from './trees/tree/edit-tree-form/edit-tree-form.component';
 import { NewReportFormComponent } from './trees/tree/new-report-form/new-report-form.component';
-import { PlantPagesModule } from '../plants-pages-module/plants-module.module';
+import { PlantPagesModule } from '@plants-pages-module/plants-module.module';
 import { TreePagesRoutingModule } from './tree-pages-routing.module';
 
 @NgModule({
