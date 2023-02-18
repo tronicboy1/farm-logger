@@ -13,7 +13,7 @@
       "@components/*": ["src/app/components/*"],
       "@log/*": ["src/app/log/*"],
       "@farm/*": ["src/app/farm/*"],
-      "@plants-pages-module/*": ["src/app/page-modules/plant-pages/*"]
+      "@plant-pages/*": ["src/app/page-modules/plant-pages/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

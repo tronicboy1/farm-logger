@@ -11,7 +11,7 @@ import { first, mergeMap } from 'rxjs';
 import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 import { TreeReportService } from '@farm/plants/coffee-tree/tree-report.service';
 import { CoffeeTreeFactory } from '@farm/plants/coffee-tree/tree.factory';
-import { NewPlantReportFormComponent } from '@plants-pages-module/plants/plant/new-report-form/new-plant-report-form.component';
+import { NewPlantReportFormComponent } from '@plant-pages/plants/plant/new-report-form/new-plant-report-form.component';
 
 type SelectOptions<T> = { value: T; name: string }[];
 

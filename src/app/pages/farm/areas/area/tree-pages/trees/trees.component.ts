@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@
 import { TreeReportService } from '@farm/plants/coffee-tree/tree-report.service';
 import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 import { forkJoin, map, shareReplay, switchMap } from 'rxjs';
-import { PlantsComponent } from '@plants-pages-module/plants/plants.component';
+import { PlantsComponent } from '@plant-pages/plants/plants.component';
 
 @Component({
   selector: 'app-trees',

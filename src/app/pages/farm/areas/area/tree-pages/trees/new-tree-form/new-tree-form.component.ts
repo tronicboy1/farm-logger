@@ -5,8 +5,8 @@ import { CoffeeTreeFactory } from '@farm/plants/coffee-tree/tree.factory';
 import { TreeService } from '@farm/plants/coffee-tree/tree.service';
 import { filter, first, map, mergeMap } from 'rxjs';
 import { TreeIdIsUniqueValidator } from '../tree/tree-id-is-unique.validator';
-import { PlantIdIsUniqueValidator } from '@plants-pages-module/plants/plant/plant-id-is-unique.validator';
-import { NewPlantFormComponent } from '@plants-pages-module/plants/new-plant-form/new-plant-form.component';
+import { PlantIdIsUniqueValidator } from '@plant-pages/plants/plant/plant-id-is-unique.validator';
+import { NewPlantFormComponent } from '@plant-pages/plants/new-plant-form/new-plant-form.component';
 
 @Component({
   selector: 'app-new-tree-form',
