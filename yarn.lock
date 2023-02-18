@@ -1956,10 +1956,10 @@
   dependencies:
     tslib "^2.3.0"
 
-"@tronicboy/ngx-firebase-user-navbar@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@tronicboy/ngx-firebase-user-navbar/-/ngx-firebase-user-navbar-0.0.1.tgz#50158fef481f9df8a1c5bab50277a70a9a44ab35"
-  integrity sha512-aJWGvF/3je032tRTFZUAj153NTk2QHUG0xnwrkN7F2O54L7qZ01PZ8NOe0xPpkF1k3jnbVRjd4dxgry1n9aWyg==
+"@tronicboy/ngx-firebase-user-navbar@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@tronicboy/ngx-firebase-user-navbar/-/ngx-firebase-user-navbar-0.0.2.tgz#2b1a99b705b047359e09e6c24c47f9fd7bacd173"
+  integrity sha512-iOKfy2hBfPdyB7ohGx09zV1NKLFg4ewn2hBYq+3unpZJHepSscifKRcPdIz04D4Sw3jjoBahio6h4vUisnFGOA==
   dependencies:
     tslib "^2.3.0"
 

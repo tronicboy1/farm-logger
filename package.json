@@ -23,7 +23,7 @@
     "@angular/platform-browser-dynamic": "^15.1.4",
     "@angular/router": "^15.1.4",
     "@tronicboy/ngx-base-components": "0.0.8",
-    "@tronicboy/ngx-firebase-user-navbar": "0.0.1",
+    "@tronicboy/ngx-firebase-user-navbar": "0.0.2",
     "@tronicboy/ngx-geolocation": "0.0.3",
     "firebase": "^9.17.1",
     "lit": "^2.5.0",

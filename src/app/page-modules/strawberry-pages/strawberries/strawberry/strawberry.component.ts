@@ -7,7 +7,7 @@ import { shareReplay, switchMap } from 'rxjs';
 @Component({
   selector: 'app-strawberry',
   templateUrl: './strawberry.component.html',
-  styleUrls: ['./strawberry.component.css'],
+  styleUrls: ['./strawberry.component.css', '../../../plant-pages/plants/plant/plant.component.css'],
 })
 export class StrawberryComponent extends PlantComponent {
   protected plantService = inject(StrawberryService);
