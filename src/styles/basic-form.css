@@ -3,6 +3,12 @@ form {
   flex-direction: column;
 }
 
+:host {
+  display: block;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 input,
 select,
 textarea {
