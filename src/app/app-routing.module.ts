@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CanLoadStrawberryGuard } from '@farm/plants/strawberry/can-load-strawberry.guard';
 import { AuthComponent } from '@pages/auth/auth.component';
 import { AreaComponent } from '@pages/farm/areas/area/area.component';
 import { CropdustComponent } from '@pages/farm/areas/area/cropdust/cropdust.component';
@@ -36,6 +37,7 @@ const routes: Routes = [
             path: 'strawberries',
             loadChildren: () =>
               import('./page-modules/strawberry-pages/strawberry-pages.module').then((m) => m.StrawberryPagesModule),
+            canActivate: [CanLoadStrawberryGuard],
           },
           { path: 'fertilizer', component: FertilizerComponent },
           { path: 'cropdust', component: CropdustComponent },
