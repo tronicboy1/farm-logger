@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, finalize, first, forkJoin, map, mergeMap, of, Subject, tap } from 'rxjs';
+import { plantTypeNames } from '@farm/plants/plant.model';
+import { BehaviorSubject, finalize, first, forkJoin, map, mergeMap, of } from 'rxjs';
 import { AreaService } from 'src/app/farm/area.service';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
@@ -14,6 +15,7 @@ import { AreaNameIsUniqueValidator } from './area-name-is-unique.validator';
   providers: [AreaNameIsUniqueValidator],
 })
 export class NewAreaFormComponent implements OnInit {
+  plantTypes = Array.from(plantTypeNames);
   private loadingSubject = new BehaviorSubject(false);
   public loading = this.loadingSubject.asObservable();
   public newAreaFormGroup = new FormGroup({
@@ -21,6 +23,7 @@ export class NewAreaFormComponent implements OnInit {
       validators: [Validators.required],
       asyncValidators: [this.areaNameValidator.validate.bind(this.areaNameValidator)],
     }),
+    plantType: new FormControl(1, { validators: [Validators.required], nonNullable: true }),
   });
 
   constructor(
@@ -35,6 +38,7 @@ export class NewAreaFormComponent implements OnInit {
   handleSubmit() {
     if (this.loadingSubject.value) return;
     const name = this.newAreaFormGroup.controls.name.value!.trim();
+    const plantType = this.newAreaFormGroup.controls.plantType.value;
     this.loadingSubject.next(true);
     this.route
       .parent!.params.pipe(
@@ -45,7 +49,7 @@ export class NewAreaFormComponent implements OnInit {
           return farmId;
         }),
         mergeMap((farmId) =>
-          forkJoin([this.areaService.createArea(farmId, { name, createdAt: Date.now() }), of(farmId)]),
+          forkJoin([this.areaService.createArea(farmId, { name, createdAt: Date.now(), plantType }), of(farmId)]),
         ),
         mergeMap(([ref, farmId]) => {
           return this.logService.addLog(farmId, LogActions.AddArea, ref.id);

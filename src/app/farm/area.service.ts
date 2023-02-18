@@ -17,25 +17,19 @@ import {
   where,
   writeBatch,
 } from 'firebase/firestore';
-import { from, map, Observable, ReplaySubject, shareReplay, Subject } from 'rxjs';
+import { from, map, Observable, shareReplay } from 'rxjs';
 import { Area, AreaWithId } from './area.model';
-import { FarmModule } from './farm.module';
 
 @Injectable({
-  providedIn: FarmModule,
+  providedIn: 'root',
 })
 export class AreaService {
   static path = 'environmentRecords';
   static limit = 10;
-  private lastDocSubject = new ReplaySubject<DocumentData | undefined>(1);
-  private lastDocCache?: DocumentData;
   private farmIdCache?: string;
-  private refreshSubject = new Subject<void>();
   private areasObservableCache$?: Observable<AreaWithId[]>;
   private areaIdCache?: string;
   private areaObservableCache$?: Observable<Area>;
-
-  constructor() {}
 
   public getArea(farmId: string, areaId: string) {
     const ref = doc(Firebase.firestore, `farms/${farmId}/areas/${areaId}`);
@@ -71,7 +65,6 @@ export class AreaService {
       map((result) => {
         if (result.empty) return [];
         const { docs } = result;
-        this.lastDocCache = docs.at(-1);
         return docs.map((doc) => ({ ...(doc.data() as Area), id: doc.id }));
       }),
       shareReplay(1),

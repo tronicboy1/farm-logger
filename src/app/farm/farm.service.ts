@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { FarmModule } from './farm.module';
 import {
   doc,
   DocumentData,
@@ -37,7 +36,7 @@ import { PhotoService } from './util/photo.service';
 import { TreeReportService } from './plants/coffee-tree/tree-report.service';
 
 @Injectable({
-  providedIn: FarmModule,
+  providedIn: 'root',
 })
 export class FarmService {
   private loadSubject = new ReplaySubject<void>();

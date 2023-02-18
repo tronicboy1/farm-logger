@@ -32,4 +32,9 @@ export const plantTypePaths = new Map<PlantTypes, string>([
   [PlantTypes.StrawberryPlant, 'strawberries'],
 ]);
 
+export const plantTypeNames = new Map<PlantTypes, string>([
+  [PlantTypes.CoffeeTree, $localize`Coffee Tree`],
+  [PlantTypes.StrawberryPlant, $localize`Strawberry`],
+]);
+
 export type ToFormGroupType<T> = Omit<{ [key in keyof T]: AbstractControl<T[key]> }, 'plantType'>;

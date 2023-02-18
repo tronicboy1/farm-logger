@@ -1,6 +1,10 @@
 <form [formGroup]="this.newAreaFormGroup" (ngSubmit)="this.handleSubmit()" appSubmitOnModifierEnter appCloseOnEsc>
   <label for="name" i18n>Area Name</label>
   <input type="text" formControlName="name" required ngxAutofocus />
+  <label for="plant-type" i18n>Plant Type</label>
+  <select name="plant-type" id="plant-type" formControlName="plantType">
+    <option *ngFor="let plantType of this.plantTypes" [ngValue]="plantType[0]">{{ plantType[1] }}</option>
+  </select>
   <button [disabled]="(this.newAreaFormGroup.statusChanges | async) !== 'VALID'" type="submit" i18n>Add</button>
   <base-spinner *ngIf="this.loading | async"></base-spinner>
 </form>
