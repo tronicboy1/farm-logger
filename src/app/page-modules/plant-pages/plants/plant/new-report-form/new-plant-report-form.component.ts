@@ -79,6 +79,7 @@ export class NewPlantReportFormComponent extends PlantIdInheritable {
         finalize(() => {
           this.loadingSubject.next(false);
           this.newReportForm.controls['notes'].reset();
+          this.newReportForm.controls['picture'].reset();
           this.newReportForm.controls['individualFertilization'].reset();
         }),
       )

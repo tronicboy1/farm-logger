@@ -1,17 +1,22 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StrawberryReportService } from '@farm/plants/strawberry/strawberry-report.service';
 import { StrawberryFactory } from '@farm/plants/strawberry/strawberry.factory';
-import { StrawberryFlowering, strawberryFloweringTypes, StrawberryReport } from '@farm/plants/strawberry/strawberry.model';
+import {
+  StrawberryFlowering,
+  strawberryFloweringTypes,
+  StrawberryReport,
+} from '@farm/plants/strawberry/strawberry.model';
 import { StrawberryService } from '@farm/plants/strawberry/strawberry.service';
 import { NewPlantReportFormComponent } from '@plant-pages/plants/plant/new-report-form/new-plant-report-form.component';
+import { first, mergeMap } from 'rxjs';
 
 @Component({
   selector: 'app-new-strawberry-report-form',
   templateUrl: './new-strawberry-report-form.component.html',
   styleUrls: ['./new-strawberry-report-form.component.css', '../../../../../../styles/basic-form.css'],
 })
-export class NewStrawberryReportFormComponent extends NewPlantReportFormComponent {
+export class NewStrawberryReportFormComponent extends NewPlantReportFormComponent implements OnInit {
   floweringTypes = Array.from(strawberryFloweringTypes);
   protected plantFactory = new StrawberryFactory();
   protected plantService = inject(StrawberryService);
@@ -27,6 +32,19 @@ export class NewStrawberryReportFormComponent extends NewPlantReportFormComponen
       validators: [Validators.required],
     }),
   });
+
+  ngOnInit(): void {
+    this.getFarmIdAreaIdAndPlantId()
+      .pipe(
+        mergeMap(([farmId, areaId, treeId]) => this.plantReportService.getLatestReport(farmId, areaId, treeId)),
+        first(),
+      )
+      .subscribe((latestReport) => {
+        if (!latestReport) return;
+        this.newReportForm.controls.width.setValue(latestReport.width);
+        this.newReportForm.controls.flowering.setValue(latestReport.flowering);
+      });
+  }
 
   protected createReportData(): StrawberryReport {
     const notes = this.newReportForm.controls['notes'].value.trim();
