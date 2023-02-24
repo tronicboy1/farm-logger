@@ -7,6 +7,9 @@ import { CropdustComponent } from '@pages/farm/areas/area/cropdust/cropdust.comp
 import { FertilizerComponent } from '@pages/farm/areas/area/fertilizer/fertilizer.component';
 import { AreaIndexComponent } from '@pages/farm/areas/area/index/index.component';
 import { AreasComponent } from '@pages/farm/areas/areas.component';
+import { DeleteAreaModalComponent } from '@pages/farm/areas/delete-area-modal/delete-area-modal.component';
+import { NewAreaFormComponent } from '@pages/farm/areas/new-area-form/new-area-form.component';
+import { NewAreaModalComponent } from '@pages/farm/areas/new-area-modal/new-area-modal.component';
 import { EnvironmentComponent } from '@pages/farm/environment/environment.component';
 import { FarmComponent } from '@pages/farm/farm.component';
 import { ManageComponent } from '@pages/farm/manage/manage.component';
@@ -24,7 +27,15 @@ const routes: Routes = [
     canActivate: [AuthGuard, MemberGuard],
     children: [
       { path: 'manage', component: ManageComponent, data: { title: '農園管理' } },
-      { path: 'areas', component: AreasComponent, data: { title: '区域一覧' } },
+      {
+        path: 'areas',
+        component: AreasComponent,
+        data: { title: '区域一覧' },
+        children: [
+          { path: 'new', outlet: 'modals', component: NewAreaModalComponent },
+          { path: 'delete', outlet: 'modals', component: DeleteAreaModalComponent },
+        ],
+      },
       {
         path: 'areas/:areaId',
         component: AreaComponent,

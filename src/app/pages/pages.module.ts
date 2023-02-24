@@ -31,6 +31,8 @@ import { NgxBaseComponentsModule } from '@tronicboy/ngx-base-components';
 import { NgxGeolocationModule } from '@tronicboy/ngx-geolocation';
 import { DeleteFarmFormComponent } from './farm/manage/delete-farm-form/delete-farm-form.component';
 import { FarmModule } from '@farm/farm.module';
+import { NewAreaModalComponent } from './farm/areas/new-area-modal/new-area-modal.component';
+import { DeleteAreaModalComponent } from './farm/areas/delete-area-modal/delete-area-modal.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { FarmModule } from '@farm/farm.module';
     DeleteAreaFormComponent,
     EditAreaFormComponent,
     DeleteFarmFormComponent,
+    NewAreaModalComponent,
+    DeleteAreaModalComponent,
   ],
   imports: [
     CommonModule,
