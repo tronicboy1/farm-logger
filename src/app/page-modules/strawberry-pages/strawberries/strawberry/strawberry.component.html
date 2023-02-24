@@ -4,11 +4,11 @@
       <path d="M24 40 8 24 24 8l2.1 2.1-12.4 12.4H40v3H13.7l12.4 12.4Z" />
     </svg>
   </a>
-  <div class="card round" (click)="this.toggleAddModal(true)">
+  <a class="card round" [routerLink]="[{ outlets: { modals: ['new-report'] } }]">
     <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0,0,48,48">
       <path d="M22.5 38V25.5H10v-3h12.5V10h3v12.5H38v3H25.5V38Z" />
     </svg>
-  </div>
+  </a>
   <div class="card round" (click)="this.toggleEditModal()">
     <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0,0,48,48">
       <path
@@ -34,9 +34,9 @@
       <ng-container *ngIf="this.reports | async as reportsValue">
         <tr *ngFor="let report of reportsValue">
           <td>{{ report.createdAt | date : 'short' }}</td>
-          <td>{{ report.width }}</td>
-          <td>{{ report.flowering }}</td>
-          <td>{{ report.pollination ? 'O' : '' }}</td>
+          <td>{{ report.width }}cm</td>
+          <td>{{ report.flowering | floweringText }}</td>
+          <td>{{ report.pollination | pollination }}</td>
           <td (click)="this.togglePictureModal(report.photoURL)">{{ report.notes }}</td>
           <td (click)="this.togglePictureModal(report.photoURL)">
             <img *ngIf="report.photoURL" [src]="report.photoURL" alt="photo" />
@@ -55,10 +55,7 @@
   </table>
 </div>
 
-<base-modal [show]="this.showAddModal | async" i18n-modal-title modal-title="New Report"
-  (modal-closed)="this.toggleAddModal(false)">
-  <app-new-strawberry-report-form (submitted)="this.handleNewReportSubmission()"></app-new-strawberry-report-form>
-</base-modal>
+<router-outlet name="modals"></router-outlet>
 
 <base-modal [show]="!!(this.showPictureModal$ | async)" (modal-closed)="this.togglePictureModal(undefined)"
   i18n-modal-title modal-title="Photo">

@@ -13,9 +13,10 @@ import { EditTreeFormComponent } from './trees/tree/edit-tree-form/edit-tree-for
 import { NewReportFormComponent } from './trees/tree/new-report-form/new-report-form.component';
 import { PlantPagesModule } from '@plant-pages/plants-module.module';
 import { TreePagesRoutingModule } from './tree-pages-routing.module';
+import { NewTreeReportModalComponent } from './trees/tree/new-tree-report-modal/new-tree-report-modal.component';
 
 @NgModule({
-  declarations: [TreesComponent, TreeComponent, NewTreeFormComponent, EditTreeFormComponent, NewReportFormComponent],
+  declarations: [TreesComponent, TreeComponent, NewTreeFormComponent, EditTreeFormComponent, NewReportFormComponent, NewTreeReportModalComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

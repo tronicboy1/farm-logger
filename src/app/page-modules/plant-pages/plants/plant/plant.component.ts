@@ -22,8 +22,6 @@ export class PlantComponent extends PlantIdInheritable {
     switchMap(([farmId, areaId, plantId]) => this.plantReportService.watchAll(this, farmId, areaId, plantId)),
     shareReplay(1),
   );
-  private showAddModalSubject = new BehaviorSubject(false);
-  public showAddModal = this.showAddModalSubject.asObservable();
   private showPictureModalSubject = new BehaviorSubject<string | undefined>(undefined);
   readonly showPictureModal$ = this.showPictureModalSubject.asObservable();
   readonly showEditModal$ = new BehaviorSubject(false);
@@ -35,14 +33,9 @@ export class PlantComponent extends PlantIdInheritable {
     super();
     this.addingReport$ = this.plantReportService.addingReport$;
   }
-
-  public toggleAddModal = (force?: boolean) => this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);
   public toggleEditModal = (force?: boolean) => this.showEditModal$.next(force ?? !this.showEditModal$.value);
   public togglePictureModal = (photoURL: string | undefined) => this.showPictureModalSubject.next(photoURL);
-  handleNewReportSubmission() {
-    this.toggleAddModal(false);
-    this.plantReportService.clearPaginationCache(this);
-  }
+
   handleEndOfPage() {
     this.reports.pipe(first()).subscribe((reports) => {
       if (!reports.length) return;

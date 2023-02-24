@@ -12,6 +12,7 @@ import { NewPlantFormComponent } from './plants/new-plant-form/new-plant-form.co
 import { EditPlantFormComponent } from './plants/plant/edit-plant-form/edit-plant-form.component';
 import { NewPlantReportFormComponent } from './plants/plant/new-report-form/new-plant-report-form.component';
 import { FarmModule } from '@farm/farm.module';
+import { NewPlantReportModalComponent } from './plants/plant/new-plant-report-modal/new-plant-report-modal.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FarmModule } from '@farm/farm.module';
     NewPlantFormComponent,
     EditPlantFormComponent,
     NewPlantReportFormComponent,
+    NewPlantReportModalComponent,
   ],
   imports: [
     CommonModule,

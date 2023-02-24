@@ -1,0 +1,5 @@
+
+<base-modal [show]="true" i18n-modal-title modal-title="New Report"
+  (modal-closed)="this.handleModalClose()">
+  <app-new-strawberry-report-form (submitted)="this.handleNewReportSubmission()"></app-new-strawberry-report-form>
+</base-modal>

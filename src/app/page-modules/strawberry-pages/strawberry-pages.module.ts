@@ -11,6 +11,9 @@ import { PlantPagesModule } from '@plant-pages/plants-module.module';
 import { NgxBaseComponentsModule } from '@tronicboy/ngx-base-components';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxObservableDirectiveModule } from 'ngx-observable-directive';
+import { NewStrawberryReportModalComponent } from './strawberries/strawberry/new-strawberry-report-modal/new-strawberry-report-modal.component';
+import { FloweringPipe } from './strawberries/strawberry/flowering.pipe';
+import { PollinationPipe } from './strawberries/strawberry/pollination.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { NgxObservableDirectiveModule } from 'ngx-observable-directive';
     NewStrawberryFormComponent,
     EditStrawberryFormComponent,
     NewStrawberryReportFormComponent,
+    NewStrawberryReportModalComponent,
+    FloweringPipe,
+    PollinationPipe,
   ],
   imports: [
     CommonModule,
