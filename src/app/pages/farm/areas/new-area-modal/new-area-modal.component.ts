@@ -11,6 +11,9 @@ export class NewAreaModalComponent {
   private route = inject(ActivatedRoute);
 
   handleModalClose() {
-    this.router.navigate([{ outlets: { modals: null } }], { relativeTo: this.route.parent });
+    this.router.navigate([{ outlets: { modals: null } }], {
+      relativeTo: this.route.parent,
+      queryParamsHandling: 'preserve',
+    });
   }
 }

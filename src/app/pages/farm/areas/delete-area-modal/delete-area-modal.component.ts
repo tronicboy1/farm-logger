@@ -18,6 +18,9 @@ export class DeleteAreaModalComponent {
   );
 
   handleModalClose() {
-    this.router.navigate([{ outlets: { modals: null } }], { relativeTo: this.route.parent });
+    this.router.navigate([{ outlets: { modals: null } }], {
+      relativeTo: this.route.parent,
+      queryParamsHandling: 'preserve',
+    });
   }
 }
