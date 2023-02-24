@@ -1,13 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AreaService } from '@farm/area.service';
-import { plantTypePaths } from '@farm/plants/plant.model';
 import { LocationArray } from '@tronicboy/ngx-geolocation';
-import { filter, first, forkJoin, map, mergeMap, shareReplay, tap } from 'rxjs';
-import { GeolocationService } from 'src/app/farm/util/geolocation.service';
+import { filter, first, forkJoin, map, mergeMap, shareReplay } from 'rxjs';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
-import { AreaRouteParamsComponent } from './route-params.inheritable';
 
 @Component({
   selector: 'app-area',
@@ -17,14 +14,12 @@ import { AreaRouteParamsComponent } from './route-params.inheritable';
 export class AreaComponent implements OnInit {
   private areaService = inject(AreaService);
   private route = inject(ActivatedRoute);
-  private geolocationService = inject(GeolocationService);
   private logService = inject(LogService);
 
   area = this.getFarmIdAndAreaId().pipe(
     mergeMap(([farmId, areaId]) => this.areaService.watchArea(farmId, areaId)),
     shareReplay(1),
   );
-  googleMapsURL = this.area.pipe(map((area) => this.geolocationService.getGoogleMapsURL(area)));
   plantsLink$ = this.area.pipe(AreaService.getPlantsLink);
 
   ngOnInit(): void {
