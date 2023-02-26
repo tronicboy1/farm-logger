@@ -33,6 +33,7 @@ import { DeleteFarmFormComponent } from './farm/manage/delete-farm-form/delete-f
 import { FarmModule } from '@farm/farm.module';
 import { NewAreaModalComponent } from './farm/areas/new-area-modal/new-area-modal.component';
 import { DeleteAreaModalComponent } from './farm/areas/delete-area-modal/delete-area-modal.component';
+import { NewFarmModalComponent } from './home/new-farm-modal/new-farm-modal.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { DeleteAreaModalComponent } from './farm/areas/delete-area-modal/delete-
     DeleteFarmFormComponent,
     NewAreaModalComponent,
     DeleteAreaModalComponent,
+    NewFarmModalComponent,
   ],
   imports: [
     CommonModule,

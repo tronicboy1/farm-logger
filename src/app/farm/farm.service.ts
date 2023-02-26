@@ -25,6 +25,7 @@ import {
   Observable,
   ReplaySubject,
   shareReplay,
+  startWith,
   switchMap,
 } from 'rxjs';
 import { Farm, FarmWithId } from './farm.model';
@@ -49,9 +50,7 @@ export class FarmService {
     private treeService: TreeService,
     private treeReportService: TreeReportService,
     private photoService: PhotoService,
-  ) {
-    this.loadSubject.next();
-  }
+  ) {}
 
   public getFarm(id: string) {
     if (this.cachedFarmId !== id) this.cachedFarm$ = undefined;
@@ -98,6 +97,7 @@ export class FarmService {
   /** Loads farms of Current User and return observable. */
   public loadMyFarms(): Observable<FarmWithId[]> {
     return this.loadSubject.pipe(
+      startWith(undefined),
       switchMap(() => this.authService.getUid()),
       switchMap((uid) => forkJoin([this.getAdminFarms(uid), this.getObservedFarms(uid)])),
       map(([adminFarms, observerFarms]) => [...adminFarms, ...observerFarms]),

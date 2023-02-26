@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
 import { UserService } from 'ngx-firebase-user-platform';
-import { BehaviorSubject, combineLatest, map, switchMap } from 'rxjs';
+import { combineLatest, map, switchMap } from 'rxjs';
 import { FarmService } from 'src/app/farm/farm.service';
 
 @Component({
@@ -10,6 +9,9 @@ import { FarmService } from 'src/app/farm/farm.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  private farmService = inject(FarmService);
+  private userService = inject(UserService);
+
   public farms = this.farmService.loadMyFarms().pipe(
     switchMap((farms) =>
       combineLatest(
@@ -28,15 +30,4 @@ export class HomeComponent {
       ),
     ),
   );
-  private showAddModalSubject = new BehaviorSubject(false);
-  public showAddModal = this.showAddModalSubject.asObservable();
-
-  constructor(private farmService: FarmService, private userService: UserService, private router: Router) {}
-
-  public handleFarmClick(farmId: string) {
-    this.router.navigate(['/farms', farmId], { queryParams: { 'show-logs': true } });
-  }
-  public toggleAddModal(force?: boolean) {
-    this.showAddModalSubject.next(force ?? !this.showAddModalSubject.value);
-  }
 }

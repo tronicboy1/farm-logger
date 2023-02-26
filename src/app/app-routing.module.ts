@@ -14,13 +14,19 @@ import { EnvironmentComponent } from '@pages/farm/environment/environment.compon
 import { FarmComponent } from '@pages/farm/farm.component';
 import { ManageComponent } from '@pages/farm/manage/manage.component';
 import { HomeComponent } from '@pages/home/home.component';
+import { NewFarmModalComponent } from '@pages/home/new-farm-modal/new-farm-modal.component';
 import { PageNotFoundComponent } from '@pages/page-not-found/page-not-found.component';
 import { AuthGuard } from 'ngx-firebase-user-platform';
 import { MemberGuard } from './farm/member.guard';
 
 const routes: Routes = [
   { path: 'auth', component: AuthComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [{ path: 'new', component: NewFarmModalComponent }],
+  },
   {
     path: 'farms/:farmId',
     component: FarmComponent,

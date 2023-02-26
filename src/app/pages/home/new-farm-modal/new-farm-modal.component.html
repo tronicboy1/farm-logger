@@ -1,0 +1,4 @@
+<base-modal [show]="true" (modal-closed)="this.closeAddModal()" modal-title="New Farm"
+  i18n-modal-title="New Farm">
+  <app-new-farm-form (submitted)="this.closeAddModal(true)"></app-new-farm-form>
+</base-modal>

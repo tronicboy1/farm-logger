@@ -7,7 +7,7 @@ import { PlantComponent } from '@plant-pages/plants/plant/plant.component';
 @Component({
   selector: 'app-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.css'],
+  styleUrls: ['./tree.component.css', '../../../plant-pages/plants/plant/plant.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreeComponent extends PlantComponent {

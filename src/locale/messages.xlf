@@ -213,6 +213,10 @@
           <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
           <context context-type="linenumber">43</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/plants/strawberry/strawberry.model.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6355984385466493800" datatype="html">
         <source>Poor</source>
@@ -223,6 +227,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/farm/plants/coffee-tree/tree.model.ts</context>
           <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/plants/strawberry/strawberry.model.ts</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5058896483256450656" datatype="html">
@@ -251,6 +259,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/farm/plants/plant.model.ts</context>
           <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6252070156626006029" datatype="html">
+        <source>None</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/farm/plants/strawberry/strawberry.model.ts</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8040881171107393560" datatype="html">
@@ -362,7 +377,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/new-strawberry-report-form/new-strawberry-report-form.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">22</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/new-tree-form/new-tree-form.component.html</context>
@@ -419,15 +434,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/new-strawberry-report-form/new-strawberry-report-form.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">28</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
-          <context context-type="linenumber">61,60</context>
+          <context context-type="linenumber">65,64</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/new-report-form/new-report-form.component.html</context>
@@ -450,7 +465,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/new-strawberry-report-form/new-strawberry-report-form.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">16</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/new-report-form/new-report-form.component.html</context>
@@ -469,11 +484,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/new-strawberry-report-form/new-strawberry-report-form.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">18</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">27</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/new-report-form/new-report-form.component.html</context>
@@ -515,11 +530,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">73</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
@@ -554,7 +569,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">58</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
@@ -569,7 +584,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="linenumber">71</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
@@ -588,7 +603,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">74</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
@@ -611,7 +626,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">79</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
@@ -724,6 +739,36 @@
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="3130631754073529890" datatype="html">
+        <source>Pollination</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/new-strawberry-report-form/new-strawberry-report-form.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7538107186905064143" datatype="html">
+        <source>Budding</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/new-strawberry-report-form/new-strawberry-report-form.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/strawberry-pages/strawberries/strawberry/strawberry.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/new-report-form/new-report-form.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2018922024247045709" datatype="html">
         <source>Width</source>
         <context-group purpose="location">
@@ -747,17 +792,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/edit-tree-form/edit-tree-form.component.html</context>
           <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7538107186905064143" datatype="html">
-        <source>Budding</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/new-report-form/new-report-form.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/page-modules/tree-pages/trees/tree/tree.component.html</context>
-          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4082337700553574687" datatype="html">
