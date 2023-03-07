@@ -11,7 +11,6 @@ import { AddMemberFormComponent } from './farm/manage/members/add-member-form/ad
 import { MembersComponent } from './farm/manage/members/members.component';
 import { RouterModule } from '@angular/router';
 import { AreasComponent } from './farm/areas/areas.component';
-import { EnvironmentComponent } from './farm/environment/environment.component';
 import { NewAreaFormComponent } from './farm/areas/new-area-form/new-area-form.component';
 import { AreaComponent } from './farm/areas/area/area.component';
 import { ComponentsModule } from '../components/components.module';
@@ -20,7 +19,6 @@ import { CropdustComponent } from './farm/areas/area/cropdust/cropdust.component
 import { AreaIndexComponent } from './farm/areas/area/index/index.component';
 import { NewFertilizationFormComponent } from './farm/areas/area/fertilizer/new-fertilization-form/new-fertilization-form.component';
 import { NewCropdustFormComponent } from './farm/areas/area/cropdust/new-cropdust-form/new-cropdust-form.component';
-import { WeatherFormComponent } from './farm/environment/weather-form/weather-form.component';
 import '@web-components/base-tooltip';
 import { LogViewComponent } from './farm/log-view/log-view.component';
 import { DeleteAreaFormComponent } from './farm/areas/delete-area-form/delete-area-form.component';
@@ -46,7 +44,6 @@ import { NewFarmModalComponent } from './home/new-farm-modal/new-farm-modal.comp
     AddMemberFormComponent,
     ManageComponent,
     AreasComponent,
-    EnvironmentComponent,
     NewAreaFormComponent,
     AreaComponent,
     FertilizerComponent,
@@ -54,7 +51,6 @@ import { NewFarmModalComponent } from './home/new-farm-modal/new-farm-modal.comp
     AreaIndexComponent,
     NewFertilizationFormComponent,
     NewCropdustFormComponent,
-    WeatherFormComponent,
     LogViewComponent,
     DeleteAreaFormComponent,
     EditAreaFormComponent,

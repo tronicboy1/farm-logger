@@ -2,12 +2,12 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, first, map, mergeMap, tap } from 'rxjs';
-import { EnvironmentRecordService } from 'src/app/farm/environment-record.service';
+import { EnvironmentRecordService } from '../environment-record.service';
 
 @Component({
   selector: 'app-weather-form',
   templateUrl: './weather-form.component.html',
-  styleUrls: ['./weather-form.component.css', '../../../../../styles/basic-form.css'],
+  styleUrls: ['./weather-form.component.css', '../../../../styles/basic-form.css'],
 })
 export class WeatherFormComponent implements OnInit {
   weatherFormGroup = new FormGroup({

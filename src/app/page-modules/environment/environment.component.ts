@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, finalize, first, map, mergeMap, of, ReplaySubject, tap } from 'rxjs';
-import { EnvironmentRecordService } from 'src/app/farm/environment-record.service';
 import { FarmService } from 'src/app/farm/farm.service';
 import { GeolocationService } from 'src/app/farm/util/geolocation.service';
 import { WeatherService } from 'src/app/farm/util/weather.service';
 import { LogActions } from 'src/app/log/log.model';
 import { LogService } from 'src/app/log/log.service';
+import { EnvironmentRecordService } from './environment-record.service';
 
 @Component({
   selector: 'app-environment',

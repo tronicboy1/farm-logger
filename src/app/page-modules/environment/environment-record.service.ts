@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firebase } from '@custom-firebase/index';
+import { PaginatedService, SubjectCache } from '@farm/paginated.service.abstract';
 import {
   addDoc,
   collection,
@@ -28,8 +29,6 @@ import {
   takeWhile,
   tap,
 } from 'rxjs';
-import { FarmModule } from './farm.module';
-import { PaginatedService, SubjectCache } from './paginated.service.abstract';
 
 export type EnvironmentRecord = {
   createdAt: number;
@@ -45,17 +44,10 @@ export type EnvironmentRecord = {
   clouds?: number;
 };
 
-@Injectable({
-  providedIn: FarmModule,
-})
+@Injectable({ providedIn: 'root' })
 export class EnvironmentRecordService implements PaginatedService {
   static path = 'environmentRecords';
   static limit = 20;
-  private lastDocSubject = new ReplaySubject<DocumentData | undefined>(1);
-
-  constructor() {
-    this.lastDocSubject.next(undefined);
-  }
 
   public getEnvironmentRecords(farmId: string, lastDoc?: DocumentData) {
     const ref = collection(Firebase.firestore, `farms/${farmId}/${EnvironmentRecordService.path}`);
@@ -100,7 +92,6 @@ export class EnvironmentRecordService implements PaginatedService {
   public clearPaginationCache(component: Object) {
     const refresh$ = this.refreshSubjectCache.get(component);
     if (!refresh$) throw ReferenceError('Refresh subject not in cache.');
-    console.log('next', refresh$);
     refresh$.next();
   }
 

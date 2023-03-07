@@ -1,5 +1,5 @@
+import type { EnvironmentRecord } from '../page-modules/environment/environment-record.service';
 import { Area } from './area.model';
-import { EnvironmentRecord } from './environment-record.service';
 
 export type Farm = {
   name: string;

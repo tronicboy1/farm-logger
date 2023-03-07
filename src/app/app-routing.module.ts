@@ -8,9 +8,7 @@ import { FertilizerComponent } from '@pages/farm/areas/area/fertilizer/fertilize
 import { AreaIndexComponent } from '@pages/farm/areas/area/index/index.component';
 import { AreasComponent } from '@pages/farm/areas/areas.component';
 import { DeleteAreaModalComponent } from '@pages/farm/areas/delete-area-modal/delete-area-modal.component';
-import { NewAreaFormComponent } from '@pages/farm/areas/new-area-form/new-area-form.component';
 import { NewAreaModalComponent } from '@pages/farm/areas/new-area-modal/new-area-modal.component';
-import { EnvironmentComponent } from '@pages/farm/environment/environment.component';
 import { FarmComponent } from '@pages/farm/farm.component';
 import { ManageComponent } from '@pages/farm/manage/manage.component';
 import { HomeComponent } from '@pages/home/home.component';
@@ -61,7 +59,7 @@ const routes: Routes = [
           { path: '', component: AreaIndexComponent, pathMatch: 'full' },
         ],
       },
-      { path: 'environment', component: EnvironmentComponent },
+      { path: 'environment', loadChildren: () => import('./page-modules/environment/environment.module').then(m => m.EnvironmentModule) },
       { path: '', redirectTo: 'areas', pathMatch: 'full' },
     ],
   },
