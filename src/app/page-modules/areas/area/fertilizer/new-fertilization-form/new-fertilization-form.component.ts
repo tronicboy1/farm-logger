@@ -10,7 +10,7 @@ import { AreaRouteParamsComponent } from '../../route-params.inheritable';
 @Component({
   selector: 'app-new-fertilization-form',
   templateUrl: './new-fertilization-form.component.html',
-  styleUrls: ['./new-fertilization-form.component.css', '../../../../../../../styles/basic-form.css'],
+  styleUrls: ['./new-fertilization-form.component.css', '../../../../../../styles/basic-form.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewFertilizationFormComponent extends AreaRouteParamsComponent {

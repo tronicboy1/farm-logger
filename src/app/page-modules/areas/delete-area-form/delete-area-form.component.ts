@@ -10,7 +10,7 @@ import { LogService } from 'src/app/log/log.service';
 @Component({
   selector: 'app-delete-area-form',
   templateUrl: './delete-area-form.component.html',
-  styleUrls: ['./delete-area-form.component.css', '../../../../../styles/basic-form.css'],
+  styleUrls: ['./delete-area-form.component.css', '../../../../styles/basic-form.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DeleteAreaFormComponent {

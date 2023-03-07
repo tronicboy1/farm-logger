@@ -11,7 +11,7 @@ import { AreaNameIsUniqueValidator } from './area-name-is-unique.validator';
 @Component({
   selector: 'app-new-area-form',
   templateUrl: './new-area-form.component.html',
-  styleUrls: ['./new-area-form.component.css', '../../../../../styles/basic-form.css'],
+  styleUrls: ['./new-area-form.component.css', '../../../../styles/basic-form.css'],
   providers: [AreaNameIsUniqueValidator],
 })
 export class NewAreaFormComponent implements OnInit {

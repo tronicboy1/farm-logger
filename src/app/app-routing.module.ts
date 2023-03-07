@@ -2,13 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanLoadStrawberryGuard } from '@farm/plants/strawberry/can-load-strawberry.guard';
 import { AuthComponent } from '@pages/auth/auth.component';
-import { AreaComponent } from '@pages/farm/areas/area/area.component';
-import { CropdustComponent } from '@pages/farm/areas/area/cropdust/cropdust.component';
-import { FertilizerComponent } from '@pages/farm/areas/area/fertilizer/fertilizer.component';
-import { AreaIndexComponent } from '@pages/farm/areas/area/index/index.component';
-import { AreasComponent } from '@pages/farm/areas/areas.component';
-import { DeleteAreaModalComponent } from '@pages/farm/areas/delete-area-modal/delete-area-modal.component';
-import { NewAreaModalComponent } from '@pages/farm/areas/new-area-modal/new-area-modal.component';
 import { FarmComponent } from '@pages/farm/farm.component';
 import { ManageComponent } from '@pages/farm/manage/manage.component';
 import { HomeComponent } from '@pages/home/home.component';
@@ -31,35 +24,11 @@ const routes: Routes = [
     canActivate: [AuthGuard, MemberGuard],
     children: [
       { path: 'manage', component: ManageComponent, data: { title: '農園管理' } },
+      { path: 'areas', loadChildren: () => import('./page-modules/areas/areas.module').then((m) => m.AreasModule) },
       {
-        path: 'areas',
-        component: AreasComponent,
-        data: { title: '区域一覧' },
-        children: [
-          { path: 'new', outlet: 'modals', component: NewAreaModalComponent },
-          { path: 'delete', outlet: 'modals', component: DeleteAreaModalComponent },
-        ],
+        path: 'environment',
+        loadChildren: () => import('./page-modules/environment/environment.module').then((m) => m.EnvironmentModule),
       },
-      {
-        path: 'areas/:areaId',
-        component: AreaComponent,
-        children: [
-          {
-            path: 'trees',
-            loadChildren: () => import('./page-modules/tree-pages/tree-pages.module').then((m) => m.TreePagesModule),
-          },
-          {
-            path: 'strawberries',
-            loadChildren: () =>
-              import('./page-modules/strawberry-pages/strawberry-pages.module').then((m) => m.StrawberryPagesModule),
-            canActivate: [CanLoadStrawberryGuard],
-          },
-          { path: 'fertilizer', component: FertilizerComponent },
-          { path: 'cropdust', component: CropdustComponent },
-          { path: '', component: AreaIndexComponent, pathMatch: 'full' },
-        ],
-      },
-      { path: 'environment', loadChildren: () => import('./page-modules/environment/environment.module').then(m => m.EnvironmentModule) },
       { path: '', redirectTo: 'areas', pathMatch: 'full' },
     ],
   },

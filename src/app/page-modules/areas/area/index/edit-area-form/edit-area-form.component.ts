@@ -6,7 +6,7 @@ import { AreaRouteParamsComponent } from '../../route-params.inheritable';
 @Component({
   selector: 'farm-edit-area-form',
   templateUrl: './edit-area-form.component.html',
-  styleUrls: ['./edit-area-form.component.css', '../../../../../../../styles/basic-form.css'],
+  styleUrls: ['./edit-area-form.component.css', '../../../../../../styles/basic-form.css'],
 })
 export class EditAreaFormComponent extends AreaRouteParamsComponent implements OnInit {
   @Output() submitted = new EventEmitter<void>();
