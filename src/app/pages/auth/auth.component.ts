@@ -47,7 +47,9 @@ export class AuthComponent implements OnInit {
   public handleSendEmailSubmit: EventListener = (event) => {
     const { formData } = Utils.getFormData(event);
     const email = formData.get('email')!.toString().trim();
-    this.setLoading(this.authService.sendSignInEmail(email)).then(() => (this.showSendEmailModal = false));
+    this.setLoading(this.authService.sendSignInEmail(email, window.location.origin)).then(
+      () => (this.showSendEmailModal = false),
+    );
   };
 
   public handleResetPasswordSubmit: EventListener = (event) => {

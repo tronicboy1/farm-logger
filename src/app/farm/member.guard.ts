@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { AuthService } from 'ngx-firebase-user-platform';
 import { first, forkJoin, from, map, Observable, tap } from 'rxjs';
 import { FarmModule } from './farm.module';
@@ -8,7 +8,7 @@ import { FarmService } from './farm.service';
 @Injectable({
   providedIn: FarmModule,
 })
-export class MemberGuard implements CanActivate {
+export class MemberGuard  {
   constructor(private authService: AuthService, private farmService: FarmService, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,

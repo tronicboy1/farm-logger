@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { AreaService } from '@farm/area.service';
 import { map, Observable, of, switchMap } from 'rxjs';
 import { PlantTypes } from '../plant.model';
@@ -7,7 +7,7 @@ import { PlantTypes } from '../plant.model';
 @Injectable({
   providedIn: 'root',
 })
-export class CanLoadStrawberryGuard implements CanActivate {
+export class CanLoadStrawberryGuard  {
   private areaService = inject(AreaService);
   private router = inject(Router);
 
