@@ -28,7 +28,7 @@
     "@tronicboy/ngx-geolocation": "0.0.3",
     "firebase": "^9.17.1",
     "lit": "^2.5.0",
-    "ngx-firebase-user-platform": "^0.0.6",
+    "ngx-firebase-user-platform": "^0.0.7",
     "ngx-observable-directive": "0.1.2",
     "ngx-visible-autofocus": "^0.2.0",
     "rxjs": "^7.8.0",

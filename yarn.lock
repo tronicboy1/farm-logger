@@ -4815,10 +4815,10 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-ngx-firebase-user-platform@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/ngx-firebase-user-platform/-/ngx-firebase-user-platform-0.0.6.tgz#ee9c26fb4cb8beae9be5d0e15772e5cb990cd7f7"
-  integrity sha512-bLXZLr3A98BpbjPQy3h8c+DeZyJG/PxFNj4vwqDjI67R/PoxAVFPbp3tPScj4eWx3Jbx4jFkWxuQkJrxmFcfkw==
+ngx-firebase-user-platform@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/ngx-firebase-user-platform/-/ngx-firebase-user-platform-0.0.7.tgz#eca9dfc10a2b97ac97031d45debd0f3f33a8a95b"
+  integrity sha512-8nGAGnlXqDOvFdLvgPek5cA6SIRfRrOq1pvZiuwtLsQt5MylQ8rrMKwWB43ebC79lofwwGaZGaZYdYIo3/o8Bg==
   dependencies:
     tslib "^2.3.0"
 
