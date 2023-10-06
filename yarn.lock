@@ -2373,24 +2373,24 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
   integrity sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==
 
-"@tronicboy/ngx-base-components@0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@tronicboy/ngx-base-components/-/ngx-base-components-0.0.14.tgz#77971611bfe5bcf9e571a2208bcf22cea9ac0dd0"
-  integrity sha512-4+Dq6WZJFcvZ8ahONkZacGSqX45KDiWq2Ls0OnNP0BCmpQu6WOkX912e35J5+7Ubs7YuvUOG2rXvgZWYhudbUw==
+"@tronicboy/ngx-base-components@^0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@tronicboy/ngx-base-components/-/ngx-base-components-0.0.15.tgz#46c43b43b72a179e140f694476226d63e16240a5"
+  integrity sha512-5NhK3N/1cHfLeBk2WONjxeVntW3cOq/+InlW7v7cEXLXARbE98gFm+e58yTxSbrMz8tyjd50oh+pk2I93RTmVg==
   dependencies:
     tslib "^2.3.0"
 
-"@tronicboy/ngx-firebase-user-navbar@0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@tronicboy/ngx-firebase-user-navbar/-/ngx-firebase-user-navbar-0.0.2.tgz#2b1a99b705b047359e09e6c24c47f9fd7bacd173"
-  integrity sha512-iOKfy2hBfPdyB7ohGx09zV1NKLFg4ewn2hBYq+3unpZJHepSscifKRcPdIz04D4Sw3jjoBahio6h4vUisnFGOA==
-  dependencies:
-    tslib "^2.3.0"
-
-"@tronicboy/ngx-geolocation@0.0.3":
+"@tronicboy/ngx-firebase-user-navbar@^0.0.3":
   version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@tronicboy/ngx-geolocation/-/ngx-geolocation-0.0.3.tgz#4cc2e37517c86dcf22e23501db18e1955696e211"
-  integrity sha512-Q/xzHxqvgJvOASBUUYc5BvedOCXupMbod4PRkYitvBiavkh9sKArSombsznyA0J+YnBGYvrpTsYcKIRmodLmxg==
+  resolved "https://registry.yarnpkg.com/@tronicboy/ngx-firebase-user-navbar/-/ngx-firebase-user-navbar-0.0.3.tgz#54a5cd1c2649a92ab2008e148665218c9a71acab"
+  integrity sha512-Q4JtaVuJxOZAAM4hcs+u94aJHuLd98ioL/3yccf4osh9hR81rgE0QvVM+6srJNNMP77hJh0iXhVcj1kjVIHxJQ==
+  dependencies:
+    tslib "^2.3.0"
+
+"@tronicboy/ngx-geolocation@0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@tronicboy/ngx-geolocation/-/ngx-geolocation-0.0.4.tgz#4739240b623face0184387ab745b969eba982239"
+  integrity sha512-kA0SzsyuF9hHBN4UVLeqLgiNzepax/guFEq6a86Cu8HmklZ/Z3/S7JzxGEADdHI3DpNLxkPOgBoI7M7H5ej8Kw==
   dependencies:
     tslib "^2.3.0"
 
@@ -5642,17 +5642,17 @@ ngx-firebase-user-platform@^0.0.10:
   dependencies:
     tslib "^2.3.0"
 
-ngx-observable-directive@0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/ngx-observable-directive/-/ngx-observable-directive-0.1.3.tgz#75fafe0b4940e6eb1c7cb92c54b2c6ee87f64efc"
-  integrity sha512-MhYGLKmDgIODqrVvnSQytidN5BsCVchS8KReYxyYOu62Uoemdhsp82x1hscP2JtAWiRLHWHn1ywzp1pEI+q8xA==
+ngx-observable-directive@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/ngx-observable-directive/-/ngx-observable-directive-0.1.4.tgz#0e1c80669c1d65d76889151b48827ae8b84a682c"
+  integrity sha512-v3OTlkGLaKAq73rAWU/kXth+szc3iFvJ6MJ0ilNlzoTmGAiy0c1nPQzZOJqmgCBk2Pr209OqwYoIQwmmuxos3Q==
   dependencies:
     tslib "^2.3.0"
 
-ngx-visible-autofocus@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/ngx-visible-autofocus/-/ngx-visible-autofocus-0.2.0.tgz#ecaa4f57e36a3c5ff329470141ad874f18601240"
-  integrity sha512-qJDMtRo42K+guvF+Ydfv3AdAODz8F/l2G9VidYbVbJ/8+NJSTAIPnpXBvWBgpg6V4OzeVaSEeBQa8iGCNJQN1w==
+ngx-visible-autofocus@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/ngx-visible-autofocus/-/ngx-visible-autofocus-0.2.1.tgz#eab0562b9cc906a6c413c758f94153d96b429426"
+  integrity sha512-b5GgMUEwZF3zA5wzarxIonugQpU904FK8ivYAJLGnj/+OBn85PaWeKeQ5KhAS+uxI6tDDsMvCv6NYtd20w6p0A==
   dependencies:
     tslib "^2.3.0"
 
